@@ -24,13 +24,19 @@ Enhanced, paste-ready versions of the two live Google Ads landing pages for
 
 ## How to deploy
 
-Both pages are WordPress + **Cornerstone** (Pro theme). The whole landing page lives
-inside a single raw-HTML / Text element.
+The files in `enhanced/` are **complete standalone HTML pages** — open one in any
+browser and it renders as the full, styled landing page (the site's own stylesheet is
+embedded verbatim, unmodified).
 
-1. Edit the page in Cornerstone.
-2. Select the element that currently holds the page markup — the one inside
-   `<div class="x-div e6446-e1 m4z2-0">` (page 1) or `<div class="x-div e6449-e1 m4z5-0">` (page 2).
-3. Replace its **entire contents** with the matching file from `enhanced/`.
+**For the live WordPress site** (Cornerstone / Pro theme), the deployable content block
+is clearly marked inside each file:
+
+1. Open the enhanced file and copy everything between
+   `<!-- CORNERSTONE BLOCK START -->` and `<!-- CORNERSTONE BLOCK END -->`.
+2. Edit the page in Cornerstone and select the raw-HTML / Text element that currently
+   holds the page markup — the one inside `<div class="x-div e6446-e1 m4z2-0">`
+   (page 1) or `<div class="x-div e6449-e1 m4z5-0">` (page 2).
+3. Replace its **entire contents** with the copied block.
    Do **not** paste the outer `cs-content` / `x-div` wrappers — those stay as they are.
 4. Save and purge the CDN / page cache.
 
