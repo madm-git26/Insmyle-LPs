@@ -21,7 +21,7 @@
 | 10 | Your First Visit (4 steps) | KEPT + EXPANDED | 4 steps untouched; **"What to Bring to Your First Appointment"** checklist added |
 | 11 | Gallery strip | KEPT | — |
 | 12 | Meet the Doctors | COPY | Intro opens "Three dentists, one Chicago location."; ADA membership added to Dr. Mariscal; `alt` text names the keyword |
-| 13 | **"What to Look For in the Best Dentist Near You"** | **NEW** | Nine checkable credibility points — credentials, three doctors, in-office milling, full scope, conservative recommendations, upfront pricing, hours, sterilisation, live reviews |
+| 13 | ~~"What to Look For in the Best Dentist Near You"~~ | REMOVED | Credibility section initially added, then **removed at client request** (2026-08-05). Note: exact-match coverage for `[best dentist chicago]` now relies on FAQ 9 only |
 | 14 | Payment & Insurance | EXPANDED | Insurance pills 3 → **15** (the full published list); one bullet added per card; section CTAs added |
 | 15 | Patient Reviews | FIX + COPY | EmbedSocial widget kept; `google-badge` enabled on each card (style existed, was commented out); `author-label` enabled; **avatar initials corrected** (C/S/V → J/J/K); "karl" → "Karl"; "755+" claim removed pending verification |
 | 16 | **Areas Served** | **NEW** | 15 neighbourhood `ins-pill`s + 7 ZIP codes + Directions/Book CTAs |

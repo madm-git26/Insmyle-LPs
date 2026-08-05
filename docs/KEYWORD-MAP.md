@@ -12,9 +12,9 @@ content excluded). "Before" is the current live page.
 |---|---|---|---|---|
 | `dentist in chicago` | phrase | **0** | **9** | **H1**, hero badge, new near-me H2 section label, services H2, credibility list, FAQ 7 & 9, final CTA |
 | `dentist near me` | phrase | **0** | **5** | **H1 area / hero sub**, new section H2 *"Searching for a 'Dentist Near Me'?"*, areas-served section label, FAQ 9 |
-| `best dentist near me` | phrase | **0** | **1** | Credibility section H2: *"What to Look For in the Best Dentist Near You"* + FAQ 9 heading |
+| `best dentist near me` | phrase | **0** | **1** | FAQ 9: *"How do I choose the best dentist near me in Chicago?"* (credibility section removed at client request) |
 | `dentist near my area` | phrase | **0** | **1** | Near-me section intro paragraph (bolded), FAQ 7 |
-| `best dentist chicago` | exact | **0** | **2** *(as "best dentist in Chicago")* | Credibility section label + its opening paragraph |
+| `best dentist chicago` | exact | **0** | **0** | Covered indirectly via FAQ 9 only — the dedicated credibility section was removed at client request. If Quality Score on this keyword stays low, consider re-adding a lighter version |
 
 ### The core problem this fixes
 

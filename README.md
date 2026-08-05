@@ -77,10 +77,7 @@ Full detail: [`docs/CHANGELOG.md`](docs/CHANGELOG.md)
    gives three ways to act (book online / call & text / visit), each with its own CTA.
 2. **"Complete Dental Care Under One Roof"** — all 15 services. Proves this is a
    full general practice, which is what a "dentist in Chicago" searcher wants.
-3. **"What to Look For in the Best Dentist Near You — and How We Measure Up"** —
-   nine checkable credibility points instead of an empty superlative. This is what
-   earns the `[best dentist chicago]` / "best dentist near me" click.
-4. **"A Dentist Near You — Serving Lakeview, Roscoe Village & Chicago's North Side"** —
+3. **"A Dentist Near You — Serving Lakeview, Roscoe Village & Chicago's North Side"** —
    15 neighbourhoods + 7 ZIP codes for the "near me" / "near my area" queries.
 
 **Landing Page 2 — Emergency Dentist**
@@ -159,7 +156,7 @@ Neither blocks deployment, but both are your call:
 2. **A "Best of 2026 Award Winner" badge was *not* added.** A crawl of the homepage
    surfaced that phrase, but I could not confirm the awarding body, so I left it out
    rather than publish an unverifiable award. If you can name the award and year, it is
-   a strong trust element and belongs in the credibility section on LP1.
+   a strong trust element worth adding to LP1.
 
 Also flagged: no parking or CTA-transit claims were added, because I could not verify
 them. If you confirm details (nearest Brown Line stop, street/lot parking), that is
