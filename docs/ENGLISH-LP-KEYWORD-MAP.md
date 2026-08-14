@@ -171,7 +171,7 @@ Nothing invented — bios and credentials are the practice's own published copy.
 | Change | Effect |
 |---|---|
 | **Google Maps iframe → click-to-load facade** | The map is the single heaviest asset on the page and almost nobody scrolls to it. It is now a styled placeholder showing the address; the iframe is injected only on click. Verified: **0 iframes on load, 1 after clicking**. |
-| **EmbedSocial deferred** | Was requested during page load, blocking first paint. Now loads on `requestIdleCallback` after the `load` event. Verified: **0 requests during load, 1 after**. |
+| **EmbedSocial loaded `async`** | A plain `async` tag: it never blocks parsing or first paint, but the request goes out immediately (measured at **~24 ms**). An earlier attempt deferred it to `requestIdleCallback` — see the correction below. |
 | **Explicit image dimensions + `decoding="async"`** | Doctor photos carry `width`/`height`, so they cannot shift layout as they load. |
 
 Measured in Chromium at 390 px, comparing the previous commit against this one:
@@ -185,13 +185,54 @@ The FCP gap is understated here because the test blocks the network — on a rea
 connection the Maps embed alone typically pulls several hundred KB before the visitor has
 scrolled anywhere near it.
 
-The widget-failure fallback still behaves correctly with the deferred loader (its timer now
-starts after `load` rather than at parse):
+### 13. Correction — the review widgets were being killed by our own code
+
+The first version of the speed work deferred the EmbedSocial script to
+`requestIdleCallback` **and** hid the hero badge if no rating had appeared after 6 seconds.
+Together those two changes could destroy a perfectly healthy widget: the script did not even
+start loading until after `load` + idle, and the 6-second timer then fired before the reviews
+had a chance to render. Measured on the page: badge still present at 4 s, hidden at 7 s.
+
+The FCP gain from that deferral was about 20 ms — the real speed win was the map facade. It
+was a bad trade and it has been reversed:
+
+- the script is a plain **`async` tag**, requested at ~24 ms, still off the critical path;
+- the fallback now **polls for 15 seconds** instead of firing once at 6, and it keeps
+  re-checking, so a widget that simply arrives late is never discarded;
+- when the widget genuinely is unavailable the hero badge is **no longer hidden** — it swaps
+  in a "Read our reviews on Google →" link, which is more useful than a disappearing element.
+
+Verified in a browser, both directions:
 
 ```
-GEN  badge hidden=true  reviews fallback=true  fake rating in schema=false  jsErr=0
-EMG  badge hidden=true  reviews fallback=true  fake rating in schema=false  jsErr=0
+A) widget blocked      GEN/EMG  script at ~24ms   badge kept with link   reviews fallback shown   fake rating in schema=false
+B) widget arrives 9s   badge kept, not degraded   fallback not shown     schema rating=4.9 / 1454 reviews
 ```
+
+> **What I could not verify:** this sandbox blocks `embedsocial.com`, so I have not seen the
+> widgets actually render. Two things are worth knowing. First, the markup and script URL are
+> **identical** to `enhanced/new-patient-dental-cleaning-exam.html`, which works on the live
+> site — so the page is not the difference. Second, EmbedSocial widgets are normally
+> **domain-restricted**: they render on domains registered in the account and stay blank
+> anywhere else, including `file://` and preview URLs. If you checked by opening the file
+> locally, blank widgets are expected. Please confirm on insmyledental.com before treating it
+> as a bug.
+
+### 14. High-intent keywords in the FAQ
+
+The FAQ grew to **14 questions on the general page and 12 on the emergency page**, with
+booking-intent phrasing worked into the questions themselves where it reads naturally:
+
+- *"Do you offer same-day appointments?"* → carries `dentist near me open now`
+- *"How do I choose the best dentist near me in Chicago?"* → `best dentist near me`
+- *"Is there an urgent care dental clinic near me that is open now?"* → `urgent care dental clinic near me`
+- *"Are you an emergency dentist open Saturday and in the evenings?"* → `emergency dentist open saturday`
+- *"Do you take walk-ins?"* → answer carries `walk-in dentist in Chicago`
+- *"Which parts of Chicago do your patients come from?"* → `Lakeview dentist`, `Roscoe Village dentist`, `Lincoln Park dentist`
+
+Coverage stays at 9/9 + 6/6 + 20/20 on both pages. Density rose with the new questions —
+`dentist near me` 1.10% on the general page, `emergency dentist` 0.90% on emergency — still
+comfortably inside a natural range, and every placement is a question a patient would type.
 
 ---
 

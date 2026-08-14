@@ -603,6 +603,12 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 }
 .hero-rating .hr-cap .hr-dot{width:7px;height:7px;border-radius:50%;background:#1eae74;animation:pulseDot 1.6s infinite}
 .hero-rating .embedsocial-hashtag{min-height:30px}
+.hero-rating .hr-link{
+  display:inline-block;font-family:'Bricolage Grotesque';font-weight:700;
+  font-size:.98rem;color:var(--amber-dark);text-decoration:none;
+}
+.hero-rating .hr-link:hover{text-decoration:underline}
+.hero-rating[data-degraded] .hr-cap .hr-dot{display:none}
 
 /* ---------- insurance section ---------- */
 .ins-sec .ins-logo{box-shadow:0 3px 12px rgba(18,53,79,.05)}
@@ -1204,23 +1210,31 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     <div class="faq-list">
       <details class="faq-item rv">
         <summary class="faq-q">Are you taking on new patients?</summary>
-        <div class="faq-a">Yes. We hold same-day slots for new patients every day we are open, so you are not waiting weeks for a first appointment. Book online or call <a href="tel:7739156530">(773) 915-6530</a>.</div>
+        <div class="faq-a">Yes. We hold same-day slots for new patients every day we are open, so if you have been searching for a dentist near me and want to be seen quickly, you are not waiting weeks for a first appointment. Book online or call <a href="tel:7739156530">(773) 915-6530</a>.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Do you offer same-day appointments?</summary>
+        <div class="faq-a">Most days, yes. We deliberately keep slots back for people who need a dentist near me open now rather than in three weeks. Call in the morning and there is a good chance we can see you that afternoon.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Are you open on Saturdays?</summary>
-        <div class="faq-a">Yes — Saturdays 7:00 am to 3:00 pm. It is our busiest day, and usually the easiest one for families booking several people in at once. We are closed Fridays and Sundays.</div>
+        <div class="faq-a">Yes — we are a dentist open Saturday, 7:00 am to 3:00 pm. It is our busiest day of the week and usually the easiest one for families booking several people in at once. We are closed Fridays and Sundays.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">How late are you open during the week?</summary>
-        <div class="faq-a">Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm. Mondays, Wednesdays and Thursdays start at 7:00 am if you would rather come before work.</div>
+        <div class="faq-a">Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm. Mondays, Wednesdays and Thursdays start at 7:00 am if you would rather come in before work.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Where exactly are you, and how do I get there?</summary>
-        <div class="faq-a">3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. It is a short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, and there is street parking around the block.</div>
+        <div class="faq-a">3514 N Lincoln Ave, Chicago, IL 60657 — a dental clinic near me for anyone in Lakeview or over on the Roscoe Village side. It is a short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, and there is street parking around the block.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Which parts of Chicago do your patients come from?</summary>
-        <div class="faq-a">Mostly Lakeview, Roscoe Village, Lincoln Park, North Center, Lincoln Square, Ravenswood, Uptown, Wrigleyville, Logan Square and Avondale — all a short trip from our Lincoln Ave office.</div>
+        <div class="faq-a">Mostly Lakeview, Roscoe Village, Lincoln Park, North Center, Lincoln Square, Ravenswood, Uptown, Wrigleyville, Logan Square and Avondale. So whether you are after a Lakeview dentist, a Roscoe Village dentist or a Lincoln Park dentist, it is the same short trip to our Lincoln Ave office.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">How do I choose the best dentist near me in Chicago?</summary>
+        <div class="faq-a">Three things are worth checking: whether they can actually see you when you need them, whether you get the cost in writing before treatment starts, and what recent patients say rather than what the practice says about itself. Our hours, our upfront estimates and our live Google reviews are all on this page so you can judge for yourself.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Do you take my dental insurance?</summary>
@@ -1232,15 +1246,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Can I spread the cost of treatment?</summary>
-        <div class="faq-a">Yes. Cherry splits it over 3, 6, 12, 18 or 24 monthly payments and checking your eligibility does not affect your credit score. Sunbit approves most patients at the front desk, and CareCredit is there for larger treatment plans.</div>
+        <div class="faq-a">Yes. Cherry splits it over 3, 6, 12, 18 or 24 monthly payments, and checking your eligibility does not affect your credit score. Sunbit approves most patients at the front desk, and CareCredit is there for larger treatment plans.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">What actually happens at my first appointment?</summary>
         <div class="faq-a">We go through your medical history and whatever has been bothering you, then do a full exam with digital X-rays. You get your options and the costs in plain English before anything starts — and in most cases treatment can begin the same day. Bring any X-rays from your last dentist, a list of your medications and your insurance details. Patients under 18 need a parent or guardian with them.</div>
       </details>
       <details class="faq-item rv">
-        <summary class="faq-q">Do you see children?</summary>
-        <div class="faq-a">Yes — we are a family practice, so children's check-ups, adult cleanings and care for older patients all happen under one roof. The child membership covers ages 0 to 12 and includes a fluoride treatment.</div>
+        <summary class="faq-q">Do you see children as well as adults?</summary>
+        <div class="faq-a">Yes — we are a family dentist near me for every age, so children's check-ups, adult cleanings and care for older patients all happen under one roof. The child membership covers ages 0 to 12 and includes a fluoride treatment.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Can you really do a crown in one visit?</summary>
@@ -1248,7 +1262,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">What if I have a dental emergency?</summary>
-        <div class="faq-a">Call <a href="tel:7739156530">(773) 915-6530</a>. We keep urgent slots free every day we are open for toothache, broken teeth, swelling and extractions, and we will triage it with you on the phone.</div>
+        <div class="faq-a">Call <a href="tel:7739156530">(773) 915-6530</a>. We keep urgent slots free every day we are open, so if you need an emergency dentist near me for toothache, a broken tooth, swelling or an extraction, we will triage it with you on the phone.</div>
       </details>
     </div>
     <div class="faq-cta rv">
@@ -1441,7 +1455,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Are you taking on new patients?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We hold same-day slots for new patients every day we are open, so you are not waiting weeks for a first appointment. Book online or call (773) 915-6530."
+        "text": "Yes. We hold same-day slots for new patients every day we are open, so if you have been searching for a dentist near me and want to be seen quickly, you are not waiting weeks for a first appointment. Book online or call (773) 915-6530."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer same-day appointments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most days, yes. We deliberately keep slots back for people who need a dentist near me open now rather than in three weeks. Call in the morning and there is a good chance we can see you that afternoon."
       }
     },
     {
@@ -1449,7 +1471,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Are you open on Saturdays?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — Saturdays 7:00 am to 3:00 pm. It is our busiest day, and usually the easiest one for families booking several people in at once. We are closed Fridays and Sundays."
+        "text": "Yes — we are a dentist open Saturday, 7:00 am to 3:00 pm. It is our busiest day of the week and usually the easiest one for families booking several people in at once. We are closed Fridays and Sundays."
       }
     },
     {
@@ -1457,7 +1479,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "How late are you open during the week?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm. Mondays, Wednesdays and Thursdays start at 7:00 am if you would rather come before work."
+        "text": "Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm. Mondays, Wednesdays and Thursdays start at 7:00 am if you would rather come in before work."
       }
     },
     {
@@ -1465,7 +1487,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Where exactly are you, and how do I get there?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. It is a short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, and there is street parking around the block."
+        "text": "3514 N Lincoln Ave, Chicago, IL 60657 — a dental clinic near me for anyone in Lakeview or over on the Roscoe Village side. It is a short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, and there is street parking around the block."
       }
     },
     {
@@ -1473,7 +1495,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Which parts of Chicago do your patients come from?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mostly Lakeview, Roscoe Village, Lincoln Park, North Center, Lincoln Square, Ravenswood, Uptown, Wrigleyville, Logan Square and Avondale — all a short trip from our Lincoln Ave office."
+        "text": "Mostly Lakeview, Roscoe Village, Lincoln Park, North Center, Lincoln Square, Ravenswood, Uptown, Wrigleyville, Logan Square and Avondale. So whether you are after a Lakeview dentist, a Roscoe Village dentist or a Lincoln Park dentist, it is the same short trip to our Lincoln Ave office."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I choose the best dentist near me in Chicago?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three things are worth checking: whether they can actually see you when you need them, whether you get the cost in writing before treatment starts, and what recent patients say rather than what the practice says about itself. Our hours, our upfront estimates and our live Google reviews are all on this page so you can judge for yourself."
       }
     },
     {
@@ -1497,7 +1527,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Can I spread the cost of treatment?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Cherry splits it over 3, 6, 12, 18 or 24 monthly payments and checking your eligibility does not affect your credit score. Sunbit approves most patients at the front desk, and CareCredit is there for larger treatment plans."
+        "text": "Yes. Cherry splits it over 3, 6, 12, 18 or 24 monthly payments, and checking your eligibility does not affect your credit score. Sunbit approves most patients at the front desk, and CareCredit is there for larger treatment plans."
       }
     },
     {
@@ -1510,10 +1540,10 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     },
     {
       "@type": "Question",
-      "name": "Do you see children?",
+      "name": "Do you see children as well as adults?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — we are a family practice, so children's check-ups, adult cleanings and care for older patients all happen under one roof. The child membership covers ages 0 to 12 and includes a fluoride treatment."
+        "text": "Yes — we are a family dentist near me for every age, so children's check-ups, adult cleanings and care for older patients all happen under one roof. The child membership covers ages 0 to 12 and includes a fluoride treatment."
       }
     },
     {
@@ -1529,7 +1559,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "What if I have a dental emergency?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Call (773) 915-6530. We keep urgent slots free every day we are open for toothache, broken teeth, swelling and extractions, and we will triage it with you on the phone."
+        "text": "Call (773) 915-6530. We keep urgent slots free every day we are open, so if you need an emergency dentist near me for toothache, a broken tooth, swelling or an extraction, we will triage it with you on the phone."
       }
     }
   ]
@@ -1537,26 +1567,11 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 </script>
 
 <!-- EmbedSocial loader — powers the live Google rating badge and reviews.
-     Deferred until after first paint so a third-party script never delays the
-     hero, the CTAs or the phone number rendering. -->
-<script>
-(function(){
-  var ID = "EmbedSocialHashtagScript";
-  function load(){
-    if (document.getElementById(ID)) { return; }
-    var js = document.createElement("script");
-    js.id = ID; js.async = true;
-    js.src = "https://embedsocial.com/cdn/ht.js";
-    document.head.appendChild(js);
-  }
-  function schedule(){
-    if ("requestIdleCallback" in window) { requestIdleCallback(load, { timeout: 2500 }); }
-    else { setTimeout(load, 250); }
-  }
-  if (document.readyState === "complete") { schedule(); }
-  else { window.addEventListener("load", schedule); }
-})();
-</script>
+     Loaded async so it never blocks parsing or first paint, but requested
+     immediately: the rating badge is above the fold, and deferring it to idle
+     was slow enough that the fallback could hide a widget that was still on
+     its way. -->
+<script async src="https://embedsocial.com/cdn/ht.js" id="EmbedSocialHashtagScript"></script>
 
 <script>
 // keyword rotator
@@ -1651,25 +1666,70 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     mo.observe(host, { childList:true, subtree:true, characterData:true });
   }
 })();
-// If the review widget is blocked or fails to load, don't leave empty boxes on
-// the page: hide the hero rating badge and swap the reviews block for a direct
-// link to the Google Business Profile.
+// If the review widgets are blocked, fail to load, or the domain is not
+// authorised in EmbedSocial, don't leave empty boxes on the page: swap the
+// hero badge for a plain link and reveal the reviews link. This keeps
+// re-checking, so a widget that simply arrives late is never lost.
 (function(){
+  var GOOGLE = 'https://maps.app.goo.gl/sUPeoaTKH5ykK63m6';
   function filled(el){ return el && (el.innerText || el.textContent || '').trim().length > 2; }
-  function start(){
-  setTimeout(function(){
+
+  function check(){
+    var done = true;
+
     var badge = document.querySelector('.hero-rating');
-    if(badge && !filled(badge.querySelector('.embedsocial-hashtag'))) badge.style.display = 'none';
-    var rw = document.querySelector('.rev-widget');
-    if(rw && !filled(rw.querySelector('.embedsocial-hashtag'))){
-      var fb = rw.querySelector('.rev-fallback');
-      if(fb) fb.hidden = false;
+    if (badge) {
+      var host = badge.querySelector('.embedsocial-hashtag');
+      if (filled(host)) {
+        badge.removeAttribute('data-degraded');
+      } else if (!badge.hasAttribute('data-degraded')) {
+        done = false;
+      }
     }
-  }, 6000);
+
+    var rw = document.querySelector('.rev-widget');
+    if (rw) {
+      var fb = rw.querySelector('.rev-fallback');
+      if (filled(rw.querySelector('.embedsocial-hashtag'))) {
+        if (fb) fb.hidden = true;
+      } else {
+        done = false;
+      }
+    }
+    return done;
   }
-  // start counting only once the page (and the deferred embed loader) has fired
-  if (document.readyState === 'complete') { start(); }
-  else { window.addEventListener('load', start); }
+
+  function degrade(){
+    var badge = document.querySelector('.hero-rating');
+    if (badge && !filled(badge.querySelector('.embedsocial-hashtag'))) {
+      badge.setAttribute('data-degraded', '');
+      var host = badge.querySelector('.embedsocial-hashtag');
+      if (host && !host.querySelector('a')) {
+        var a = document.createElement('a');
+        a.className = 'hr-link';
+        a.href = GOOGLE; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'Read our reviews on Google →';
+        host.appendChild(a);
+      }
+    }
+    var rw = document.querySelector('.rev-widget');
+    if (rw && !filled(rw.querySelector('.embedsocial-hashtag'))) {
+      var fb = rw.querySelector('.rev-fallback');
+      if (fb) fb.hidden = false;
+    }
+  }
+
+  function watch(){
+    var waited = 0;
+    var t = setInterval(function(){
+      waited += 1000;
+      if (check()) { clearInterval(t); return; }
+      if (waited >= 15000) { clearInterval(t); degrade(); }
+    }, 1000);
+  }
+
+  if (document.readyState === 'complete') { watch(); }
+  else { window.addEventListener('load', watch); }
 })();
 
 // Map loads only when asked for. The Google Maps iframe is one of the heaviest

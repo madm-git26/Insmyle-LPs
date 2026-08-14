@@ -603,6 +603,12 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 }
 .hero-rating .hr-cap .hr-dot{width:7px;height:7px;border-radius:50%;background:#1eae74;animation:pulseDot 1.6s infinite}
 .hero-rating .embedsocial-hashtag{min-height:30px}
+.hero-rating .hr-link{
+  display:inline-block;font-family:'Bricolage Grotesque';font-weight:700;
+  font-size:.98rem;color:var(--amber-dark);text-decoration:none;
+}
+.hero-rating .hr-link:hover{text-decoration:underline}
+.hero-rating[data-degraded] .hr-cap .hr-dot{display:none}
 
 /* ---------- insurance section ---------- */
 .ins-sec .ins-logo{box-shadow:0 3px 12px rgba(18,53,79,.05)}
@@ -1154,11 +1160,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     <div class="faq-list">
       <details class="faq-item rv">
         <summary class="faq-q">Can you really see me today?</summary>
-        <div class="faq-a">In most cases, yes. We hold urgent slots back every day we are open. Call <a href="tel:7739156530">(773) 915-6530</a> and we will triage it on the phone — ringing in the morning usually means being seen that afternoon.</div>
+        <div class="faq-a">In most cases, yes. We hold urgent slots back every day we are open, so if you are searching for an emergency dentist near me right now, call <a href="tel:7739156530">(773) 915-6530</a>. Ringing in the morning usually means being seen that afternoon.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Do you take walk-ins?</summary>
-        <div class="faq-a">Yes. If you are in too much pain to wait on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential.</div>
+        <div class="faq-a">Yes. We are a walk-in dentist in Chicago — if you are in too much pain to sit on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Is there an urgent care dental clinic near me that is open now?</summary>
+        <div class="faq-a">That is us, within our opening hours: Mondays and Thursdays until 7:00 pm, Tuesdays and Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm, starting at 7:00 am most mornings. We are closed Fridays and Sundays.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">What counts as a dental emergency?</summary>
@@ -1166,15 +1176,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Should I go to the emergency room instead?</summary>
-        <div class="faq-a">For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, a dentist is faster, cheaper, and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to us anyway.</div>
+        <div class="faq-a">For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, an emergency dentist in Chicago is faster, cheaper and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to a dentist anyway.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">My tooth has been knocked out — what do I do right now?</summary>
         <div class="faq-a">Pick it up by the crown, never the root. Rinse it gently if it is dirty, do not scrub it, and keep it moist in milk. Then call us immediately — the sooner we see you, the better the chance of saving it.</div>
       </details>
       <details class="faq-item rv">
-        <summary class="faq-q">Are you open evenings and on Saturdays?</summary>
-        <div class="faq-a">Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm. We are closed Fridays and Sundays.</div>
+        <summary class="faq-q">Are you an emergency dentist open Saturday and in the evenings?</summary>
+        <div class="faq-a">Yes. Saturdays 7:00 am to 3:00 pm, and Mondays and Thursdays until 7:00 pm for anything that flares up after work. Tuesdays and Wednesdays we are here until 6:00 pm. Closed Fridays and Sundays.</div>
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Will it be sorted in one visit?</summary>
@@ -1194,7 +1204,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       </details>
       <details class="faq-item rv">
         <summary class="faq-q">Where are you, and how quickly can I get there?</summary>
-        <div class="faq-a">3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block.</div>
+        <div class="faq-a">3514 N Lincoln Ave, Chicago, IL 60657 — an emergency dentist in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block.</div>
       </details>
     </div>
     <div class="faq-cta rv">
@@ -1401,7 +1411,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Can you really see me today?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In most cases, yes. We hold urgent slots back every day we are open. Call (773) 915-6530 and we will triage it on the phone — ringing in the morning usually means being seen that afternoon."
+        "text": "In most cases, yes. We hold urgent slots back every day we are open, so if you are searching for an emergency dentist near me right now, call (773) 915-6530. Ringing in the morning usually means being seen that afternoon."
       }
     },
     {
@@ -1409,7 +1419,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Do you take walk-ins?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. If you are in too much pain to wait on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential."
+        "text": "Yes. We are a walk-in dentist in Chicago — if you are in too much pain to sit on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an urgent care dental clinic near me that is open now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That is us, within our opening hours: Mondays and Thursdays until 7:00 pm, Tuesdays and Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm, starting at 7:00 am most mornings. We are closed Fridays and Sundays."
       }
     },
     {
@@ -1425,7 +1443,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Should I go to the emergency room instead?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, a dentist is faster, cheaper, and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to us anyway."
+        "text": "For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, an emergency dentist in Chicago is faster, cheaper and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to a dentist anyway."
       }
     },
     {
@@ -1438,10 +1456,10 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     },
     {
       "@type": "Question",
-      "name": "Are you open evenings and on Saturdays?",
+      "name": "Are you an emergency dentist open Saturday and in the evenings?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm. We are closed Fridays and Sundays."
+        "text": "Yes. Saturdays 7:00 am to 3:00 pm, and Mondays and Thursdays until 7:00 pm for anything that flares up after work. Tuesdays and Wednesdays we are here until 6:00 pm. Closed Fridays and Sundays."
       }
     },
     {
@@ -1481,7 +1499,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       "name": "Where are you, and how quickly can I get there?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block."
+        "text": "3514 N Lincoln Ave, Chicago, IL 60657 — an emergency dentist in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block."
       }
     }
   ]
@@ -1489,26 +1507,11 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 </script>
 
 <!-- EmbedSocial loader — powers the live Google rating badge and reviews.
-     Deferred until after first paint so a third-party script never delays the
-     hero, the CTAs or the phone number rendering. -->
-<script>
-(function(){
-  var ID = "EmbedSocialHashtagScript";
-  function load(){
-    if (document.getElementById(ID)) { return; }
-    var js = document.createElement("script");
-    js.id = ID; js.async = true;
-    js.src = "https://embedsocial.com/cdn/ht.js";
-    document.head.appendChild(js);
-  }
-  function schedule(){
-    if ("requestIdleCallback" in window) { requestIdleCallback(load, { timeout: 2500 }); }
-    else { setTimeout(load, 250); }
-  }
-  if (document.readyState === "complete") { schedule(); }
-  else { window.addEventListener("load", schedule); }
-})();
-</script>
+     Loaded async so it never blocks parsing or first paint, but requested
+     immediately: the rating badge is above the fold, and deferring it to idle
+     was slow enough that the fallback could hide a widget that was still on
+     its way. -->
+<script async src="https://embedsocial.com/cdn/ht.js" id="EmbedSocialHashtagScript"></script>
 
 <script>
 // keyword rotator
@@ -1603,25 +1606,70 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     mo.observe(host, { childList:true, subtree:true, characterData:true });
   }
 })();
-// If the review widget is blocked or fails to load, don't leave empty boxes on
-// the page: hide the hero rating badge and swap the reviews block for a direct
-// link to the Google Business Profile.
+// If the review widgets are blocked, fail to load, or the domain is not
+// authorised in EmbedSocial, don't leave empty boxes on the page: swap the
+// hero badge for a plain link and reveal the reviews link. This keeps
+// re-checking, so a widget that simply arrives late is never lost.
 (function(){
+  var GOOGLE = 'https://maps.app.goo.gl/sUPeoaTKH5ykK63m6';
   function filled(el){ return el && (el.innerText || el.textContent || '').trim().length > 2; }
-  function start(){
-  setTimeout(function(){
+
+  function check(){
+    var done = true;
+
     var badge = document.querySelector('.hero-rating');
-    if(badge && !filled(badge.querySelector('.embedsocial-hashtag'))) badge.style.display = 'none';
-    var rw = document.querySelector('.rev-widget');
-    if(rw && !filled(rw.querySelector('.embedsocial-hashtag'))){
-      var fb = rw.querySelector('.rev-fallback');
-      if(fb) fb.hidden = false;
+    if (badge) {
+      var host = badge.querySelector('.embedsocial-hashtag');
+      if (filled(host)) {
+        badge.removeAttribute('data-degraded');
+      } else if (!badge.hasAttribute('data-degraded')) {
+        done = false;
+      }
     }
-  }, 6000);
+
+    var rw = document.querySelector('.rev-widget');
+    if (rw) {
+      var fb = rw.querySelector('.rev-fallback');
+      if (filled(rw.querySelector('.embedsocial-hashtag'))) {
+        if (fb) fb.hidden = true;
+      } else {
+        done = false;
+      }
+    }
+    return done;
   }
-  // start counting only once the page (and the deferred embed loader) has fired
-  if (document.readyState === 'complete') { start(); }
-  else { window.addEventListener('load', start); }
+
+  function degrade(){
+    var badge = document.querySelector('.hero-rating');
+    if (badge && !filled(badge.querySelector('.embedsocial-hashtag'))) {
+      badge.setAttribute('data-degraded', '');
+      var host = badge.querySelector('.embedsocial-hashtag');
+      if (host && !host.querySelector('a')) {
+        var a = document.createElement('a');
+        a.className = 'hr-link';
+        a.href = GOOGLE; a.target = '_blank'; a.rel = 'noopener';
+        a.textContent = 'Read our reviews on Google →';
+        host.appendChild(a);
+      }
+    }
+    var rw = document.querySelector('.rev-widget');
+    if (rw && !filled(rw.querySelector('.embedsocial-hashtag'))) {
+      var fb = rw.querySelector('.rev-fallback');
+      if (fb) fb.hidden = false;
+    }
+  }
+
+  function watch(){
+    var waited = 0;
+    var t = setInterval(function(){
+      waited += 1000;
+      if (check()) { clearInterval(t); return; }
+      if (waited >= 15000) { clearInterval(t); degrade(); }
+    }, 1000);
+  }
+
+  if (document.readyState === 'complete') { watch(); }
+  else { window.addEventListener('load', watch); }
 })();
 
 // Map loads only when asked for. The Google Maps iframe is one of the heaviest
