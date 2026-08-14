@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, follow">
 <meta name="googlebot" content="noindex, follow">
-<title>Emergency Dentist in Chicago | Same-Day Urgent Dental Care | In Smyle Dental</title>
-<meta name="description" content="Emergency dentist near me in Chicago. Same-day urgent dental care for toothache, broken teeth &amp; swelling in Lakeview &amp; Roscoe Village. Walk-ins welcome. Call now!">
+<title>Emergency Dentist in Chicago — Seen Today, Walk-Ins Welcome</title>
+<meta name="description" content="In dental pain right now? In Smyle Dental in Lakeview &amp; Roscoe Village treats toothache, broken teeth and swelling the same day. Walk-ins welcome, evenings and Saturdays. Call (773) 915-6530.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -555,6 +555,136 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
   .mem-text{font-size:1rem;line-height:1.7}
 }
 </style>
+<style>
+/* ==========================================================================
+   v2 additions. The stylesheet above is byte-identical to the source page —
+   nothing in it was edited. Everything new lives here.
+   ========================================================================== */
+
+/* ---------- hero backdrop ---------- */
+.hero-wrap{position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background-image:radial-gradient(rgba(18,53,79,.16) 1px,transparent 1px);
+  background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(75% 65% at 50% 28%,#000,transparent 76%);
+  mask-image:radial-gradient(75% 65% at 50% 28%,#000,transparent 76%);
+  opacity:.5;
+}
+.blob{position:absolute;border-radius:50%;filter:blur(64px);will-change:transform}
+.blob-1{width:540px;height:540px;left:-180px;top:-220px;
+  background:radial-gradient(circle,rgba(4,178,221,.40),transparent 70%);
+  animation:drift1 19s ease-in-out infinite}
+.blob-2{width:470px;height:470px;right:-150px;top:-170px;
+  background:radial-gradient(circle,rgba(255,122,0,.24),transparent 70%);
+  animation:drift2 23s ease-in-out infinite}
+.blob-3{width:400px;height:400px;left:42%;bottom:-250px;
+  background:radial-gradient(circle,rgba(30,174,116,.18),transparent 70%);
+  animation:drift1 27s ease-in-out infinite reverse}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(42px,30px) scale(1.08)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-38px,26px) scale(1.06)}}
+.hero{position:relative;z-index:1}
+.hero-fade{
+  position:absolute;left:0;right:0;bottom:0;height:120px;z-index:0;pointer-events:none;
+  background:linear-gradient(to bottom,transparent,var(--bg));
+}
+
+/* ---------- live Google rating badge (hero) ---------- */
+.hero-rating{
+  margin-top:20px;background:var(--card);border:1.5px solid rgba(18,53,79,.1);
+  border-radius:18px;padding:14px 18px;box-shadow:0 6px 20px rgba(18,53,79,.08);
+  max-width:430px;
+}
+.hero-rating .hr-cap{
+  display:flex;align-items:center;gap:7px;
+  font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:8px;
+}
+.hero-rating .hr-cap .hr-dot{width:7px;height:7px;border-radius:50%;background:#1eae74;animation:pulseDot 1.6s infinite}
+.hero-rating .embedsocial-hashtag{min-height:30px}
+
+/* ---------- insurance section ---------- */
+.ins-sec .ins-logo{box-shadow:0 3px 12px rgba(18,53,79,.05)}
+.ins-sec .ins-logo:hover{border-color:var(--amber)}
+.ins-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.ins-feat{
+  background:var(--bg);border:1px solid rgba(18,53,79,.08);border-radius:20px;
+  padding:26px 22px;text-align:center;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.ins-feat:hover{transform:translateY(-6px);border-color:var(--amber);box-shadow:0 16px 34px rgba(18,53,79,.13)}
+.ins-feat .if-ico{
+  width:52px;height:52px;border-radius:15px;background:var(--mint);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 13px;
+  transition:transform .3s ease;
+}
+.ins-feat:hover .if-ico{transform:scale(1.12) rotate(-6deg)}
+.ins-feat h4{font-size:1.08rem;margin-bottom:5px}
+.ins-feat p{font-size:.92rem;color:var(--ink-soft)}
+.ins-verify{
+  margin-top:34px;background:linear-gradient(135deg,#04b2dd,#0393b8);color:#fff;
+  border-radius:26px;padding:34px 30px;text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 18px 46px rgba(4,178,221,.3);
+}
+.ins-verify::after{
+  content:"";position:absolute;right:-80px;top:-80px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);
+}
+.ins-verify h3{font-size:1.55rem;margin-bottom:8px;position:relative;z-index:1}
+.ins-verify p{color:#eafaff;font-size:1.02rem;margin-bottom:20px;position:relative;z-index:1;max-width:38rem;margin-left:auto;margin-right:auto}
+.ins-verify .btn{position:relative;z-index:1}
+
+/* ---------- areas we serve ---------- */
+.areas-sec{background:#fff}
+.areas-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-bottom:34px}
+.area-card{
+  background:var(--bg);border:1px solid rgba(18,53,79,.08);border-radius:20px;
+  padding:22px 14px;text-align:center;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.area-card:hover{transform:translateY(-6px);border-color:var(--amber);box-shadow:0 14px 32px rgba(18,53,79,.13)}
+.area-pin{
+  width:44px;height:44px;border-radius:50%;background:var(--mint);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto 11px;
+  transition:transform .3s ease;
+}
+.area-card:hover .area-pin{transform:scale(1.14) rotate(-8deg)}
+.area-card h3{font-size:1.02rem;margin-bottom:3px;line-height:1.2}
+.area-card span{display:block;font-size:.8rem;color:var(--ink-soft);font-weight:600}
+.areas-strip{
+  background:var(--ink);color:#fff;border-radius:24px;padding:28px 26px;text-align:center;
+}
+.areas-strip h4{font-size:1.12rem;color:var(--amber);margin-bottom:16px}
+.areas-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.areas-tags span{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:9px 18px;font-size:.9rem;font-weight:600;color:#dff4fb;
+}
+.areas-note{margin-top:18px;font-size:.9rem;color:#9fc4d6}
+
+/* ---------- reviews widget ---------- */
+.rev-widget{min-height:200px}
+.rev-fallback{text-align:center;padding:30px 20px}
+.rev-fallback p{color:var(--ink-soft);margin-bottom:18px}
+
+@media (max-width:1020px){
+  .areas-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:920px){
+  .ins-feats{grid-template-columns:1fr}
+  .hero-rating{max-width:100%}
+  .blob{filter:blur(52px)}
+}
+@media (max-width:680px){
+  .areas-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .ins-verify{padding:28px 22px}
+  .areas-strip{padding:24px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .blob{animation:none!important}
+}
+</style>
 </head>
 <body>
 
@@ -563,111 +693,123 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
   <div class="topbar-in">
     <div class="logo">In Smyle <span>Dental</span></div>
     <div class="spacer"></div>
-    <a class="top-phone" href="tel:7739156270">📞 <span class="num-txt">(773) 915-6270</span></a>
+    <a class="top-phone" href="tel:7739156530">📞 <span class="num-txt">(773) 915-6530</span></a>
     <a class="btn btn-amber btn-sm" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
   </div>
 </div>
 
 <!-- HERO -->
-<header class="hero">
-  <div>
-    <div class="eyebrow fadeup f1"><span class="dot"></span> Same-day emergency appointments · Walk-ins welcome</div>
-    <h1 class="fadeup f2">Emergency dentist near you, <span class="rotator-wrap"><span class="rotator" id="rotator">
-        <span>today.</span>
-        <span>not next week.</span>
-        <span>no long waits.</span>
-        <span>open Saturday.</span>
-        <span>today.</span>
-      </span></span>
-    </h1>
-    <p class="lead fadeup f3">Toothache, chipped tooth, lost crown or swelling? We're the <strong>emergency dentist in Chicago</strong> that sees you the <strong>same day</strong>. <strong>Walk-in dentist</strong> and urgent dental care in Lakeview and Roscoe Village — evenings and Saturdays too.</p>
-    <div class="cta-row fadeup f4">
-      <a class="btn btn-ink pulse-call" href="tel:7739156270">📞 Call Now</a>
-      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
-    </div>
-    <p class="cta-note fadeup f4">In pain right now? Calling is fastest · No referral needed</p>
-    <div class="trust-chips fadeup f5">
-      <span class="chip">🚨 Same-day emergency visits</span>
-      <span class="chip">🚶 Walk-ins welcome</span>
-      <span class="chip">🗓️ Saturdays &amp; evenings</span>
-      <span class="chip">🛡️ Most insurance accepted</span>
-    </div>
+<div class="hero-wrap">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
   </div>
+  <span class="hero-fade" aria-hidden="true"></span>
+  <header class="hero">
+    <div>
+      <div class="eyebrow fadeup f1"><span class="dot"></span> Same-day emergency slots · Walk-ins welcome</div>
+      <h1 class="fadeup f2">Emergency dentist in Chicago — we'll see you <span class="rotator-wrap"><span class="rotator" id="rotator">
+          <span>today.</span>
+          <span>not next week.</span>
+          <span>within hours.</span>
+          <span>even on Saturday.</span>
+          <span>today.</span>
+        </span></span>
+      </h1>
+      <p class="lead fadeup f3">Toothache that's keeping you up, a tooth that's broken, a crown that's come off, or a face that's starting to swell — these are the things we keep slots free for. We're on Lincoln Ave between Lakeview and Roscoe Village, open early, late twice a week, and all day Saturday.</p>
+      <div class="cta-row fadeup f4">
+        <a class="btn btn-ink pulse-call" href="tel:7739156530">📞 Call Now</a>
+        <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
+      </div>
+      <p class="cta-note fadeup f4">In pain right now? Calling gets you seen fastest · No referral needed</p>
+      <div class="hero-rating fadeup f4">
+        <div class="hr-cap"><span class="hr-dot"></span> Live Google reviews</div>
+        <div class="embedsocial-hashtag" data-ref="8110babf905578547c0f838a3dbb2d6780619936"></div>
+      </div>
+      <div class="trust-chips fadeup f5">
+        <span class="chip">🚨 Same-day emergency visits</span>
+        <span class="chip">🚶 Walk-ins welcome</span>
+        <span class="chip">🗓️ Saturdays &amp; evenings</span>
+        <span class="chip">🛡️ Most insurance accepted</span>
+      </div>
+    </div>
 
-  <div class="hero-right fadeup">
-    <div class="award">
-      <img src="https://d11iwgb7g2683x.cloudfront.net/insmyledental/wp-content/uploads/2026/06/img-in-smyle-dental-best-of-2026-awaed-winner-.webp" alt="In Smyle Dental — Best of 2026 Award Winner" loading="lazy">
-      <div class="aw-txt"><strong>🏆 Best of 2026 Winner</strong>Award-winning dental clinic in Chicago</div>
+    <div class="hero-right fadeup">
+      <div class="award">
+        <img src="https://d11iwgb7g2683x.cloudfront.net/insmyledental/wp-content/uploads/2026/06/img-in-smyle-dental-best-of-2026-awaed-winner-.webp" alt="In Smyle Dental — Best of 2026 Award Winner" loading="lazy">
+        <div class="aw-txt"><strong>🏆 Best of 2026 Winner</strong>Award-winning dental clinic in Chicago</div>
+      </div>
+      <div class="hero-card">
+        <h3>When we're open</h3>
+        <p class="sub">Early starts, late finishes, and Saturdays:</p>
+        <ul class="hours">
+          <li><span>Monday</span><span>7:00 am – 7:00 pm</span></li>
+          <li><span>Tuesday</span><span>8:00 am – 6:00 pm</span></li>
+          <li><span>Wednesday</span><span>7:00 am – 6:00 pm</span></li>
+          <li><span>Thursday</span><span class="hl">7:00 am – 7:00 pm</span></li>
+          <li><span>Saturday</span><span class="hl">7:00 am – 3:00 pm</span></li>
+        </ul>
+        <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Get Seen Today</a>
+      </div>
     </div>
-    <div class="hero-card">
-      <h3>Emergency dentist open now</h3>
-      <p class="sub">Extended hours for when it can't wait:</p>
-      <ul class="hours">
-        <li><span>Monday</span><span>7:00 am – 7:00 pm</span></li>
-        <li><span>Tuesday</span><span>8:00 am – 6:00 pm</span></li>
-        <li><span>Wednesday</span><span>7:00 am – 6:00 pm</span></li>
-        <li><span>Thursday</span><span class="hl">7:00 am – 7:00 pm</span></li>
-        <li><span>Saturday</span><span class="hl">7:00 am – 3:00 pm</span></li>
-      </ul>
-      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Get Seen Today</a>
-    </div>
-  </div>
-</header>
+  </header>
+</div>
 
 <!-- EMERGENCY STRIP -->
 <div class="urgent-strip">
   <div class="urgent-in">
     <strong>🦷 In dental pain right now?</strong>
-    <span>Searching "dentist emergency near me"? We'll get you in today.</span>
-    <a href="tel:7739156270">Call Urgent Line</a>
+    <span>Call us — we'll get you in today rather than book you for next week.</span>
+    <a href="tel:7739156530">Call Now</a>
   </div>
 </div>
 
 <!-- KEYWORD SECTIONS — 8 BOXES -->
 <section>
   <div class="wrap">
-    <h2 class="sec-title rv">Urgent dental care, right near you</h2>
-    <p class="sec-sub rv">Searching for an "emergency dentist near me"? We're the urgent care dental clinic near me that Chicago neighbors call when a tooth simply can't wait.</p>
+    <h2 class="sec-title rv">Urgent dental care, without the runaround</h2>
+    <p class="sec-sub rv">Most people find us searching "emergency dentist near me" or "dentist emergency near me" at the worst possible moment — a Saturday morning, or ten minutes after everywhere else has shut. Here is how we handle it.</p>
     <div class="kw-grid">
       <div class="kw-card rv">
         <div class="kw-ico">📍</div>
-        <h3>Emergency dentist near me</h3>
-        <p>Our urgent dental clinic is in the heart of Lakeview at 3514 N Lincoln Ave, Chicago, IL 60657 — quick to reach from Roscoe Village, North Center and Lincoln Park.</p>
+        <h3>An emergency dentist nearby</h3>
+        <p>We're at 3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, and quick to reach from Roscoe Village, North Center and Lincoln Park.</p>
       </div>
       <div class="kw-card rv rv-d1">
         <div class="kw-ico">⚡</div>
-        <h3>Same-day urgent dental care</h3>
-        <p>Need an emergency dentist in Chicago today, or searching "dentist near me open now"? We hold urgent slots every day we're open — call in the morning, be seen in the afternoon.</p>
+        <h3>Seen the same day</h3>
+        <p>Searching for a dentist near me open now? We hold urgent slots back every day we're open, so calling in the morning usually means being seen that afternoon.</p>
       </div>
       <div class="kw-card rv rv-d2">
         <div class="kw-ico">🚶</div>
-        <h3>Walk-in dentist Chicago</h3>
-        <p>In too much pain to wait for an appointment? Walk-ins are welcome — call ahead if you can so we can have a chair ready for you.</p>
+        <h3>Walk in if you have to</h3>
+        <p>If you need a walk-in dentist in Chicago and you're in too much pain to wait on hold, just come in. Ringing ahead helps us have a chair ready, but it isn't essential.</p>
       </div>
       <div class="kw-card rv rv-d3">
         <div class="kw-ico">🗓️</div>
-        <h3>Emergency dentist open Saturday</h3>
-        <p>Dental emergencies don't wait for Monday. We're open Saturdays from 7:00 am to 3:00 pm for urgent dental care.</p>
+        <h3>Open on Saturdays</h3>
+        <p>Toothache doesn't wait politely until Monday morning. We're open Saturdays 7:00 am to 3:00 pm.</p>
       </div>
       <div class="kw-card urgent-card rv rv-d1">
         <div class="kw-ico">🚨</div>
-        <h3>Toothache? Call right now</h3>
-        <p>Severe toothache, broken tooth, swelling or an urgent extraction — fast relief the same day. Call (773) 915-6270.</p>
+        <h3>In pain? Ring us first</h3>
+        <p>Severe toothache, a broken tooth, swelling, or something that needs taking out — call (773) 915-6530 and we'll triage it on the phone.</p>
       </div>
       <div class="kw-card rv rv-d2">
         <div class="kw-ico">🚗</div>
-        <h3>Fast to reach</h3>
-        <p>A walk-in dentist on Lincoln Ave, Chicago — right by the CTA Brown Line (Paulina/Southport) and minutes from Belmont, Addison and Wrigley Field. Street parking nearby.</p>
+        <h3>Quick to get to</h3>
+        <p>On Lincoln Ave, a short walk from the CTA Brown Line at Paulina and Southport, and minutes from Belmont, Addison and Wrigley Field.</p>
       </div>
       <div class="kw-card rv rv-d3">
         <div class="kw-ico">🌙</div>
-        <h3>Evening urgent care</h3>
-        <p>Pain flaring up after work? We're open until 7:00 pm on Mondays and Thursdays — urgent care without missing a day of work.</p>
+        <h3>Evenings too</h3>
+        <p>Pain that flares up after work doesn't have to wait overnight — we're here until 7:00 pm on Mondays and Thursdays.</p>
       </div>
       <div class="kw-card rv rv-d4">
         <div class="kw-ico">🛡️</div>
-        <h3>Insurance &amp; payment plans</h3>
-        <p>Delta Dental, Aetna, Cigna, MetLife, Humana and more. No insurance? Our membership plan and Cherry financing keep it affordable.</p>
+        <h3>Sorted out, then paid for</h3>
+        <p>We get you out of pain first. Insurance, membership plan or Cherry financing — we work the cost out afterwards.</p>
       </div>
     </div>
   </div>
@@ -676,8 +818,8 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <!-- INSURANCE MARQUEE -->
 <section class="ins-sec">
   <div class="wrap">
-    <h2 class="sec-title rv">Insurance we're proud to accept</h2>
-    <p class="sec-sub rv">We're in network with the major carriers — and we'll check your emergency coverage before you're in the chair.</p>
+    <h2 class="sec-title rv">We work with most major insurers</h2>
+    <p class="sec-sub rv">We're in network with the big carriers, and we'll check your emergency cover before you're in the chair — not after.</p>
   </div>
   <div class="marquee-outer rv">
     <div class="marquee" id="marquee">
@@ -699,7 +841,29 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     </div>
   </div>
   <div class="wrap">
-    <p class="ins-note rv">Don't see your plan? <a href="tel:7739156270">Call us</a> — we'll verify your coverage free, in minutes.</p>
+    <div class="ins-feats">
+      <div class="ins-feat rv">
+        <div class="if-ico">🔎</div>
+        <h4>Cover checked while you travel in</h4>
+        <p>Give us your insurer on the phone and we'll have your benefits confirmed by the time you arrive.</p>
+      </div>
+      <div class="ins-feat rv rv-d1">
+        <div class="if-ico">📨</div>
+        <h4>We file the claim for you</h4>
+        <p>No forms to post, no phone queues. We submit directly to your insurer and chase it if anything stalls.</p>
+      </div>
+      <div class="ins-feat rv rv-d2">
+        <div class="if-ico">💬</div>
+        <h4>Pain first, paperwork after</h4>
+        <p>We get you comfortable before anything else. Costs and payment options get discussed once you're out of pain.</p>
+      </div>
+    </div>
+    <div class="ins-verify rv rv-d1">
+      <h3>Not sure if we take your plan?</h3>
+      <p>Give us your insurer and member ID and we'll verify your coverage free, usually while you're still on the phone.</p>
+      <a class="btn btn-white" href="tel:7739156530">📞 Check My Coverage</a>
+    </div>
+    <p class="ins-note rv">Plan not on the list? <a href="tel:7739156530">Call us</a> — we work with plenty of insurers that aren't shown here.</p>
   </div>
 </section>
 
@@ -708,46 +872,46 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
   <div class="wrap">
     <div class="crown-grid">
       <div class="crown-left rv">
-        <span class="crown-eyebrow">Emergency dentist Chicago · In-office milling</span>
-        <h2>Broke a tooth? Your crown, the same day. No waiting, no temporaries.</h2>
-        <p class="crown-lead">Cracked and broken teeth are among the most common emergencies we treat. We mill your custom porcelain crown right here in our Chicago office, so you leave with a permanent crown — not a temporary one.</p>
+        <span class="crown-eyebrow">Emergency dentist Chicago · same-day crowns</span>
+        <h2>Broken a tooth? You can leave with the real crown</h2>
+        <p class="crown-lead">Cracked and broken teeth are one of the most common things we see in an emergency. Most practices would fit a temporary and send you away for two weeks — we make the porcelain crown here in the building instead, while you wait.</p>
         <ul class="crown-feats">
           <li>
             <span class="crown-fico">⏱️</span>
-            <div><h4>One appointment, done.</h4><p>No second visit, no temporary crown, and no waiting weeks on an outside lab while the tooth stays vulnerable.</p></div>
+            <div><h4>One appointment, start to finish</h4><p>No second visit, and no temporary crown working loose on a tooth that's already fragile.</p></div>
           </li>
           <li>
             <span class="crown-fico">🔧</span>
-            <div><h4>Milled in our office</h4><p>Our chairside mill carves your crown from a solid ceramic block in under 15 minutes.</p></div>
+            <div><h4>Milled on site</h4><p>Our chairside mill carves the crown from a solid ceramic block in under 15 minutes.</p></div>
           </li>
           <li>
             <span class="crown-fico">🦷</span>
-            <div><h4>Natural-looking, durable porcelain</h4><p>Shade-matched to your teeth for a result that blends seamlessly into your smile.</p></div>
+            <div><h4>Shade-matched porcelain</h4><p>We match it to the teeth either side, so it isn't the first thing people notice when you smile.</p></div>
           </li>
         </ul>
       </div>
       <div class="crown-card rv rv-d1">
-        <h3>How does it work?</h3>
+        <h3>How it works</h3>
         <ul class="crown-steps">
           <li>
             <span class="crown-snum">1</span>
-            <div><h4>Digital scan</h4><p>We take a precise 3D scan of your tooth — no uncomfortable impressions needed.</p></div>
+            <div><h4>Digital scan</h4><p>A quick 3D scan of the tooth — no trays of impression material.</p></div>
           </li>
           <li>
             <span class="crown-snum">2</span>
-            <div><h4>Crown design</h4><p>We design your custom crown on screen, fine-tuning the size and shape.</p></div>
+            <div><h4>We design it on screen</h4><p>Size, shape and bite adjusted with you sitting right there.</p></div>
           </li>
           <li>
             <span class="crown-snum">3</span>
-            <div><h4>In-office milling</h4><p>Our mill sculpts the crown from solid ceramic while you relax in the chair.</p></div>
+            <div><h4>The mill does its work</h4><p>Roughly 15 minutes, while you have a coffee and catch up on your phone.</p></div>
           </li>
           <li>
             <span class="crown-snum">4</span>
-            <div><h4>Seat and go</h4><p>We check the fit, bond it in place, and you're done — the same day!</p></div>
+            <div><h4>Fitted and bonded</h4><p>We check the bite, bond it in place, and you're done for the day.</p></div>
           </li>
         </ul>
         <div><a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
-        <a class="btn btn-ink pulse-call" href="tel:7739156270">📞 Call Now</a>
+        <a class="btn btn-ink pulse-call" href="tel:7739156530">📞 Call Now</a>
         </div>
       </div>
     </div>
@@ -758,23 +922,23 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <section class="eve-sec">
   <div class="wrap eve-in">
     <span class="eve-moon rv">🌙</span>
-    <h2 class="rv">Evening emergency appointments</h2>
-    <p class="eve-lead rv">Looking for a dental office near me that's open after work? Dental pain doesn't keep office hours — so we keep evening slots open for urgent dental care and emergency dentist appointments.</p>
+    <h2 class="rv">Pain doesn't keep office hours</h2>
+    <p class="eve-lead rv">Searching for a dental office near me that is open after work? A tooth that starts throbbing at four in the afternoon shouldn't mean a night of painkillers and a morning off work. We run two late evenings and a full Saturday for exactly this.</p>
     <div class="eve-cards">
       <div class="eve-card rv">
         <div class="eve-ico">🕕</div>
-        <h4>After-work urgent care</h4>
-        <p>Get emergency treatment the same evening, without missing a day of work.</p>
+        <h4>Straight after work</h4>
+        <p>Come in at the end of the day rather than waiting it out until morning.</p>
       </div>
       <div class="eve-card rv rv-d1">
         <div class="eve-ico">👩‍⚕️</div>
-        <h4>An experienced team</h4>
-        <p>Fast, accurate diagnosis and effective relief using advanced dental technology.</p>
+        <h4>The same team, late or early</h4>
+        <p>Evening slots aren't staffed by a skeleton crew — you see the same dentists and the same kit.</p>
       </div>
       <div class="eve-card rv rv-d2">
         <div class="eve-ico">📝</div>
-        <h4>We treat the cause</h4>
-        <p>We stop the pain first, then build a plan so the same problem doesn't come back.</p>
+        <h4>We treat the cause, not just the ache</h4>
+        <p>Stopping the pain is step one. Then we sort out what caused it, so you're not back in a fortnight.</p>
       </div>
     </div>
     <div class="eve-days rv">
@@ -782,7 +946,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       <span class="eve-day">🌆 Thursday until 7 pm</span>
     </div>
     <div class="rv">
-      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book an Evening Emergency Visit</a>
+      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book an Evening Slot</a>
     </div>
   </div>
 </section>
@@ -790,36 +954,36 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <!-- FIRST VISIT -->
 <section class="fv-sec">
   <div class="wrap">
-    <h2 class="sec-title rv">Your emergency visit, step by step</h2>
-    <p class="sec-sub rv">Here's exactly what happens when you come in with dental pain — and in most cases you leave the same day with the problem treated.</p>
+    <h2 class="sec-title rv">What happens when you come in</h2>
+    <p class="sec-sub rv">From the phone call to walking back out — and in most cases the problem is dealt with in that one visit.</p>
     <div class="fv-grid">
       <ul class="fv-steps">
         <li class="rv">
           <span class="fv-num">1</span>
-          <div><h4>Call us or walk in</h4><p>Tell us what's happening. We triage over the phone and get you into the first available urgent slot — often within hours.</p></div>
+          <div><h4>Call us or just turn up</h4><p>Tell us what's going on and we'll triage it over the phone, then put you in the first urgent slot — often within a couple of hours.</p></div>
         </li>
         <li class="rv rv-d1">
           <span class="fv-num">2</span>
-          <div><h4>Exam and digital X-rays</h4><p>We find the source of the pain quickly with a focused exam and digital imaging — no guesswork, no delay.</p></div>
+          <div><h4>A focused exam and X-ray</h4><p>We're looking for the source of the pain, not doing a full check-up. Digital imaging finds it quickly.</p></div>
         </li>
         <li class="rv rv-d2">
           <span class="fv-num">3</span>
-          <div><h4>Pain relief comes first</h4><p>We get you comfortable and out of pain before anything else, then explain your options and costs clearly.</p></div>
+          <div><h4>Getting you comfortable</h4><p>Pain relief comes before any conversation about treatment plans or costs. That part can wait ten minutes.</p></div>
         </li>
         <li class="rv rv-d3">
           <span class="fv-num">4</span>
-          <div><h4>Same-day treatment</h4><p>Most emergencies are handled in the same visit — fillings, root canal treatment, extractions or a same-day crown.</p></div>
+          <div><h4>Treated the same visit</h4><p>Most emergencies are finished there and then — a filling, root canal treatment, an extraction, or a same-day crown.</p></div>
         </li>
       </ul>
       <div class="fv-bring rv rv-d1">
         <h3>📋 What to do right now</h3>
         <ul>
-          <li><span class="tick">✓</span> Knocked-out tooth: hold it by the crown only, rinse gently, keep it moist in milk and call us immediately</li>
-          <li><span class="tick">✓</span> Swelling or bleeding: call us straight away — don't wait for it to settle on its own</li>
-          <li><span class="tick">✓</span> Bring a list of the medications you take regularly</li>
-          <li><span class="tick">✓</span> Bring your dental insurance details — we'll verify your coverage before treatment</li>
+          <li><span class="tick">✓</span> Knocked-out tooth: hold it by the crown, never the root. Rinse gently, keep it in milk, and call us straight away</li>
+          <li><span class="tick">✓</span> Swelling or bleeding: ring us now rather than waiting to see if it settles overnight</li>
+          <li><span class="tick">✓</span> Bring a list of any medication you take regularly</li>
+          <li><span class="tick">✓</span> Bring your insurance details — we'll check your cover before treatment</li>
         </ul>
-        <p class="note">⚠️ Important: for facial trauma, uncontrolled bleeding, or trouble breathing or swallowing, go to the nearest hospital ER or call 911.</p>
+        <p class="note">⚠️ For facial trauma, bleeding you can't stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911.</p>
       </div>
     </div>
   </div>
@@ -828,34 +992,34 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <!-- PAYMENT PLANS -->
 <section class="pay-sec">
   <div class="wrap">
-    <h2 class="sec-title rv">Treat now, pay later</h2>
-    <p class="sec-sub rv">A dental emergency shouldn't have to wait on your budget. Choose the payment plan that works best for you:</p>
+    <h2 class="sec-title rv">Spread the cost if you need to</h2>
+    <p class="sec-sub rv">An emergency you weren't budgeting for shouldn't mean living with the pain. There are four ways to make it manageable:</p>
     <div class="pay-grid">
       <div class="pay-box star rv">
         <span class="tag">⭐ Most popular</span>
         <h3>Cherry</h3>
-        <p>Fast, hassle-free plans: 3, 6, 12, 18 or 24 monthly payments. Applying doesn't affect your credit and approval is almost instant.</p>
+        <p>Split it over 3, 6, 12, 18 or 24 monthly payments. Checking your eligibility doesn't touch your credit score, and you'll know within a minute or two.</p>
       </div>
       <div class="pay-box rv rv-d1">
         <span class="tag">Instant</span>
         <h3>Sunbit</h3>
-        <p>Point-of-sale financing that approves most patients on the spot, with transparent monthly payments and flexible terms.</p>
+        <p>Approved at the front desk for most people, with clear monthly payments and no surprises buried in the terms.</p>
       </div>
       <div class="pay-box rv rv-d2">
         <span class="tag">Flexible</span>
         <h3>CareCredit</h3>
-        <p>Get treated today and pay over time. For treatments large and small, with no upfront cost.</p>
+        <p>Have the treatment now and pay it off over time. Works for a single filling or a full treatment plan.</p>
       </div>
       <a class="pay-link rv rv-d3" href="#in-smyle-membership">
         <div class="pay-box">
           <span class="tag">No insurance</span>
           <h3>In Smyle Membership</h3>
-          <p>Cleanings, exams and X-rays included + 15% off every other treatment, including emergency care. Ideal if you have no dental insurance.</p>
+          <p>Includes an emergency exam, plus 15% off everything else. Usually the cheapest route if you've no dental cover.</p>
         </div>
       </a>
     </div>
     <div class="pay-cta rv">
-      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Get Out of Pain Today</a>
+      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Get Seen Today</a>
     </div>
   </div>
 </section>
@@ -864,9 +1028,9 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <section class="mem-sec" id="in-smyle-membership">
   <div class="mem-box rv">
     <span class="mem-tag">No dental insurance</span>
-    <h2>No insurance? No problem.</h2>
-    <p class="mem-sub">Join our In Smyle Membership and save on caring for your smile.</p>
-    <p class="mem-text">At In Smyle Dental, we offer an in-house membership plan for our patients who don't have dental insurance — as your family dentist near me, we have a plan for every age. Every plan includes an emergency exam, and members save 15% on treatment completed in our office. We suggest having a complete dental exam before enrolling so we can determine which type of plan best fits your needs. Once the dentist has assessed your case, you can click the link below to enroll and become a member of our monthly plan.</p>
+    <h2>No insurance? There's a plan for that.</h2>
+    <p class="mem-sub">Our own membership plan, for patients who don't have dental cover.</p>
+    <p class="mem-text">We run an in-house membership plan for patients without dental insurance, and every tier includes an emergency exam. It's worth having a full exam before you sign up so we can point you at the right one — once the dentist has had a look, you can enrol through the link below and start on the monthly plan straight away.</p>
     <div class="mem-plans">
       <div class="mem-plan">
         <h3>Child Membership</h3>
@@ -927,7 +1091,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     <p class="mem-note">*Cleanings and X-rays are performed based on the dentist's evaluation. The 15% discount applies to procedures completed in our office.</p>
     <div class="mem-ctas">
       <a class="btn btn-white" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
-      <a class="btn btn-ink" href="tel:7739156270">📞 Call Now</a>
+      <a class="btn btn-ink" href="tel:7739156530">📞 Call Now</a>
     </div>
   </div>
 </section>
@@ -935,23 +1099,13 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <!-- REVIEWS -->
 <section>
   <div class="wrap">
-    <h2 class="sec-title rv">Chicago neighbors we got out of pain</h2>
-    <p class="sec-sub rv">Fast, calm care — the reason neighbors searching for the best dentist near me call us first.</p>
-    <div class="reviews">
-      <div class="review rv">
-        <div class="stars">★★★★★</div>
-        <p>"I called with a toothache in the morning and they saw me that same day. They got me out of pain before we talked about anything else."</p>
-        <p class="who">— Lakeview patient</p>
-      </div>
-      <div class="review rv rv-d1">
-        <div class="stars">★★★★★</div>
-        <p>"I was able to get a walk-in appointment for a very painful dental issue early in the morning. I didn't have to wait around at all."</p>
-        <p class="who">— Roscoe Village patient</p>
-      </div>
-      <div class="review rv rv-d2">
-        <div class="stars">★★★★★</div>
-        <p>"I broke a molar on a Saturday and thought I'd have to wait until Monday. They were open, and I left with a permanent crown the same day."</p>
-        <p class="who">— Lincoln Park patient</p>
+    <h2 class="sec-title rv">What our patients actually say</h2>
+    <p class="sec-sub rv">Anyone can call themselves the best dentist near me. We would rather you read what patients actually wrote — these come live from our Google Business Profile, and we do not get to pick which ones show.</p>
+    <div class="rev-widget rv">
+      <div class="embedsocial-hashtag" data-ref="66074ade90598c60353246c46094eb88ed145ab4"></div>
+      <div class="rev-fallback" hidden>
+        <p>Our patient reviews load live from our Google Business Profile.</p>
+        <a class="btn btn-amber" href="https://maps.app.goo.gl/sUPeoaTKH5ykK63m6" target="_blank" rel="noopener">Read Our Google Reviews</a>
       </div>
     </div>
   </div>
@@ -960,11 +1114,45 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 <!-- FINAL CTA -->
 <section style="padding-top:0;padding-bottom:0">
   <div class="final rv">
-    <h2>Don't wait out the pain</h2>
-    <p>Same-day emergency visits · Walk-ins welcome · Evenings &amp; Saturdays · Lakeview dentist · Roscoe Village dentist · Lincoln Park dentist</p>
+    <h2>Don't sit it out — call us</h2>
+    <p>Same-day emergency visits · Walk-ins welcome · Evenings &amp; Saturdays · Lakeview &amp; Roscoe Village</p>
     <div class="cta-row">
-      <a class="btn btn-white" href="tel:7739156270">📞 (773) 915-6270</a>
+      <a class="btn btn-white" href="tel:7739156530">📞 (773) 915-6530</a>
       <a class="btn btn-ink" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS WE SERVE -->
+<section class="areas-sec">
+  <div class="wrap">
+    <h2 class="sec-title rv">Areas we serve</h2>
+    <p class="sec-sub rv">We're a single practice on Lincoln Ave — which makes us the Lakeview dentist, Roscoe Village dentist and Lincoln Park dentist all at one address, and a family dentist near me for routine care as much as an emergency one. Patients travel to us from right across Chicago's north side.</p>
+    <div class="areas-grid">
+      <div class="area-card rv"><div class="area-pin">📍</div><h3>Lakeview</h3><span>Dentist Lakeview Chicago · dental clinic Lakeview</span></div>
+      <div class="area-card rv rv-d1"><div class="area-pin">📍</div><h3>Roscoe Village</h3><span>Dentist Roscoe Village</span></div>
+      <div class="area-card rv rv-d2"><div class="area-pin">📍</div><h3>Lincoln Park</h3><span>Dentist Lincoln Park Chicago</span></div>
+      <div class="area-card rv rv-d3"><div class="area-pin">📍</div><h3>North Center</h3><span>Dentist North Center Chicago</span></div>
+      <div class="area-card rv rv-d4"><div class="area-pin">📍</div><h3>Lincoln Square</h3><span>Dentist Lincoln Square Chicago</span></div>
+      <div class="area-card rv"><div class="area-pin">📍</div><h3>Ravenswood</h3><span>Dentist Ravenswood</span></div>
+      <div class="area-card rv rv-d1"><div class="area-pin">📍</div><h3>Uptown</h3><span>Dentist Uptown Chicago</span></div>
+      <div class="area-card rv rv-d2"><div class="area-pin">📍</div><h3>Wrigleyville</h3><span>Dentist Wrigleyville · dentist near Wrigley Field</span></div>
+      <div class="area-card rv rv-d3"><div class="area-pin">📍</div><h3>Logan Square</h3><span>Dentist Logan Square Chicago</span></div>
+      <div class="area-card rv rv-d4"><div class="area-pin">📍</div><h3>Avondale</h3><span>Dentist Avondale Chicago</span></div>
+    </div>
+    <div class="areas-strip rv">
+      <h4>Finding us</h4>
+      <div class="areas-tags">
+        <span>Emergency dentist Chicago · Chicago emergency dentist</span>
+        <span>Urgent care dental clinic near me</span>
+        <span>Walk-in dentist Chicago</span>
+        <span>Dentist on Lincoln Ave Chicago</span>
+        <span>Dentist near Belmont Chicago</span>
+        <span>Dentist near Addison Chicago</span>
+        <span>Dentist Chicago IL · dentist 60657</span>
+        <span>CTA Brown Line — Paulina &amp; Southport</span>
+      </div>
+      <p class="areas-note">3514 N Lincoln Ave, Chicago, IL 60657 — one location, serving all of the above.</p>
     </div>
   </div>
 </section>
@@ -991,23 +1179,15 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       </ul>
     </div>
     <div class="rv rv-d2">
-      <h4>Areas we serve</h4>
-      <p>Patients travel to our Lincoln Ave office from across Chicago's north side:</p>
-      <ul class="foot-hours">
-        <li>Dentist Lakeview Chicago · dental clinic Lakeview</li>
-        <li>Dentist Roscoe Village · Roscoe Village dentist</li>
-        <li>Dentist Lincoln Park Chicago · Lincoln Park dentist</li>
-        <li>Dentist North Center Chicago</li>
-        <li>Dentist Lincoln Square Chicago</li>
-        <li>Dentist Ravenswood</li>
-        <li>Dentist Uptown Chicago</li>
-        <li>Dentist Wrigleyville · dentist near Wrigley Field</li>
-        <li>Dentist Logan Square Chicago</li>
-        <li>Dentist Avondale Chicago</li>
-        <li>Dentist on Lincoln Ave Chicago</li>
-        <li>Dentist near Belmont Chicago · dentist near Addison Chicago</li>
-        <li>Dentist Chicago IL · dentist 60657</li>
-      </ul>
+      <h4>Get in touch</h4>
+      <a class="foot-phone" href="tel:7739156530">(773) 915-6530</a>
+      <p>3514 N Lincoln Ave<br>Chicago, IL 60657</p>
+      <div class="foot-social">
+        <a href="https://www.facebook.com/insmyledental/" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/insmyledentalchicago" aria-label="Instagram">◎</a>
+        <a href="https://www.youtube.com/@Insmyledental/videos" aria-label="YouTube">▶</a>
+        <a href="https://www.tiktok.com/@insmyledental" aria-label="TikTok">♪</a>
+      </div>
     </div>
   </div>
   <div class="foot-bottom">
@@ -1017,9 +1197,94 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 
 <!-- STICKY MOBILE CALL BAR -->
 <div class="callbar">
-  <a class="btn btn-ink" href="tel:7739156270">📞 Call</a>
+  <a class="btn btn-ink" href="tel:7739156530">📞 Call</a>
   <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Now</a>
 </div>
+
+<!-- ===== STRUCTURED DATA =====
+     Base facts are static and verified. The aggregateRating is NOT hardcoded —
+     it is injected at runtime from the live Google rating rendered by the
+     EmbedSocial widget in the hero (see script below). If the widget does not
+     load, no rating is emitted at all, so the page can never publish a stale
+     or invented review score. -->
+<script type="application/ld+json" id="insmyle-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  "@id": "https://www.insmyledental.com/#dentist",
+  "name": "In Smyle Dental – Lakeview & Roscoe Village",
+  "url": "https://www.insmyledental.com/",
+  "telephone": "+1-773-915-6530",
+  "priceRange": "$-$$$",
+  "currenciesAccepted": "USD",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3514 N Lincoln Ave",
+    "addressLocality": "Chicago",
+    "addressRegion": "IL",
+    "postalCode": "60657",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.9455745,
+    "longitude": -87.6731069
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday",    "opens": "07:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",   "opens": "08:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "07:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",  "opens": "07:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday",  "opens": "07:00", "closes": "15:00" }
+  ],
+  "availableService": [
+    { "@type": "MedicalProcedure", "name": "Emergency dental care" },
+    { "@type": "MedicalProcedure", "name": "Toothache and nerve pain treatment" },
+    { "@type": "MedicalProcedure", "name": "Chipped and cracked tooth repair" },
+    { "@type": "MedicalProcedure", "name": "Lost filling and lost crown repair" },
+    { "@type": "MedicalProcedure", "name": "Knocked-out tooth treatment" },
+    { "@type": "MedicalProcedure", "name": "Dental swelling and infection treatment" },
+    { "@type": "MedicalProcedure", "name": "Emergency tooth extraction" },
+    { "@type": "MedicalProcedure", "name": "Root canal treatment" },
+    { "@type": "MedicalProcedure", "name": "Same-day dental crowns" }
+  ],
+  "areaServed": [
+    { "@type": "Place", "name": "Lakeview, Chicago" },
+    { "@type": "Place", "name": "Roscoe Village, Chicago" },
+    { "@type": "Place", "name": "Lincoln Park, Chicago" },
+    { "@type": "Place", "name": "North Center, Chicago" },
+    { "@type": "Place", "name": "Lincoln Square, Chicago" },
+    { "@type": "Place", "name": "Ravenswood, Chicago" },
+    { "@type": "Place", "name": "Uptown, Chicago" },
+    { "@type": "Place", "name": "Wrigleyville, Chicago" },
+    { "@type": "Place", "name": "Logan Square, Chicago" },
+    { "@type": "Place", "name": "Avondale, Chicago" }
+  ],
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://book.allinone.dental/in-smyle-dental?referrer_id=6",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "result": { "@type": "Reservation", "name": "Emergency dental appointment" }
+  }
+}
+</script>
+
+<!-- EmbedSocial loader — powers the live Google rating badge and reviews -->
+<script>
+(function(d, s, id) {
+  var js;
+  if (d.getElementById(id)) { return; }
+  js = d.createElement(s); js.id = id;
+  js.src = "https://embedsocial.com/cdn/ht.js";
+  d.getElementsByTagName("head")[0].appendChild(js);
+}(document, "script", "EmbedSocialHashtagScript"));
+</script>
 
 <script>
 // keyword rotator
@@ -1062,6 +1327,72 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     });
   }, {threshold:.12});
   els.forEach(function(e){ io.observe(e); });
+})();
+
+// Live Google rating -> JSON-LD aggregateRating.
+// Reads whatever the EmbedSocial badge renders in the hero and copies it into
+// the structured data above. Nothing is hardcoded: if the widget never renders,
+// no aggregateRating is added, so the schema can never go stale.
+(function(){
+  var host = document.querySelector('.hero-rating');
+  var ld   = document.getElementById('insmyle-ld');
+  if(!host || !ld) return;
+
+  function read(){
+    var txt = (host.innerText || host.textContent || '').replace(/\s+/g, ' ').trim();
+    if(!txt) return null;
+    var rating = txt.match(/(\d(?:[.,]\d+)?)\s*(?:\/|out of)?\s*5\b/i) || txt.match(/\b([1-5](?:[.,]\d+)?)\b/);
+    var count  = txt.match(/([\d][\d,\.]*)\s*(?:google\s*)?reviews?\b/i);
+    if(!rating || !count) return null;
+    var r = parseFloat(rating[1].replace(',', '.'));
+    var c = parseInt(count[1].replace(/[,\.]/g, ''), 10);
+    if(!(r > 0 && r <= 5) || !(c > 0)) return null;
+    return { rating: r, count: c };
+  }
+
+  function apply(){
+    var v = read();
+    if(!v) return false;
+    try {
+      var data = JSON.parse(ld.textContent);
+      data.aggregateRating = {
+        "@type": "AggregateRating",
+        "ratingValue": v.rating.toFixed(1),
+        "reviewCount": v.count,
+        "bestRating": "5",
+        "worstRating": "1"
+      };
+      ld.textContent = JSON.stringify(data, null, 2);
+      return true;
+    } catch(e){ return false; }
+  }
+
+  if(apply()) return;
+  var tries = 0;
+  var timer = setInterval(function(){
+    if(apply() || ++tries > 40){ clearInterval(timer); }
+  }, 500);
+  if('MutationObserver' in window){
+    var mo = new MutationObserver(function(){
+      if(apply()){ mo.disconnect(); clearInterval(timer); }
+    });
+    mo.observe(host, { childList:true, subtree:true, characterData:true });
+  }
+})();
+// If the review widget is blocked or fails to load, don't leave empty boxes on
+// the page: hide the hero rating badge and swap the reviews block for a direct
+// link to the Google Business Profile.
+(function(){
+  function filled(el){ return el && (el.innerText || el.textContent || '').trim().length > 2; }
+  setTimeout(function(){
+    var badge = document.querySelector('.hero-rating');
+    if(badge && !filled(badge.querySelector('.embedsocial-hashtag'))) badge.style.display = 'none';
+    var rw = document.querySelector('.rev-widget');
+    if(rw && !filled(rw.querySelector('.embedsocial-hashtag'))){
+      var fb = rw.querySelector('.rev-fallback');
+      if(fb) fb.hidden = false;
+    }
+  }, 6000);
 })();
 </script>
 </body>

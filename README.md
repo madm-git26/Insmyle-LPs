@@ -22,9 +22,8 @@ animations, same section order — different service focus and different keyword
 | 2 | Emergency Dentist | emergency · urgent · walk-in | [`lp-english/emergency-dentist-chicago.html`](lp-english/emergency-dentist-chicago.html) |
 
 These are **complete standalone HTML documents** — open either in a browser and it renders
-as the full styled page. They use **(773) 915-6270** and `referrer_id=6` (matching the
-Spanish page and the current live site), *not* the `6530` / `referrer_id=3` pair used by the
-`enhanced/` pages above.
+as the full styled page. They use **(773) 915-6530** and `referrer_id=6`, and carry a live
+Google-reviews widget in the hero plus a dedicated "Areas we serve" section above the footer.
 
 Full build notes, design-parity proof and the keyword map:
 [`docs/ENGLISH-LP-KEYWORD-MAP.md`](docs/ENGLISH-LP-KEYWORD-MAP.md).

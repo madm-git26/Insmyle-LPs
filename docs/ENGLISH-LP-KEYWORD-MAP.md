@@ -1,166 +1,172 @@
 # English Landing Pages — Build Notes & Keyword Map
 
-Two English Google Ads landing pages built as **exact structural clones** of the Spanish
-landing page you supplied (`lp-spanish/dentista-cerca-de-ti-chicago.html`).
+Two English Google Ads landing pages, built from the Spanish landing page in
+`lp-spanish/` and then reworked to your v2 brief.
 
 | # | Page | Ad group | File |
 |---|---|---|---|
-| 1 | General Dentist | General / near-me / Saturday | [`lp-english/general-dentist-chicago.html`](../lp-english/general-dentist-chicago.html) |
-| 2 | Emergency Dentist | Emergency / urgent / walk-in | [`lp-english/emergency-dentist-chicago.html`](../lp-english/emergency-dentist-chicago.html) |
+| 1 | General Dentist | near-me · Saturday · location | [`lp-english/general-dentist-chicago.html`](../lp-english/general-dentist-chicago.html) |
+| 2 | Emergency Dentist | emergency · urgent · walk-in | [`lp-english/emergency-dentist-chicago.html`](../lp-english/emergency-dentist-chicago.html) |
 
-Both pages are **complete standalone HTML documents** — open either in a browser and it
-renders as the full styled page.
+Both are complete standalone HTML documents — open either in a browser and it renders as
+the full styled page.
 
 ---
 
-## Design parity — verified, not assumed
+## Contact details
+
+| | Value |
+|---|---|
+| Phone (everywhere, 10 links per page) | **(773) 915-6530** → `tel:7739156530` |
+| Booking button (10 links per page) | `https://book.allinone.dental/in-smyle-dental?referrer_id=6` |
+
+Verified: **zero** references to the old `6270` number remain on either page.
+
+---
+
+## v2 changes
+
+### 1. Areas we serve — moved out of the footer into its own section
+
+The location keywords used to sit in a 13-line footer list, which read as a keyword dump.
+They now have a dedicated **"Areas we serve"** section directly above the footer:
+
+- **10 neighbourhood cards** in a 5×2 grid (3-up on tablet, 2-up on mobile), each with a
+  pin icon, the neighbourhood name and a short caption. Same hover-lift behaviour as the
+  existing `.kw-card` components.
+- A dark **"Finding us"** strip below them holding the street, cross-street, ZIP and
+  transit phrases as pills.
+- The footer's third column now carries **phone, address and social links** instead —
+  filling the grid slot the Spanish page left empty (its social block was commented out).
+
+### 2. Reviews — now live from the Google Business Profile
+
+The invented testimonials are gone. Both pages now use the practice's **own EmbedSocial
+Google-reviews widget**, `data-ref="66074ade90598c60353246c46094eb88ed145ab4"` — the same
+one already running on `enhanced/new-patient-dental-cleaning-exam.html`. Reviews are pulled
+straight from the Google Business Profile and update on their own.
+
+> **To show different reviews per page** (general reviews on page 1, emergency-treatment
+> reviews on page 2): create a second curated album in your EmbedSocial dashboard with only
+> the reviews you want, then send me its `data-ref` and I'll swap it into the emergency
+> page. One widget ID cannot filter itself by topic.
+
+### 3. Live Google rating in the hero, wired to the schema
+
+The hero carries a **"Live Google reviews"** badge using EmbedSocial widget
+`data-ref="8110babf905578547c0f838a3dbb2d6780619936"`, plus a `Dentist` JSON-LD block
+containing address, geo, opening hours, `areaServed` and a `ReserveAction`.
+
+**The rating is never hardcoded.** A script reads whatever star rating and review count the
+live widget renders, then injects a matching `aggregateRating` into the JSON-LD at runtime.
+If the widget doesn't render, no rating is emitted at all — so the page can't publish a
+stale or invented review score. This was checked with the widget deliberately blocked:
+
+```
+GEN  hero-badge hidden=true  reviews fallback shown=true  fake rating in schema=false  jsErrors=0
+EMG  hero-badge hidden=true  reviews fallback shown=true  fake rating in schema=false  jsErrors=0
+```
+
+That is also the graceful-failure path: if an ad blocker or a network problem stops
+EmbedSocial loading, the hero badge hides itself and the reviews section swaps in a
+"Read Our Google Reviews" button linking to the Google profile — no empty boxes.
+
+> Both pages are `noindex`, so this schema won't produce rich results in organic search as
+> they stand. It's in place and correct for the moment you drop the noindex, and it gives
+> Google an unambiguous entity match in the meantime.
+
+### 4. Headings rewritten to read like sentences, not keywords
+
+| | Before | After |
+|---|---|---|
+| **General H1** | "Dentist near you in Chicago, open today." | **"Need a dentist in Chicago? We can see you today."** |
+| **Emergency H1** | "Emergency dentist near you, today." | **"Emergency dentist in Chicago — we'll see you today."** |
+
+Every H2 was rewritten the same way — "Appointments that don't cost you a day off",
+"What your first visit actually looks like", "Pain doesn't keep office hours",
+"Walk out with the real crown, not a temporary one", "Spread the cost if you need to".
+
+### 5. Meta titles and descriptions rewritten for intent
+
+| Page | Title | Description |
+|---|---|---|
+| General | Dentist in Lakeview, Chicago — Same-Day, Evening & Saturday Visits | Leads with availability and insurance, closes on the one-minute booking. |
+| Emergency | Emergency Dentist in Chicago — Seen Today, Walk-Ins Welcome | Opens on "in dental pain right now", names the symptoms, ends with the phone number. |
+
+### 6. Bold removed from keyword phrases
+
+`<strong>` count in the hero lead on both pages is now **0**. Bold survives only where it's
+structural (the red urgency strip, the award badge) — never wrapped around a keyword.
+
+### 7. Insurance section rebuilt
+
+The bare logo marquee gained: a **3-card benefit row** (benefits checked first · we file the
+claim · costs explained up front), a **gradient "Not sure if we take your plan?" CTA block**
+with a call button, and hover accents on the logo tiles.
+
+### 8. Hero backdrop
+
+The hero now sits in a `.hero-wrap` with a layered backdrop: three slow-drifting blurred
+colour blobs in the brand palette (cyan, orange, green), a masked dot-grid over the top, and
+a gradient fade into the section below. All of it is `pointer-events:none` and
+`aria-hidden`, and the drift animation is disabled under `prefers-reduced-motion`.
+
+---
+
+## Design integrity
 
 | Check | Result |
 |---|---|
-| `<style>` block | **Byte-identical** to the Spanish source (md5 `54da6962…` on all three files). Zero CSS edits, zero additions. |
-| `<script>` block | **Byte-identical** (md5 `ec11986d…`). Rotator, marquee duplication and scroll-reveal all unchanged. |
-| Fonts | Unchanged — Bricolage Grotesque + Instrument Sans, same Google Fonts URL. |
-| Colours / theme | Unchanged — same `:root` variables (`--amber #04b2dd`, `--orange #ff7a00`, `--urgent #e0472f`). |
-| Animations | Unchanged — `floaty`, `pulseDot`, `ringPulse`, `fadeUp`, `scrollX`, `.rv` reveals, hero `f1`–`f5` stagger. |
-| Section count & order | **14 blocks, identical order** on all three pages. |
-| Heading structure | `h1`×1, `h2`×9, `h3`×18 — identical on all three. |
-| Component counts | 8 keyword cards, 15 insurance logos, 3 membership plans, 3 reviews — identical. |
-| CTA counts | 8 `tel:` links, 9 booking links — identical. |
-| Line endings | CRLF throughout, matching the source file. |
+| Original 545-line stylesheet | **Byte-identical** to the Spanish source (md5 `54da6962`). Not one line edited — every v2 rule lives in a **separate second `<style>` block**, so the original stays provably untouched. |
+| Fonts | Unchanged — Bricolage Grotesque + Instrument Sans. |
+| Colour variables | Unchanged — the v2 CSS only *consumes* `--ink`, `--amber`, `--mint`, `--bg`. |
+| Original animations | Unchanged — rotator, marquee, `.rv` reveals, `floaty`, `pulseDot`, `ringPulse` all intact. |
+| HTML validity | **0 unclosed, 0 mismatched tags** on both pages. |
+| JSON-LD | Parses clean on both pages. |
 | Horizontal overflow | **0 px** at 1440 px and 390 px on both pages. |
-
-### The only two deliberate markup differences
-
-Both are in the footer's **third column**, which was empty on the Spanish page:
-
-1. **`foot-social` removed (1 → 0).** On the Spanish page the entire social-icon column sits
-   inside an HTML comment — it never rendered. That dead block was replaced with a live
-   "Areas we serve" column, which fills the third grid slot the CSS already reserves
-   (`.foot-grid{grid-template-columns:1.4fr 1fr 1fr}`).
-2. **`foot-hours` reused (1 → 2).** The new areas list reuses the existing dashed-divider
-   list style so it matches the office-hours column beside it. **No new CSS** — it is an
-   existing class applied to a second element.
-
-### Bug fixed (present in the Spanish original)
-
-The Spanish source never closes the `<div class="wrap">` inside the same-day-crowns
-section, leaving `html`, `body`, `section` and `div` unclosed at EOF. Browsers auto-recover,
-so it renders — but it is invalid markup. **Both English pages close every tag correctly**
-(verified: 0 unclosed, 0 mismatched).
+| Page parity | Both pages carry identical structure, CSS and component counts — only the copy differs. |
 
 ---
 
-## Phone number & booking link — why they were kept
+## Keyword coverage — 100% on both pages
 
-The Spanish page uses `(773) 915-6270` and `referrer_id=6`. Both were **kept unchanged**
-after confirming against the live site: `insmyledental.com/general-dentistry/` and
-`/treatments/dental-emergency/` both publish **(773) 915-6270** as the practice number.
+Counted against visible copy plus `<title>` and meta description. Exact phrase or a close
+variant Google treats as equivalent (hyphenation, minor function words).
 
-> Note: the live emergency page also lists a separate line, **(773) 900-5055**. It is *not*
-> used on these pages — adding a second number would split call-tracking. Say the word and
-> it can be swapped in on the emergency page.
+| Group | General page | Emergency page |
+|---|---|---|
+| General keywords | **9/9** | — |
+| Emergency keywords | — | **9/9** |
+| Common keywords | **6/6** | **6/6** |
+| Location keywords | **20/20** | **20/20** |
 
----
+**Density dropped by roughly half** while coverage stayed complete, because the phrases are
+now placed as natural search-query framing rather than repeated as headings:
 
-## Keyword coverage — 100% of the supplied list
+| Page | Primary term | v1 density | v2 density | Words |
+|---|---|---|---|---|
+| General | `dentist near me` | 1.57% | **0.83%** | 1,818 |
+| Emergency | `emergency dentist` | 1.44% | **0.85%** | 1,886 |
 
-Counted against visible copy + `<title>` + meta description. "Close variant" means the
-phrase is present with a hyphen or minor function word difference that Google treats as
-equivalent (e.g. *walk-in* vs *walk in*).
+The technique: quote the query the way a person would describe it —
+*"Most people find us by typing 'dentist near me' or 'dental clinic near me' into their
+phone"*, *"Looking for a dentist open Saturday?"*, *"Most people find us searching
+'emergency dentist near me' at the worst possible moment — a Saturday morning, or ten
+minutes after everywhere else has shut."* Location phrases live in the Areas section
+captions and pills, where place names belong anyway.
 
-### Page 1 — General Dentist (1,525 words)
-
-**General keywords — 9/9**
-
-| Keyword | Where it lives |
-|---|---|
-| `dentist near me` ×8 | **H1 area**, hero lead, kw-card 1 H3, kw-card 2 H3, section sub-head, evening lead, reviews sub-head, meta |
-| `dentist open saturday` ×3 | **H1 rotator**, hero lead (bold), kw-card 4 H3 |
-| `dental clinic near me` | Hero lead (bold) |
-| `best dentist near me` | Reviews section sub-head |
-| `dentist in chicago` | **H1**, title tag |
-| `dentist chicago il` | Footer areas list, title tag |
-| `dentist lincoln park` | Footer areas list |
-| `dentist roscoe village` | Footer areas list |
-| `roscoe village dentist` | Section sub-head, footer areas list |
-
-**Common keywords — 6/6**
-`dentist near me` ×8 · `dental office near me` (evening lead) · `dentist near me open now`
-(kw-card 2 H3) · `best dentist near me` (reviews sub) · `family dentist near me`
-(kw-card 7 H3) · `emergency dentist near me` (kw-card 5 H3)
-
-**Location keywords — 20/20** — all in the footer "Areas we serve" column plus the
-keyword-section sub-head (`Lakeview dentist`, `Roscoe Village dentist`, `Lincoln Park dentist`)
-and kw-cards 1 & 6 (`3514 N Lincoln Ave, Chicago, IL 60657`, `dentist on Lincoln Ave, Chicago`,
-Belmont / Addison / Wrigley Field).
-
-### Page 2 — Emergency Dentist (1,667 words)
-
-**Emergency keywords — 9/9**
-
-| Keyword | Where it lives |
-|---|---|
-| `emergency dentist` ×12 | **H1**, hero card H3, eyebrow, kw-cards 1 & 2, evening lead, crown eyebrow, footer |
-| `urgent dental care` ×7 | Hero lead, section H2, kw-cards 3/4/7, evening lead, insurance sub |
-| `emergency dentist in chicago` ×4 | **Hero lead (bold)**, kw-card 2, title tag, meta |
-| `emergency dentist near me` ×3 | **Section sub-head**, kw-card 1 H3, meta |
-| `emergency dentist chicago` | Crown section eyebrow label |
-| `chicago emergency dentist` | Section copy |
-| `dentist emergency near me` | Red urgency strip |
-| `urgent care dental clinic near me` | **Section sub-head** |
-| `walk in dentist chicago` | **kw-card 3 H3** (`Walk-in dentist Chicago`), hero lead |
-
-**Common keywords — 6/6** · **Location keywords — 20/20** (same footer column + final CTA
-tagline carrying `Lakeview dentist · Roscoe Village dentist · Lincoln Park dentist`)
-
-### Density check
-
-| Page | Primary term | Count | Density |
-|---|---|---|---|
-| General | `dentist near me` | 8 | 1.57% |
-| Emergency | `emergency dentist` | 12 | 1.44% |
-
-Every placement is a grammatical sentence a patient would actually read. Nothing is hidden,
-white-on-white, or stuffed into `alt` text.
-
-> **One judgement call to review:** the footer "Areas we serve" column is 13 lines of
-> place-name phrases. It is the conventional, lowest-risk home for location keywords, but it
-> is the densest block on either page. If you would rather trade a little coverage for a
-> lighter footprint, cut it to the top 6–8 neighbourhoods — everything else on the page is
-> unaffected.
+One deliberately humble placement worth flagging: the reviews sub-head reads *"Anyone can
+call themselves the best dentist near me. We would rather you read what patients actually
+wrote."* That covers the keyword without making a "best dentist" claim you'd have to defend.
 
 ---
 
-## Content sources
+## Still open
 
-All factual claims trace to the Spanish source page you supplied, or to the live site
-(`insmyledental.com`), consistent with [`VERIFIED-FACTS.md`](VERIFIED-FACTS.md):
-
-- **Hours** — Mon 7–7, Tue 8–6, Wed 7–6, Thu 7–7, Fri closed, Sat 7–3, Sun closed.
-- **Membership pricing** — Child $44/mo ($528/yr), Adult $48/mo ($576/yr), Perio $73/mo
-  ($876/yr), carried over verbatim from the Spanish page.
-- **Insurance** — the same 15 carrier logos, same CDN URLs.
-- **Emergencies treated** — chipped/cracked teeth, lost fillings, lost crowns, knocked-out
-  teeth, toothache and nerve pain, swelling, bleeding, infections (from the live
-  `/treatments/dental-emergency/` page).
-- **Same-day crowns** — the practice's own "Your Crown. Same Day. No Waiting, No Temps"
-  positioning.
-
-### Two things to confirm before launch
-
-1. **Reviews.** The three testimonials on each page mirror the Spanish page's format —
-   anonymised ("— Lakeview patient") and illustrative rather than pulled from a specific
-   Google review. Swap in real verbatim Google reviews before spending on these pages.
-2. **"Best of 2026 Award Winner".** Carried over from your Spanish page, including the same
-   CDN image. Kept because it is your own published asset — but the awarding body was never
-   confirmed (see `VERIFIED-FACTS.md`).
-
----
-
-## Emergency-page safety note
-
-The "What to do right now" box gives standard dental first aid (knocked-out tooth handling,
-swelling guidance) and carries an explicit escalation line: *facial trauma, uncontrolled
-bleeding, or trouble breathing or swallowing → nearest hospital ER or 911.* This reduces
-liability exposure rather than creating it, and matches the approach already used on
-`enhanced/emergency-dentist-chicago.html`.
+1. **Topic-filtered reviews** — needs a second EmbedSocial album `data-ref` from your
+   dashboard (see §2 above).
+2. **"Best of 2026 Award Winner"** — carried over from your Spanish page with your own CDN
+   image. The awarding body was never confirmed; see `VERIFIED-FACTS.md`.
+3. **Second emergency line (773) 900-5055** — published on the live
+   `/treatments/dental-emergency/` page but deliberately not used here, since a second
+   number splits call tracking. Say the word and it goes on the emergency page.
