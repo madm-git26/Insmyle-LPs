@@ -10,6 +10,27 @@ Enhanced, paste-ready versions of the two live Google Ads landing pages for
 
 ---
 
+## Also in this repo: the standalone English landing pages (`lp-english/`)
+
+A **separate, self-contained pair** of landing pages built as exact structural clones of the
+Spanish landing page in `lp-spanish/`. Same CSS (byte-identical), same fonts, same
+animations, same section order — different service focus and different keyword targeting.
+
+| # | Page | Ad group | File |
+|---|---|---|---|
+| 1 | General Dentist | near-me · Saturday · location | [`lp-english/general-dentist-chicago.html`](lp-english/general-dentist-chicago.html) |
+| 2 | Emergency Dentist | emergency · urgent · walk-in | [`lp-english/emergency-dentist-chicago.html`](lp-english/emergency-dentist-chicago.html) |
+
+These are **complete standalone HTML documents** — open either in a browser and it renders
+as the full styled page. They use **(773) 915-6270** and `referrer_id=6` (matching the
+Spanish page and the current live site), *not* the `6530` / `referrer_id=3` pair used by the
+`enhanced/` pages above.
+
+Full build notes, design-parity proof and the keyword map:
+[`docs/ENGLISH-LP-KEYWORD-MAP.md`](docs/ENGLISH-LP-KEYWORD-MAP.md).
+
+---
+
 ## The hard constraints — and how they were met
 
 | Your requirement | Status |
@@ -174,11 +195,17 @@ I kept the landing pages' existing tracking number everywhere, exactly as instru
 enhanced/    ← PASTE THESE. Enhanced, paste-ready Cornerstone blocks.
 original/    ← Pristine snapshots of the live pages (full page + extracted block),
                captured before any edits, so you can diff or roll back.
+lp-english/  ← Standalone English landing pages (General + Emergency), built as
+               exact structural clones of the Spanish page. Ready to publish as-is.
+lp-spanish/  ← The Spanish landing page they were cloned from, kept as the
+               design reference so parity can be re-verified at any time.
 docs/
-  CHANGELOG.md        Section-by-section record of every change
-  KEYWORD-MAP.md      Each ad keyword → exactly where it now appears on the page
-  QUALITY-SCORE.md    How each change maps to Google's Quality Score components
-  VERIFIED-FACTS.md   Source for every factual claim on both pages
+  CHANGELOG.md              Section-by-section record of every change
+  KEYWORD-MAP.md            Each ad keyword → where it appears (enhanced/ pages)
+  ENGLISH-LP-KEYWORD-MAP.md Build notes, design-parity proof and keyword map
+                            for the lp-english/ pages
+  QUALITY-SCORE.md          How each change maps to Google's Quality Score components
+  VERIFIED-FACTS.md         Source for every factual claim on both pages
   *.css               Reference copies of each page's stylesheet (NOT modified —
                       extracted only so class availability could be verified)
 ```
