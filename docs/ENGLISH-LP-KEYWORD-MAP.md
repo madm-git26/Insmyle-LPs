@@ -26,10 +26,10 @@ Verified: **zero** references to the old `6270` number remain on either page.
 
 ## v2 changes
 
-### 1. Areas we serve — moved out of the footer into its own section
+### 1. Location keywords — moved out of the footer into their own section
 
 The location keywords used to sit in a 13-line footer list, which read as a keyword dump.
-They now have a dedicated **"Areas we serve"** section directly above the footer:
+They now have a dedicated **"Patients Mostly Come From"** section directly above the footer:
 
 - **10 neighbourhood cards** in a 5×2 grid (3-up on tablet, 2-up on mobile), each with a
   pin icon, the neighbourhood name and a short caption. Same hover-lift behaviour as the
@@ -110,8 +110,8 @@ The crown block is gone from `emergency-dentist-chicago.html` — the emergency 
 insurance marquee → evening hours directly. It is **still on the general page**, unchanged.
 
 Nothing else moved to accommodate it, and no keyword was lost: `emergency dentist chicago`
-and `chicago emergency dentist` were also carried by the "Finding us" pills in the Areas
-section, so both pages remain at 100% coverage. The emergency page is now 9 sections and
+and `chicago emergency dentist` were also carried by the "Finding us" pills in the
+"Patients Mostly Come From" section, so both pages remain at 100% coverage. The emergency page is now 9 sections and
 1,686 words (from 10 sections / 1,886 words), with one booking CTA and one call CTA fewer
 (9 each, against 10 each on the general page).
 
@@ -172,8 +172,8 @@ The technique: quote the query the way a person would describe it —
 *"Most people find us by typing 'dentist near me' or 'dental clinic near me' into their
 phone"*, *"Looking for a dentist open Saturday?"*, *"Most people find us searching
 'emergency dentist near me' at the worst possible moment — a Saturday morning, or ten
-minutes after everywhere else has shut."* Location phrases live in the Areas section
-captions and pills, where place names belong anyway.
+minutes after everywhere else has shut."* Location phrases live in the "Patients Mostly
+Come From" captions and pills, where place names belong anyway.
 
 One deliberately humble placement worth flagging: the reviews sub-head reads *"Anyone can
 call themselves the best dentist near me. We would rather you read what patients actually

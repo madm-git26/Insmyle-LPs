@@ -23,7 +23,8 @@ animations, same section order — different service focus and different keyword
 
 These are **complete standalone HTML documents** — open either in a browser and it renders
 as the full styled page. They use **(773) 915-6530** and `referrer_id=6`, and carry a live
-Google-reviews widget in the hero plus a dedicated "Areas we serve" section above the footer.
+Google-reviews widget in the hero plus a dedicated "Patients Mostly Come From" location
+section above the footer.
 
 Full build notes, design-parity proof and the keyword map:
 [`docs/ENGLISH-LP-KEYWORD-MAP.md`](docs/ENGLISH-LP-KEYWORD-MAP.md).
