@@ -17,8 +17,8 @@ the full styled page.
 
 | | Value |
 |---|---|
-| Phone (everywhere, 10 links per page) | **(773) 915-6530** → `tel:7739156530` |
-| Booking button (10 links per page) | `https://book.allinone.dental/in-smyle-dental?referrer_id=6` |
+| Phone | **(773) 915-6530** → `tel:7739156530` (10 links on the general page, 9 on emergency) |
+| Booking button | `https://book.allinone.dental/in-smyle-dental?referrer_id=6` (10 general, 9 emergency) |
 
 Verified: **zero** references to the old `6270` number remain on either page.
 
@@ -104,7 +104,27 @@ The bare logo marquee gained: a **3-card benefit row** (benefits checked first �
 claim · costs explained up front), a **gradient "Not sure if we take your plan?" CTA block**
 with a call button, and hover accents on the logo tiles.
 
-### 8. Hero backdrop
+### 8. Same-day crowns section removed from the emergency page
+
+The crown block is gone from `emergency-dentist-chicago.html` — the emergency page now runs
+insurance marquee → evening hours directly. It is **still on the general page**, unchanged.
+
+Nothing else moved to accommodate it, and no keyword was lost: `emergency dentist chicago`
+and `chicago emergency dentist` were also carried by the "Finding us" pills in the Areas
+section, so both pages remain at 100% coverage. The emergency page is now 9 sections and
+1,686 words (from 10 sections / 1,886 words), with one booking CTA and one call CTA fewer
+(9 each, against 10 each on the general page).
+
+Crowns still get a mention where they genuinely belong on an emergency page — "a crown
+that's come off" in the hero, "or a same-day crown" among same-visit treatments, and "hold
+it by the crown, never the root" in the first-aid box — so the `Same-day dental crowns`
+entry in the schema's `availableService` stays accurate and was left in place.
+
+> The `.crown-*` CSS rules are still present in the stylesheet. They are part of the
+> original 545-line block that must stay byte-identical to the source, so they were left
+> alone; they are simply unused on this page now.
+
+### 9. Hero backdrop
 
 The hero now sits in a `.hero-wrap` with a layered backdrop: three slow-drifting blurred
 colour blobs in the brand palette (cyan, orange, green), a masked dot-grid over the top, and
@@ -124,7 +144,7 @@ a gradient fade into the section below. All of it is `pointer-events:none` and
 | HTML validity | **0 unclosed, 0 mismatched tags** on both pages. |
 | JSON-LD | Parses clean on both pages. |
 | Horizontal overflow | **0 px** at 1440 px and 390 px on both pages. |
-| Page parity | Both pages carry identical structure, CSS and component counts — only the copy differs. |
+| Page parity | Identical CSS, fonts, components and behaviour on both pages. Structure matches too, except that the emergency page has no crowns section (10 sections vs 9) — removed at your request. |
 
 ---
 
@@ -146,7 +166,7 @@ now placed as natural search-query framing rather than repeated as headings:
 | Page | Primary term | v1 density | v2 density | Words |
 |---|---|---|---|---|
 | General | `dentist near me` | 1.57% | **0.83%** | 1,818 |
-| Emergency | `emergency dentist` | 1.44% | **0.85%** | 1,886 |
+| Emergency | `emergency dentist` | 1.44% | **0.83%** | 1,686 |
 
 The technique: quote the query the way a person would describe it —
 *"Most people find us by typing 'dentist near me' or 'dental clinic near me' into their
