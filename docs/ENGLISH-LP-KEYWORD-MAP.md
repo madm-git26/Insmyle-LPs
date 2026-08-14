@@ -132,6 +132,67 @@ colour blobs in the brand palette (cyan, orange, green), a masked dot-grid over 
 a gradient fade into the section below. All of it is `pointer-events:none` and
 `aria-hidden`, and the drift animation is disabled under `prefers-reduced-motion`.
 
+### 10. FAQ section + FAQPage schema
+
+Both pages had **zero FAQs**. Each now carries a native `<details>` accordion — 12 questions
+on the general page, 11 on the emergency page — covering hours, location, neighbourhoods,
+insurance, membership pricing, payment plans, first visit, children, same-day crowns, and on
+the emergency page: what counts as an emergency, ER-vs-dentist, knocked-out tooth first aid,
+walk-ins, referrals and cost without insurance.
+
+Built on `<details>`/`<summary>`, so it opens and closes with **no JavaScript** and is
+keyboard-accessible for free.
+
+The `FAQPage` JSON-LD is **generated from the rendered questions**, so the markup and the
+visible copy cannot drift apart. Verified: 12/12 and 11/11 questions identical between the
+DOM and the schema.
+
+> Straight answer on the schema's value: Google restricted FAQ rich results to authoritative
+> government and health sites in 2023, and these pages are `noindex` anyway — so it will not
+> produce rich snippets today. The Quality Score benefit comes from the **on-page content**,
+> which is a direct Landing Page Experience input. The schema is there because it is correct
+> and costs nothing, not because it will win a rich result.
+
+### 11. Meet the dentists
+
+A three-card team section on both pages with real names, credentials and photos, taken from
+the practice's own live site content already in this repo:
+
+| | | |
+|---|---|---|
+| Dr. Jose M. Mariscal | DDS · MICOI · FAGD | Lead Dentist & Founder |
+| Dr. Carolina Boege | DMD | General & Restorative Dentist |
+| Dr. Nicolas Flores-Hutton | DMD | General Dentist |
+
+Nothing invented — bios and credentials are the practice's own published copy.
+
+### 12. Speed
+
+| Change | Effect |
+|---|---|
+| **Google Maps iframe → click-to-load facade** | The map is the single heaviest asset on the page and almost nobody scrolls to it. It is now a styled placeholder showing the address; the iframe is injected only on click. Verified: **0 iframes on load, 1 after clicking**. |
+| **EmbedSocial deferred** | Was requested during page load, blocking first paint. Now loads on `requestIdleCallback` after the `load` event. Verified: **0 requests during load, 1 after**. |
+| **Explicit image dimensions + `decoding="async"`** | Doctor photos carry `width`/`height`, so they cannot shift layout as they load. |
+
+Measured in Chromium at 390 px, comparing the previous commit against this one:
+
+```
+BEFORE   iframes on load: 1   embedsocial during load: 1   FCP: 248ms
+AFTER    iframes on load: 0   embedsocial during load: 0   FCP: 224ms
+```
+
+The FCP gap is understated here because the test blocks the network — on a real 4G
+connection the Maps embed alone typically pulls several hundred KB before the visitor has
+scrolled anywhere near it.
+
+The widget-failure fallback still behaves correctly with the deferred loader (its timer now
+starts after `load` rather than at parse):
+
+```
+GEN  badge hidden=true  reviews fallback=true  fake rating in schema=false  jsErr=0
+EMG  badge hidden=true  reviews fallback=true  fake rating in schema=false  jsErr=0
+```
+
 ---
 
 ## Design integrity

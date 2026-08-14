@@ -684,6 +684,75 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 @media (prefers-reduced-motion:reduce){
   .blob{animation:none!important}
 }
+/* ---------- meet the dentists ---------- */
+.team-sec{background:var(--bg)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{
+  background:var(--card);border-radius:var(--radius);padding:30px 24px;text-align:center;
+  box-shadow:var(--shadow);border:1px solid rgba(18,53,79,.06);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.team-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(18,53,79,.16)}
+.team-photo{
+  width:118px;height:118px;border-radius:50%;object-fit:cover;object-position:top center;
+  margin:0 auto 16px;display:block;border:3px solid var(--mint);background:var(--mint);
+}
+.team-card h3{font-size:1.16rem;margin-bottom:6px}
+.team-cred{
+  display:inline-block;background:var(--mint);color:var(--ink);
+  font-family:'Bricolage Grotesque';font-weight:800;font-size:.72rem;letter-spacing:.05em;
+  padding:4px 12px;border-radius:999px;margin-bottom:8px;
+}
+.team-role{display:block;font-size:.86rem;font-weight:700;color:var(--amber-dark);margin-bottom:11px}
+.team-card p{font-size:.93rem;color:var(--ink-soft)}
+
+/* ---------- FAQ ---------- */
+.faq-sec{background:#fff}
+.faq-list{max-width:56rem;margin:0 auto}
+.faq-item{
+  background:var(--bg);border:1px solid rgba(18,53,79,.08);border-radius:18px;
+  margin-bottom:13px;overflow:hidden;
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.faq-item[open]{border-color:var(--amber);box-shadow:0 10px 26px rgba(18,53,79,.1)}
+.faq-q{
+  list-style:none;cursor:pointer;padding:19px 60px 19px 22px;position:relative;
+  font-family:'Bricolage Grotesque';font-weight:700;font-size:1.04rem;line-height:1.32;
+}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q::after{
+  content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:800;line-height:1;transition:background .25s ease,color .25s ease;
+}
+.faq-item[open] .faq-q::after{content:"−";background:var(--amber);color:#fff}
+.faq-q:hover{color:var(--amber-dark)}
+.faq-q:focus-visible{outline:3px solid var(--amber);outline-offset:-3px}
+.faq-a{padding:0 22px 20px;font-size:.97rem;color:var(--ink-soft);line-height:1.66}
+.faq-a a{font-weight:700;color:var(--ink)}
+.faq-cta{text-align:center;margin-top:34px}
+
+/* ---------- map facade (loads the iframe only on click) ---------- */
+.map-facade{
+  width:100%;min-height:230px;height:100%;border:0;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;
+  background:linear-gradient(135deg,#17415f,#0f2d43);color:#fff;
+  font-family:'Instrument Sans',system-ui,sans-serif;padding:22px;text-align:center;
+  transition:background .25s ease;
+}
+.map-facade:hover{background:linear-gradient(135deg,#1b4e72,#123651)}
+.map-facade .mf-pin{font-size:2.1rem;line-height:1}
+.map-facade .mf-addr{font-size:.95rem;font-weight:700;color:#fff}
+.map-facade .mf-txt{font-size:.86rem;color:#a8cfe0}
+.map-facade .mf-btn{
+  background:var(--amber);color:#fff;font-family:'Bricolage Grotesque';font-weight:700;
+  padding:9px 20px;border-radius:999px;font-size:.88rem;border:none;margin-top:2px;
+}
+
+@media (max-width:920px){
+  .team-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+}
 </style>
 </head>
 <body>
@@ -939,6 +1008,37 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
   </div>
 </section>
 
+<!-- MEET THE DENTISTS -->
+<section class="team-sec">
+  <div class="wrap">
+    <h2 class="sec-title rv">The dentists who will actually treat you</h2>
+    <p class="sec-sub rv">Three dentists, one Chicago location — so you are not passed around between offices.</p>
+    <div class="team-grid">
+      <div class="team-card rv">
+        <img class="team-photo" src="https://d11iwgb7g2683x.cloudfront.net/insmyledental/wp-content/uploads/2023/05/Dr.-Mariscal-5-Star-Dentist.jpg" alt="Dr. Jose M. Mariscal, DDS — Lead Dentist and Founder at In Smyle Dental, Chicago" width="118" height="118" loading="lazy" decoding="async">
+        <h3>Dr. Jose M. Mariscal</h3>
+        <span class="team-cred">DDS · MICOI · FAGD</span>
+        <span class="team-role">Lead Dentist &amp; Founder</span>
+        <p>A Chicago native with deep roots in the city, known for a warm chairside manner and expertise in general and cosmetic dentistry. A member of the American Dental Association.</p>
+      </div>
+      <div class="team-card rv rv-d1">
+        <img class="team-photo" src="https://d11iwgb7g2683x.cloudfront.net/insmyledental/wp-content/uploads/2023/05/Dr.-Boege-5-Star-Dentist.jpg" alt="Dr. Carolina Boege, DMD — General and Restorative Dentist at In Smyle Dental, Chicago" width="118" height="118" loading="lazy" decoding="async">
+        <h3>Dr. Carolina Boege</h3>
+        <span class="team-cred">DMD</span>
+        <span class="team-role">General &amp; Restorative Dentist</span>
+        <p>Trained at the University of São Paulo. Her meticulous technique and calm, reassuring presence put even the most anxious patients at ease from the very first visit.</p>
+      </div>
+      <div class="team-card rv rv-d2">
+        <img class="team-photo" src="https://d11iwgb7g2683x.cloudfront.net/insmyledental/wp-content/uploads/2023/05/Dr.-Nick-5-Star-Dentist-.jpg" alt="Dr. Nicolas Flores-Hutton, DMD — General Dentist at In Smyle Dental, Chicago" width="118" height="118" loading="lazy" decoding="async">
+        <h3>Dr. Nicolas Flores-Hutton</h3>
+        <span class="team-cred">DMD</span>
+        <span class="team-role">General Dentist</span>
+        <p>A science-driven background from the University of Illinois at Urbana-Champaign. He is especially valued for making complex dental topics easy to understand, and for a gentle, unhurried approach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PAYMENT PLANS -->
 <section class="pay-sec">
   <div class="wrap">
@@ -1046,6 +1146,63 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-sec">
+  <div class="wrap">
+    <h2 class="sec-title rv">Questions we get asked a lot</h2>
+    <p class="sec-sub rv">The things people ask us on the phone when they are in pain and need answers fast.</p>
+    <div class="faq-list">
+      <details class="faq-item rv">
+        <summary class="faq-q">Can you really see me today?</summary>
+        <div class="faq-a">In most cases, yes. We hold urgent slots back every day we are open. Call <a href="tel:7739156530">(773) 915-6530</a> and we will triage it on the phone — ringing in the morning usually means being seen that afternoon.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Do you take walk-ins?</summary>
+        <div class="faq-a">Yes. If you are in too much pain to wait on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">What counts as a dental emergency?</summary>
+        <div class="faq-a">Severe toothache or nerve pain, a chipped or cracked tooth, a filling or crown that has come out, a knocked-out tooth, facial or gum swelling, bleeding that will not settle, an infection, or a tooth that needs taking out.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Should I go to the emergency room instead?</summary>
+        <div class="faq-a">For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, a dentist is faster, cheaper, and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to us anyway.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">My tooth has been knocked out — what do I do right now?</summary>
+        <div class="faq-a">Pick it up by the crown, never the root. Rinse it gently if it is dirty, do not scrub it, and keep it moist in milk. Then call us immediately — the sooner we see you, the better the chance of saving it.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Are you open evenings and on Saturdays?</summary>
+        <div class="faq-a">Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm. We are closed Fridays and Sundays.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Will it be sorted in one visit?</summary>
+        <div class="faq-a">Most emergencies are. Fillings, root canal treatment, extractions and same-day crowns are all done here, so you usually leave with the problem treated rather than booked in for later.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Do I need to be an existing patient, or have a referral?</summary>
+        <div class="faq-a">Neither. Most of the people we see in an emergency have never been here before, and no referral is needed.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">What will it cost if I do not have insurance?</summary>
+        <div class="faq-a">You will get the number before we start — we do not begin treatment and hand you a surprise afterwards. Our membership plan includes an emergency exam and takes 15% off treatment, and Cherry, Sunbit and CareCredit let you spread the cost over monthly payments.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Do you take my dental insurance?</summary>
+        <div class="faq-a">We are in network with most major carriers, including Delta Dental, Aetna, Cigna, MetLife, Humana, Guardian, Anthem and United Healthcare. Give us your insurer on the phone and we will have your benefits confirmed by the time you arrive, then file the claim for you.</div>
+      </details>
+      <details class="faq-item rv">
+        <summary class="faq-q">Where are you, and how quickly can I get there?</summary>
+        <div class="faq-a">3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block.</div>
+      </details>
+    </div>
+    <div class="faq-cta rv">
+      <a class="btn btn-amber" href="https://book.allinone.dental/in-smyle-dental?referrer_id=6">Book Emergency Visit</a>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section>
   <div class="wrap">
@@ -1113,7 +1270,14 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
     <div class="rv">
       <h4>Find us</h4>
       <div class="foot-map">
-        <iframe src="https://www.google.com/maps?q=In+Smyle+Dental+3514+N+Lincoln+Ave+Chicago+IL+60657&output=embed" title="Map: In Smyle Dental, 3514 N Lincoln Ave, Chicago" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <button type="button" class="map-facade" id="mapFacade"
+                data-src="https://www.google.com/maps?q=In+Smyle+Dental+3514+N+Lincoln+Ave+Chicago+IL+60657&amp;output=embed"
+                aria-label="Load the map showing In Smyle Dental, 3514 N Lincoln Ave, Chicago">
+          <span class="mf-pin" aria-hidden="true">📍</span>
+          <span class="mf-addr">3514 N Lincoln Ave<br>Chicago, IL 60657</span>
+          <span class="mf-txt">Lakeview · Roscoe Village</span>
+          <span class="mf-btn">Show map</span>
+        </button>
       </div>
     </div>
     <div class="rv rv-d1">
@@ -1225,15 +1389,125 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 }
 </script>
 
-<!-- EmbedSocial loader — powers the live Google rating badge and reviews -->
+<!-- FAQ structured data — generated from the questions rendered above,
+     so the markup and the visible copy can never drift apart. -->
+<script type="application/ld+json" id="insmyle-faq-ld">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you really see me today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In most cases, yes. We hold urgent slots back every day we are open. Call (773) 915-6530 and we will triage it on the phone — ringing in the morning usually means being seen that afternoon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you take walk-ins?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If you are in too much pain to wait on hold, just come in. Calling ahead helps us have a chair ready for you, but it is not essential."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What counts as a dental emergency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Severe toothache or nerve pain, a chipped or cracked tooth, a filling or crown that has come out, a knocked-out tooth, facial or gum swelling, bleeding that will not settle, an infection, or a tooth that needs taking out."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I go to the emergency room instead?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For facial trauma, bleeding you cannot stop, or trouble breathing or swallowing, go straight to the nearest hospital ER or call 911. For everything else on the list above, a dentist is faster, cheaper, and far more likely to actually fix the problem — a hospital will usually only give you painkillers and send you to us anyway."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My tooth has been knocked out — what do I do right now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pick it up by the crown, never the root. Rinse it gently if it is dirty, do not scrub it, and keep it moist in milk. Then call us immediately — the sooner we see you, the better the chance of saving it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you open evenings and on Saturdays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mondays and Thursdays until 7:00 pm, Tuesdays until 6:00 pm, Wednesdays until 6:00 pm, and Saturdays 7:00 am to 3:00 pm. We are closed Fridays and Sundays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it be sorted in one visit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most emergencies are. Fillings, root canal treatment, extractions and same-day crowns are all done here, so you usually leave with the problem treated rather than booked in for later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be an existing patient, or have a referral?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neither. Most of the people we see in an emergency have never been here before, and no referral is needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What will it cost if I do not have insurance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You will get the number before we start — we do not begin treatment and hand you a surprise afterwards. Our membership plan includes an emergency exam and takes 15% off treatment, and Cherry, Sunbit and CareCredit let you spread the cost over monthly payments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you take my dental insurance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are in network with most major carriers, including Delta Dental, Aetna, Cigna, MetLife, Humana, Guardian, Anthem and United Healthcare. Give us your insurer on the phone and we will have your benefits confirmed by the time you arrive, then file the claim for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where are you, and how quickly can I get there?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3514 N Lincoln Ave, Chicago, IL 60657 — in Lakeview, on the Roscoe Village side. A short walk from the CTA Brown Line at Paulina or Southport, minutes from Belmont and Addison, with street parking around the block."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- EmbedSocial loader — powers the live Google rating badge and reviews.
+     Deferred until after first paint so a third-party script never delays the
+     hero, the CTAs or the phone number rendering. -->
 <script>
-(function(d, s, id) {
-  var js;
-  if (d.getElementById(id)) { return; }
-  js = d.createElement(s); js.id = id;
-  js.src = "https://embedsocial.com/cdn/ht.js";
-  d.getElementsByTagName("head")[0].appendChild(js);
-}(document, "script", "EmbedSocialHashtagScript"));
+(function(){
+  var ID = "EmbedSocialHashtagScript";
+  function load(){
+    if (document.getElementById(ID)) { return; }
+    var js = document.createElement("script");
+    js.id = ID; js.async = true;
+    js.src = "https://embedsocial.com/cdn/ht.js";
+    document.head.appendChild(js);
+  }
+  function schedule(){
+    if ("requestIdleCallback" in window) { requestIdleCallback(load, { timeout: 2500 }); }
+    else { setTimeout(load, 250); }
+  }
+  if (document.readyState === "complete") { schedule(); }
+  else { window.addEventListener("load", schedule); }
+})();
 </script>
 
 <script>
@@ -1334,6 +1608,7 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
 // link to the Google Business Profile.
 (function(){
   function filled(el){ return el && (el.innerText || el.textContent || '').trim().length > 2; }
+  function start(){
   setTimeout(function(){
     var badge = document.querySelector('.hero-rating');
     if(badge && !filled(badge.querySelector('.embedsocial-hashtag'))) badge.style.display = 'none';
@@ -1343,6 +1618,27 @@ footer{background:var(--ink);color:#fff;margin-top:70px}
       if(fb) fb.hidden = false;
     }
   }, 6000);
+  }
+  // start counting only once the page (and the deferred embed loader) has fired
+  if (document.readyState === 'complete') { start(); }
+  else { window.addEventListener('load', start); }
+})();
+
+// Map loads only when asked for. The Google Maps iframe is one of the heaviest
+// things on the page, and almost nobody scrolls to it, so it stays a static
+// placeholder until the visitor actually clicks it.
+(function(){
+  var f = document.getElementById('mapFacade');
+  if(!f) return;
+  f.addEventListener('click', function(){
+    var i = document.createElement('iframe');
+    i.src = f.getAttribute('data-src');
+    i.title = 'Map: In Smyle Dental, 3514 N Lincoln Ave, Chicago';
+    i.loading = 'lazy';
+    i.allowFullscreen = true;
+    i.referrerPolicy = 'no-referrer-when-downgrade';
+    f.replaceWith(i);
+  }, { once: true });
 })();
 </script>
 </body>
