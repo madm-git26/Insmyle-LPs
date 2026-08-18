@@ -15,23 +15,28 @@ there still isn't.
 Both chapters rendered as crude inline SVG wireframes (a rounded rectangle with four lines; a
 trapezoid) while Part 03 used a real render — hence the imbalance.
 
-All three chapters are now a single locked-off camera over the 1600×900 implant render that was
-already in the file, which contains the post, the abutment collar and the crown in one frame:
+Each chapter now has **its own render**, cross-faded by the `.on` class the existing chapter
+engine already toggles. A first pass used one image with a moving camera; it read as a single
+drifting view rather than three components, so it was replaced:
 
-| Chapter | Camera | Note |
+| Chapter | Render | Framing |
 |---|---|---|
-| 01 The post | `translate(-5.85%,-39%) scale(2.3)` | threaded post fills the frame |
-| 02 The abutment | `translate(-5.85%,-11.05%) scale(2.3)` | **same scale** — a pan, not a zoom |
-| 03 The restoration | `translate(-1.26%,-2.24%) scale(1.28)` | pulls back to the whole tooth |
+| 01 The post | bare threaded post, crown lifted away | `scale(2.3)` @ `55% 56%` |
+| 02 The abutment | two abutments seated on healed posts, no crowns | `scale(2.4)` @ `52% 44%` |
+| 03 The restoration | completed tooth, crown seated | `scale(1.30)` @ `54% 52%` |
 
-Zoom is capped at ~2.4×; the source is a 20KB webp and visibly breaks up above that (3.6× was
-tested and rejected). Chapters 01→02 share a scale so resolution never changes across the pan.
+All three renders were already in the file. Chapters 01 and 02 borrow the Solutions gallery's
+single-tooth and bridge renders, framed on the component rather than the whole jaw; 03 keeps the
+hero render. The post → abutment → restoration progression is now legible as three different
+things.
 
-The camera is driven purely by CSS off the `data-cur` attribute the existing chapter engine
-already writes — no new JavaScript. Also added: a persistent section head, a chapter rail that
+Cross-fade is pure CSS off the class the chapter engine already sets — no new JavaScript. Also
+added: a persistent section head, a chapter rail that
 replaces the old `.anat__prog` dots (and doubles as the brief's "active label brightens" state),
 oversized atmospheric chapter numerals, and hairline annotation callouts using `scaleX` on 1px
-rules rather than SVG dash offsets, which repaint every frame.
+rules rather than SVG dash offsets, which repaint every frame. Callouts carry their own
+text-shadow and line shadow — they sit over ground ranging from dark gum to white enamel, so they
+cannot rely on what happens to be behind them.
 
 The left column was rebuilt from a single centred absolute stack into a three-row grid, removing
 roughly 45% dead vertical space at every breakpoint.
@@ -87,13 +92,26 @@ fabricated — there are no individual portraits in the source, so none are show
 
 ## Also fixed
 
+**Text on dark surfaces was unreadable in four places.** `.prec`, `.gal`, `.cin` and the footer set
+their own dark backgrounds but carry neither `.dark` nor `.on-img`, so the shared `.lbl` / `.lede` /
+`.sm` / `.body` utilities resolved to their dark-on-light colours. Worst case was the Precision
+section's body copy at **1.00:1** — `rgba(2,49,61,.82)` on `rgb(2,49,61)`, the same colour as its
+background. Also affected: the Precision label (2.34:1), the Solutions label (2.91:1) and the footer
+fine print (2.91:1). Fixed at the four shared selectors rather than per section, which also made the
+`.team` overrides from the previous round redundant. The Precision heading's opacity floor was
+raised from `.34` to `.62`, and the decorative "1045" watermark went from 1.17:1 to 1.94:1.
+
+**Solutions gallery items 01 and 02 had their images swapped** — "Single tooth dental implant with
+crown" showed a two-implant bridge and "Implant-supported bridge" showed a single tooth. The two
+`src` values were exchanged; headings and alt text were already correct.
+
+**Decision node 02** overflowed its panel: the supporting crop extended 6px past the box and was
+clipped mid-image. Panel min-height raised, crop resized, and the copy tightened.
+
 The `prefers-reduced-motion` block unpinned `.pin` but never reset the inline `height:NNNsvh` on
 the stage sections, so reduced-motion users scrolled through several screens of empty space with
 nothing pinned inside them. One line (`.stage{height:auto!important}`) drops total document height
-from 28,560px to 20,397px at 1440×900.
-
-`.team` carries neither `.dark` nor `.on-img`, so the shared `.lbl` / `.lede` utilities were
-resolving to their dark-on-light colours on a dark ground. Scoped overrides added.
+from 28,560px to 21,028px at 1440×900.
 
 ## Deliberately not done
 
@@ -101,10 +119,10 @@ resolving to their dark-on-light colours on a dark ground. Scoped overrides adde
   re-flows every section, and the horizontal gallery computes its travel as
   `galTrack.scrollWidth - window.innerWidth`, which a max-width container would break. Line length
   is capped per element in `ch` instead, which is how this page already does it.
-- **No component-by-component assembly animation.** The render is a single flat layer; an abutment
+- **No component-by-component assembly animation.** Each render is a single flat layer; an abutment
   cannot descend onto a post without layered source art, and faking it by masking a photograph
-  looks wrong at 2.3×. The camera move plus the annotation system carries the precision reading
-  instead. Supply layered art and this becomes possible.
+  looks wrong at 2.3×. Three distinct renders plus the annotation system carry the progression
+  instead. Supply layered art and true assembly becomes possible.
 - **No macro photography of a titanium post or abutment.** No such asset exists in the file, and
   generic stock was not substituted.
 
@@ -130,6 +148,7 @@ Headless Chromium, 1920 / 1440 / 1280 / 1024 / 768 / 430 / 390 / 375, plus a red
 The one console error in the harness is the page's pre-existing Google Fonts request failing in a
 sandbox without outbound network. It is unrelated to these changes.
 
-**Page weight: 2,412,605 → 2,481,074 bytes (+68KB, +2.8%)** — the 1600w render for the anatomy
-camera, an 800w crop for decision node 02, and the 480w exterior crop for the team. The team crop
-is the only optional one; drop it to recover 36KB.
+**Page weight: 2,412,605 → 2,539,364 bytes (+124KB, +5.3%)** — three renders for the anatomy
+chapters, an 800w crop for decision node 02, and the 480w exterior crop for the team. Base64 does
+not deduplicate, so the two anatomy renders shared with the Solutions gallery are second copies.
+The team crop (36KB) and the node-02 crop (10KB) are the optional ones.
