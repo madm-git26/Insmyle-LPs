@@ -8,34 +8,36 @@
 
 ## 1. Page structure and why each block is there
 
+Direction: **bold DTC-brand energy**, per the drinkcollider.com reference — saturated full-bleed
+colour blocking, oversized display type, moving marquee bands, benefit chips, product-style offer
+cards and a pinned scroll sequence. Brand gold is promoted from an accent to a block colour.
+
 | # | Section | Job it does for a high-intent local search |
 |---|---------|--------------------------------------------|
-| 1 | Sticky header — logo, phone, Book Now | Phone visible at every scroll depth. **No site navigation** — an ads LP should have no exit paths. |
-| 2 | Announcement bar | Answers the unspoken "are they even open when I can go?" before the fold. |
-| 3 | Hero — headline, dual CTA, layered reception photo | Editorial, image-led, **no form**. One call CTA, one anchor to the request section. |
-| 4 | Stat band (dark) | $99 · Sat · 8pm · 2018 — the four facts that decide the click, in one glance. |
-| 5 | New-patient offers | The strongest reason to pick this practice over the other 30 within 10 miles. |
-| 6 | Services grid | Covers the long tail that also matches these ad groups (implants, aligners, emergency). |
-| 7 | Why-us (dark, numbered 01–06) | Differentiators, not adjectives: CEREC, in-house specialty, comfort menu, extended hours. |
-| 8 | Dr. Djordjevic | Named, credentialed human being. E-E-A-T and trust in one block. |
-| 9 | Reviews | Four real patient quotes, set in the display serif so they read as testimony, not filler. |
-| 10 | Insurance & financing | Removes the #1 objection before the ask. |
-| 11 | Location — exterior photo, hours, map | The "near me" payload: proximity, parking, landmarks, today's hours highlighted. |
-| 12 | **Request section (dark) — the form lives here** | Three-step explainer on the left, form card on the right. Every `#request` CTA lands here. |
-| 13 | FAQ accordion | Pre-call objection handling + FAQPage schema. |
-| 14 | Final CTA + footer | Last conversion window, plus the policy links Google Ads expects. |
-| 15 | Sticky mobile call/book bar | Appears once the hero scrolls away. Most of this traffic is mobile. |
+| 1 | Sticky header | Phone visible at every scroll depth. **No site navigation** — an ads LP should have no exit paths. |
+| 2 | **Marquee band** (dark) | The signature device. Puts the offer, the hours and the phone into motion before you've read a word. |
+| 3 | Hero | Oversized three-line headline with a gold highlight, live open/closed pill, benefit chips, dual CTA, framed photo with a hard gold offset shadow. |
+| 4 | Trust strip | Four credential pills — the "as seen in" slot, translated to insurance / savings plan / all ages / emergencies. |
+| 5 | Offers | Product-card treatment: hard borders, offset shadow on hover, a gold "most booked" hero card. |
+| 6 | **Marquee band** (gold, reversed) | Second pass, opposite direction — service names. |
+| 7 | Benefit grid | Six differentiators in a hairline-divided block. |
+| 8 | **Pinned scroll sequence** | The centrepiece. Four first-visit steps advance as you scroll a pinned viewport, with a clickable progress rail. Falls back to a stacked list on mobile and under reduced motion. |
+| 9 | Tech section (dark) | The "ingredients" block: CEREC, CBCT, scanner, 3D printing, VELscope, DiagnoDent as labelled cards. |
+| 10 | Doctor | Named, credentialed, with a 2018 Michigan badge. |
+| 11 | Reviews | Four real patient quotes in bordered cards. |
+| 12 | Insurance (full gold block) | Removes the #1 objection, on the loudest surface on the page. |
+| 13 | Location | Building exterior, hours table with today highlighted, embedded map. |
+| 14 | Request section (dark) | The form, with a three-step explainer. All eight `#request` CTAs land here. |
+| 15 | FAQ | Uppercase display accordion + FAQPage schema. |
+| 16 | Final CTA (gold) + marquee + footer | Last conversion window and the policy links Google Ads expects. |
+| 17 | Sticky mobile call/book bar | Appears once the hero scrolls away. |
 
-**The form is not in the hero.** It sits in its own dark band between Location and FAQ, and all
-eight `#request` CTAs (hero, three offer cards, doctor, insurance, final CTA, sticky bar) scroll to
-it. That's the deliberate trade: the hero gets to be an image-led brand statement, and the form
-gets a full section built around it instead of a cramped column.
+**The form is not in the hero** — it has its own dark band at #14, and every `#request` CTA scrolls to it.
 
-**Keyword coverage** — `dentist lockport` lives in the title, H1, an H2, the schema and the address
-block. `dentist near me` is served by proximity signals rather than keyword stuffing: the building
-exterior photo, landmarks (Crumbl Cookie, Noodles & Co), free parking, an embedded map, `areaServed`
-for Lockport / Homer Glen / Lemont, and the FAQ "Is Peak Dentistry convenient from Homer Glen or
-Lemont?"
+**Keyword coverage** — `dentist lockport` is in the title, H1, an H2, the schema and the address block.
+`dentist near me` is served by proximity signals: the building exterior photo, landmarks (Crumbl
+Cookie, Noodles & Co), free parking, embedded map, `areaServed` for Lockport / Homer Glen / Lemont,
+and a Homer Glen / Lemont FAQ.
 
 ---
 
@@ -43,61 +45,45 @@ Lemont?"
 
 | Element | Choice | Why |
 |---|---|---|
-| Display type | **Fraunces** (variable, real italics loaded) | Warm editorial serif. It's what makes the page read as a designed brand rather than a template — carries every H1/H2/H3, the offer prices, the pull-quote and the review copy. |
-| Body type | **Work Sans** | Already the practice's brand font. Keeps the LP continuous with the main site. |
-| Palette | Gold `#C98609`, espresso `#211D19`, cream `#FFF8EE` | Sampled from the live site, then re-tuned so every foreground/background pair clears WCAG AA. |
-| Rhythm | Light / dark alternation | Hero (cream) → stat band (dark) → offers → services → why-us (dark) → doctor → reviews → insurance → location → request (dark) → FAQ → final (cream). Prevents the endless-white-scroll look. |
-| Imagery | Real practice photography | Reception in the hero, the doctor, and the **building exterior** in the location block — the single most useful image for "near me" traffic. |
-| Detail work | Layered image frames, offset accent panels, a fine paper grain on the hero, hairline dividers, numbered sections, animated headline underline, arrows that travel on hover | Small, cheap touches that separate custom work from a page builder. The grain is one inline SVG; the whole page still ships zero JS dependencies. |
+| Display type | **Archivo** (variable, weight 800, `wdth` 108), uppercase, `-0.035em` tracking | Heavy grotesk at poster scale is what gives the page its DTC punch. |
+| Body type | **Work Sans** | The practice's own brand font — keeps the LP continuous with the main site. |
+| Colour | Gold `#C98609` as a **block** colour, espresso `#0E0D0C`, cream `#FFF6EA` | Full-bleed alternation: dark marquee → cream hero → white → cream → dark pin → dark tech → cream → white → **gold** insurance → dark form → cream FAQ → **gold** close. |
+| Borders | 2px hard borders and offset "hard shadows" (`8px 8px 0`) instead of soft blur | The single biggest driver of the bold-brand feel; cards lift into their own shadow on hover. |
+| Buttons | Chunky pills with a solid colour underhang that compresses on press | Reads as physical rather than flat. |
+| Contrast | All 12 core pairs verified | Gold blocks use near-black text at 6.08:1; nothing on the page relies on a low-contrast pairing. |
 
 ---
 
 ## 1c. The motion layer
 
-Every effect runs on **transform and opacity only**, through **one shared rAF loop** — no
-scroll handler does its own layout work. The single exception is the FAQ's `grid-template-rows`,
-which is what makes an auto-height accordion animate at all, and it runs on one small element
-at a time.
+Transform/opacity only, batched into **one shared rAF loop** — the sole exception is the FAQ's
+`grid-template-rows`, which is what makes an auto-height accordion animate at all.
 
-| Effect | Where | How it works |
-|---|---|---|
-| Masked headline reveal | Hero H1 | Each line sits in an `overflow:hidden` box and slides up from `translateY(112%)`, staggered 120/230ms. |
-| Staged hero entrance | Lede → CTAs → meta → art → badge | Fade-up chain, 400ms→980ms. The eye lands on the headline, then the offer, then the button. |
-| Image mask reveal | Hero photo, doctor, office exterior | `clip-path` wipes open while the image itself eases from `scale(1.14)` to `1` — the photo settles rather than pops. |
-| Parallax | Hero photo, doctor photo | The photo drifts inside its static frame (±20–30px), so the layered frame and badge read as separate planes. |
-| Scroll reveal + stagger | Every grid | Cards in a `[data-stagger]` grid get an incremental `--d` delay (70ms each, capped at 7). |
-| Masked stat numbers | Stat band | `$99 / Sat / 8pm / 2018` slide up out of a mask, staggered with the tiles. |
-| Cursor spotlight | Offer, service, why, review cards | A gold radial gradient tracks the pointer inside the card. Fine pointers only. |
-| Magnetic CTAs | Hero + final primary buttons | The button leans up to 14px toward the cursor, rAF-batched, released on leave. |
-| Press ripple | Every button | Material-weight ripple from the exact press point — visual feedback well inside the 100ms budget. |
-| Marquee | Between services and why-us | The set is cloned once in JS so `translateX(-50%)` loops seamlessly; pauses on hover. |
-| Scroll progress | Top of viewport | 3px gold bar, `scaleX` from scroll ratio. |
-| Header shrink | Sticky header | Drops from 80px to 66px with a shadow once you leave the top. |
-| Accordion | FAQ | `grid-template-rows: 0fr → 1fr` plus a fading inner panel. Closed panels also flip to `visibility:hidden`, so they leave the accessibility tree instead of lingering as invisible readable text. |
-| Eyebrow rules, icon tilts, price pop, link underlines | Throughout | Small transitions that make hover feel designed rather than default. |
+| Effect | How it works |
+|---|---|
+| Masked headline | Three lines slide up out of `overflow:hidden` boxes, staggered 100/200/300ms. |
+| Gold highlight wipe | An inline gradient with `box-decoration-break: clone` wipes in left-to-right — so when the phrase wraps, **each line gets its own band** rather than one giant slab. |
+| **Pinned sequence** | A 440vh section with a `position:sticky` viewport; scroll progress selects the live step and drives the rail. Clicking a rail item scrolls to that step's slice. Mobile and reduced-motion get a plain stacked list. |
+| Marquee ×3 | Each set is cloned in JS so `translateX(-50%)` loops seamlessly; middle band runs reversed; pauses on hover. |
+| Image reveals | `clip-path` wipes open while the photo eases from `scale(1.12)` to 1; hero and doctor photos also drift on parallax. |
+| Staggered reveals | Cards in a `[data-stagger]` grid get incremental `--d` delays (70ms each, capped). |
+| Cursor spotlight | Gold radial gradient tracks the pointer inside cards. Fine pointers only. |
+| Magnetic CTAs | Hero and final primary buttons lean up to 14px toward the cursor, rAF-batched. |
+| Press ripple | Material-weight ripple from the press point on every button. |
+| Progress bar, header shrink, tag rules, icon tilts | Small transitions that make the page feel built rather than assembled. |
 
-### The live "Open now" pill
+**Live "Open now" pill** — reads the real schedule in **`America/Chicago`**, not the visitor's
+timezone, so a Chicago Saturday is correct from anywhere. Closed states name the next opening. If
+`Intl` throws, the pill stays hidden rather than showing a status that might be wrong.
 
-The hero pill reads the real schedule and reports status **in `America/Chicago`**, not the
-visitor's timezone — so a Chicago Saturday morning shows "Open now — closes 2pm" whether the
-patient is searching from Lockport or from a hotel in another state. Closed states name the next
-opening ("Closed — opens Thursday at 8am"). If `Intl` throws for any reason the pill stays hidden
-rather than displaying a status that might be wrong.
+**Reduced motion** collapses the entire layer — no entrances, parallax, marquee, ripples or
+spotlights, the pin unpins into a stacked list, everything visible immediately. Honoured
+mid-session too.
 
-### Reduced motion
-
-`prefers-reduced-motion: reduce` collapses the whole layer: no entrance animations, no parallax,
-no marquee scroll, no ripples, no spotlights, images render un-masked, and everything is visible
-immediately. The page also listens for a **mid-session** change to that setting and reveals
-everything at once if the visitor turns it on. Verified in Chromium with the flag set.
-
-### Why the reveals aren't on IntersectionObserver
-
-They were, and a browser test caught the failure: an observer can miss elements during a fast
-flick or an anchor jump, and a missed reveal means **permanently invisible content** — the one
-failure this page cannot ship with. Reveals now run off the same rAF scroll loop as everything
-else, draining a pending list as elements cross the fold, which cannot miss. There is also a
-`<noscript>` block that forces all content visible if JavaScript never runs at all.
+**Reveals do not use IntersectionObserver.** A browser test caught it missing elements on fast
+scrolls, and a missed reveal means permanently invisible content. They run off the rAF loop,
+draining a pending list as elements cross the fold, plus a `<noscript>` block that forces
+everything visible if JS never runs.
 
 ---
 
@@ -190,7 +176,7 @@ page can't compete with the homepage for the same query.
 
 | Check | Result |
 |---|---|
-| WCAG AA contrast, all 32 colour pairs | **Pass** — body 17.6:1, gold CTA 5.8:1, dark-band body 8.0:1, footer 5.9:1. Two fixes during review: star icons darkened to `#A56C05` (4.42:1) and the outline-on-dark button border raised from 2.95:1 to 5.45:1, both to clear the 3:1 non-text minimum. |
+| WCAG AA contrast | **Pass** — body 17.6:1, gold CTA 5.8:1, dark-band body 8.0:1, footer 5.9:1. Two fixes during review: star icons darkened to `#A56C05` (4.42:1) and the outline-on-dark button border raised from 2.95:1 to 5.45:1, both to clear the 3:1 non-text minimum. |
 | Touch targets | All CTAs ≥ 58px, header/footer links ≥ 44px, form inputs 54px |
 | Heading order | Single `<h1>`, no skipped levels |
 | Labels / ARIA | 6 visible labels bound by `for`, all `aria-controls` and `aria-describedby` resolve, no duplicate IDs |
