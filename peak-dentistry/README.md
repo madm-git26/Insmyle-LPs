@@ -11,24 +11,44 @@
 | # | Section | Job it does for a high-intent local search |
 |---|---------|--------------------------------------------|
 | 1 | Sticky header — logo, phone, Book Now | Phone visible at every scroll depth. **No site navigation** — an ads LP should have no exit paths. |
-| 2 | Urgency ribbon | Answers the unspoken "are they even open when I can go?" above the fold. |
-| 3 | Hero + lead form side by side | H1 carries the exact keyword; the form is above the fold on desktop, and one tap away on mobile. |
-| 4 | New-patient offers ($99 / $79 / free consults) | The single strongest reason to pick this practice over the other 30 in a 10-mile radius. |
-| 5 | Services grid | Covers the long tail that also matches these two ad groups (implants, aligners, emergency). |
-| 6 | Why-us (dark band) | Differentiators, not adjectives: CEREC, in-house specialty, comfort menu, extended hours. |
-| 7 | Dr. Djordjevic | Named, credentialed human being. E-E-A-T and trust in one block. |
-| 8 | Reviews | Four real patient quotes pulled from the live site. |
-| 9 | Insurance & financing | Removes the #1 objection before the click-to-call. |
-| 10 | Location, hours table, embedded map | This is the "near me" payload — proximity, parking, landmarks, today's hours highlighted. |
-| 11 | FAQ accordion | Pre-call objection handling + FAQPage schema. |
-| 12 | Final CTA + footer | Last conversion window, plus the policy links Google Ads expects. |
-| 13 | Sticky mobile call/book bar | Appears once the hero scrolls away. Most of this traffic is mobile. |
+| 2 | Announcement bar | Answers the unspoken "are they even open when I can go?" before the fold. |
+| 3 | Hero — headline, dual CTA, layered reception photo | Editorial, image-led, **no form**. One call CTA, one anchor to the request section. |
+| 4 | Stat band (dark) | $99 · Sat · 8pm · 2018 — the four facts that decide the click, in one glance. |
+| 5 | New-patient offers | The strongest reason to pick this practice over the other 30 within 10 miles. |
+| 6 | Services grid | Covers the long tail that also matches these ad groups (implants, aligners, emergency). |
+| 7 | Why-us (dark, numbered 01–06) | Differentiators, not adjectives: CEREC, in-house specialty, comfort menu, extended hours. |
+| 8 | Dr. Djordjevic | Named, credentialed human being. E-E-A-T and trust in one block. |
+| 9 | Reviews | Four real patient quotes, set in the display serif so they read as testimony, not filler. |
+| 10 | Insurance & financing | Removes the #1 objection before the ask. |
+| 11 | Location — exterior photo, hours, map | The "near me" payload: proximity, parking, landmarks, today's hours highlighted. |
+| 12 | **Request section (dark) — the form lives here** | Three-step explainer on the left, form card on the right. Every `#request` CTA lands here. |
+| 13 | FAQ accordion | Pre-call objection handling + FAQPage schema. |
+| 14 | Final CTA + footer | Last conversion window, plus the policy links Google Ads expects. |
+| 15 | Sticky mobile call/book bar | Appears once the hero scrolls away. Most of this traffic is mobile. |
 
-**Keyword coverage** — `dentist lockport` lives in the title, H1, H2 ("A dentist near you in Lockport"),
-schema and the address block. `dentist near me` is served by proximity signals rather than
-keyword stuffing: landmarks (Crumbl Cookie, Noodles & Co), free parking, an embedded map,
-areaServed for Lockport / Homer Glen / Lemont, and the FAQ "Is Peak Dentistry convenient from
-Homer Glen or Lemont?"
+**The form is not in the hero.** It sits in its own dark band between Location and FAQ, and all
+eight `#request` CTAs (hero, three offer cards, doctor, insurance, final CTA, sticky bar) scroll to
+it. That's the deliberate trade: the hero gets to be an image-led brand statement, and the form
+gets a full section built around it instead of a cramped column.
+
+**Keyword coverage** — `dentist lockport` lives in the title, H1, an H2, the schema and the address
+block. `dentist near me` is served by proximity signals rather than keyword stuffing: the building
+exterior photo, landmarks (Crumbl Cookie, Noodles & Co), free parking, an embedded map, `areaServed`
+for Lockport / Homer Glen / Lemont, and the FAQ "Is Peak Dentistry convenient from Homer Glen or
+Lemont?"
+
+---
+
+## 1b. The design system
+
+| Element | Choice | Why |
+|---|---|---|
+| Display type | **Fraunces** (variable, real italics loaded) | Warm editorial serif. It's what makes the page read as a designed brand rather than a template — carries every H1/H2/H3, the offer prices, the pull-quote and the review copy. |
+| Body type | **Work Sans** | Already the practice's brand font. Keeps the LP continuous with the main site. |
+| Palette | Gold `#C98609`, espresso `#211D19`, cream `#FFF8EE` | Sampled from the live site, then re-tuned so every foreground/background pair clears WCAG AA. |
+| Rhythm | Light / dark alternation | Hero (cream) → stat band (dark) → offers → services → why-us (dark) → doctor → reviews → insurance → location → request (dark) → FAQ → final (cream). Prevents the endless-white-scroll look. |
+| Imagery | Real practice photography | Reception in the hero, the doctor, and the **building exterior** in the location block — the single most useful image for "near me" traffic. |
+| Detail work | Layered image frames, offset accent panels, a fine paper grain on the hero, hairline dividers, numbered sections, animated headline underline, arrows that travel on hover | Small, cheap touches that separate custom work from a page builder. The grain is one inline SVG; the whole page still ships zero JS dependencies. |
 
 ---
 
@@ -121,8 +141,8 @@ page can't compete with the homepage for the same query.
 
 | Check | Result |
 |---|---|
-| WCAG AA contrast, all 21 colour pairs | **Pass** — body text 16.9:1, gold CTA 5.6:1, dark-band body 8.2:1. Star icons darkened from `#E0A21C` (2.24:1) to `#A56C05` (4.42:1) to clear the 3:1 non-text minimum. |
-| Touch targets | All CTAs ≥ 54px, header/footer links ≥ 44px, form inputs 52px |
+| WCAG AA contrast, all 32 colour pairs | **Pass** — body 17.6:1, gold CTA 5.8:1, dark-band body 8.0:1, footer 5.9:1. Two fixes during review: star icons darkened to `#A56C05` (4.42:1) and the outline-on-dark button border raised from 2.95:1 to 5.45:1, both to clear the 3:1 non-text minimum. |
+| Touch targets | All CTAs ≥ 58px, header/footer links ≥ 44px, form inputs 54px |
 | Heading order | Single `<h1>`, no skipped levels |
 | Labels / ARIA | 6 visible labels bound by `for`, all `aria-controls` and `aria-describedby` resolve, no duplicate IDs |
 | Form errors | `role="alert"`, validated on **blur** not keystroke, first invalid field auto-focused |
@@ -131,6 +151,7 @@ page can't compete with the homepage for the same query.
 | Layout | Mobile-first, no horizontal scroll at 320px, sticky bar respects `env(safe-area-inset-bottom)` |
 | JS | No dependencies. One bug caught in review: `form.name` returns the form's *name attribute*, not the input — rewritten to `form.elements[…]`. |
 | Structured data | `Dentist` + `FAQPage` JSON-LD, hours matching the real schedule |
+| Fonts | Google Fonts URL fetched and confirmed 200, serving both Fraunces italic and upright plus Work Sans |
 
 Only outbound hosts: Google Fonts, Google Maps, the practice's own CDN, and dental4.me. No trackers
 bundled, no CDN scripts.
