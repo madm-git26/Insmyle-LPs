@@ -52,6 +52,55 @@ Lemont?"
 
 ---
 
+## 1c. The motion layer
+
+Every effect runs on **transform and opacity only**, through **one shared rAF loop** — no
+scroll handler does its own layout work. The single exception is the FAQ's `grid-template-rows`,
+which is what makes an auto-height accordion animate at all, and it runs on one small element
+at a time.
+
+| Effect | Where | How it works |
+|---|---|---|
+| Masked headline reveal | Hero H1 | Each line sits in an `overflow:hidden` box and slides up from `translateY(112%)`, staggered 120/230ms. |
+| Staged hero entrance | Lede → CTAs → meta → art → badge | Fade-up chain, 400ms→980ms. The eye lands on the headline, then the offer, then the button. |
+| Image mask reveal | Hero photo, doctor, office exterior | `clip-path` wipes open while the image itself eases from `scale(1.14)` to `1` — the photo settles rather than pops. |
+| Parallax | Hero photo, doctor photo | The photo drifts inside its static frame (±20–30px), so the layered frame and badge read as separate planes. |
+| Scroll reveal + stagger | Every grid | Cards in a `[data-stagger]` grid get an incremental `--d` delay (70ms each, capped at 7). |
+| Masked stat numbers | Stat band | `$99 / Sat / 8pm / 2018` slide up out of a mask, staggered with the tiles. |
+| Cursor spotlight | Offer, service, why, review cards | A gold radial gradient tracks the pointer inside the card. Fine pointers only. |
+| Magnetic CTAs | Hero + final primary buttons | The button leans up to 14px toward the cursor, rAF-batched, released on leave. |
+| Press ripple | Every button | Material-weight ripple from the exact press point — visual feedback well inside the 100ms budget. |
+| Marquee | Between services and why-us | The set is cloned once in JS so `translateX(-50%)` loops seamlessly; pauses on hover. |
+| Scroll progress | Top of viewport | 3px gold bar, `scaleX` from scroll ratio. |
+| Header shrink | Sticky header | Drops from 80px to 66px with a shadow once you leave the top. |
+| Accordion | FAQ | `grid-template-rows: 0fr → 1fr` plus a fading inner panel. Closed panels also flip to `visibility:hidden`, so they leave the accessibility tree instead of lingering as invisible readable text. |
+| Eyebrow rules, icon tilts, price pop, link underlines | Throughout | Small transitions that make hover feel designed rather than default. |
+
+### The live "Open now" pill
+
+The hero pill reads the real schedule and reports status **in `America/Chicago`**, not the
+visitor's timezone — so a Chicago Saturday morning shows "Open now — closes 2pm" whether the
+patient is searching from Lockport or from a hotel in another state. Closed states name the next
+opening ("Closed — opens Thursday at 8am"). If `Intl` throws for any reason the pill stays hidden
+rather than displaying a status that might be wrong.
+
+### Reduced motion
+
+`prefers-reduced-motion: reduce` collapses the whole layer: no entrance animations, no parallax,
+no marquee scroll, no ripples, no spotlights, images render un-masked, and everything is visible
+immediately. The page also listens for a **mid-session** change to that setting and reveals
+everything at once if the visitor turns it on. Verified in Chromium with the flag set.
+
+### Why the reveals aren't on IntersectionObserver
+
+They were, and a browser test caught the failure: an observer can miss elements during a fast
+flick or an anchor jump, and a missed reveal means **permanently invisible content** — the one
+failure this page cannot ship with. Reveals now run off the same rAF scroll loop as everything
+else, draining a pending list as elements cross the fold, which cannot miss. There is also a
+`<noscript>` block that forces all content visible if JavaScript never runs at all.
+
+---
+
 ## 2. Before it goes live — 3 things to wire up
 
 ### a) The form endpoint (required)
@@ -152,6 +201,13 @@ page can't compete with the homepage for the same query.
 | JS | No dependencies. One bug caught in review: `form.name` returns the form's *name attribute*, not the input — rewritten to `form.elements[…]`. |
 | Structured data | `Dentist` + `FAQPage` JSON-LD, hours matching the real schedule |
 | Fonts | Google Fonts URL fetched and confirmed 200, serving both Fraunces italic and upright plus Work Sans |
+| **Browser-tested** | Rendered in headless Chromium at 320 / 360 / 375 / 390 / 768 / 1024 / 1280 / 1920 **and phone landscape** — no horizontal overflow at any width |
+| Reveal coverage | Full-page scroll test: **0** elements left hidden at desktop and mobile, in both normal and reduced-motion modes |
+| Keyboard | Tab order verified logical from skip-link through the CTAs; 3px focus ring present on every stop |
+| Accordion a11y | Verified `aria-expanded` flips and closed panels go `visibility:hidden` (out of the a11y tree) |
+| Form | Empty submit flags exactly the 3 required fields, focuses the first, and shows 3 `role="alert"` messages |
+| Attribution | `?gclid=…&utm_campaign=…` verified carried onto the dental4.me link; `?kw=nearme` verified swapping the H1 |
+| Console | Zero JavaScript errors across every test run |
 
 Only outbound hosts: Google Fonts, Google Maps, the practice's own CDN, and dental4.me. No trackers
 bundled, no CDN scripts.

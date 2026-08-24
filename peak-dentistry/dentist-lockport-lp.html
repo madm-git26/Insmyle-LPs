@@ -197,12 +197,17 @@ section{padding-block:var(--s9)}
 @media (min-width:900px){ .hdr .btn{display:inline-flex} }
 
 /* ---------- Announcement ---------- */
-.ann{background:var(--espresso); color:#EBDFCC; font-size:14px; line-height:1.5;
-  text-align:center; padding:11px var(--gut); font-weight:400}
+.ann{
+  background:var(--espresso); color:#EBDFCC; font-size:14px; line-height:1.5;
+  padding:11px var(--gut); font-weight:400;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; row-gap:2px;
+}
 .ann b{color:#E7B65C; font-weight:600}
 .ann a{color:#E7B65C; font-weight:600; text-underline-offset:3px}
-.ann .dot{color:rgba(235,223,204,.4); margin-inline:10px}
-@media (max-width:520px){ .ann .dot,.ann .hide-sm{display:none} }
+.ann > * + *::before{
+  content:"·"; color:rgba(235,223,204,.45); margin:0 10px; font-weight:400;
+}
+@media (max-width:560px){ .ann .hide-sm{display:none} }
 
 /* ==========================================================================
    HERO
@@ -687,10 +692,220 @@ body.has-bar{padding-bottom:90px}
   .hero h1 .accent::after{transform:scaleX(1)}
 }
 @media print{ .hdr,.actionbar,.ann{display:none!important} }
+/* ==========================================================================
+   MOTION LAYER
+   Everything below animates transform / opacity only (the one exception is
+   the FAQ's grid-template-rows, which is what makes an auto-height accordion
+   animate at all — it runs on one small element at a time).
+   The whole layer is switched off under prefers-reduced-motion at the bottom.
+   ========================================================================== */
+
+/* ---------- Scroll progress ---------- */
+.progress{
+  position:fixed; inset:0 0 auto 0; height:3px; z-index:80; pointer-events:none;
+  background:transparent;
+}
+.progress span{
+  display:block; height:100%; width:100%; transform:scaleX(0); transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--gold-deep),var(--gold-lift));
+  will-change:transform;
+}
+
+/* ---------- Header shrink on scroll ---------- */
+.hdr__in{transition:min-height var(--dur) var(--ease)}
+.hdr__logo img{transition:height var(--dur) var(--ease)}
+@media (min-width:768px){
+  .hdr.is-stuck .hdr__in{min-height:66px}
+  .hdr.is-stuck .hdr__logo img{height:40px}
+}
+
+/* ---------- Open now / closed pill ---------- */
+.livepill{
+  display:inline-flex; align-items:center; gap:9px; margin:0 0 var(--s5);
+  padding:7px 15px 7px 12px; border-radius:var(--r-pill);
+  font-size:13.5px; font-weight:600; letter-spacing:.01em;
+  background:#E9F4EC; color:#1A5C33; border:1px solid #C4E2CE;
+  animation:pillIn 520ms var(--ease) both;
+}
+.livepill[data-state="closed"]{background:#FBEDE9; color:#96400F; border-color:#F0D2C6}
+.livepill__dot{
+  width:8px; height:8px; border-radius:50%; background:currentColor; flex:none;
+  position:relative;
+}
+.livepill[data-state="open"] .livepill__dot::after{
+  content:""; position:absolute; inset:-4px; border-radius:50%;
+  border:1.5px solid currentColor; opacity:.55;
+  animation:ping 2.2s var(--ease) infinite;
+}
+@keyframes ping{
+  0%{transform:scale(.6); opacity:.7}
+  70%{transform:scale(1.5); opacity:0}
+  100%{transform:scale(1.5); opacity:0}
+}
+@keyframes pillIn{from{opacity:0; transform:translateY(-8px)} to{opacity:1; transform:none}}
+
+/* ---------- Hero headline: masked line reveal ---------- */
+.hero__h1 .ln{display:block; overflow:hidden; padding-bottom:.06em}
+.hero__h1 .ln__i{
+  display:block; transform:translateY(112%);
+  animation:lineUp 900ms cubic-bezier(.17,.84,.28,1) both;
+}
+.hero__h1 .ln:nth-child(1) .ln__i{animation-delay:120ms}
+.hero__h1 .ln:nth-child(2) .ln__i{animation-delay:230ms}
+@keyframes lineUp{to{transform:translateY(0)}}
+
+/* Hero supporting content fades up behind the headline */
+.hero__lede,.hero__cta,.hero__meta{animation:fadeUp 780ms var(--ease) both}
+.hero__lede{animation-delay:400ms}
+.hero__cta{animation-delay:500ms}
+.hero__meta{animation-delay:600ms}
+@keyframes fadeUp{from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none}}
+
+.hero__art{animation:artIn 1100ms var(--ease) 220ms both}
+@keyframes artIn{from{opacity:0; transform:translateY(30px) scale(.97)} to{opacity:1; transform:none}}
+.hero__badge{animation:fadeUp 700ms var(--ease) 980ms both}
+
+/* ---------- Image mask reveal ---------- */
+.revimg{clip-path:inset(0 0 100% 0)}
+.revimg img{transform:scale(1.14); transition:transform 1500ms var(--ease)}
+.revimg.is-in{
+  clip-path:inset(0 0 0 0);
+  transition:clip-path 1100ms cubic-bezier(.17,.84,.28,1);
+}
+.revimg.is-in img{transform:scale(1)}
+.hero__art__main.revimg{transition-delay:340ms}
+.hero__art__main.revimg img{transition-delay:340ms}
+
+/* ---------- Parallax ---------- */
+[data-parallax]{will-change:transform}
+
+/* ---------- Reveal variants + stagger ---------- */
+.reveal{opacity:0; transform:translateY(26px)}
+.reveal.is-in{
+  opacity:1; transform:none;
+  transition:opacity 700ms var(--ease), transform 700ms var(--ease);
+}
+[data-stagger] > .reveal{transition-delay:var(--d,0ms)}
+
+/* ---------- Cursor spotlight on cards ---------- */
+[data-spot]{position:relative; overflow:hidden}
+[data-spot]::before{
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:0;
+  opacity:0; transition:opacity 320ms var(--ease);
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),
+             rgba(201,134,9,.13), rgba(201,134,9,0) 62%);
+}
+.why-card[data-spot]::before{
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),
+             rgba(224,162,28,.16), rgba(224,162,28,0) 62%);
+}
+[data-spot].is-hot::before{opacity:1}
+[data-spot] > *{position:relative; z-index:1}
+
+/* ---------- Button press ripple + magnetic ---------- */
+.btn{overflow:hidden}
+.btn .ripple{
+  position:absolute; border-radius:50%; pointer-events:none; z-index:0;
+  background:rgba(255,255,255,.22); transform:translate(-50%,-50%) scale(0);
+  animation:ripple 620ms var(--ease) forwards;
+}
+.btn--primary .ripple{background:rgba(28,24,21,.12)}
+@keyframes ripple{to{transform:translate(-50%,-50%) scale(1); opacity:0}}
+.btn > *{position:relative; z-index:1}
+
+/* ---------- Eyebrow rule draws in ---------- */
+.eyebrow::before{transition:width 700ms var(--ease) 160ms}
+.sec-head .eyebrow::before{width:0}
+.sec-head.is-in .eyebrow::before{width:34px}
+
+/* ---------- Marquee ---------- */
+.marquee{
+  overflow:hidden; background:var(--espresso); border-block:1px solid rgba(255,255,255,.08);
+  padding-block:18px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+}
+.marquee__track{display:flex; width:max-content; animation:marquee 42s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__set{display:flex; align-items:center; gap:26px; padding-right:26px; flex:none}
+.marquee__set i{
+  font-family:var(--font-display); font-style:italic; font-weight:500;
+  font-size:clamp(18px,2.4vw,26px); color:#C3B6A4; white-space:nowrap; letter-spacing:-.01em;
+}
+.marquee__set b{color:var(--gold-lift); font-size:13px; font-weight:400}
+@keyframes marquee{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+
+/* ---------- Stat numbers: masked slide-up ---------- */
+.stat b{overflow:hidden}
+.stat b .num{display:block; transform:translateY(105%)}
+.stat.is-in b .num{
+  transform:translateY(0);
+  transition:transform 780ms cubic-bezier(.17,.84,.28,1) var(--d,0ms);
+}
+
+/* ---------- Service icon micro-interaction ---------- */
+.svc__ico svg{transition:transform 420ms var(--ease)}
+.svc:hover .svc__ico svg{transform:rotate(-6deg) scale(1.08)}
+
+/* ---------- Offer card lift already set; add price pop ---------- */
+.offer__price{transition:transform 380ms var(--ease)}
+.offer:hover .offer__price{transform:translateY(-3px) scale(1.03)}
+
+/* ---------- FAQ: real height animation ---------- */
+.faq-a{
+  display:grid; grid-template-rows:0fr; padding:0; visibility:hidden;
+  transition:grid-template-rows 400ms var(--ease), visibility 0s linear 400ms;
+}
+.faq-a__i{
+  overflow:hidden; opacity:0; transform:translateY(-8px);
+  transition:opacity 300ms var(--ease), transform 300ms var(--ease);
+}
+.faq-a__i p{margin:0; padding:0 56px var(--s6) var(--s2)}
+.faq-item.is-open .faq-a{
+  grid-template-rows:1fr; visibility:visible;
+  transition:grid-template-rows 400ms var(--ease), visibility 0s linear 0s;
+}
+.faq-item.is-open .faq-a__i{opacity:1; transform:none; transition-delay:110ms}
+.faq-q{transition:color var(--dur) var(--ease)}
+
+/* ---------- Hours row emphasis ---------- */
+.hours tbody tr{transition:background-color var(--dur) var(--ease)}
+.hours tbody tr:not(.is-today):hover{background:var(--paper-3)}
+
+/* ---------- Link underline draw ---------- */
+.addr a,.form__note a,.ftr a{
+  background-image:linear-gradient(currentColor,currentColor);
+  background-size:0% 1.5px; background-position:0 100%; background-repeat:no-repeat;
+  text-decoration:none; transition:background-size 340ms var(--ease);
+}
+.addr a:hover,.form__note a:hover,.ftr a:hover{background-size:100% 1.5px; text-decoration:none}
+
+/* ==========================================================================
+   REDUCED MOTION — the entire layer above collapses to static
+   ========================================================================== */
+@media (prefers-reduced-motion:reduce){
+  .progress{display:none}
+  .hero__h1 .ln__i,
+  .hero__lede,.hero__cta,.hero__meta,.hero__art,.hero__badge,.livepill{
+    animation:none!important; opacity:1!important; transform:none!important;
+  }
+  .revimg{clip-path:none}
+  .stat b .num{transform:none!important}
+  .revimg img{transform:none}
+  .marquee__track{animation:none; width:auto; overflow:hidden}
+  .marquee__set{flex-wrap:wrap}
+  .btn .ripple{display:none}
+  .livepill__dot::after{animation:none}
+  .faq-a,.faq-item.is-open .faq-a{transition:none}
+  .faq-a__i{transition:none}
+  [data-spot]::before{display:none}
+}
+
 </style>
+<noscript><style>.reveal,.revimg{opacity:1!important;transform:none!important;clip-path:none!important}.hero__h1 .ln__i{transform:none!important;animation:none!important}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
 <!-- ======================= HEADER ======================= -->
 <header class="hdr" id="hdr">
@@ -714,7 +929,10 @@ body.has-bar{padding-bottom:90px}
 </header>
 
 <div class="ann">
-  <b>Open Saturdays 8–2</b><span class="dot">·</span><span class="hide-sm">Thursdays until 8pm</span><span class="dot">·</span>Same-day emergencies when available<span class="dot">·</span><a href="tel:+18156605880" data-cta="call" data-loc="announcement">(815)&nbsp;660-5880</a>
+  <span><b>Open Saturdays 8–2</b></span>
+  <span class="hide-sm">Thursdays until 8pm</span>
+  <span>Same-day emergencies when available</span>
+  <a href="tel:+18156605880" data-cta="call" data-loc="announcement">(815)&nbsp;660-5880</a>
 </div>
 
 <main id="main">
@@ -723,10 +941,14 @@ body.has-bar{padding-bottom:90px}
 <section class="hero">
   <div class="wrap hero__grid">
     <div>
+      <p class="livepill" id="livePill" hidden>
+        <span class="livepill__dot" aria-hidden="true"></span>
+        <span id="livePillText"></span>
+      </p>
       <span class="eyebrow">Lockport · Homer Glen · Lemont</span>
-      <h1>
-        <span class="kw" data-headline>Dentist in Lockport, IL</span>
-        <span class="accent">without</span> the dread
+      <h1 class="hero__h1">
+        <span class="ln"><span class="ln__i kw" data-headline>Dentist in Lockport, IL</span></span>
+        <span class="ln"><span class="ln__i"><span class="accent">without</span> the dread</span></span>
       </h1>
       <p class="lede hero__lede">
         A brand-new, judgment-free practice built for people with actual schedules —
@@ -754,7 +976,7 @@ body.has-bar{padding-bottom:90px}
 
     <div class="hero__art">
       <div class="hero__art__frame" aria-hidden="true"></div>
-      <div class="hero__art__main">
+      <div class="hero__art__main revimg is-in" data-parallax="-30">
         <img src="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-office-tour-reception.webp"
              alt="The reception area at Peak Dentistry in Lockport, Illinois"
              width="800" height="1000" fetchpriority="high" decoding="async">
@@ -774,25 +996,25 @@ body.has-bar{padding-bottom:90px}
 
 <!-- ======================= STAT BAND ======================= -->
 <section class="band" aria-label="At a glance">
-  <div class="wrap band__grid">
-    <div class="stat"><b>$99</b><span>Comprehensive new<br>patient exam</span></div>
-    <div class="stat"><b>Sat</b><span>Open 8am–2pm<br>every Saturday</span></div>
-    <div class="stat"><b>8pm</b><span>Thursday evening<br>appointments</span></div>
-    <div class="stat"><b>2018</b><span>Michigan-trained<br>dentist</span></div>
+  <div class="wrap band__grid" data-stagger>
+    <div class="stat reveal"><b><span class="num">$99</span></b><span>Comprehensive new<br>patient exam</span></div>
+    <div class="stat reveal"><b><span class="num">Sat</span></b><span>Open 8am–2pm<br>every Saturday</span></div>
+    <div class="stat reveal"><b><span class="num">8pm</span></b><span>Thursday evening<br>appointments</span></div>
+    <div class="stat reveal"><b><span class="num">2018</span></b><span>Michigan-trained<br>dentist</span></div>
   </div>
 </section>
 
 <!-- ======================= OFFERS ======================= -->
 <section class="offers" aria-labelledby="offers-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--center">New patient offers</span>
       <h2 id="offers-h">Start with an honest look at your smile</h2>
       <p class="lede">Mention the offer when you book. New patients only.</p>
     </div>
 
-    <div class="offer-grid">
-      <div class="offer offer--hero reveal">
+    <div class="offer-grid" data-stagger>
+      <div class="offer offer--hero reveal" data-spot>
         <span class="offer__flag">Most booked</span>
         <span class="offer__price">$99</span>
         <h3>New patient exam</h3>
@@ -800,21 +1022,21 @@ body.has-bar{padding-bottom:90px}
         <a class="btn btn--primary btn--sm btn--block" href="#request" data-cta="offer" data-loc="offer-99">Claim this</a>
       </div>
 
-      <div class="offer reveal">
+      <div class="offer reveal" data-spot>
         <span class="offer__price">$79</span>
         <h3>Emergency exam</h3>
         <p>In pain today? An emergency exam for new patients, with a clear estimate before anything starts.</p>
         <a class="btn btn--danger btn--sm btn--block" href="tel:+18156605880" data-cta="call" data-loc="offer-emergency">Call for today</a>
       </div>
 
-      <div class="offer reveal">
+      <div class="offer reveal" data-spot>
         <span class="offer__price">Free</span>
         <h3>Implant &amp; denture consult</h3>
         <p>Sit down with the dentist to talk through tooth replacement and real costs. No charge, no pressure.</p>
         <a class="btn btn--ghost btn--sm btn--block" href="#request" data-cta="offer" data-loc="offer-implant">Book a consult</a>
       </div>
 
-      <div class="offer reveal">
+      <div class="offer reveal" data-spot>
         <span class="offer__price">Free</span>
         <h3>Second opinion</h3>
         <p>Bring an existing treatment plan and get a straight review of what you actually need.</p>
@@ -833,39 +1055,39 @@ body.has-bar{padding-bottom:90px}
 <!-- ======================= SERVICES ======================= -->
 <section aria-labelledby="svc-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--center">One office, whole-family care</span>
       <h2 id="svc-h">Everything your family needs, under one roof</h2>
       <p class="lede">Checkups through implants — without being sent across town for a referral.</p>
     </div>
 
-    <div class="svc-grid">
-      <div class="svc reveal">
+    <div class="svc-grid" data-stagger>
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.8-4-2.3-5.8-1S3.6 8.9 4.2 11c.5 1.7.7 3.4.7 5.2 0 1.6.6 3.3 1.8 3.3 1.4 0 1.6-2.1 2-3.9.3-1.3.7-2.1 1.7-2.1h3.2c1 0 1.4.8 1.7 2.1.4 1.8.6 3.9 2 3.9 1.2 0 1.8-1.7 1.8-3.3 0-1.8.2-3.5.7-5.2.6-2.1-.2-5.2-2-6.5s-4.3-.8-5.8 1Z"/></svg></div>
         <h3>Family dental care</h3>
         <p>Kids, teens, adults and seniors in the same office — often in the same block of time.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><path d="M7 12h10"/></svg></div>
         <h3>Checkups &amp; cleanings</h3>
         <p>Exam, digital X-rays, gum check and oral-cancer screening — about 45 to 60 minutes.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6Z"/><path d="m9 12 2 2 4-4"/></svg></div>
         <h3>Dental implants</h3>
         <p>Planned on 3D CBCT imaging, so placement is measured against real bone and nerve position.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="4"/><path d="M8 7v10M12 7v10M16 7v10"/></svg></div>
         <h3>Clear aligners</h3>
         <p>Scanned digitally — no impression trays. Most cases finish in 12 to 18 months.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13H12l-1 9 8.5-11H12Z"/></svg></div>
         <h3>Emergency dentistry</h3>
         <p>Toothache, broken tooth or a lost filling — same-day relief when we can fit you in.</p>
       </div>
-      <div class="svc reveal">
+      <div class="svc reveal" data-spot>
         <div class="svc__ico" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4L7.5 16.8l.9-5L4.8 8.3l5-.7Z"/></svg></div>
         <h3>Whitening &amp; veneers</h3>
         <p>Professional whitening in about an hour, and veneers shaded to match your face — not a catalogue.</p>
@@ -874,42 +1096,51 @@ body.has-bar{padding-bottom:90px}
   </div>
 </section>
 
+<!-- ======================= MARQUEE ======================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marqueeTrack">
+    <span class="marquee__set">
+      <i>Family Dentistry</i><b>✦</b><i>Dental Implants</i><b>✦</b><i>Clear Aligners</i><b>✦</b><i>Same-Day Crowns</i><b>✦</b><i>Emergency Care</i><b>✦</b><i>Teeth Whitening</i><b>✦</b><i>Veneers</i><b>✦</b><i>Dentures</i><b>✦</b><i>Wisdom Teeth</i><b>✦</b><i>Root Canals</i><b>✦</b>
+    </span>
+  </div>
+</div>
+
 <!-- ======================= WHY US ======================= -->
 <section class="why" aria-labelledby="why-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--light eyebrow--center">Why patients switch</span>
       <h2 id="why-h">Dentistry that respects your time <em>and</em> your nerves</h2>
       <p class="lede">Six things that are genuinely different about this office.</p>
     </div>
 
-    <div class="why-grid">
-      <div class="why-card reveal">
+    <div class="why-grid" data-stagger>
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">01</span>
         <h3>Same-day crowns</h3>
         <p>Our in-office CEREC unit designs and mills your ceramic crown while you sit there. No goopy tray, no temporary that cracks, no second appointment.</p>
       </div>
-      <div class="why-card reveal">
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">02</span>
         <h3>Specialty work stays here</h3>
         <p>Surgical extractions, implants and gum treatment are handled in-house — so you aren't bounced between offices waiting on a referral.</p>
       </div>
-      <div class="why-card reveal">
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">03</span>
         <h3>A judgment-free chair</h3>
         <p>Been years since your last visit? We start from where you are and build a plan from there. No lectures. That's not a slogan here, it's the intake.</p>
       </div>
-      <div class="why-card reveal">
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">04</span>
         <h3>A real comfort menu</h3>
         <p>Cozy blankets and pillows, wireless headphones, in-room TVs, warm towels, and a beverage bar in the lobby. Ask for whatever helps.</p>
       </div>
-      <div class="why-card reveal">
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">05</span>
         <h3>Hours that fit real life</h3>
         <p>Thursdays until 8pm and Saturdays 8 to 2 — so you don't burn a vacation day or pull the kids out of school to get a cleaning.</p>
       </div>
-      <div class="why-card reveal">
+      <div class="why-card reveal" data-spot>
         <span class="why-card__n">06</span>
         <h3>Prices before treatment</h3>
         <p>We verify benefits, estimate your portion, and walk you through the options before anything begins. The goal is simple: no surprises.</p>
@@ -922,7 +1153,7 @@ body.has-bar{padding-bottom:90px}
 <section class="doc" aria-labelledby="doc-h">
   <div class="wrap doc__grid">
     <div class="doc__art reveal">
-      <div class="doc__art__img">
+      <div class="doc__art__img revimg" data-parallax="-20">
         <img src="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-mobile-dr-home.webp"
              alt="Dr. Stevan Djordjevic, dentist at Peak Dentistry in Lockport, Illinois"
              width="640" height="800" loading="lazy" decoding="async">
@@ -967,13 +1198,13 @@ body.has-bar{padding-bottom:90px}
 <!-- ======================= REVIEWS ======================= -->
 <section aria-labelledby="rev-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--center">In their words</span>
       <h2 id="rev-h">Patients from Lockport, Homer Glen &amp; Lemont</h2>
     </div>
 
-    <div class="rev-grid">
-      <article class="rev reveal">
+    <div class="rev-grid" data-stagger>
+      <article class="rev reveal" data-spot>
         <span class="rev__mark" aria-hidden="true">”</span>
         <div class="stars" role="img" aria-label="Rated 5 out of 5">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg>
@@ -988,7 +1219,7 @@ body.has-bar{padding-bottom:90px}
         </footer>
       </article>
 
-      <article class="rev reveal">
+      <article class="rev reveal" data-spot>
         <span class="rev__mark" aria-hidden="true">”</span>
         <div class="stars" role="img" aria-label="Rated 5 out of 5">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg>
@@ -1001,7 +1232,7 @@ body.has-bar{padding-bottom:90px}
         </footer>
       </article>
 
-      <article class="rev reveal">
+      <article class="rev reveal" data-spot>
         <span class="rev__mark" aria-hidden="true">”</span>
         <div class="stars" role="img" aria-label="Rated 5 out of 5">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg>
@@ -1015,7 +1246,7 @@ body.has-bar{padding-bottom:90px}
         </footer>
       </article>
 
-      <article class="rev reveal">
+      <article class="rev reveal" data-spot>
         <span class="rev__mark" aria-hidden="true">”</span>
         <div class="stars" role="img" aria-label="Rated 5 out of 5">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3 6.3 6.9 1-5 4.8 1.2 6.9L12 17.8 5.9 21l1.2-6.9-5-4.8 6.9-1Z"/></svg>
@@ -1035,7 +1266,7 @@ body.has-bar{padding-bottom:90px}
 <!-- ======================= INSURANCE ======================= -->
 <section class="ins" aria-labelledby="ins-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--center">Paying for care</span>
       <h2 id="ins-h">Insured, uninsured, out-of-network — there's a path</h2>
     </div>
@@ -1110,7 +1341,7 @@ body.has-bar{padding-bottom:90px}
     </div>
 
     <div class="loc__art reveal">
-      <div class="loc__photo">
+      <div class="loc__photo revimg">
         <img src="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-office-tour-peak-dentistry-building.webp"
              alt="The exterior of the Peak Dentistry office on W. 159th Street in Lockport, Illinois"
              width="900" height="506" loading="lazy" decoding="async">
@@ -1267,7 +1498,7 @@ body.has-bar{padding-bottom:90px}
 <!-- ======================= FAQ ======================= -->
 <section class="faq" aria-labelledby="faq-h">
   <div class="wrap">
-    <div class="sec-head center">
+    <div class="sec-head center reveal">
       <span class="eyebrow eyebrow--center">Before you book</span>
       <h2 id="faq-h">Questions we hear most</h2>
     </div>
@@ -1278,9 +1509,9 @@ body.has-bar{padding-bottom:90px}
           Are you taking new patients right now?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa1"><p>Yes — new patients and emergencies are both welcome. Call
+        <div class="faq-a" id="fa1"><div class="faq-a__i"><p>Yes — new patients and emergencies are both welcome. Call
         (815) 660-5880 or send the request form and our front desk will find you a time, including
-        Thursday evenings and Saturdays.</p></div>
+        Thursday evenings and Saturdays.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1288,9 +1519,9 @@ body.has-bar{padding-bottom:90px}
           Do you offer same-day emergency appointments?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa2"><p>Yes. We reserve time for same-day emergencies whenever possible.
+        <div class="faq-a" id="fa2"><div class="faq-a__i"><p>Yes. We reserve time for same-day emergencies whenever possible.
         Call as early in the day as you can so we can prioritise your visit. The new-patient emergency
-        exam is $79, and you'll get a clear estimate before any treatment starts.</p></div>
+        exam is $79, and you'll get a clear estimate before any treatment starts.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1298,9 +1529,9 @@ body.has-bar{padding-bottom:90px}
           What if it's been years since my last dental visit?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa3"><p>You're welcome here no matter how long it's been. We never lecture
+        <div class="faq-a" id="fa3"><div class="faq-a__i"><p>You're welcome here no matter how long it's been. We never lecture
         or shame. We start with a calm, thorough evaluation, explain what we see, and build a
-        step-by-step plan that fits your comfort level, schedule and budget.</p></div>
+        step-by-step plan that fits your comfort level, schedule and budget.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1308,10 +1539,10 @@ body.has-bar{padding-bottom:90px}
           Do you take my insurance?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa4"><p>We accept PPO dental insurance plans and are completing
+        <div class="faq-a" id="fa4"><div class="faq-a__i"><p>We accept PPO dental insurance plans and are completing
         credentialing with major carriers. Our team checks your benefits, explains your coverage and
         reviews costs before treatment starts. We also accept cash and major credit cards, and offer
-        financing options. No insurance? Ask about our in-house savings plan.</p></div>
+        financing options. No insurance? Ask about our in-house savings plan.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1319,9 +1550,9 @@ body.has-bar{padding-bottom:90px}
           How long does a checkup take, and what's included?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa5"><p>About 45 minutes to an hour. That covers digital X-rays, a gentle
+        <div class="faq-a" id="fa5"><div class="faq-a__i"><p>About 45 minutes to an hour. That covers digital X-rays, a gentle
         gum and tooth check, an oral cancer screening, your cleaning in most cases, and time to talk
-        through what we find. Some treatment can be completed the same day thanks to CEREC.</p></div>
+        through what we find. Some treatment can be completed the same day thanks to CEREC.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1329,9 +1560,9 @@ body.has-bar{padding-bottom:90px}
           Can my whole family be seen on the same day?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa6"><p>Yes. We group family appointments together so you save trips.
+        <div class="faq-a" id="fa6"><div class="faq-a__i"><p>Yes. We group family appointments together so you save trips.
         We see every age — we recommend a child's first visit by their first birthday or when their
-        first tooth appears.</p></div>
+        first tooth appears.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1339,9 +1570,9 @@ body.has-bar{padding-bottom:90px}
           Is Peak Dentistry convenient from Homer Glen or Lemont?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa7"><p>Yes. Our office at 16347 W. 159th Street in Lockport is an easy
+        <div class="faq-a" id="fa7"><div class="faq-a__i"><p>Yes. Our office at 16347 W. 159th Street in Lockport is an easy
         drive from Homer Glen and Lemont, with free parking in the shopping center. Early morning,
-        evening and Saturday appointments mean you don't have to rearrange your whole day.</p></div>
+        evening and Saturday appointments mean you don't have to rearrange your whole day.</p></div></div>
       </div>
 
       <div class="faq-item">
@@ -1349,9 +1580,9 @@ body.has-bar{padding-bottom:90px}
           I get anxious at the dentist. What do you do about that?
           <span class="sign" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button></h3>
-        <div class="faq-a" id="fa8"><p>Tell us — it changes how we work. We explain each step in plain
+        <div class="faq-a" id="fa8"><div class="faq-a__i"><p>Tell us — it changes how we work. We explain each step in plain
         language and move at your pace. Cozy blankets and pillows, wireless headphones, in-room TVs
-        and warm towels are all available, and laughing gas is used when appropriate for treatment.</p></div>
+        and warm towels are all available, and laughing gas is used when appropriate for treatment.</p></div></div>
       </div>
     </div>
   </div>
@@ -1569,21 +1800,8 @@ body.has-bar{padding-bottom:90px}
   }
 
   /* =========================================================
-     9. Scroll reveal
+     9. Scroll reveal — handled by the motion module below
      ========================================================= */
-  var reveals = d.querySelectorAll(".reveal");
-  if (reduceMotion || !("IntersectionObserver" in window)){
-    reveals.forEach(function(el){ el.classList.add("is-in"); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en, i){
-        if (!en.isIntersecting) return;
-        setTimeout(function(){ en.target.classList.add("is-in"); }, Math.min(i,5) * 60);
-        io.unobserve(en.target);
-      });
-    }, {rootMargin:"0px 0px -70px 0px", threshold:0.1});
-    reveals.forEach(function(el){ io.observe(el); });
-  }
 
   /* =========================================================
      10. Appointment form
@@ -1678,5 +1896,252 @@ body.has-bar{padding-bottom:90px}
   });
 })();
 </script>
+<script>
+/* ==========================================================================
+   MOTION MODULE
+   Scroll reveal, parallax, counters, spotlight, magnetic CTAs, ripples,
+   marquee and the live open/closed pill.
+
+   Rules it follows: transform/opacity only, one rAF loop for all scroll
+   work, IntersectionObserver for everything else, pointer-fine gating for
+   cursor effects, and a hard bail under prefers-reduced-motion.
+   ========================================================================== */
+(function(){
+  "use strict";
+
+  var d = document;
+  var mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mqFine   = window.matchMedia("(pointer: fine)");
+  var reduce   = mqReduce.matches;
+
+  /* ---------------------------------------------------------------
+     1. Reveal on scroll, with per-grid stagger
+
+     Driven by the rAF scroll loop below rather than IntersectionObserver.
+     An observer can miss elements during a fast flick or an anchor jump,
+     and a missed reveal means permanently invisible content — the one
+     failure mode this page cannot have. A pending list that drains as
+     elements cross the fold cannot miss one.
+     --------------------------------------------------------------- */
+  var revealTargets = Array.prototype.slice.call(d.querySelectorAll(".reveal, .revimg"));
+  var pending = [];
+
+  function showAll(){
+    revealTargets.forEach(function(el){ el.classList.add("is-in"); });
+    pending.length = 0;
+  }
+
+  if (reduce){
+    showAll();
+  } else {
+    // Give each child of a [data-stagger] grid its own CSS delay.
+    d.querySelectorAll("[data-stagger]").forEach(function(grid){
+      var kids = grid.querySelectorAll(":scope > .reveal");
+      for (var i = 0; i < kids.length; i++){
+        kids[i].style.setProperty("--d", Math.min(i, 7) * 70 + "ms");
+      }
+    });
+    pending = revealTargets.filter(function(el){ return !el.classList.contains("is-in"); });
+  }
+
+  function sweepReveals(vh){
+    if (!pending.length) return;
+    var still = [];
+    for (var i = 0; i < pending.length; i++){
+      var el = pending[i];
+      if (el.getBoundingClientRect().top < vh * 0.9) el.classList.add("is-in");
+      else still.push(el);
+    }
+    pending = still;
+  }
+
+  /* ---------------------------------------------------------------
+     2. One rAF loop for every scroll-driven effect
+     --------------------------------------------------------------- */
+  var bar      = d.getElementById("progressBar");
+  var parallax = Array.prototype.slice.call(d.querySelectorAll("[data-parallax]"));
+  var ticking  = false;
+
+  function frame(){
+    ticking = false;
+    var y  = window.scrollY || window.pageYOffset;
+    var vh = window.innerHeight;
+
+    sweepReveals(vh);
+
+    if (bar){
+      var max = d.documentElement.scrollHeight - vh;
+      bar.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
+    }
+
+    if (!reduce){
+      for (var i = 0; i < parallax.length; i++){
+        var el = parallax[i];
+        var r  = el.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) continue;
+        // -1 (just below viewport) .. 1 (just above)
+        var p = (vh / 2 - (r.top + r.height / 2)) / (vh / 2 + r.height / 2);
+        var amount = parseFloat(el.getAttribute("data-parallax")) || 0;
+        el.style.transform = "translate3d(0," + (p * amount).toFixed(2) + "px,0)";
+      }
+    }
+  }
+
+  function onScroll(){
+    if (!ticking){ ticking = true; requestAnimationFrame(frame); }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll, {passive:true});
+  frame();
+  window.addEventListener("load", function(){ frame(); setTimeout(frame, 500); });
+
+  /* ---------------------------------------------------------------
+     3. Cursor spotlight — fine pointers only
+     --------------------------------------------------------------- */
+  if (mqFine.matches && !reduce){
+    d.querySelectorAll("[data-spot]").forEach(function(card){
+      card.addEventListener("pointermove", function(e){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+        card.classList.add("is-hot");
+      });
+      card.addEventListener("pointerleave", function(){ card.classList.remove("is-hot"); });
+    });
+
+    /* ---- Magnetic primary CTAs ---- */
+    d.querySelectorAll(".hero__cta .btn--primary, .final .btn--primary").forEach(function(btn){
+      var raf = null, tx = 0, ty = 0;
+      function apply(){ raf = null; btn.style.transform = "translate3d(" + tx + "px," + ty + "px,0)"; }
+      btn.addEventListener("pointermove", function(e){
+        var r = btn.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width  - 0.5) * 14;
+        ty = ((e.clientY - r.top)  / r.height - 0.5) * 10;
+        if (!raf) raf = requestAnimationFrame(apply);
+      });
+      btn.addEventListener("pointerleave", function(){
+        tx = ty = 0;
+        if (!raf) raf = requestAnimationFrame(apply);
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     4. Press ripple — feedback inside 100ms, on every button
+     --------------------------------------------------------------- */
+  if (!reduce){
+    d.addEventListener("pointerdown", function(e){
+      var btn = e.target && e.target.closest ? e.target.closest(".btn") : null;
+      if (!btn) return;
+      var r = btn.getBoundingClientRect();
+      var size = Math.max(r.width, r.height) * 2.2;
+      var sp = d.createElement("span");
+      sp.className = "ripple";
+      sp.style.width = sp.style.height = size + "px";
+      sp.style.left = (e.clientX - r.left) + "px";
+      sp.style.top  = (e.clientY - r.top)  + "px";
+      btn.appendChild(sp);
+      setTimeout(function(){ sp.remove(); }, 640);
+    }, {passive:true});
+  }
+
+  /* ---------------------------------------------------------------
+     5. Marquee — duplicate the set so translateX(-50%) loops seamlessly
+     --------------------------------------------------------------- */
+  var track = d.getElementById("marqueeTrack");
+  if (track && !reduce){
+    var set = track.querySelector(".marquee__set");
+    if (set) track.appendChild(set.cloneNode(true));
+  }
+
+  /* ---------------------------------------------------------------
+     6. Live "open now" pill — evaluated in the practice's timezone,
+        not the visitor's, so a Chicago Saturday reads correctly from
+        anywhere.
+     --------------------------------------------------------------- */
+  var SCHEDULE = {1:[8,17], 4:[8,20], 6:[8,14]};   // day -> [openHr, closeHr]
+  var DAY_NAME = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var DAY_IDX  = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+
+  function label(h){
+    var ampm = h >= 12 ? "pm" : "am";
+    var hh = h % 12; if (hh === 0) hh = 12;
+    return hh + ampm;
+  }
+
+  function localNow(){
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone:"America/Chicago", weekday:"short",
+      hour:"numeric", minute:"numeric", hour12:false
+    }).formatToParts(new Date());
+    var o = {};
+    parts.forEach(function(pt){ o[pt.type] = pt.value; });
+    var day = DAY_IDX[o.weekday];
+    var hr  = parseInt(o.hour, 10) % 24;
+    var min = parseInt(o.minute, 10);
+    if (day === undefined || isNaN(hr) || isNaN(min)) return null;
+    return {day: day, mins: hr * 60 + min};
+  }
+
+  var pill = d.getElementById("livePill");
+  var pillText = d.getElementById("livePillText");
+  if (pill && pillText){
+    try {
+      var now = localNow();
+      if (now){
+        var today = SCHEDULE[now.day];
+        if (today && now.mins >= today[0] * 60 && now.mins < today[1] * 60){
+          pill.setAttribute("data-state", "open");
+          pillText.textContent = "Open now — closes " + label(today[1]);
+        } else if (today && now.mins < today[0] * 60){
+          pill.setAttribute("data-state", "closed");
+          pillText.textContent = "Opens today at " + label(today[0]);
+        } else {
+          // Walk forward to the next open day.
+          var next = null;
+          for (var i = 1; i <= 7; i++){
+            var dnum = (now.day + i) % 7;
+            if (SCHEDULE[dnum]){ next = {day:dnum, open:SCHEDULE[dnum][0], inDays:i}; break; }
+          }
+          pill.setAttribute("data-state", "closed");
+          pillText.textContent = next
+            ? "Closed — opens " + (next.inDays === 1 ? "tomorrow" : DAY_NAME[next.day]) +
+              " at " + label(next.open)
+            : "Closed right now";
+        }
+        pill.hidden = false;
+      }
+    } catch (err){ /* leave the pill hidden rather than show a wrong status */ }
+  }
+
+  /* ---------------------------------------------------------------
+     7. Anchor scrolling that also moves focus (keyboard + SR users
+        should land where sighted users land)
+     --------------------------------------------------------------- */
+  d.addEventListener("click", function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute("href");
+    if (!id || id === "#") return;
+    var target = d.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+    target.setAttribute("tabindex", "-1");
+    setTimeout(function(){ target.focus({preventScroll:true}); }, reduce ? 0 : 520);
+  });
+
+  /* ---------------------------------------------------------------
+     8. React live if the visitor flips reduced-motion mid-session
+     --------------------------------------------------------------- */
+  if (mqReduce.addEventListener){
+    mqReduce.addEventListener("change", function(ev){
+      reduce = ev.matches;
+      if (reduce) showAll();
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
