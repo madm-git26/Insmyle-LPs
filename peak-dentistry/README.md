@@ -187,6 +187,10 @@ page can't compete with the homepage for the same query.
 | JS | No dependencies. One bug caught in review: `form.name` returns the form's *name attribute*, not the input — rewritten to `form.elements[…]`. |
 | Structured data | `Dentist` + `FAQPage` JSON-LD, hours matching the real schedule |
 | Fonts | Google Fonts URL fetched and confirmed 200, serving both Fraunces italic and upright plus Work Sans |
+| **Rendered-DOM audit** | Contrast measured on **every visible text node against its real composited background**, not on hand-picked token pairs. Caught 6 failures the paper check missed — see below |
+| Heading order | No skipped levels (H1 → 11×H2 → 32×H3) |
+| ARIA | No invalid patterns; every control has an accessible name; every image has alt |
+| Touch targets | All ≥44px except the honeypot (hidden) and inline in-sentence links (WCAG 2.5.8 exempt) |
 | **Browser-tested** | Rendered in headless Chromium at 320 / 360 / 375 / 390 / 768 / 1024 / 1280 / 1920 **and phone landscape** — no horizontal overflow at any width |
 | Reveal coverage | Full-page scroll test: **0** elements left hidden at desktop and mobile, in both normal and reduced-motion modes |
 | Keyboard | Tab order verified logical from skip-link through the CTAs; 3px focus ring present on every stop |
@@ -230,6 +234,20 @@ but no verified aggregate rating, and inventing one would be both false and a Go
 risk. Individual review cards show 5 stars because each quoted review is a 5-star review; there is no
 site-wide "4.9 from 87 reviews" claim anywhere. **If the practice's real Google rating and count are
 confirmed, add them under the H1 — that is the single highest-leverage addition to this page.**
+
+---
+
+## 5b. Bugs caught by auditing the built page
+
+Worth recording, because each was invisible to inspection and only showed up when the page was
+measured in a real browser.
+
+| Bug | Why it happened |
+|---|---|
+| **4 contrast failures** — `.pin .lede` at **2.50:1**, `.final .lede`, `.final__meta` and `.offer--star p` at 3.6–3.8:1 | Earlier passes verified colour *tokens I had chosen*, not colours *as composed on the page*. `.pin` never set a `.lede` colour, so dark-grey body text inherited onto a near-black band. Fixed to 4.85–10.40:1. |
+| **Heading levels skipped** (H2 → H4 in offer, benefit and tech cards) | Card titles were `<h4>` for their visual size while the section heading was `<h2>`. Converted to `<h3>` with CSS preserving the original look. |
+| **Invalid ARIA** — `role="tablist"`/`role="tab"` on the pin rail | It is not a tabset: no tabpanels, no `aria-controls`, no arrow-key handling. The rail is navigation, so the roles were dropped in favour of `aria-current="step"`. |
+| **20px-tall touch targets** on the address and phone links | They sit on their own lines inside `<address>`, so the WCAG inline-link exemption doesn't apply. Given vertical padding to clear 44px. |
 
 ---
 

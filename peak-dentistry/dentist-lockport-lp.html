@@ -343,9 +343,10 @@ section{padding-block:var(--s9)}
   line-height:.9; letter-spacing:-.045em; color:var(--ink);
   margin-bottom:var(--s3); font-variant-numeric:tabular-nums;
 }
-.offer h4{font-size:18px; margin-bottom:var(--s2)}
+.offer h3{font-family:var(--font-body); font-size:18px; font-weight:700;
+  letter-spacing:-.005em; line-height:1.35; margin-bottom:var(--s2)}
 .offer p{font-size:14.5px; color:var(--ink-2); margin:0 0 var(--s5); flex:1; max-width:none}
-.offer--star p{color:#4A3A15}
+.offer--star p{color:#33260C}
 .fine{font-size:13px; color:var(--ink-3); line-height:1.6; margin:var(--s7) auto 0;
   text-align:center; max-width:76ch}
 
@@ -366,7 +367,8 @@ section{padding-block:var(--s9)}
   transition:transform var(--dur) var(--ease);
 }
 .bene-card:hover .bene-card__ic{transform:rotate(-6deg) scale(1.06)}
-.bene-card h4{font-size:19px; margin-bottom:6px}
+.bene-card h3{font-family:var(--font-body); font-size:19px; font-weight:700;
+  letter-spacing:-.005em; line-height:1.35; margin-bottom:6px}
 .bene-card p{font-size:15px; color:var(--ink-2); margin:0; max-width:none}
 
 /* ==========================================================================
@@ -376,6 +378,7 @@ section{padding-block:var(--s9)}
 .pin__sticky{padding-block:var(--s9)}
 .pin__grid{display:grid; gap:var(--s7)}
 .pin h2{color:#fff}
+.pin .lede{color:#C9BCA9}
 .pin__rail{display:none}
 .pin-step{
   border-top:1px solid var(--line-dark); padding-top:var(--s5); padding-bottom:var(--s5);
@@ -408,8 +411,8 @@ section{padding-block:var(--s9)}
     width:44px; height:3px; border-radius:2px; background:rgba(255,255,255,.22); flex:none;
     transition:background-color var(--dur) var(--ease), width var(--dur) var(--ease);
   }
-  .pin__rail button[aria-current="true"]{color:#fff}
-  .pin__rail button[aria-current="true"] .bar{background:var(--gold); width:64px}
+  .pin__rail button[aria-current]{color:#fff}
+  .pin__rail button[aria-current] .bar{background:var(--gold); width:64px}
   .pin__stage{position:relative; min-height:340px}
   .pin-step{
     position:absolute; inset:0; border-top:0; padding:0;
@@ -443,7 +446,8 @@ section{padding-block:var(--s9)}
   letter-spacing:.16em; text-transform:uppercase; color:var(--ink);
   background:var(--gold-lift); padding:5px 11px; border-radius:var(--r-pill); margin-bottom:var(--s4);
 }
-.tech-card h4{color:#fff; font-size:19px; margin-bottom:8px}
+.tech-card h3{font-family:var(--font-body); color:#fff; font-size:19px; font-weight:700;
+  letter-spacing:-.005em; line-height:1.35; margin-bottom:8px}
 .tech-card p{color:#B9AB99; font-size:15px; margin:0; max-width:none}
 
 /* ==========================================================================
@@ -534,8 +538,8 @@ section{padding-block:var(--s9)}
 .loc{background:var(--paper)}
 .loc__grid{display:grid; gap:var(--s8)}
 @media (min-width:940px){ .loc__grid{grid-template-columns:1fr 1.05fr; gap:clamp(40px,5vw,76px); align-items:start} }
-.addr{font-style:normal; font-size:17.5px; line-height:1.75; color:var(--ink-2); margin-bottom:var(--s6)}
-.addr a{font-weight:700}
+.addr{font-style:normal; font-size:17.5px; line-height:1.4; color:var(--ink-2); margin-bottom:var(--s6)}
+.addr a{font-weight:700; display:inline-block; padding-block:12px}
 .hours{width:100%; border-collapse:collapse; margin-bottom:var(--s6); font-size:16.5px}
 .hours th,.hours td{padding:14px 8px; text-align:left; border-bottom:1.5px solid var(--line)}
 .hours th{font-weight:600; color:var(--ink-2)}
@@ -676,10 +680,10 @@ section{padding-block:var(--s9)}
    ========================================================================== */
 .final{background:var(--gold); text-align:center; color:var(--ink)}
 .final h2{max-width:15ch; margin-inline:auto}
-.final .lede{max-width:54ch; color:#463714}
+.final .lede{max-width:54ch; color:#33260C}
 .final__meta{
   margin-top:var(--s7); padding-top:var(--s6); border-top:2px solid rgba(22,19,15,.28);
-  font-size:14.5px; color:#463714; display:flex; flex-wrap:wrap;
+  font-size:14.5px; color:#33260C; display:flex; flex-wrap:wrap;
   justify-content:center; gap:var(--s3) var(--s5); font-weight:600;
 }
 .ftr{background:var(--black); color:#9E9080; font-size:14px; padding-block:var(--s7)}
@@ -932,28 +936,28 @@ body.has-bar{padding-bottom:94px}
       <div class="offer offer--star reveal" data-spot>
         <span class="offer__flag">Most booked</span>
         <span class="offer__price">$99</span>
-        <h4>New patient exam</h4>
+        <h3>New patient exam</h3>
         <p>A comprehensive exam with Dr. Djordjevic, so you know exactly where you stand.</p>
         <a class="btn btn--ink btn--sm btn--block" href="#request" data-cta="offer" data-loc="offer-99"><span>Claim this</span></a>
       </div>
 
       <div class="offer reveal" data-spot>
         <span class="offer__price">$79</span>
-        <h4>Emergency exam</h4>
+        <h3>Emergency exam</h3>
         <p>In pain today? A clear estimate before anything starts — no guessing at the cost.</p>
         <a class="btn btn--danger btn--sm btn--block" href="tel:+18156605880" data-cta="call" data-loc="offer-emergency"><span>Call for today</span></a>
       </div>
 
       <div class="offer reveal" data-spot>
         <span class="offer__price">Free</span>
-        <h4>Implant &amp; denture consult</h4>
+        <h3>Implant &amp; denture consult</h3>
         <p>Talk through tooth replacement and real costs with the dentist. No charge, no pressure.</p>
         <a class="btn btn--outline btn--sm btn--block" href="#request" data-cta="offer" data-loc="offer-implant"><span>Book a consult</span></a>
       </div>
 
       <div class="offer reveal" data-spot>
         <span class="offer__price">Free</span>
-        <h4>Second opinion</h4>
+        <h3>Second opinion</h3>
         <p>Bring an existing treatment plan and get a straight review of what you actually need.</p>
         <a class="btn btn--outline btn--sm btn--block" href="#request" data-cta="offer" data-loc="offer-second"><span>Get a second look</span></a>
       </div>
@@ -987,32 +991,32 @@ body.has-bar{padding-bottom:94px}
     <div class="bene-grid" data-stagger>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></div>
-        <h4>Crowns in one visit</h4>
+        <h3>Crowns in one visit</h3>
         <p>Our in-office CEREC unit designs and mills your ceramic crown while you sit there. No goopy tray, no temporary that cracks, no second appointment.</p>
       </div>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8.5L12 4l8 4.5V20"/><path d="M9 20v-6h6v6"/></svg></div>
-        <h4>Specialty work stays here</h4>
+        <h3>Specialty work stays here</h3>
         <p>Surgical extractions, implants and gum treatment are handled in-house — so you aren't bounced between offices waiting on a referral.</p>
       </div>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8Z"/></svg></div>
-        <h4>A judgment-free chair</h4>
+        <h3>A judgment-free chair</h3>
         <p>Been years since your last visit? We start from where you are and build a plan from there. No lectures — that's the intake, not a slogan.</p>
       </div>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3ZM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3Z"/></svg></div>
-        <h4>A real comfort menu</h4>
+        <h3>A real comfort menu</h3>
         <p>Cozy blankets and pillows, wireless headphones, in-room TVs, warm towels, and a beverage bar in the lobby. Ask for whatever helps.</p>
       </div>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
-        <h4>Hours that fit real life</h4>
+        <h3>Hours that fit real life</h3>
         <p>Thursdays until 8pm and Saturdays 8 to 2 — so you don't burn a vacation day or pull the kids out of school to get a cleaning.</p>
       </div>
       <div class="bene-card reveal" data-spot>
         <div class="bene-card__ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5.5H9.8a3.3 3.3 0 0 0 0 6.5h4.4a3.3 3.3 0 0 1 0 6.5H6"/></svg></div>
-        <h4>Prices before treatment</h4>
+        <h3>Prices before treatment</h3>
         <p>We verify benefits, estimate your portion, and walk you through the options before anything begins. The goal is simple: no surprises.</p>
       </div>
     </div>
@@ -1027,7 +1031,7 @@ body.has-bar{padding-bottom:94px}
         <span class="tag tag--light">Your first visit</span>
         <h2 id="pin-h">What actually happens</h2>
         <p class="lede">No mystery, no upsell ambush. Four steps, start to finish.</p>
-        <div class="pin__rail" id="pinRail" role="tablist" aria-label="First visit steps"></div>
+        <div class="pin__rail" id="pinRail" aria-label="Jump to a step"></div>
       </div>
 
       <div class="pin__stage" id="pinStage">
@@ -1072,37 +1076,37 @@ body.has-bar{padding-bottom:94px}
     <div class="tech-grid" data-stagger>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">CEREC</span>
-        <h4>Same-day crowns</h4>
+        <h3>Same-day crowns</h3>
         <p>Your crown is scanned, designed on screen and milled in the office. You leave with the
            final ceramic restoration, not a temporary.</p>
       </div>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">CBCT</span>
-        <h4>3D imaging</h4>
+        <h3>3D imaging</h3>
         <p>A cone beam scan maps bone, nerves and sinuses in three dimensions — which is how implant
            placement gets planned safely instead of estimated.</p>
       </div>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">Scanner</span>
-        <h4>Digital impressions</h4>
+        <h3>Digital impressions</h3>
         <p>A small intraoral scanner replaces impression trays for crowns, aligners, night guards and
            surgical guides. Nothing sticky, nothing to gag on.</p>
       </div>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">3D print</span>
-        <h4>In-office lab work</h4>
+        <h3>In-office lab work</h3>
         <p>Models and surgical guides are printed here from your scan, which keeps the fit tight and
            the turnaround short.</p>
       </div>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">VELscope</span>
-        <h4>Oral cancer screening</h4>
+        <h3>Oral cancer screening</h3>
         <p>Enhanced screening at your checkup, looking for tissue changes that aren't obvious to the
            naked eye.</p>
       </div>
       <div class="tech-card reveal" data-spot>
         <span class="tech-card__k">DiagnoDent</span>
-        <h4>Early cavity detection</h4>
+        <h3>Early cavity detection</h3>
         <p>Finds decay earlier, which usually means a smaller, more conservative fix instead of a
            bigger one later.</p>
       </div>
@@ -1765,8 +1769,7 @@ body.has-bar{padding-bottom:94px}
       var label = step.querySelector("h3").textContent.trim();
       var b = d.createElement("button");
       b.type = "button";
-      b.setAttribute("role", "tab");
-      b.setAttribute("aria-current", i === 0 ? "true" : "false");
+      if (i === 0) b.setAttribute("aria-current", "step");
       b.innerHTML = '<span class="bar" aria-hidden="true"></span><span></span>';
       b.lastChild.textContent = label;
       b.addEventListener("click", function(){
@@ -1800,7 +1803,10 @@ body.has-bar{padding-bottom:94px}
     if (i === activeStep) return;
     activeStep = i;
     steps.forEach(function(s, n){ s.classList.toggle("is-live", n === i); });
-    railBtns.forEach(function(b, n){ b.setAttribute("aria-current", n === i ? "true" : "false"); });
+    railBtns.forEach(function(b, n){
+      if (n === i) b.setAttribute("aria-current", "step");
+      else b.removeAttribute("aria-current");
+    });
   }
 
   /* ---- One rAF loop for progress bar, parallax, reveals and the pin ---- */
