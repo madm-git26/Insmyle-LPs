@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.peakdentistrylockport.com">
 <link rel="preload" as="image" fetchpriority="high"
-      href="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-office-tour-reception.webp">
+      href="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-banner-video-poster.webp">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -222,8 +222,8 @@ section{padding-block:var(--s9)}
 /* ==========================================================================
    HERO
    ========================================================================== */
-.hero{position:relative; background:var(--cream); overflow:hidden; padding-block:var(--s8) var(--s9)}
-@media (min-width:900px){ .hero{padding-block:var(--s7) var(--s10)} }
+.hero{position:relative; background:var(--cream); overflow:hidden; padding-block:var(--s6) var(--s8)}
+@media (min-width:900px){ .hero{padding-block:var(--s6) var(--s9)} }
 .hero::before{
   content:""; position:absolute; z-index:0; pointer-events:none;
   width:min(62vw,760px); aspect-ratio:1; border-radius:50%;
@@ -242,9 +242,8 @@ section{padding-block:var(--s9)}
   background-image:linear-gradient(var(--gold),var(--gold));
   background-repeat:no-repeat; background-position:0 0; background-size:0% 100%;
   -webkit-box-decoration-break:clone; box-decoration-break:clone;
-  animation:swipe 760ms var(--pop) 620ms forwards;
+  background-size:100% 100%;
 }
-@keyframes swipe{to{background-size:100% 100%}}
 .hero__lede{max-width:50ch; margin-bottom:var(--s5)}
 
 /* Benefit chips */
@@ -282,7 +281,7 @@ section{padding-block:var(--s9)}
 
 /* Live open/closed pill */
 .livepill{
-  display:inline-flex; align-items:center; gap:9px; margin:0 0 var(--s5);
+  display:inline-flex; align-items:center; gap:9px; margin:0;
   padding:8px 16px 8px 13px; border-radius:var(--r-pill);
   font-size:13.5px; font-weight:700;
   background:#E4F2E9; color:#175230; border:1.5px solid #175230;
@@ -774,7 +773,6 @@ body.has-bar{padding-bottom:94px}
   .hero h1 .ln__i,.livepill,.hero__lede,.chips,.hero .btns,.hero__art,.hero__pop{
     animation:none!important; opacity:1!important; transform:none!important;
   }
-  .hero h1 .hl{background-size:100% 100%; animation:none}
   .revimg{clip-path:none}
   .revimg img{transform:none}
   .reveal{opacity:1; transform:none}
@@ -792,6 +790,110 @@ body.has-bar{padding-bottom:94px}
   .pin__rail{display:none!important}
 }
 @media print{ .hdr,.actionbar,.mq,.progress{display:none!important} }
+/* ==========================================================================
+   HERO VIDEO BACKGROUND
+   The source clip is bright: measured mean luma 137/255 in the copy zone,
+   up to 42.6% of pixels above 200, with pure white present. So the scrim is
+   sized against a worst-case 255 pixel, not against the average — 0.55 alpha
+   is the AA floor for white text, and the copy zone never drops below ~0.66.
+   ========================================================================== */
+.hero--video{background:var(--black); color:#fff; isolation:isolate}
+.hero--video::before{display:none}                 /* kill the gold blob */
+.hero__bg{position:absolute; inset:0; z-index:0; overflow:hidden}
+.hero__vid{
+  width:100%; height:100%; object-fit:cover; display:block;
+  /* poster shows until (and unless) the video is allowed to load */
+}
+.hero__scrim{
+  position:absolute; inset:0; display:block; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.62) 45%, rgba(0,0,0,.82) 100%);
+}
+@media (min-width:1000px){
+  .hero__scrim{
+    background:
+      linear-gradient(90deg,
+        rgba(0,0,0,.86) 0%, rgba(0,0,0,.80) 46%, rgba(0,0,0,.68) 62%,
+        rgba(0,0,0,.46) 82%, rgba(0,0,0,.38) 100%),
+      linear-gradient(180deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,0) 34%, rgba(0,0,0,.42) 100%);
+  }
+}
+.hero--video .hero__grid{position:relative; z-index:2}
+.hero--video h1{color:#fff}
+.hero--video .hero__lede{color:#E4DACC}
+.hero--video .chips li{
+  background:rgba(255,255,255,.10); border-color:rgba(255,255,255,.5); color:#fff;
+  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
+}
+.hero--video .chips svg{color:var(--gold-lift)}
+.hero--video .btn--outline{color:#fff; border-color:rgba(255,255,255,.7)}
+.hero--video .btn--outline:hover{background:#fff; color:var(--ink); border-color:#fff}
+.hero--video .livepill{border-width:1.5px}
+
+.hero__side{display:flex; align-items:flex-end; justify-content:flex-start}
+@media (min-width:1000px){ .hero__side{justify-content:flex-end; min-height:220px} }
+.hero--video .hero__pop{
+  position:relative; left:auto; bottom:auto; right:auto;
+  background:rgba(18,16,14,.82); border-color:rgba(255,255,255,.34); color:#fff;
+  box-shadow:6px 6px 0 rgba(0,0,0,.5);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.hero--video .hero__pop small{color:#CFC3B2}
+
+/* Pause control — WCAG 2.2.2: auto-playing motion over 5s needs a stop */
+.vidtoggle{
+  position:absolute; z-index:4; right:var(--gut); bottom:calc(clamp(40px,5vw,90px) + 14px);
+  display:inline-flex; align-items:center; gap:8px;
+  padding:9px 15px; border-radius:var(--r-pill); cursor:pointer;
+  background:rgba(14,13,12,.72); color:#fff; border:1.5px solid rgba(255,255,255,.45);
+  font-family:var(--font-body); font-size:12.5px; font-weight:600; letter-spacing:.02em;
+  min-height:44px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  transition:background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.vidtoggle:hover{background:rgba(14,13,12,.92); border-color:#fff}
+.vidtoggle .ic-play{display:none}
+.vidtoggle[aria-pressed="true"] .ic-pause{display:none}
+.vidtoggle[aria-pressed="true"] .ic-play{display:inline}
+@media (max-width:640px){ .vidtoggle{right:auto; left:var(--gut); font-size:12px; padding:8px 13px} }
+
+/* ---------- Google rating badge ---------- */
+.hero__proof{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0 0 var(--s5)}
+.rating{
+  display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+  margin:0; padding:9px 16px 9px 12px; border-radius:var(--r-pill);
+  background:rgba(255,255,255,.10); border:1.5px solid rgba(255,255,255,.34);
+  color:#fff; font-size:14px; min-height:44px;
+  backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+  transition:background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.rating:hover{background:rgba(255,255,255,.18); border-color:#fff}
+.rating__g{flex:none}
+.rating__stars{color:var(--gold-lift); letter-spacing:1px; font-size:15px}
+.rating__txt b{font-weight:700}
+
+/* ==========================================================================
+   WAVE DIVIDERS — the brand's curve, as the transition between colour blocks
+   ========================================================================== */
+.wave{position:absolute; left:0; right:0; line-height:0; pointer-events:none; z-index:3}
+.wave svg{display:block; width:100%; height:clamp(38px,5vw,88px)}
+.wave--top{top:-1px}
+.wave--hero{bottom:-1px}
+.hero .wave{color:var(--paper)}     /* flows into the trust strip */
+.pin  .wave{color:var(--paper)}     /* flows out of the benefit grid */
+.ins  .wave{color:var(--paper)}     /* flows out of the reviews */
+.final .wave{color:var(--cream)}    /* flows out of the FAQ */
+.ins{position:relative}
+.final{position:relative}
+.pin{position:relative}
+
+@media (prefers-reduced-motion:reduce){
+  .hero__vid{display:none}
+  .hero__bg{
+    background-image:url("https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-banner-video-poster.webp");
+    background-size:cover; background-position:center;
+  }
+}
+
 </style>
 <noscript><style>
 .reveal,.revimg{opacity:1!important;transform:none!important;clip-path:none!important}
@@ -839,19 +941,42 @@ body.has-bar{padding-bottom:94px}
 <main id="main">
 
 <!-- ======================= HERO ======================= -->
-<section class="hero">
+<section class="hero hero--video on-dark">
+  <div class="hero__bg" aria-hidden="true">
+    <video class="hero__vid" id="heroVid"
+           poster="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-banner-video-poster.webp"
+           muted loop playsinline preload="none" tabindex="-1"
+           data-src="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/video-banner.webm"></video>
+    <span class="hero__scrim"></span>
+  </div>
+
+  <button class="vidtoggle" id="vidToggle" type="button" hidden>
+    <svg class="ic-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+    <svg class="ic-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5Z"/></svg>
+    <span id="vidToggleText">Pause background video</span>
+  </button>
+
   <div class="wrap hero__grid">
     <div>
-      <p class="livepill" id="livePill" hidden>
-        <span class="livepill__dot" aria-hidden="true"></span>
-        <span id="livePillText"></span>
-      </p>
+      <div class="hero__proof">
+        <p class="livepill" id="livePill" hidden>
+          <span class="livepill__dot" aria-hidden="true"></span>
+          <span id="livePillText"></span>
+        </p>
+      <a class="rating" href="https://maps.app.goo.gl/wKMEcmrizGRTfEgW7" rel="noopener"
+         data-cta="reviews" data-loc="hero">
+        <svg class="rating__g" width="19" height="19" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.0 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9Z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.0 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7Z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.1 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44Z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.2 5.2C36.9 40.2 44 35 44 24c0-1.3-.1-2.6-.4-3.9Z"/></svg>
+        <span class="rating__stars" aria-hidden="true">★★★★★</span>
+        <span class="rating__txt"><b>5.0</b> from <b>103</b> Google reviews</span>
+      </a>
+      </div>
 
       <h1>
         <span class="ln"><span class="ln__i" data-headline>Dentist in</span></span>
         <span class="ln"><span class="ln__i" data-headline2>Lockport, IL</span></span>
         <span class="ln"><span class="ln__i"><span class="hl">without the dread</span></span></span>
       </h1>
+
 
       <p class="lede hero__lede">
         A brand-new, judgment-free practice built for people with actual schedules — Saturday and
@@ -879,12 +1004,7 @@ body.has-bar{padding-bottom:94px}
       </div>
     </div>
 
-    <div class="hero__art">
-      <div class="hero__art__main revimg is-in" data-parallax="-26">
-        <img src="https://www.peakdentistrylockport.com/wp-content/uploads/2026/05/img-office-tour-reception.webp"
-             alt="The reception area at Peak Dentistry in Lockport, Illinois"
-             width="800" height="1000" fetchpriority="high" decoding="async">
-      </div>
+    <div class="hero__side">
       <div class="hero__pop">
         <span class="hero__pop__ic" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
@@ -895,6 +1015,12 @@ body.has-bar{padding-bottom:94px}
         </span>
       </div>
     </div>
+  </div>
+  <div class="wave wave--hero" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none" focusable="false">
+      <path class="wave__line" d="M0,52 C240,14 420,78 720,52 C1020,26 1200,74 1440,36" fill="none" stroke="currentColor" stroke-width="2" opacity=".45"/>
+      <path d="M0,60 C240,22 420,86 720,60 C1020,34 1200,82 1440,44 L1440,90 L0,90 Z" fill="currentColor"/>
+    </svg>
   </div>
 </section>
 
@@ -1025,6 +1151,12 @@ body.has-bar{padding-bottom:94px}
 
 <!-- ======================= PINNED SEQUENCE ======================= -->
 <section class="pin on-dark" id="pin" aria-labelledby="pin-h">
+  <div class="wave wave--top wave--onDark" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" focusable="false">
+      <path d="M0,44 C260,8 470,66 760,42 C1040,19 1220,60 1440,28 L1440,70 L0,70 Z" fill="currentColor"/>
+    </svg>
+  </div>
+
   <div class="pin__sticky">
     <div class="pin__grid wrap">
       <div>
@@ -1214,6 +1346,12 @@ body.has-bar{padding-bottom:94px}
 
 <!-- ======================= INSURANCE ======================= -->
 <section class="ins" aria-labelledby="ins-h">
+  <div class="wave wave--top wave--onGold" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" focusable="false">
+      <path d="M0,44 C260,8 470,66 760,42 C1040,19 1220,60 1440,28 L1440,70 L0,70 Z" fill="currentColor"/>
+    </svg>
+  </div>
+
   <div class="wrap">
     <div class="head center reveal">
       <span class="tag tag--ink tag--center">Paying for care</span>
@@ -1458,6 +1596,12 @@ body.has-bar{padding-bottom:94px}
 
 <!-- ======================= FINAL CTA ======================= -->
 <section class="final" aria-labelledby="final-h">
+  <div class="wave wave--top wave--onGold" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" focusable="false">
+      <path d="M0,44 C260,8 470,66 760,42 C1040,19 1220,60 1440,28 L1440,70 L0,70 Z" fill="currentColor"/>
+    </svg>
+  </div>
+
   <div class="wrap">
     <span class="tag tag--ink tag--center">Ready when you are</span>
     <h2 id="final-h">Let's get you in the chair</h2>
@@ -1844,6 +1988,57 @@ body.has-bar{padding-bottom:94px}
   window.addEventListener("resize", function(){ activeStep = -1; onScroll(); }, {passive:true});
   window.addEventListener("load", function(){ frame(); setTimeout(frame, 500); });
   frame();
+
+
+  /* ---- Hero background video ---------------------------------------
+     The clip is 5.9 MB. That is fine on desktop wifi and indefensible on
+     paid mobile traffic, so it is gated: the poster always renders, and
+     the video only loads on a wide viewport, with motion allowed, and
+     without Save-Data or a slow connection. WCAG 2.2.2 requires a stop
+     control for motion that runs past 5s, so one appears once it plays. */
+  (function(){
+    var vid = d.getElementById("heroVid");
+    var tog = d.getElementById("vidToggle");
+    var togTxt = d.getElementById("vidToggleText");
+    if (!vid) return;
+
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var slow = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || "")));
+    var wide = window.matchMedia("(min-width: 900px)").matches;
+
+    if (reduce || slow || !wide) return;      // poster only
+
+    function start(){
+      if (vid.getAttribute("src")) return;
+      vid.setAttribute("src", vid.getAttribute("data-src"));
+      var pl = vid.play();
+      if (pl && pl.catch) pl.catch(function(){ /* autoplay refused: poster stays */ });
+      vid.addEventListener("playing", function(){
+        if (tog) tog.hidden = false;
+      }, {once:true});
+    }
+
+    // Don't compete with the hero's own paint.
+    if ("requestIdleCallback" in window) requestIdleCallback(start, {timeout:2200});
+    else setTimeout(start, 1200);
+
+    if (tog){
+      tog.setAttribute("aria-pressed", "false");
+      tog.addEventListener("click", function(){
+        var paused = tog.getAttribute("aria-pressed") === "true";
+        if (paused){ vid.play(); tog.setAttribute("aria-pressed","false"); togTxt.textContent = "Pause background video"; }
+        else       { vid.pause(); tog.setAttribute("aria-pressed","true");  togTxt.textContent = "Play background video"; }
+        track("hero_video_toggle", {paused: !paused});
+      });
+    }
+
+    // If the visitor turns on reduced motion mid-session, stop immediately.
+    if (mqReduce.addEventListener){
+      mqReduce.addEventListener("change", function(ev){
+        if (ev.matches){ vid.pause(); if (tog) tog.hidden = true; }
+      });
+    }
+  })();
 
   /* ---- Marquee: clone each set so translateX(-50%) loops seamlessly ---- */
   if (!reduce){

@@ -41,6 +41,51 @@ and a Homer Glen / Lemont FAQ.
 
 ---
 
+## 1a. Hero video, waves and the review badge
+
+### The background video
+
+Uses the practice's **own hosted clip** — `/wp-content/uploads/2026/05/video-banner.webm`
+(5.91 MB) with their existing poster `img-banner-video-poster.webp` (0.27 MB). Nothing new to
+upload. The clip is the building exterior, which is the single most useful shot for "near me"
+traffic: it is what the patient will actually recognise when they pull into the plaza.
+
+**It is gated, deliberately.** 5.91 MB is fine on desktop wifi and indefensible on paid mobile
+traffic, so the video only loads when *all* of these hold: viewport ≥900px, motion allowed,
+no `Save-Data`, and the connection is not 2G. Everyone else gets the poster, which is the same
+frame. Loading is deferred to `requestIdleCallback` so it never competes with the hero's paint.
+
+**The scrim is sized from measurement, not taste.** Sampling 36 frames across playback, the copy
+zone averages 137/255 luma, peaks at 164, and in the worst frame **42.6% of pixels sit above 200**
+with pure white present. Against a worst-case 255 pixel, white text needs ≥0.55 black to reach AA.
+The scrim never drops below ~0.66 where the copy sits (6.2:1 or better) and reaches 0.86 at the
+left edge.
+
+**A pause control is required, not optional.** WCAG 2.2.2 covers auto-playing motion that runs
+past five seconds; the clip is 20.65s and loops. A labelled pause/play toggle appears once
+playback starts, and reduced-motion turned on mid-session stops it immediately.
+
+**Gap to close:** there is no MP4 alongside the WebM (the URL 404s). VP8-in-WebM covers Safari
+14.1+/iOS 14.1+, so older iOS gets the poster rather than the video. Generating an MP4 and adding
+a second `<source>` is a ten-minute job on their side.
+
+### Waves
+
+Their brand signature is the curve dividing colour blocks. Rather than reuse their 205 KB
+decorative SVG, the divider is authored inline (~200 bytes, `fill: currentColor`) so it recolours
+per transition: hero→trust, benefits→pin, reviews→insurance, FAQ→final. The hero wave carries a
+thin offset stroke above the fill, matching the double-line treatment on their homepage.
+
+### Google review badge — check this before launch
+
+The hero shows **5.0 from 103 Google reviews**, taken from a screenshot of the practice's site.
+**I could not verify it independently:** the live HTML this page was built from contains no rating
+or review count anywhere, so the screenshot appears to be a newer build than the public page
+returns. Review counts also drift. Confirm the current figures before spending, and treat the
+numbers in the hero as the one place to edit.
+
+---
+
 ## 1b. The design system
 
 | Element | Choice | Why |
