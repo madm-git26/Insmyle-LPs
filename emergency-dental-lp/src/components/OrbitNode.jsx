@@ -7,7 +7,7 @@ import ToothPlaceholder from './ToothPlaceholder.jsx'
  * even and the angles are all adjustable from data/content.js. The ellipse is
  * wider than it is tall, which is what makes the ring read as a disc lying flat.
  */
-export default function OrbitNode({ label, angle, index }) {
+export default function OrbitNode({ label, angle, index, asset }) {
   const rad = (angle * Math.PI) / 180
   const cos = Math.cos(rad)
   const sin = Math.sin(rad)
@@ -32,7 +32,7 @@ export default function OrbitNode({ label, angle, index }) {
         className="grid size-[54px] place-items-center rounded-full border border-white/15 bg-white/5 shadow-[0_10px_30px_-12px_rgba(0,0,0,.9),inset_0_1px_0_rgba(255,255,255,.18)] backdrop-blur-md sm:size-[72px] lg:size-[86px]"
         style={{ animation: `float 6s ease-in-out ${index * -0.9}s infinite alternate` }}
       >
-        <ToothPlaceholder className="size-[58%]" glow="from-blue-500/30" />
+        <ToothPlaceholder className="size-[58%]" glow="from-blue-500/30" src={asset} />
       </div>
       <span className="mt-2 whitespace-pre-line text-center text-[9px] font-medium leading-tight text-gray-300 [text-shadow:0_1px_6px_rgba(7,11,20,.95)] sm:mt-2.5 sm:text-[10px]">
         {label}

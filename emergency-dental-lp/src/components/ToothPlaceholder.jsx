@@ -1,28 +1,41 @@
+import { useState } from 'react'
+
 /**
- * Placeholder slot for a 3D tooth asset.
+ * A tooth slot.
  *
- * Photoreal teeth cannot be generated from code, so each slot renders a
- * glowing radial gradient with a soft vector tooth silhouette on top.
- * Pass `src` to swap in a real transparent-background render — the layout
- * and dimensions are identical either way, so nothing shifts.
+ * With no `src` (or if the image fails to load) it renders a glowing radial
+ * gradient with a vector molar silhouette — so the page never shows a broken
+ * image and still looks finished before real assets arrive.
+ *
+ * With a `src` it renders that image at exactly the same box size, so swapping
+ * assets in causes no layout shift.
+ *
+ * Drop files into public/teeth/ and point at them from src/data/content.js.
  */
 export default function ToothPlaceholder({
   src,
   alt = '',
   className = '',
   glow = 'from-blue-900/40',
+  eager = false,
   showSilhouette = true,
 }) {
+  const [failed, setFailed] = useState(false)
+  const useImage = src && !failed
+
   return (
     <div className={`relative grid place-items-center ${className}`}>
       <div
         aria-hidden="true"
         className={`absolute inset-0 rounded-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] ${glow} via-transparent to-transparent`}
       />
-      {src ? (
+      {useImage ? (
         <img
           src={src}
           alt={alt}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          onError={() => setFailed(true)}
           className="relative h-full w-full object-contain drop-shadow-[0_10px_40px_rgba(56,132,255,0.25)]"
         />
       ) : (
@@ -63,24 +76,13 @@ function ToothGlyph() {
         </radialGradient>
       </defs>
       <g>
-        {/* one silhouette: wide molar crown, two tapering roots with a furcation notch */}
-        <path
-          d={CROWN_AND_ROOTS}
-          fill="url(#tp-body)"
-        />
-        {/* occlusal plate reads as the biting surface */}
+        <path d={CROWN_AND_ROOTS} fill="url(#tp-body)" />
         <path
           d="M46 58C54 40 74 30 100 30s46 10 54 28c-8 16-28 24-54 24s-46-8-54-24Z"
           fill="url(#tp-gloss)"
           opacity=".55"
         />
-        <path
-          d={CROWN_AND_ROOTS}
-          fill="none"
-          stroke="url(#tp-rim)"
-          strokeWidth="2.2"
-          strokeLinejoin="round"
-        />
+        <path d={CROWN_AND_ROOTS} fill="none" stroke="url(#tp-rim)" strokeWidth="2.2" strokeLinejoin="round" />
         <ellipse cx="74" cy="62" rx="17" ry="24" fill="url(#tp-gloss)" transform="rotate(-22 74 62)" />
       </g>
     </svg>

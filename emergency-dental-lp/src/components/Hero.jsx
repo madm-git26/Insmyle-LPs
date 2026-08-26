@@ -1,5 +1,5 @@
 import { Phone, Calendar, Star } from 'lucide-react'
-import { brand, hero, features, rating, orbitNodes } from '../data/content.js'
+import { brand, hero, features, rating, orbitNodes, heroTooth } from '../data/content.js'
 import OrbitNode from './OrbitNode.jsx'
 import ToothPlaceholder from './ToothPlaceholder.jsx'
 import StatCards from './StatCards.jsx'
@@ -120,7 +120,7 @@ export default function Hero() {
 
             {/* central tooth */}
             <div className="absolute left-1/2 top-1/2 size-[46%] -translate-x-1/2 -translate-y-1/2">
-              <ToothPlaceholder className="size-full" glow="from-blue-800/50" />
+              <ToothPlaceholder className="size-full" glow="from-blue-800/50" src={heroTooth.src} eager />
             </div>
 
             {orbitNodes.map((node, i) => (

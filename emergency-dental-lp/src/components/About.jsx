@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react'
-import { about } from '../data/content.js'
+import { about, aboutImage } from '../data/content.js'
 import Section, { GLASS } from './Section.jsx'
 import ToothPlaceholder from './ToothPlaceholder.jsx'
 
@@ -25,7 +25,7 @@ export default function About() {
 
         {/* image slot — same swap contract as the tooth placeholders */}
         <div className={`${GLASS} grid aspect-[4/3] place-items-center overflow-hidden`}>
-          <ToothPlaceholder className="size-[62%]" glow="from-blue-800/45" />
+          <ToothPlaceholder className="size-[62%]" glow="from-blue-800/45" src={aboutImage.src} />
         </div>
       </div>
     </Section>

@@ -1,5 +1,12 @@
 import { Zap, ShieldCheck, User } from 'lucide-react'
 
+/* Tooth artwork. Drop files into public/teeth/ using these names and they
+ * appear automatically; any that are missing fall back to the vector tooth.
+ * See public/teeth/README.md for the full list and specs. */
+const tooth = (file) => `${import.meta.env.BASE_URL}teeth/${file}`
+export const heroTooth = { src: tooth('hero-molar.png'), alt: '' }
+export const aboutImage = { src: tooth('about.png'), alt: '' }
+
 /* ------------------------------------------------------------------ *
  * All page copy lives here so it can be edited without touching JSX.
  *
@@ -50,12 +57,12 @@ export const rating = { score: '4.9', count: '500+ Patient Reviews' }
 /* Orbit nodes. `angle` is degrees clockwise from 12 o'clock; adjust here
  * rather than nudging positions in the markup. */
 export const orbitNodes = [
-  { label: 'Root Canal\nTherapy', angle: 215 },
-  { label: 'Emergency\nCrown', angle: 170 },
-  { label: 'Infection\nTreatment', angle: 125 },
-  { label: 'Pain Relief\nCare', angle: 55 },
-  { label: 'Broken Tooth\nRepair', angle: 10 },
-  { label: 'Tooth\nExtraction', angle: 325 },
+  { label: 'Root Canal\nTherapy', angle: 215, asset: tooth('orbit-root-canal.png') },
+  { label: 'Emergency\nCrown', angle: 170, asset: tooth('orbit-crown.png') },
+  { label: 'Infection\nTreatment', angle: 125, asset: tooth('orbit-infection.png') },
+  { label: 'Pain Relief\nCare', angle: 55, asset: tooth('orbit-pain-relief.png') },
+  { label: 'Broken Tooth\nRepair', angle: 10, asset: tooth('orbit-broken.png') },
+  { label: 'Tooth\nExtraction', angle: 325, asset: tooth('orbit-extraction.png') },
 ]
 
 export const statCards = {
@@ -70,11 +77,11 @@ export const services = {
   heading: 'Comprehensive Emergency Dental Solutions',
   cta: 'View All Services',
   items: [
-    { title: 'Root Canal\nTherapy', desc: 'Relieve severe pain and save your tooth' },
-    { title: 'Emergency\nCrown', desc: 'Restore damaged teeth quickly' },
-    { title: 'Tooth\nExtraction', desc: 'Safe & comfortable tooth removal' },
-    { title: 'Broken Tooth\nRepair', desc: 'Fix broken, cracked or chipped teeth' },
-    { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections' },
+    { title: 'Root Canal\nTherapy', desc: 'Relieve severe pain and save your tooth', src: tooth('service-root-canal.png') },
+    { title: 'Emergency\nCrown', desc: 'Restore damaged teeth quickly', src: tooth('service-crown.png') },
+    { title: 'Tooth\nExtraction', desc: 'Safe & comfortable tooth removal', src: tooth('service-extraction.png') },
+    { title: 'Broken Tooth\nRepair', desc: 'Fix broken, cracked or chipped teeth', src: tooth('service-broken.png') },
+    { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections', src: tooth('service-infection.png') },
   ],
 }
 

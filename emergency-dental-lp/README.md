@@ -78,16 +78,22 @@ request. The form already handles the surrounding UX:
 
 ## Swapping in real 3D tooth assets
 
-Photoreal teeth can't be generated from code, so every tooth slot renders a glowing radial
-gradient with a vector silhouette on top. `ToothPlaceholder` takes an optional `src`:
+Every tooth slot is already wired to a file path. **Drop your renders into `public/teeth/`
+using the names in [`public/teeth/README.md`](public/teeth/README.md) and they appear — no code
+changes.** Anything missing falls back to the built-in vector tooth, so the page never shows a
+broken image.
 
-```jsx
-<ToothPlaceholder src="/teeth/root-canal.png" alt="" className="size-full" />
-```
+Verified layout-identical across all three states (page height and every section box byte-for-byte
+the same, zero broken images, zero console errors):
 
-Dimensions are identical with or without an image, so dropping assets in causes no layout shift.
-Use transparent-background PNG or WebP. For the service cards, add a `src` to each entry in
-`services.items` and pass it through — `ServiceCard` already accepts it.
+| Assets present | `<img>` rendered | Vector fallbacks | Page height |
+|---|---|---|---|
+| 0 | 0 | 13 | 5467px |
+| 11 | 11 | 2 | 5467px |
+| 13 | 13 | 0 | 5467px |
+
+Paths are declared once in `src/data/content.js` via the `tooth()` helper, which respects Vite's
+`base` so they survive a sub-path deploy. To use WebP instead of PNG, change the extensions there.
 
 ## Orbit positions
 
