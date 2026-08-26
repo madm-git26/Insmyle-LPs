@@ -1,12 +1,25 @@
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Services from './components/Services.jsx'
+import Treatments from './components/Treatments.jsx'
+import WhyUs from './components/WhyUs.jsx'
+import About from './components/About.jsx'
+import Reviews from './components/Reviews.jsx'
+import Contact from './components/Contact.jsx'
+import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#070b14]">
+    <div className="relative min-h-dvh overflow-x-hidden bg-[#070b14]">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to main content
+      </a>
+
       {/* ambient background — static, so it costs one paint */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 top-0 h-[720px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(30,64,175,.22),transparent_65%)]" />
         <div className="absolute -left-40 top-40 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,.13),transparent_66%)]" />
         <div className="absolute -right-32 top-24 size-[460px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,.10),transparent_66%)]" />
@@ -15,10 +28,16 @@ export default function App() {
 
       <div className="relative">
         <Header />
-        <main>
+        <main id="main">
           <Hero />
           <Services />
+          <Treatments />
+          <WhyUs />
+          <About />
+          <Reviews />
+          <Contact />
         </main>
+        <Footer />
       </div>
     </div>
   )

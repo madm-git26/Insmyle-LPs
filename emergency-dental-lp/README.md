@@ -35,19 +35,44 @@ npm run preview  # serve the build
 
 ## Structure
 
+Sections in order: Hero → Services → Treatments → Why Us → About → Reviews → Contact → Footer.
+
 ```
 src/
-  App.jsx                  page shell + static ambient background
+  App.jsx                  page shell, skip link, static ambient background
   data/content.js          ALL copy, service list and orbit angles
+  hooks/useActiveSection.js  IntersectionObserver scrollspy for nav highlighting
   components/
-    Header.jsx             logo, nav, phone pill
+    Header.jsx             logo, desktop nav, mobile menu, phone pill
     Hero.jsx               three-column hero, orbit ring, connector web
     OrbitNode.jsx          one glass node; position derived from its angle
     ToothPlaceholder.jsx   the swappable tooth slot
     StatCards.jsx          the four floating widgets
     EkgLine.jsx  ProgressRing.jsx  ToothMark.jsx
+    Section.jsx            shared section shell (eyebrow / heading / rhythm)
     Services.jsx  ServiceCard.jsx
+    Treatments.jsx  WhyUs.jsx  About.jsx  Reviews.jsx
+    Contact.jsx            form + hours + address
+    Footer.jsx             safety notice, nav columns, legal
 ```
+
+## The contact form
+
+No backend is wired up — `onSubmit` simulates a send. Replace that one `setTimeout` with a real
+request. The form already handles the surrounding UX:
+
+- Visible labels, required markers, and an "Optional" marker on optional fields
+- Validation on **blur**, not on keystroke; typing only clears an existing error
+- Errors render below their field with `role="alert"`, `aria-invalid` and `aria-describedby`
+- The message line under each input is a **reserved 16px slot**. Without it, showing an error
+  reflows the form — and if that happens between mousedown and mouseup, the submit button moves
+  and the click is silently dropped.
+- The multi-error summary only appears **after a submit attempt** (same reason, and you shouldn't
+  be told to "fix 2 fields" before you've tried to submit)
+- On a failed submit, focus moves to the first invalid field — from an effect, so it runs after
+  React commits rather than racing it
+- Submit disables and shows a spinner; success replaces the form with a confirmation that points
+  at the phone number for urgent cases
 
 **All copy lives in `src/data/content.js`.** Edit it there rather than in the JSX.
 
@@ -79,12 +104,20 @@ and 375 with no horizontal overflow and nothing clipped.
 
 ## Verified
 
-- Production build clean, no console errors or page errors at any breakpoint
+Checked at 1600 / 1440 / 1280 / 1024 / 768 / 430 / 375:
+
+- Production build clean; zero console errors and zero page errors at every width
 - No horizontal overflow; no content clipped outside the viewport
-- All 68 text nodes meet WCAG AA contrast (lowest 5.25:1)
-- 16 focusable elements, all reachable by keyboard, with a visible focus ring
-- All 34 decorative SVGs hidden from assistive tech
-- `prefers-reduced-motion` disables the orbit float and ring rotation
+- **All 159 text nodes meet WCAG AA contrast** (lowest 3.93:1, on 32px step numerals which need 3:1)
+- 31 focusable elements, all keyboard-reachable, with a visible focus ring
+- Skip link to `#main`; one `h1`, nine `h2`, no skipped levels
+- Every input, select and textarea has an associated `<label for>`
+- All decorative SVGs hidden from assistive tech
+- Mobile menu: 48px tap targets, `aria-expanded`, closes on Escape, scroll locked while open
+- `prefers-reduced-motion` leaves **zero** running animations, with the phone CTA still present
+
+Contrast was measured by resolving every colour through a canvas — Tailwind 4 emits `oklch()`,
+which a naive RGB parser misreads badly (it reported 35 false failures before this was fixed).
 
 ## Before this goes live
 

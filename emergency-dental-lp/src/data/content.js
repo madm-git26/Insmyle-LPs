@@ -77,3 +77,89 @@ export const services = {
     { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections' },
   ],
 }
+
+/* ---------------------------------------------------------------- *
+ * Sections below the hero
+ * ---------------------------------------------------------------- */
+
+export const treatments = {
+  eyebrow: 'How It Works',
+  heading: 'From First Call To Pain Relief',
+  intro:
+    'Emergencies do not wait, so neither do we. Here is exactly what happens from the moment you call.',
+  steps: [
+    { n: '01', title: 'Call Us', desc: 'Describe your symptoms. We triage over the phone and tell you how fast we can see you.' },
+    { n: '02', title: 'Same-Day Assessment', desc: 'Digital imaging and an exam pinpoint the cause before any treatment begins.' },
+    { n: '03', title: 'Immediate Relief', desc: 'We stabilise the tooth and address the pain in the same visit wherever clinically possible.' },
+    { n: '04', title: 'Follow-Up Plan', desc: 'You leave with a written plan, costs explained up front, and a follow-up already booked.' },
+  ],
+}
+
+export const whyUs = {
+  eyebrow: 'Why Us',
+  heading: 'Built Around Urgent Care',
+  items: [
+    { title: 'Reserved Emergency Slots', desc: 'We hold appointment time open every day specifically for emergencies.' },
+    { title: 'Digital Diagnostics', desc: 'On-site imaging means diagnosis and treatment happen in one visit, not three.' },
+    { title: 'Costs Explained First', desc: 'You approve a written estimate before treatment starts. No surprises afterwards.' },
+    { title: 'Anxiety-Aware Care', desc: 'Sedation options and a team used to treating patients who are frightened or in pain.' },
+    { title: 'One Team Throughout', desc: 'The people who assess you are the people who treat you and follow up.' },
+    { title: 'Insurance Handled', desc: 'We verify your benefits before your visit and file the claim for you.' },
+  ],
+}
+
+export const about = {
+  eyebrow: 'About',
+  heading: 'Emergency Dentistry, Without The Wait',
+  body: [
+    'Most dental emergencies are not solved by a prescription and a wait. They need someone to look at the tooth today.',
+    'Our practice keeps daily capacity open for urgent cases, so patients in pain are seen quickly rather than added to a list.',
+  ],
+  points: [
+    'Same-day emergency appointments',
+    'Walk-in patients welcome during opening hours',
+    'On-site digital imaging',
+    'Treatment and follow-up under one roof',
+  ],
+}
+
+export const reviews = {
+  eyebrow: 'Reviews',
+  heading: 'What Patients Say',
+  items: [
+    { quote: '[CONFIRM: paste a verbatim patient review here. Do not paraphrase or invent.]', name: '[CONFIRM: name]', meta: '[CONFIRM: treatment]' },
+    { quote: '[CONFIRM: paste a verbatim patient review here. Do not paraphrase or invent.]', name: '[CONFIRM: name]', meta: '[CONFIRM: treatment]' },
+    { quote: '[CONFIRM: paste a verbatim patient review here. Do not paraphrase or invent.]', name: '[CONFIRM: name]', meta: '[CONFIRM: treatment]' },
+  ],
+}
+
+export const contact = {
+  eyebrow: 'Contact',
+  heading: 'Get Seen Today',
+  intro: 'Call for the fastest response. If it is outside opening hours, send the form and we will reply as soon as we open.',
+  hours: [
+    { day: 'Monday – Thursday', time: '[CONFIRM: opening hours]' },
+    { day: 'Friday', time: '[CONFIRM: open or closed]' },
+    { day: 'Saturday', time: '[CONFIRM: open or closed]' },
+    { day: 'Sunday', time: '[CONFIRM: open or closed]' },
+  ],
+  address: '[CONFIRM: street address, city, state, ZIP]',
+  urgencyOptions: [
+    'Severe pain right now',
+    'Broken or knocked-out tooth',
+    'Swelling or suspected infection',
+    'Lost filling or crown',
+    'Something else',
+  ],
+}
+
+export const emergencyNotice =
+  'If you have facial trauma, uncontrolled bleeding, difficulty breathing or swallowing, or swelling that is closing your eye or throat, go to your nearest hospital emergency department or call 911 first.'
+
+export const footer = {
+  columns: [
+    { title: 'Care', links: ['Services', 'Treatments', 'Why Us'] },
+    { title: 'Practice', links: ['About', 'Reviews', 'Contact'] },
+  ],
+  legal: '[CONFIRM: practice legal name]',
+}
