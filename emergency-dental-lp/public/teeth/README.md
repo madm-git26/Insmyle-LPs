@@ -18,9 +18,38 @@ Extracted from the reference images the client sent, background-keyed and resize
 | `orbit-root-canal.webp` | same | small variant |
 | `service-extraction.webp` | forceps + extracted tooth | transparency checkerboard was baked in as flat pixels and had to be keyed back out |
 | `orbit-extraction.webp` | same | small variant |
+| `service-infection.webp` | inflamed tooth with red roots | arrived with real alpha, resized only |
+| `orbit-infection.webp` | same | small variant |
 
 The remaining slots resolve to `undefined` in `content.js` and render the vector tooth, so there
 are no failed requests for artwork that doesn't exist yet. Add a file and point its entry at it.
+
+## Two images that could not be used
+
+The emergency crown and the cracked tooth arrived as **screenshots of a transparency preview**:
+the editor's grey/white checkerboard is baked into the pixels as ordinary colour, and there is
+no alpha channel left.
+
+Keying it back out fails on these two specifically, and the reason is worth recording so nobody
+repeats the attempt:
+
+- The checker tones are **254/237** (crown) and **213/255** (cracked). The subject is a white
+  tooth, so on the light squares the background and the subject are *the same value* — a
+  tone-threshold key walks straight through the silhouette.
+- The pattern was reconstructed instead (period fitted by least squares to sub-pixel edge
+  positions: **13.16 × 13.04** and **19.33 × 19.09**, fractional and anisotropic because the
+  frames were resized) and the subject separated by the local spread of the residual against
+  that pattern. That works — the teeth come out whole and unclipped.
+- What defeats it is the **soft cast shadow baked into each render**. Where the shadow is dense
+  it hides the checkerboard completely, so there is no pattern left to detect; the shadow is
+  then indistinguishable from artwork by any pattern test, and separating it by edges or
+  brightness either leaves a blocky grey halo or eats into the tooth. At the size these render
+  the halo is clearly visible.
+
+Both slots therefore stay on the vector tooth, which looks deliberate, rather than shipping a
+chewed silhouette. **Re-exporting those two from the original file with a real alpha channel —
+rather than screenshotting the preview — makes them usable immediately**; no code changes are
+needed, only the two files.
 
 ## Files needed (13)
 

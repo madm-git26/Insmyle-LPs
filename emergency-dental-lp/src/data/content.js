@@ -60,7 +60,7 @@ export const rating = { score: '4.9', count: '500+ Patient Reviews' }
 export const orbitNodes = [
   { label: 'Root Canal\nTherapy', angle: 215, asset: tooth('orbit-root-canal.webp') },
   { label: 'Emergency\nCrown', angle: 170, asset: tooth(null) },
-  { label: 'Infection\nTreatment', angle: 125, asset: tooth(null) },
+  { label: 'Infection\nTreatment', angle: 125, asset: tooth('orbit-infection.webp') },
   { label: 'Pain Relief\nCare', angle: 55, asset: tooth(null) },
   { label: 'Broken Tooth\nRepair', angle: 10, asset: tooth(null) },
   { label: 'Tooth\nExtraction', angle: 325, asset: tooth('orbit-extraction.webp') },
@@ -82,7 +82,7 @@ export const services = {
     { title: 'Emergency\nCrown', desc: 'Restore damaged teeth quickly', src: tooth(null) },
     { title: 'Tooth\nExtraction', desc: 'Safe & comfortable tooth removal', src: tooth('service-extraction.webp') },
     { title: 'Broken Tooth\nRepair', desc: 'Fix broken, cracked or chipped teeth', src: tooth(null) },
-    { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections', src: tooth(null) },
+    { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections', src: tooth('service-infection.webp') },
   ],
 }
 
