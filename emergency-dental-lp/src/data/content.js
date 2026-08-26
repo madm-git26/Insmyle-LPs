@@ -59,10 +59,10 @@ export const rating = { score: '4.9', count: '500+ Patient Reviews' }
  * rather than nudging positions in the markup. */
 export const orbitNodes = [
   { label: 'Root Canal\nTherapy', angle: 215, asset: tooth('orbit-root-canal.webp') },
-  { label: 'Emergency\nCrown', angle: 170, asset: tooth(null) },
+  { label: 'Emergency\nCrown', angle: 170, asset: tooth('orbit-crown.webp') },
   { label: 'Infection\nTreatment', angle: 125, asset: tooth('orbit-infection.webp') },
   { label: 'Pain Relief\nCare', angle: 55, asset: tooth(null) },
-  { label: 'Broken Tooth\nRepair', angle: 10, asset: tooth(null) },
+  { label: 'Broken Tooth\nRepair', angle: 10, asset: tooth('orbit-broken.webp') },
   { label: 'Tooth\nExtraction', angle: 325, asset: tooth('orbit-extraction.webp') },
 ]
 
@@ -79,9 +79,9 @@ export const services = {
   cta: 'View All Services',
   items: [
     { title: 'Root Canal\nTherapy', desc: 'Relieve severe pain and save your tooth', src: tooth('service-root-canal.webp') },
-    { title: 'Emergency\nCrown', desc: 'Restore damaged teeth quickly', src: tooth(null) },
+    { title: 'Emergency\nCrown', desc: 'Restore damaged teeth quickly', src: tooth('service-crown.webp') },
     { title: 'Tooth\nExtraction', desc: 'Safe & comfortable tooth removal', src: tooth('service-extraction.webp') },
-    { title: 'Broken Tooth\nRepair', desc: 'Fix broken, cracked or chipped teeth', src: tooth(null) },
+    { title: 'Broken Tooth\nRepair', desc: 'Fix broken, cracked or chipped teeth', src: tooth('service-broken.webp') },
     { title: 'Infection\nTreatment', desc: 'Treat abscesses and infections', src: tooth('service-infection.webp') },
   ],
 }

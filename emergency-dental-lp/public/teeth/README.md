@@ -20,36 +20,63 @@ Extracted from the reference images the client sent, background-keyed and resize
 | `orbit-extraction.webp` | same | small variant |
 | `service-infection.webp` | inflamed tooth with red roots | arrived with real alpha, resized only |
 | `orbit-infection.webp` | same | small variant |
+| `service-crown.webp` | crown lifted above a prepared tooth | checkerboard baked in; alpha recovered by unmixing (below) |
+| `orbit-crown.webp` | same | small variant |
+| `service-broken.webp` | cracked molar | same, and the harder of the two |
+| `orbit-broken.webp` | same | small variant |
 
 The remaining slots resolve to `undefined` in `content.js` and render the vector tooth, so there
 are no failed requests for artwork that doesn't exist yet. Add a file and point its entry at it.
 
-## Two images that could not be used
+## Recovering the two checkerboard screenshots
 
-The emergency crown and the cracked tooth arrived as **screenshots of a transparency preview**:
-the editor's grey/white checkerboard is baked into the pixels as ordinary colour, and there is
-no alpha channel left.
+The emergency crown and the cracked tooth arrived as **screenshots of an editor's transparency
+preview**: the grey/white checkerboard is baked into the pixels as ordinary colour, with no alpha
+channel left. They are in anyway, and the method is worth recording.
 
-Keying it back out fails on these two specifically, and the reason is worth recording so nobody
-repeats the attempt:
+The first approach was to *segment* the tooth — classify each pixel as subject or background and
+flood-fill. That always left a ragged halo, because it works in **colour space**, where the
+render's soft cast shadow and the tooth genuinely overlap: a grey shadow pixel at 228 and a shaded
+tooth pixel at 228 are the same number, and no threshold separates them.
 
-- The checker tones are **254/237** (crown) and **213/255** (cracked). The subject is a white
-  tooth, so on the light squares the background and the subject are *the same value* — a
-  tone-threshold key walks straight through the silhouette.
-- The pattern was reconstructed instead (period fitted by least squares to sub-pixel edge
-  positions: **13.16 × 13.04** and **19.33 × 19.09**, fractional and anisotropic because the
-  frames were resized) and the subject separated by the local spread of the residual against
-  that pattern. That works — the teeth come out whole and unclipped.
-- What defeats it is the **soft cast shadow baked into each render**. Where the shadow is dense
-  it hides the checkerboard completely, so there is no pattern left to detect; the shadow is
-  then indistinguishable from artwork by any pattern test, and separating it by edges or
-  brightness either leaves a blocky grey halo or eats into the tooth. At the size these render
-  the halo is clearly visible.
+The working method reads alpha out of the image instead. A checkerboard composite is
+`observed = a*S + (1-a)*B` with `B` alternating between two known tones on a known grid, so the
+**local amplitude of the checker pattern is `(1-a)*CONTRAST`** — the alpha channel, directly. It
+measures full contrast in open background, ~0 across the tooth, and a smooth ramp between, which
+also shows the fringe is semi-transparent rather than opaque artwork. In **alpha space** the
+shadow (~0.3) and the tooth (~1.0) then separate with an ordinary threshold.
 
-Both slots therefore stay on the vector tooth, which looks deliberate, rather than shipping a
-chewed silhouette. **Re-exporting those two from the original file with a real alpha channel —
-rather than screenshotting the preview — makes them usable immediately**; no code changes are
-needed, only the two files.
+Four things had to be right:
+
+- **The grid is fractional and anisotropic** — 13.155 x 13.038 for the crown, 19.332 x 19.093 for
+  the cracked tooth, since both frames were resized. An integer period slips phase across the image
+  and every reading fails in the far corners. It is fitted by least squares to sub-pixel edge
+  positions, to under a pixel of residual.
+- **Pair each pixel with the same point one full period away**, rather than comparing the two grid
+  parities by their means over a window. A window's parity means are phase-biased — which parity
+  the tooth covers more of swings with the grid phase — and where the subject's colour coincides
+  with one of the tones (the cracked tooth's specular rim is the same 255 as the light square) that
+  swing scallops the silhouette into a gear. Pairs are self-balanced by construction, and taking the
+  forward and backward partner together also cancels the tooth's own shading gradient.
+- **Average each parity separately, then weight the two halves equally.** The residual swing
+  cancels only if the two parities are represented equally, and a plain window average is merely as
+  balanced as the pixel counts that happen to fall in it.
+- **Un-premultiply: `S = (v - (1-a)*B) / a`.** Not optional. Without it every partly transparent
+  edge pixel keeps the light checker colour baked in and the halo returns the moment the image is
+  composited onto a near-black panel.
+
+Enclosed background — the gap between crown and prepared tooth, the gap between the two roots —
+needs no special handling, because a local amplitude reading is full-contrast there. Strong subject
+structure (the crack's dark interior, the occlusal grooves) does fake an amplitude and punch holes,
+but every one of those is enclosed by tooth while the real gaps open onto the border, so
+reachability separates them exactly.
+
+The averaging width is per image (`win`, in checker periods): wider is smoother but closes narrow
+gaps. The crown frame carries only 17 levels of checker contrast against a near-white subject, so
+it needs 2 periods and can afford them; the cracked tooth uses 1.5.
+
+Even so, a re-export carrying a real alpha channel would beat both of these. If those files turn
+up, dropping them in needs no code change.
 
 ## Files needed (13)
 

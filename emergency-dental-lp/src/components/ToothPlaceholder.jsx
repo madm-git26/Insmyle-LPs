@@ -37,7 +37,12 @@ export default function ToothPlaceholder({
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           onError={() => setFailed(true)}
-          className="relative h-full w-full object-contain drop-shadow-[0_10px_40px_rgba(56,132,255,0.25)]"
+          /* min-h-0 min-w-0: a grid item's automatic minimum size is its content
+             size, and for an image that means the height its aspect ratio implies
+             from the resolved width. For any asset taller than its slot that
+             minimum wins over h-full and the image overflows the card instead of
+             being letterboxed. Only shows up once an asset is tall enough. */
+          className="relative h-full min-h-0 w-full min-w-0 object-contain drop-shadow-[0_10px_40px_rgba(56,132,255,0.25)]"
         />
       ) : (
         showSilhouette && <ToothGlyph />
