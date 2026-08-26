@@ -7,7 +7,7 @@ import StatCards from './StatCards.jsx'
 export default function Hero() {
   return (
     <section id="top" className="relative">
-      <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-6 pb-16 pt-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.2fr)_minmax(0,0.62fr)] lg:gap-8 lg:px-10 lg:pb-24 xl:gap-10">
+      <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-6 pb-16 pt-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1.15fr)_minmax(0,0.6fr)] lg:gap-8 lg:px-10 lg:pb-24 xl:gap-10">
         {/* ---- copy ---- */}
         <div className="order-1">
           <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-blue-400 uppercase">
@@ -15,7 +15,7 @@ export default function Hero() {
             {hero.eyebrow}
           </p>
 
-          <h1 className="mt-5 text-[2.4rem] font-bold leading-[1.08] tracking-tight sm:text-5xl xl:text-6xl">
+          <h1 className="mt-5 text-[2.4rem] font-bold leading-[1.08] tracking-tight sm:text-5xl xl:text-[3.4rem] 2xl:text-6xl">
             {hero.headline.map((line) => (
               <span
                 key={line.text}
@@ -119,7 +119,7 @@ export default function Hero() {
             </svg>
 
             {/* central tooth */}
-            <div className="absolute left-1/2 top-1/2 size-[46%] -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute left-1/2 top-1/2 size-[56%] -translate-x-1/2 -translate-y-1/2">
               <ToothPlaceholder className="size-full" glow="from-blue-800/50" src={heroTooth.src} eager />
             </div>
 

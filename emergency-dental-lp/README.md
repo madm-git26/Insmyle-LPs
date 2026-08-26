@@ -76,6 +76,17 @@ request. The form already handles the surrounding UX:
 
 **All copy lives in `src/data/content.js`.** Edit it there rather than in the JSX.
 
+## The tooth artwork
+
+The built-in tooth is inline SVG, redrawn to match the reference render the client supplied
+(glossy molar, three-cusp crown, two splayed roots with a furcation notch, key light from the
+upper left). Being vector it stays sharp at every size and weighs nothing.
+
+Its silhouette, gradients and clip path live in `components/ToothDefs.jsx` and are rendered
+**once** for the whole page, so the 13 instances reference shared ids rather than each stamping a
+duplicate set into the document. Confirmed: 27 element ids on the page, zero duplicates, 5 gradient
+definitions total.
+
 ## Swapping in real 3D tooth assets
 
 Every tooth slot is already wired to a file path. **Drop your renders into `public/teeth/`

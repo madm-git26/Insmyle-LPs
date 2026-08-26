@@ -1,3 +1,4 @@
+import ToothDefs from './components/ToothDefs.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Services from './components/Services.jsx'
@@ -11,6 +12,7 @@ import Footer from './components/Footer.jsx'
 export default function App() {
   return (
     <div className="relative min-h-dvh overflow-x-hidden bg-[#070b14]">
+      <ToothDefs />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
