@@ -27,12 +27,12 @@ cards and a pinned scroll sequence. Brand gold is promoted from an accent to a b
 | 11 | Reviews | Four real patient quotes in bordered cards. |
 | 12 | Insurance (full gold block) | Removes the #1 objection, on the loudest surface on the page. |
 | 13 | Location | Building exterior, hours table with today highlighted, embedded map. |
-| 14 | Request section (dark) | The form, with a three-step explainer. All eight `#request` CTAs land here. |
+| 14 | Booking section (dark) | Three-step explainer plus a booking card. There is no form — every CTA goes straight to the booking tool. |
 | 15 | FAQ | Uppercase display accordion + FAQPage schema. |
 | 16 | Final CTA (gold) + marquee + footer | Last conversion window and the policy links Google Ads expects. |
 | 17 | Sticky mobile call/book bar | Appears once the hero scrolls away. |
 
-**The form is not in the hero** — it has its own dark band at #14, and every `#request` CTA scrolls to it.
+**There is no form.** Every CTA on the page opens the practice's booking tool directly; the only other destination is the phone.
 
 **Keyword coverage** — `dentist lockport` is in the title, H1, an H2, the schema and the address block.
 `dentist near me` is served by proximity signals: the building exterior photo, landmarks (Crumbl
@@ -61,9 +61,11 @@ with pure white present. Against a worst-case 255 pixel, white text needs ≥0.5
 The scrim never drops below ~0.66 where the copy sits (6.2:1 or better) and reaches 0.86 at the
 left edge.
 
-**A pause control is required, not optional.** WCAG 2.2.2 covers auto-playing motion that runs
-past five seconds; the clip is 20.65s and loops. A labelled pause/play toggle appears once
-playback starts, and reduced-motion turned on mid-session stops it immediately.
+**No pause control — removed by client request.** This is a known WCAG 2.2.2 gap: auto-playing
+motion running past five seconds should offer a way to stop it, and the clip is 20.65s looping.
+What still applies: `prefers-reduced-motion` suppresses the video entirely (poster only), and
+turning that preference on mid-session stops playback. Restoring the control is a small change
+if it is ever wanted back.
 
 **Gap to close:** there is no MP4 alongside the WebM (the URL 404s). VP8-in-WebM covers Safari
 14.1+/iOS 14.1+, so older iOS gets the poster rather than the video. Generating an MP4 and adding
@@ -134,31 +136,19 @@ everything visible if JS never runs.
 
 ## 2. Before it goes live — 3 things to wire up
 
-### a) The form endpoint (required)
+### a) Booking destination
 
-Open the `CONFIG` block near the bottom of the file:
+All ten booking CTAs point at:
 
-```js
-var CONFIG = {
-  FORM_ENDPOINT: "",   // <-- set this
-  BOOKING_URL:   "https://www.dental4.me/peakdentistry/1",
-  PHONE_E164:    "+18156605880"
-};
+```
+https://book.allinone.dental/cef4f479-9676-4fc3-b96c-39e81fbeb0f7?referrer_id=4
 ```
 
-`FORM_ENDPOINT` should be a URL that accepts a JSON `POST` — a WPForms/Gravity Forms webhook,
-a Zapier catch hook, or a small `admin-ajax.php` handler.
+It is set once in the `CONFIG` block near the bottom of the file and used verbatim on every
+CTA. Attribution parameters are **appended** to it, so the existing `referrer_id=4` survives —
+verified: `?referrer_id=4&gclid=…&utm_source=…`.
 
-Payload shape:
-
-```json
-{ "name":"", "phone":"", "email":"", "reason":"", "preferred_time":"",
-  "page":"/lp/dentist-lockport/", "gclid":"", "utm_source":"", "utm_campaign":"" }
-```
-
-**Left empty, the form still works** — it validates, then hands the patient to the online booking
-tool with attribution parameters attached. It never silently drops a lead. But a real endpoint is
-better: it captures people who won't finish a booking flow.
+The only other destination on the page is `tel:+18156605880`.
 
 ### b) Conversion tracking
 
@@ -168,14 +158,13 @@ tag in the `<head>` and map these events as conversions:
 | Event | Fires on |
 |-------|----------|
 | `click_to_call` | any tap on a phone number (`location` = header, hero, ribbon, sticky bar, …) |
-| `generate_lead` | successful form submit — **this is your primary conversion** |
-| `click_book_online` | Book Now → dental4.me |
+| `click_book_online` | any booking CTA → book.allinone.dental — **this is your primary conversion** |
 | `click_directions` | Google Maps link |
 | `click_offer` | a specific offer card |
-| `form_error` / `form_fallback_to_booking` / `faq_open` | diagnostics, not conversions |
+| `faq_open` | diagnostic, not a conversion |
 
 `gclid`, `wbraid`, `gbraid` and all five UTMs are captured from the URL, stored in `sessionStorage`
-and appended to every booking link — so bookings completed on dental4.me stay attributable.
+and appended to every booking link — so bookings completed on book.allinone.dental stay attributable.
 
 ### c) Optional: keyword-matched headline
 
