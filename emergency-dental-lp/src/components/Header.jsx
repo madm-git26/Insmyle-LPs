@@ -37,7 +37,7 @@ export default function Header() {
             <span className="block text-sm font-bold tracking-wide text-white">
               {brand.name.toUpperCase()}
             </span>
-            <span className="mt-1 block text-[9.5px] font-medium tracking-[0.1em] text-gray-400 sm:text-[11px] sm:tracking-[0.18em]">
+            <span className="mt-1 hidden whitespace-nowrap text-[11px] font-medium tracking-[0.18em] text-gray-400 sm:block">
               {brand.nameLine2.toUpperCase()}
             </span>
           </span>

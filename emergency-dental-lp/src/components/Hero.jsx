@@ -6,10 +6,10 @@ import StatCards from './StatCards.jsx'
 
 export default function Hero() {
   return (
-    <section id="top" className="relative">
+    <section id="top" className="relative overflow-hidden">
       <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-6 pb-16 pt-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1.15fr)_minmax(0,0.6fr)] lg:gap-8 lg:px-10 lg:pb-24 xl:gap-10">
         {/* ---- copy ---- */}
-        <div className="order-1">
+        <div className="relative z-10 order-1">
           <p className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] text-blue-400 uppercase">
             <span aria-hidden="true" className="inline-block h-3.5 w-0.5 bg-blue-400" />
             {hero.eyebrow}
@@ -80,8 +80,11 @@ export default function Hero() {
         </div>
 
         {/* ---- orbit visual ---- */}
-        <div aria-hidden="true" className="order-3 lg:order-2">
-          <div className="relative mx-auto aspect-square w-full max-w-[320px] [--orx:33%] [--ory:29%] sm:max-w-[440px] sm:[--orx:41%] sm:[--ory:32%] lg:max-w-[560px] lg:[--orx:46%] lg:[--ory:34%]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 grid place-items-center opacity-[0.15] lg:relative lg:inset-auto lg:z-auto lg:block lg:opacity-100 lg:order-2"
+        >
+          <div className="relative mx-auto aspect-square w-[128%] max-w-none [--orx:33%] [--ory:29%] sm:w-full sm:max-w-[440px] sm:[--orx:41%] sm:[--ory:32%] lg:max-w-[560px] lg:[--orx:46%] lg:[--ory:34%]">
             {/* holographic platform */}
             <div className="pointer-events-none absolute inset-x-[8%] bottom-[10%] h-[38%]">
               <div className="absolute inset-0 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,.35),rgba(59,130,246,.10)_42%,transparent_70%)]" />
@@ -130,7 +133,7 @@ export default function Hero() {
         </div>
 
         {/* ---- status cards ---- */}
-        <div className="order-2 lg:order-3">
+        <div className="relative z-10 order-2 lg:order-3">
           <StatCards />
         </div>
       </div>

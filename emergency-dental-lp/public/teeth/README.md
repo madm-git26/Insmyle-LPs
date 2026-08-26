@@ -7,6 +7,21 @@ vector tooth, so the page never shows a broken image and always looks finished.
 Paths are declared once in `src/data/content.js` via the `tooth()` helper, which respects
 Vite's `base` setting so they survive a sub-path deploy.
 
+## Supplied so far
+
+Extracted from the reference images the client sent, background-keyed and resized:
+
+| File | Source | Notes |
+|---|---|---|
+| `hero-molar.webp` | glossy molar on dark ground | dark background keyed out by border flood-fill |
+| `service-root-canal.webp` | cross-section with endo file | arrived with real alpha, resized only |
+| `orbit-root-canal.webp` | same | small variant |
+| `service-extraction.webp` | forceps + extracted tooth | transparency checkerboard was baked in as flat pixels and had to be keyed back out |
+| `orbit-extraction.webp` | same | small variant |
+
+The remaining slots resolve to `undefined` in `content.js` and render the vector tooth, so there
+are no failed requests for artwork that doesn't exist yet. Add a file and point its entry at it.
+
 ## Files needed (13)
 
 | File | Used for | Rendered at (1440px) | Suggested export |
