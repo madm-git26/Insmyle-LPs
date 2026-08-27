@@ -13,6 +13,26 @@ npm run build    # production build into dist/
 npm run preview  # serve the build
 ```
 
+## The standalone file
+
+`emergency-dental-care.html` is the whole page as **one file you can just open** — double-click it,
+email it, put it on a USB stick. It is generated from `dist/`, not edited by hand, so any change to
+the source means rebuilding it.
+
+Everything is inlined: the stylesheet, the bundle, all eleven pieces of tooth artwork as data URIs,
+and the Inter latin subset as a `data:font/woff2`. It makes **zero network requests**, so it renders
+the same offline as online. Only the latin subset is embedded (47KB); anything outside its
+`unicode-range` falls back through `--font-sans`, which costs nothing for English copy and saves
+166KB of glyphs this page never draws.
+
+It is a complete document rather than a fragment — doctype, `<meta charset>`, viewport. Without the
+doctype it opens in quirks mode; without the charset the em-dash in the title mojibakes off a local
+disk; without the viewport the responsive layout collapses on a phone. Verified over `file://` with
+all network blocked: standards mode, zero requests attempted, the embedded font measurably applied
+(not silently fallen back), 11 images decoded, no overflow at 1600/1440/1280/1024/768/430/375, all
+159 text nodes still passing AA, and the form and mobile menu still working.
+
+
 ## Stack
 
 - **React 19** + **Vite 8**
