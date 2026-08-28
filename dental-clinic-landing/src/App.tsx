@@ -105,14 +105,29 @@ function useConversionTracking() {
   }, []);
 }
 
-/** Fades a section in once it scrolls into view. */
+/**
+ * Fades a section in once it scrolls into view.
+ *
+ * Starts already-visible when the OS asks for reduced motion — a CSS-only
+ * override cannot rescue this, because the element's resting state is
+ * opacity 0 and would simply never animate in.
+ */
+function prefersReducedMotion() {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch {
+    return false;
+  }
+}
+
 function useReveal(threshold = 0.12) {
   const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
+  const [reduced] = useState(prefersReducedMotion);
+  const [shown, setShown] = useState(reduced);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || reduced) return;
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -126,13 +141,16 @@ function useReveal(threshold = 0.12) {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [threshold]);
+  }, [threshold, reduced]);
 
-  const style = (i = 0): CSSProperties => ({
-    opacity: shown ? 1 : 0,
-    transform: shown ? 'translateY(0)' : 'translateY(16px)',
-    transition: `opacity .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms`,
-  });
+  const style = (i = 0): CSSProperties =>
+    reduced
+      ? {}
+      : {
+          opacity: shown ? 1 : 0,
+          transform: shown ? 'translateY(0)' : 'translateY(16px)',
+          transition: `opacity .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms`,
+        };
 
   return { ref, style };
 }
@@ -447,13 +465,21 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
       <div className={`${SHELL} flex items-center justify-between gap-4 py-3`}>
-        <a href="#top" className="shrink-0" aria-label="Willow Street Dental, Chippewa Falls">
+        <a
+          href="#top"
+          className="flex shrink-0 items-center py-1.5"
+          aria-label="Willow Street Dental, Chippewa Falls"
+        >
           <img src={LOGO} alt="Willow Street Dental" width={342} height={184} className="h-9 w-auto md:h-11" />
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Primary">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-ink transition-colors hover:text-brand-600">
+            <a
+              key={l.href}
+              href={l.href}
+              className="inline-flex min-h-[44px] items-center px-2 text-sm font-medium text-ink transition-colors hover:text-brand-600"
+            >
               {l.label}
             </a>
           ))}
@@ -463,7 +489,7 @@ function Header() {
           <a
             href={PHONE_HREF}
             {...cta('Header phone')}
-            className="hidden items-center gap-2 text-sm font-semibold text-brand-700 md:inline-flex"
+            className="hidden min-h-[44px] items-center gap-2 px-2 text-sm font-semibold text-brand-700 md:inline-flex"
           >
             <IconPhone className="w-4 h-4" />
             {PHONE_DISPLAY}
@@ -473,7 +499,7 @@ function Header() {
             target="_blank"
             rel="noopener"
             {...cta('Header Request Consultation')}
-            className="hidden rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 sm:inline-block"
+            className="hidden min-h-[44px] items-center rounded-lg bg-brand-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-brand-700 sm:inline-flex"
           >
             Request Consultation
           </a>
@@ -482,7 +508,7 @@ function Header() {
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="relative flex h-10 w-10 items-center justify-center lg:hidden"
+            className="relative flex h-11 w-11 items-center justify-center lg:hidden"
           >
             <span className={`absolute h-0.5 w-6 rounded bg-navy-900 transition-all duration-300 ${open ? 'rotate-45' : '-translate-y-1.5'}`} />
             <span className={`absolute h-0.5 w-6 rounded bg-navy-900 transition-all duration-300 ${open ? 'opacity-0' : 'opacity-100'}`} />
@@ -540,7 +566,7 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted md:text-base">
+          <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
             A discreet, comfortable way to straighten your teeth — without metal braces. Start with a
             virtual consultation and discover if clear aligners are right for you.
           </p>
@@ -572,6 +598,8 @@ function Hero() {
           <img
             src={HERO_IMAGE}
             alt="Patient in Chippewa Falls holding a clear aligner tray"
+            width={930}
+            height={570}
             className="absolute inset-0 h-full w-full object-cover"
             fetchPriority="high"
           />
@@ -579,7 +607,7 @@ function Hero() {
           <div className="absolute bottom-4 right-4 flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 shadow-lift backdrop-blur md:bottom-6 md:right-6">
             <GoogleG />
             <div className="leading-tight">
-              <p className="text-[11px] font-medium text-muted">
+              <p className="text-[12px] font-medium text-muted">
                 [INSERT VERIFIED REVIEW COUNT]
               </p>
               <p className="text-[13px] font-bold text-navy-900">Google Reviews</p>
@@ -636,7 +664,7 @@ function Benefits() {
             <div key={title} style={style(i)} className="flex flex-col items-center bg-white px-4 py-7 text-center">
               <Icon className="w-9 h-9 text-brand-500" />
               <h3 className="mt-4 text-sm font-bold leading-snug text-brand-700">{title}</h3>
-              <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{body}</p>
+              <p className="mt-2 text-[13px] leading-relaxed text-muted">{body}</p>
             </div>
           ))}
         </div>
@@ -681,7 +709,7 @@ function Reviews() {
           ))}
         </div>
 
-        <p className="mt-6 text-center text-[11px] text-muted">
+        <p className="mt-6 text-center text-[12px] text-muted">
           Excerpts as published on the Willow Street Dental website. No overall rating or review
           count is stated, as that figure is not confirmed.
         </p>
@@ -693,7 +721,7 @@ function Reviews() {
             rel="noopener"
             data-cta="Read More Reviews"
             data-cta-location="reviews"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
+            className="inline-flex min-h-[44px] items-center gap-2 px-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
             Read More Reviews <Arrow />
           </a>
@@ -728,14 +756,14 @@ function Journey() {
               )}
               <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                 <Icon className="w-7 h-7" />
-                <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-bold text-white">
+                <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[12px] font-bold text-white">
                   {n}
                 </span>
               </span>
               <h3 className="mt-5 whitespace-pre-line text-[15px] font-bold leading-snug text-navy-900">
                 {`${n}. ${title}`}
               </h3>
-              <p className="mx-auto mt-2 max-w-[15rem] text-[12.5px] leading-relaxed text-muted">{body}</p>
+              <p className="mx-auto mt-2 max-w-[15rem] text-[13px] leading-relaxed text-muted">{body}</p>
             </li>
           ))}
         </ol>
@@ -773,6 +801,8 @@ function DoctorAndConsult() {
               <img
                 src={DR_CALDER}
                 alt="Dr. Curtis Calder, D.D.S."
+                width={500}
+                height={500}
                 loading="lazy"
                 className="h-28 w-28 shrink-0 rounded-full object-cover ring-4 ring-brand-50 sm:h-32 sm:w-32"
               />
@@ -787,7 +817,7 @@ function DoctorAndConsult() {
                   His goal is always the same: to help each patient feel confident in their smile and
                   comfortable in the dental chair.
                 </p>
-                <p className="mt-3 text-[11px] text-slate-400">
+                <p className="mt-3 text-[12px] text-slate-500">
                   [INSERT VERIFIED INFORMATION for any additional credentials or memberships]
                 </p>
               </div>
@@ -820,7 +850,7 @@ function DoctorAndConsult() {
               <ol className="space-y-3">
                 {consultSteps.map((s, i) => (
                   <li key={s} className="flex items-start gap-3 text-[13.5px] font-medium text-ink">
-                    <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white">
+                    <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600 text-[12px] font-bold text-white">
                       {i + 1}
                     </span>
                     {s}
@@ -830,6 +860,8 @@ function DoctorAndConsult() {
               <img
                 src={ALIGNER_IMAGE}
                 alt="Clear aligner tray"
+                width={605}
+                height={458}
                 loading="lazy"
                 className="hidden h-32 w-40 rounded-xl object-cover shadow-card sm:block"
               />
@@ -841,7 +873,7 @@ function DoctorAndConsult() {
               </BtnPrimary>
             </div>
 
-            <p className="mt-4 text-[11px] leading-relaxed text-muted">
+            <p className="mt-4 text-[12px] leading-relaxed text-muted">
               Complete treatment may require an in-office visit. A virtual consultation is not a
               substitute for a comprehensive dental exam.
             </p>
@@ -931,6 +963,8 @@ function Footer() {
           <img
             src={LOGO}
             alt="Willow Street Dental"
+            width={342}
+            height={184}
             loading="lazy"
             className="h-10 w-auto brightness-0 invert"
           />
@@ -950,7 +984,7 @@ function Footer() {
               {ADDRESS_LINE2}
             </p>
           </div>
-          <a href={PHONE_HREF} {...cta('Footer phone')} className="mt-4 flex items-center gap-3 text-white/80 hover:text-white">
+          <a href={PHONE_HREF} {...cta('Footer phone')} className="mt-2 flex min-h-[44px] items-center gap-3 text-white/80 hover:text-white">
             <IconPhone className="w-4 h-4 shrink-0 text-brand-400" />
             {PHONE_DISPLAY}
           </a>
@@ -959,7 +993,7 @@ function Footer() {
             target="_blank"
             rel="noopener"
             {...cta('Footer book online')}
-            className="mt-4 flex items-center gap-3 text-white/80 hover:text-white"
+            className="mt-2 flex min-h-[44px] items-center gap-3 text-white/80 hover:text-white"
           >
             <IconCalendar className="w-4 h-4 shrink-0 text-brand-400" />
             Book an appointment
@@ -979,7 +1013,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className={`${SHELL} mt-8 border-t border-white/10 pt-5 text-[11px] leading-relaxed text-white/50`}>
+      <div className={`${SHELL} mt-8 border-t border-white/10 pt-5 text-[12px] leading-relaxed text-white/60`}>
         Clear-aligner candidacy and treatment details are determined during an individual
         evaluation. Invisalign is a registered trademark of Align Technology, Inc.
       </div>
@@ -1021,7 +1055,7 @@ function StickyMobileCta() {
         href={PHONE_HREF}
         aria-label={`Call Willow Street Dental at ${PHONE_DISPLAY}`}
         {...cta('Sticky — Call')}
-        className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-lg border border-brand-200 text-brand-700"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-brand-200 text-brand-700"
       >
         <IconPhone className="w-5 h-5" />
       </a>
@@ -1038,8 +1072,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white">
+      <a href="#main" className="skip-link rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white">
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <TrustBar />
         <Benefits />
