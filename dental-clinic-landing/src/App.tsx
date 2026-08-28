@@ -16,16 +16,21 @@ const SECTION3_IMG2 =
 const SECTION3_BG =
   'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114355_752ba9e6-0942-4abb-9047-5d9bb16632e9.png&w=1280&q=85';
 
-const featureBars = ['Advanced Dentistry', 'High Quality Equipment', 'Friendly Staff'];
+const PHONE_DISPLAY = '(715) 723-5688';
+const PHONE_HREF = 'tel:+17157235688';
+const BOOKING_URL = 'https://book.allinone.dental/willow-street';
+const VIRTUAL_CONSULT_URL = 'https://www.willowstreetdental.com/virtual-consult/';
+
+const featureBars = ['Free Virtual Consultation', 'In Network With Delta Dental', 'Local Chippewa Falls Care'];
 
 const services = [
-  { name: 'Dental\nVeneers', num: '01', active: true },
-  { name: 'Dental\nCrowns', num: '02', active: false },
-  { name: 'Teeth\nWhitening', num: '03', active: false },
-  { name: 'Dental\nImplants', num: null, active: false },
+  { name: 'Clear\nAligners', num: '01', active: true },
+  { name: 'Dental\nImplants', num: '02', active: false },
+  { name: 'Smile\nMakeovers', num: '03', active: false },
+  { name: 'Crowns &\nFillings', num: null, active: false },
 ];
 
-const navLinks = ['Home', 'Services', 'About', 'Gallery', 'Contact'];
+const navLinks = ['Clear Aligners', 'Benefits', 'Process', 'Our Team', 'Contact'];
 
 interface Position {
   x: number;
@@ -250,24 +255,28 @@ function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-md">
         <div className="flex flex-col">
           <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none">
-            Dental
+            Willow
           </span>
           <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none -mt-1.5 md:-mt-2">
-            Health
+            Street
           </span>
           <span className="text-[8px] md:text-[9px] font-medium leading-none mt-1.5 md:mt-2">
-            quality healthcare
+            dental &middot; chippewa falls, wi
           </span>
         </div>
 
         <div className="hidden md:flex items-center gap-6">
-          <button
-            type="button"
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener"
             className="px-6 py-3 bg-white rounded-full border border-black text-sm font-semibold hover:bg-black hover:text-white transition-colors duration-200"
           >
-            Menu
-          </button>
-          <span className="text-sm font-semibold text-black">Dental Emergency</span>
+            Book Online
+          </a>
+          <a href={PHONE_HREF} className="text-sm font-semibold text-black">
+            {PHONE_DISPLAY}
+          </a>
         </div>
 
         <button
@@ -330,13 +339,17 @@ function Navbar() {
                 menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
               }`}
             >
-              <p className="text-sm font-semibold text-black mb-4">Dental Emergency</p>
-              <button
-                type="button"
-                className="w-full px-6 py-4 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
+              <a href={PHONE_HREF} className="block text-sm font-semibold text-black mb-4">
+                {PHONE_DISPLAY} &middot; Mon&ndash;Thu, 8am&ndash;5pm
+              </a>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener"
+                className="block text-center w-full px-6 py-4 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
               >
                 Book Appointment
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -396,32 +409,39 @@ function Section1({ isMobile }: { isMobile: boolean }) {
         style={reveal.getAnimStyle(3)}
       >
         <p className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
-          We wish to provide professional dental services
+          Modern dental technology with a personal,
           <br />
-          that match the current technologies
+          down-to-earth approach
         </p>
 
         <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-          <span className="block text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
-            Trusted Dentist in West New York
-          </span>
-          <h1 className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
-            Dental
-            <br />
-            Care
+          <h1 className="text-black">
+            <span className="block text-xs md:text-sm font-semibold mb-1 md:mb-2">
+              Invisalign &amp; Clear Aligners in Chippewa Falls, WI
+            </span>
+            <span className="block text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
+              Clear
+              <br />
+              Aligners
+            </span>
           </h1>
         </div>
 
-        <span className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10">
-          Free Consultation
-        </span>
+        <a
+          href={VIRTUAL_CONSULT_URL}
+          target="_blank"
+          rel="noopener"
+          className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10"
+        >
+          Free Virtual Consult
+        </a>
       </MaskedCard>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Section 2 - Smile Gallery                                           */
+/* Section 2 - Why Clear Aligners                                      */
 /* ------------------------------------------------------------------ */
 
 function Section2({ isMobile }: { isMobile: boolean }) {
@@ -453,10 +473,10 @@ function Section2({ isMobile }: { isMobile: boolean }) {
           style={reveal.getAnimStyle(0)}
         >
           <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
-            Smile Gallery
+            Why Clear Aligners
           </h3>
           <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10">
-            Our cosmetic dental work
+            Transparent, custom-made, removable
           </p>
         </MaskedCard>
 
@@ -472,16 +492,16 @@ function Section2({ isMobile }: { isMobile: boolean }) {
           style={reveal.getAnimStyle(1)}
         >
           <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10">
-            If you want a gorgeous smile,
+            Wondering if clear aligners fit your smile?
             <br />
-            call us to ask about a smile makeover.
+            Call our Chippewa Falls team to ask.
           </p>
-          <button
-            type="button"
+          <a
+            href={PHONE_HREF}
             className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold z-10 hover:scale-105 transition-transform"
           >
             Call Us
-          </button>
+          </a>
         </MaskedCard>
 
         <MaskedCard
@@ -496,9 +516,9 @@ function Section2({ isMobile }: { isMobile: boolean }) {
           style={reveal.getAnimStyle(2)}
         >
           <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
-            Smile
+            Removable
             <br />
-            makeover
+            &amp; clear
           </h3>
         </MaskedCard>
 
@@ -547,7 +567,7 @@ function Section2({ isMobile }: { isMobile: boolean }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Section 3 - Implant Dentistry                                       */
+/* Section 3 - Virtual Consults                                        */
 /* ------------------------------------------------------------------ */
 
 function ArrowIcon({ className }: { className?: string }) {
@@ -585,11 +605,15 @@ function Section3() {
             style={reveal.getAnimStyle(0)}
           >
             <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-black">
-              Implant
+              Virtual
               <br />
-              Dentistry
+              Consults
             </h2>
-            <p className="text-xs md:text-sm font-semibold text-black">Restore Missing Teeth</p>
+            <p className="text-xs md:text-sm font-semibold text-black">
+              Free &middot; Three simple steps
+              <br />
+              123 W. Willow Street, Chippewa Falls, WI 54729 &middot; {PHONE_DISPLAY}
+            </p>
           </div>
 
           <div
@@ -599,14 +623,14 @@ function Section3() {
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
               <img
                 src={SECTION3_IMG1}
-                alt="Dental implant procedure"
+                alt="Clear aligner tray"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
               <img
                 src={SECTION3_IMG2}
-                alt="Dental restoration"
+                alt="Clear aligner treatment at Willow Street Dental"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -618,22 +642,24 @@ function Section3() {
           >
             <div>
               <p className="text-xs md:text-sm font-semibold text-black mb-2 md:mb-3">
-                Consultation
+                Step 01
               </p>
               <h3 className="text-xl md:text-3xl font-bold text-black leading-6 md:leading-8">
-                Dental
+                Submit
                 <br />
-                Restoration
+                a Photo of
                 <br />
-                Services
+                Your Smile
               </h3>
             </div>
-            <button
-              type="button"
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener"
               className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
             >
               Book Online
-            </button>
+            </a>
           </div>
         </div>
 
@@ -641,16 +667,20 @@ function Section3() {
           className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0"
           style={reveal.getAnimStyle(3)}
         >
-          <img src={SECTION3_BG} alt="Smiling patient" className="w-full h-full object-cover" />
+          <img
+            src={SECTION3_BG}
+            alt="Smiling clear aligner patient in Chippewa Falls, WI"
+            className="w-full h-full object-cover"
+          />
 
           <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
             <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
               <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
-                The Process
+                Tell Us What
                 <br />
-                of Installing
+                You&rsquo;d Like to
                 <br />
-                Implants
+                Change
               </h4>
               <div className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center">
                 <ArrowIcon />
@@ -659,11 +689,11 @@ function Section3() {
 
             <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
               <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
-                Caring
+                We Contact
                 <br />
-                for Dental
+                You to
                 <br />
-                Implants
+                Schedule
               </h4>
               <div className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center">
                 <ArrowIcon className="text-white" />
