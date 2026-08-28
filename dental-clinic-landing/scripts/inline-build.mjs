@@ -64,7 +64,10 @@ html = html
     '<link rel="icon" type="image/svg+xml" href="/favicon.svg" />',
     () =>
       `<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,${Buffer.from(favicon).toString('base64')}" />`,
-  );
+  )
+  // Image preloads earn their keep on the hosted build, but point at paths that
+  // do not exist beside a single file — and the images are already inlined.
+  .replace(/\s*<link rel="preload" as="image"[^>]*\/?>/g, '');
 
 if (cssTag.test(html) || jsTag.test(html) || html.includes('src="/assets/')) {
   throw new Error('Inlining failed — an external asset reference is still present.');

@@ -1,216 +1,34 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import type { CSSProperties, ReactNode, RefObject } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
-/* Willow Street Dental brand assets (from the practice's own media library). */
-const LOGO = `${import.meta.env.BASE_URL}img/logo.png`;
-const DR_CALDER = `${import.meta.env.BASE_URL}img/dr-calder.webp`;
-
-/* Hero mosaic: patient holding a clear aligner tray — direct message match. */
-const HERO_IMAGE = `${import.meta.env.BASE_URL}img/invisalign-smile.webp`;
-/* Section 2 mosaic: wide smile-design frame, enough width to pan across cards. */
-const SECTION2_IMAGE = `${import.meta.env.BASE_URL}img/smile-design.webp`;
-/* Educational: what the treatment actually looks like. */
-const SECTION3_IMG1 = `${import.meta.env.BASE_URL}img/clear-aligners.webp`;
-/* Evaluation: the digital-scan side of the smile-design frame. */
-const SECTION3_IMG2 = `${import.meta.env.BASE_URL}img/smile-design.webp`;
-/* Outcome: a patient smile. */
-const SECTION3_BG = `${import.meta.env.BASE_URL}img/smile-makeover.webp`;
+/* ------------------------------------------------------------------ */
+/* Practice details                                                     */
+/*                                                                      */
+/* NAP is confirmed against willowstreetdental.com. A design comp for   */
+/* this page showed (715) 723-6363 and 209 S. Barstow St; both conflict */
+/* with the live site, so the verified values are used here. If the     */
+/* practice confirms a tracking number or a new address, change these   */
+/* four constants and every reference on the page follows.              */
+/* ------------------------------------------------------------------ */
 
 const PHONE_DISPLAY = '(715) 723-5688';
 const PHONE_HREF = 'tel:+17157235688';
+const ADDRESS_LINE1 = '123 W. Willow Street';
+const ADDRESS_LINE2 = 'Chippewa Falls, WI 54729';
+
+const HOURS = [
+  { days: 'Mon – Thu', time: '8:00am – 5:00pm' },
+  { days: 'Fri – Sun', time: 'Closed' },
+];
+
 const BOOKING_URL = 'https://book.allinone.dental/willow-street';
 const VIRTUAL_CONSULT_URL = 'https://www.willowstreetdental.com/virtual-consult/';
+const GOOGLE_REVIEWS_URL = 'https://www.willowstreetdental.com/';
 
-const featureBars = ['Free Virtual Consultation', 'In Network With Delta Dental', 'Local Chippewa Falls Care'];
-
-const services = [
-  { name: 'Clear\nAligners', num: '01', active: true },
-  { name: 'Dental\nImplants', num: '02', active: false },
-  { name: 'Smile\nMakeovers', num: '03', active: false },
-  { name: 'Crowns &\nFillings', num: null, active: false },
-];
-
-const navLinks = [
-  { label: 'Benefits', href: '#benefits' },
-  { label: 'Process', href: '#process' },
-  { label: 'Our Team', href: '#team' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'FAQ', href: '#faq' },
-];
-
-const benefits = [
-  {
-    title: 'A More Discreet Way\nto Straighten Teeth',
-    body: 'Clear aligners are designed to be virtually invisible when worn, so they tend to blend in with your natural smile. Many patients like that they can work toward their smile goals without the more noticeable look of metal brackets and wires.',
-  },
-  {
-    title: 'Comfortable,\nCustom-Fitted Trays',
-    body: 'Because each set of aligners is custom-made for your teeth, they are designed to fit closely and comfortably. As with any new dental appliance, it can take a little time to adjust to wearing a new set.',
-  },
-  {
-    title: 'Removable for\nEating and Drinking',
-    body: 'Clear aligners can be taken out, so you are not restricted from the foods you enjoy the way you might be with fixed braces. Most patients remove them to eat and to drink anything other than water.',
-  },
-  {
-    title: 'Easier\nOral Hygiene',
-    body: 'Because clear aligners come out, brushing and flossing can be more straightforward than navigating around brackets and wires. Removing your aligners for regular oral care can help you keep up with your normal routine.',
-  },
-  {
-    title: 'A Personalized\nTreatment Plan',
-    body: 'Your clear aligner plan is built around your own teeth and smile goals. Digital scans and imaging are used to map out how your teeth may move over the course of treatment, so your plan is designed specifically for you.',
-  },
-  {
-    title: 'A Convenient Path to\nExploring Your Options',
-    body: 'You do not have to commit to anything to start learning more. A consultation — including a free virtual consultation — gives you a low-pressure way to ask questions and find out whether clear aligners may be a good fit.',
-  },
-];
-
-const whyUs = [
-  {
-    title: 'Local Care in Chippewa Falls',
-    body: 'Willow Street Dental is located at 123 W. Willow Street, Chippewa Falls, WI 54729, offering dental care to patients throughout the local community.',
-  },
-  {
-    title: 'The Dental Team',
-    body: 'Care is led by Dr. Curtis Calder, D.D.S., supported by a team that includes experienced staff such as dental hygienist Gena, who has been part of the team for 16 years.',
-  },
-  {
-    title: 'Doctor Education',
-    body: 'Dr. Calder earned his Doctor of Dental Surgery degree from Creighton University School of Dentistry.',
-  },
-  {
-    title: 'Personalized Recommendations',
-    body: 'Rather than a one-size-fits-all approach, treatment recommendations are based on your own dental exam and digital scans, so any plan discussed with you is specific to your smile and goals.',
-  },
-  {
-    title: 'Communication and Comfort',
-    body: 'Dr. Calder describes his approach as combining modern dental technology with “a personal, down-to-earth approach,” with the goal of helping each patient feel comfortable in the dental chair.',
-  },
-  {
-    title: 'Virtual Consultation Convenience',
-    body: 'For patients who want to start exploring their options before visiting the office, Willow Street Dental offers a free virtual consultation that begins with a photo of your smile.',
-  },
-];
-
-const processSteps = [
-  {
-    num: '01',
-    title: 'Request a\nConsultation',
-    body: 'Request a free virtual consultation from home by submitting a photo of your smile, or call our Chippewa Falls office directly.',
-  },
-  {
-    num: '02',
-    title: 'Discuss Your\nSmile Goals',
-    body: 'Let our team know what you would like to change about your smile. We follow up to schedule your personalized next step.',
-  },
-  {
-    num: '03',
-    title: 'Complete an\nEvaluation',
-    body: 'To determine whether clear aligners may be appropriate, our team completes a comprehensive dental exam along with a digital scan of your teeth.',
-  },
-  {
-    num: '04',
-    title: 'Review Your\nPersonalized Plan',
-    body: 'If clear aligners are a good fit, digital imaging helps map out a step-by-step plan. Your timeline and next steps are discussed with you directly.',
-  },
-];
-
-const concerns = [
-  'Crowded teeth',
-  'Spacing between teeth',
-  'Overbites, underbites, or crossbites',
-  'Minor tooth rotations',
-];
-
-const team: {
-  initials: string;
-  photo: string | null;
-  name: string;
-  body: string;
-  quote: string | null;
-  note: string | null;
-}[] = [
-  {
-    initials: 'CC',
-    photo: DR_CALDER,
-    name: 'Dr. Curtis Calder, D.D.S.',
-    body: 'Dr. Curtis Calder earned his Doctor of Dental Surgery degree from Creighton University School of Dentistry. He offers a full range of dental care at Willow Street Dental — from everyday needs like cleanings, fillings, and crowns to more advanced procedures such as root canal therapy, dental implants, and smile makeovers.',
-    quote:
-      '“My goal is always the same: to help each patient feel confident in their smile and comfortable in the dental chair. My team and I are committed to treating every patient like family.”',
-    note: '[INSERT VERIFIED INFORMATION for any additional credentials, specialty training, or professional memberships]',
-  },
-  {
-    initials: 'G',
-    photo: null,
-    name: 'Gena — Dental Hygienist',
-    body: 'Gena has been part of the Willow Street Dental team for 16 years. She attended the University of Minnesota for dental hygiene and graduated in 1982, bringing years of hands-on experience to every patient visit.',
-    quote: null,
-    note: null,
-  },
-];
-
-const reviews = [
-  {
-    quote: '“…best dental office I’ve ever visited. Doctor is incredibly knowledgeable and gentle…”',
-    name: 'Jason R.',
-  },
-  { quote: '“…amazing experience…exceptional care…”', name: 'Sarah M.' },
-  {
-    quote: '“…exceeded all expectations…best dental care I’ve received…”',
-    name: 'Emily C.',
-  },
-];
-
-const costFactors = [
-  'The complexity of your treatment',
-  'Estimated treatment length',
-  'The type of aligner treatment recommended',
-  'Your existing dental needs',
-  'Your insurance benefits',
-  'Available payment or financing options',
-];
-
-const faqs = [
-  {
-    q: 'What are clear aligners?',
-    a: 'Clear aligners are transparent, custom-made trays that fit over your teeth and are designed to gradually guide them into a straighter position, offering an alternative to traditional metal braces.',
-  },
-  {
-    q: 'Is Invisalign available in Chippewa Falls?',
-    a: 'Many patients searching for Invisalign in Chippewa Falls are really looking for a discreet way to straighten their smile. Willow Street Dental offers clear aligner treatment in Chippewa Falls, WI, and our team can talk with you about your specific options during a consultation.',
-  },
-  {
-    q: 'Am I a candidate for clear aligners?',
-    a: 'Clear aligners may help with mild to moderate concerns such as crowded or spaced teeth and certain bite issues, depending on your evaluation. An in-person or virtual consultation is needed to determine whether clear aligners are right for you.',
-  },
-  {
-    q: 'How long does clear aligner treatment take?',
-    a: 'Treatment length varies by patient. Most patients complete clear aligner treatment in about 6 to 18 months, though your specific timeline will be discussed as part of your evaluation.',
-  },
-  {
-    q: 'Are clear aligners comfortable?',
-    a: 'Clear aligners are custom-made to fit closely over your teeth. As with any orthodontic treatment, you may notice a short adjustment period with each new set. Our team can walk you through what to expect.',
-  },
-  {
-    q: 'Can I remove clear aligners to eat and brush?',
-    a: 'Yes. Clear aligners are removable, so you can take them out to eat, to drink anything other than water, and to brush and floss. Most patients wear their aligners for about 20 to 22 hours a day to stay on track with their plan.',
-  },
-  {
-    q: 'How does the virtual consultation work?',
-    a: 'You submit a photo of your smile and let us know what you would like to change. Our team then follows up to schedule your personalized virtual consultation. This option is free.',
-  },
-  {
-    q: 'How much do clear aligners cost?',
-    a: 'Cost depends on factors like treatment complexity, length, and your individual dental needs. Ask the Willow Street Dental team about current fees, insurance benefits, and available payment options.',
-  },
-];
-
-interface Position {
-  x: number;
-  y: number;
-  sw: number;
-  sh: number;
-}
+const LOGO = `${import.meta.env.BASE_URL}img/logo.png`;
+const DR_CALDER = `${import.meta.env.BASE_URL}img/dr-calder.webp`;
+const HERO_IMAGE = `${import.meta.env.BASE_URL}img/invisalign-smile.webp`;
+const ALIGNER_IMAGE = `${import.meta.env.BASE_URL}img/clear-aligners.webp`;
 
 /* ------------------------------------------------------------------ */
 /* Conversion tracking                                                 */
@@ -224,12 +42,7 @@ declare global {
   }
 }
 
-/**
- * Pushes a GTM-compatible event. No-ops when no tag manager is present, so the
- * page works standalone. Each CTA reports its own type and location, letting
- * phone clicks, consult requests and bookings be counted as separate
- * conversions rather than lumped together.
- */
+/** GTM-compatible push; no-ops when no tag manager is present. */
 function track(event: string, payload: TrackPayload = {}) {
   try {
     window.dataLayer = window.dataLayer || [];
@@ -239,7 +52,7 @@ function track(event: string, payload: TrackPayload = {}) {
   }
 }
 
-/** Classifies a CTA by destination so reporting stays consistent everywhere. */
+/** Classifies a CTA by destination so conversions stay countable separately. */
 function ctaKind(href: string) {
   if (href.startsWith('tel:')) return 'phone_click';
   if (href.includes('book.allinone')) return 'booking_click';
@@ -247,29 +60,22 @@ function ctaKind(href: string) {
   return 'cta_click';
 }
 
-/**
- * Labels a CTA for reporting. Clicks are captured by one delegated listener
- * (see useConversionTracking), so these attributes only enrich the event —
- * every link stays tracked even without them.
- */
+/** Labels a CTA for reporting; clicks are captured by the delegated listener. */
 function useCtaProps(location: string) {
   return useCallback(
-    (_href: string, label: string) => ({
-      'data-cta': label,
-      'data-cta-location': location,
-    }),
+    (label: string) => ({ 'data-cta': label, 'data-cta-location': location }),
     [location],
   );
 }
 
-/** Delegated CTA clicks plus scroll-depth milestones, each reported once. */
+/** One delegated click listener plus scroll-depth milestones. */
 function useConversionTracking() {
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const link = (e.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
       if (!link) return;
       const href = link.getAttribute('href') || '';
-      if (href.startsWith('#')) return; // in-page nav, not a conversion
+      if (href.startsWith('#')) return;
       track(ctaKind(href), {
         cta_label: link.dataset.cta || link.textContent?.trim().slice(0, 60) || 'unlabelled',
         cta_location: link.dataset.ctaLocation || link.closest('section')?.id || 'page',
@@ -299,714 +105,485 @@ function useConversionTracking() {
   }, []);
 }
 
-/* ------------------------------------------------------------------ */
-/* Hooks                                                               */
-/* ------------------------------------------------------------------ */
-
-function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(
-    () => window.matchMedia('(max-width: 767px)').matches,
-  );
+/** Fades a section in once it scrolls into view. */
+function useReveal(threshold = 0.12) {
+  const ref = useRef<HTMLElement | null>(null);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    const mql = window.matchMedia('(max-width: 767px)');
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
-  }, []);
-
-  return isMobile;
-}
-
-function useMaskPositions(
-  sectionRef: RefObject<HTMLElement | null>,
-  cardRefs: RefObject<(HTMLDivElement | null)[]>,
-  count: number,
-): Position[] {
-  const [positions, setPositions] = useState<Position[]>(() =>
-    Array.from({ length: count }, () => ({ x: 0, y: 0, sw: 0, sh: 0 })),
-  );
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const compute = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const sw = sectionRect.width;
-      const sh = sectionRect.height;
-
-      setPositions(
-        cardRefs.current.map((card) => {
-          if (!card) return { x: 0, y: 0, sw, sh };
-          const cardRect = card.getBoundingClientRect();
-          return {
-            x: cardRect.left - sectionRect.left,
-            y: cardRect.top - sectionRect.top,
-            sw,
-            sh,
-          };
-        }),
-      );
-    };
-
-    compute();
-
-    const ro = new ResizeObserver(compute);
-    ro.observe(section);
-    return () => ro.disconnect();
-  }, [sectionRef, cardRefs, count]);
-
-  return positions;
-}
-
-function useImageWidth(src: string, sectionHeight: number): number {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (!src || !sectionHeight) return;
-
-    const img = new Image();
-    img.onload = () => {
-      setWidth(img.naturalWidth * (sectionHeight / img.naturalHeight));
-    };
-    img.src = src;
-  }, [src, sectionHeight]);
-
-  return width;
-}
-
-function useStaggeredReveal(count: number, threshold = 0.15) {
-  const containerRef = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
+    const el = ref.current;
     if (!el) return;
-
-    const observer = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
+            setShown(true);
+            io.disconnect();
           }
         }
       },
       { threshold },
     );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [threshold]);
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold, count]);
+  const style = (i = 0): CSSProperties => ({
+    opacity: shown ? 1 : 0,
+    transform: shown ? 'translateY(0)' : 'translateY(16px)',
+    transition: `opacity .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms, transform .5s cubic-bezier(.16,1,.3,1) ${i * 70}ms`,
+  });
 
-  const getAnimStyle = useCallback(
-    (index: number): CSSProperties => ({
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'translateY(0)' : 'translateY(24px)',
-      transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms`,
-    }),
-    [visible],
-  );
-
-  return { containerRef, getAnimStyle };
+  return { ref, style };
 }
 
 /* ------------------------------------------------------------------ */
-/* MaskedCard                                                          */
+/* Icons (inline, no icon library)                                     */
 /* ------------------------------------------------------------------ */
 
-interface MaskedCardProps {
-  bgImage: string;
-  position: Position;
-  imageWidth: number;
-  focalX: number;
-  className?: string;
-  children?: ReactNode;
-  cardRef?: (el: HTMLDivElement | null) => void;
-  style?: CSSProperties;
-}
+type IconProps = { className?: string };
+const S = (p: IconProps) => ({
+  className: p.className ?? 'w-6 h-6',
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.6,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+});
 
-function MaskedCard({
-  bgImage,
-  position,
-  imageWidth,
-  focalX,
-  className,
+const IconCheck = (p: IconProps) => (
+  <svg {...S(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8.5 12.5l2.5 2.5 4.5-5" />
+  </svg>
+);
+const IconPhone = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" />
+  </svg>
+);
+const IconPin = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M12 21c-4.5-3-8-6.5-8-11a8 8 0 0 1 16 0c0 4.5-3.5 8-8 11z" />
+    <circle cx="12" cy="10" r="2.5" />
+  </svg>
+);
+const IconUsers = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="3.5" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.2a4 4 0 0 1 0 7.6" />
+  </svg>
+);
+const IconMonitor = (p: IconProps) => (
+  <svg {...S(p)}>
+    <rect x="2.5" y="4" width="19" height="13" rx="2" />
+    <path d="M8 21h8M12 17v4" />
+  </svg>
+);
+const IconVideo = (p: IconProps) => (
+  <svg {...S(p)}>
+    <rect x="2" y="6" width="13" height="12" rx="2" />
+    <path d="M15 10.5l6-3.5v10l-6-3.5" />
+  </svg>
+);
+const IconEye = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12z" />
+    <circle cx="12" cy="12" r="2.6" />
+  </svg>
+);
+const IconSwap = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M4 8h13l-3-3M20 16H7l3 3" />
+  </svg>
+);
+const IconSparkle = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" />
+    <path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z" />
+  </svg>
+);
+const IconClipboard = (p: IconProps) => (
+  <svg {...S(p)}>
+    <rect x="5" y="4" width="14" height="17" rx="2" />
+    <path d="M9 4V3h6v1M9 10h6M9 14h4" />
+  </svg>
+);
+const IconCalendar = (p: IconProps) => (
+  <svg {...S(p)}>
+    <rect x="3" y="5" width="18" height="16" rx="2" />
+    <path d="M16 3v4M8 3v4M3 10h18" />
+  </svg>
+);
+const IconSmile = (p: IconProps) => (
+  <svg {...S(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9.5h.01M15 9.5h.01" />
+  </svg>
+);
+const IconUpload = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" />
+    <path d="M12 16V4M8 8l4-4 4 4" />
+  </svg>
+);
+const IconChat = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z" />
+  </svg>
+);
+const IconTooth = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M12 3c2 0 2.5 1 4.5 1S20 3.6 20 6.5c0 3-1.2 4-1.8 6.4-.5 2-.6 5.1-2.2 5.1s-1.4-3.6-4-3.6-2.4 3.6-4 3.6-1.7-3.1-2.2-5.1C5.2 10.5 4 9.5 4 6.5 4 3.6 5.5 4 7.5 4S10 3 12 3z" />
+  </svg>
+);
+const IconClock = (p: IconProps) => (
+  <svg {...S(p)}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v5.5l3.5 2" />
+  </svg>
+);
+const IconHeart = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M20.8 5.6a5.4 5.4 0 0 0-7.7 0l-1.1 1.1-1.1-1.1a5.4 5.4 0 1 0-7.7 7.7L12 21l8.8-7.7a5.4 5.4 0 0 0 0-7.7z" />
+  </svg>
+);
+const IconTag = (p: IconProps) => (
+  <svg {...S(p)}>
+    <path d="M20.6 13.4L12 22l-9-9V4h9l8.6 8.6a1.4 1.4 0 0 1 0 2z" />
+    <circle cx="7.5" cy="8.5" r="1.4" />
+  </svg>
+);
+const IconMobile = (p: IconProps) => (
+  <svg {...S(p)}>
+    <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+    <path d="M11 18.5h2" />
+  </svg>
+);
+const Arrow = ({ className = 'w-4 h-4' }: IconProps) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h13M13 6l6 6-6 6" />
+  </svg>
+);
+const Stars = ({ className = '' }: IconProps) => (
+  <div className={`flex gap-0.5 text-amber-400 ${className}`} aria-label="5 out of 5 stars">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M10 1.6l2.5 5.1 5.6.8-4 4 .9 5.6L10 14.4l-5 2.7.9-5.6-4-4 5.6-.8L10 1.6z" />
+      </svg>
+    ))}
+  </div>
+);
+const GoogleG = ({ className = 'w-7 h-7' }: IconProps) => (
+  <svg className={className} viewBox="0 0 48 48" aria-hidden="true">
+    <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-2.8-.4-4H24v7.3h12.1c-.2 2-1.6 5-4.5 7l6.9 5.3c4.1-3.8 6.6-9.4 6.6-15.6z" />
+    <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-6.9-5.3c-1.8 1.3-4.3 2.2-7.6 2.2-5.8 0-10.7-3.8-12.5-9.700l-7.1 5.5C8.1 40.9 15.4 46 24 46z" />
+    <path fill="#FBBC05" d="M11.5 27.9c-.5-1.4-.7-2.9-.7-4.4s.3-3 .7-4.4l-7.1-5.5A22 22 0 0 0 2 23.5c0 3.5.8 6.9 2.4 9.9l7.1-5.5z" />
+    <path fill="#EA4335" d="M24 10.2c3.2 0 5.4 1.4 6.7 2.6l6.1-6C33.1 3.4 29.1 1 24 1 15.4 1 8.1 6.1 4.4 13.6l7.1 5.5C13.3 14 18.2 10.2 24 10.2z" />
+  </svg>
+);
+
+/* ------------------------------------------------------------------ */
+/* Content (verified against willowstreetdental.com)                    */
+/* ------------------------------------------------------------------ */
+
+const navLinks = [
+  { label: 'Why Aligners', href: '#benefits' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'The Process', href: '#journey' },
+  { label: 'Our Dentist', href: '#doctor' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const heroTrust = [
+  'Chippewa Falls Dental Team',
+  'Virtual Consultation Available',
+  'Personalized Clear Aligner Care',
+];
+
+const trustBar = [
+  { Icon: IconPin, title: 'Local Care in', sub: 'Chippewa Falls, WI' },
+  { Icon: IconUsers, title: 'Patient-Focused,', sub: 'Personalized Care' },
+  { Icon: IconMonitor, title: 'Modern Technology', sub: 'for Better Results' },
+  { Icon: IconVideo, title: 'Virtual Consultation', sub: 'from the Comfort of Home' },
+];
+
+const benefits = [
+  { Icon: IconEye, title: 'Discreet Appearance', body: 'Clear aligners are virtually invisible, so you can smile with confidence.' },
+  { Icon: IconSwap, title: 'Removable & Flexible', body: 'Take them out to eat, brush, floss, and enjoy special occasions.' },
+  { Icon: IconSparkle, title: 'Easier Oral Hygiene', body: 'Brush and floss normally to help maintain healthy teeth and gums.' },
+  { Icon: IconClipboard, title: 'Personalized Treatment', body: 'Your plan is customized to your smile goals and lifestyle.' },
+  { Icon: IconCalendar, title: 'Convenient Process', body: 'Start with a virtual consultation — quick, easy, and stress-free.' },
+  { Icon: IconSmile, title: 'Confidence in Your Smile', body: 'Straighter teeth can enhance your smile and your confidence.' },
+];
+
+/* Excerpts exactly as published on the Willow Street Dental website. None of
+   these mention clear aligners, so none is presented as an aligner review. */
+const reviews = [
+  { quote: '…best dental office I’ve ever visited. Doctor is incredibly knowledgeable and gentle…', name: 'Jason R.' },
+  { quote: '…amazing experience…exceptional care…', name: 'Sarah M.' },
+  { quote: '…exceeded all expectations…best dental care I’ve received…', name: 'Emily C.' },
+];
+
+const journey = [
+  { Icon: IconUpload, n: '1', title: 'Request\na Consultation', body: 'Start with a virtual consultation by sharing a photo of your smile and telling us your goals.' },
+  { Icon: IconChat, n: '2', title: 'Discuss\nYour Goals', body: 'We’ll talk with you about your concerns and determine if clear aligners may be right for you.' },
+  { Icon: IconTooth, n: '3', title: 'Complete\nan Evaluation', body: 'We’ll complete a thorough exam and digital scan to evaluate your smile and create your plan.' },
+  { Icon: IconSparkle, n: '4', title: 'Review Your\nPersonalized Plan', body: 'We’ll review your treatment plan, timeline, and next steps so you can make an informed decision.' },
+];
+
+const consultSteps = [
+  'Share a clear photo of your smile',
+  'Tell us what you’d like to change',
+  'Our team will follow up with your next steps',
+];
+
+const miniFaqs = [
+  { Icon: IconClock, title: 'How Long Does It Take?', body: 'Treatment time varies. Many patients complete clear aligner treatment in 6–18 months.' },
+  { Icon: IconHeart, title: 'Comfortable Treatment', body: 'Aligners are smooth and custom-made to fit closely, with no brackets or wires.' },
+  { Icon: IconSmile, title: 'Eat What You Love', body: 'Remove your aligners to eat and enjoy all your favorite foods.' },
+  { Icon: IconTag, title: 'Questions About Cost?', body: 'We’re in network with Delta Dental. Ask our team about fees and payment options.' },
+];
+
+/* ------------------------------------------------------------------ */
+/* Shared UI                                                            */
+/* ------------------------------------------------------------------ */
+
+const SHELL = 'mx-auto w-full max-w-6xl px-5 md:px-8';
+
+function BtnPrimary({
+  href,
   children,
-  cardRef,
-  style,
-}: MaskedCardProps) {
-  const overflow = imageWidth > position.sw ? imageWidth - position.sw : 0;
-  const focalOffset = overflow * focalX;
-
-  const bgStyle: CSSProperties = {
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: `auto ${position.sh}px`,
-    backgroundPosition: `-${position.x + focalOffset}px -${position.y}px`,
-    backgroundRepeat: 'no-repeat',
-    ...style,
-  };
-
+  sub,
+  className = '',
+  ...rest
+}: {
+  href: string;
+  children: ReactNode;
+  sub?: string;
+  className?: string;
+  [k: string]: unknown;
+}) {
+  const external = href.startsWith('http');
   return (
-    <div ref={cardRef} className={className} style={bgStyle}>
-      {children}
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Splash Screen                                                       */
-/* ------------------------------------------------------------------ */
-
-/**
- * Paid traffic pays for every second the H1, CTA and phone are covered, so the
- * counter runs fast, any interaction skips it, and it shows once per session.
- */
-const SPLASH_COUNT_MS = 650;
-const SPLASH_FADE_MS = 300;
-
-function SplashScreen({ onComplete }: { onComplete: () => void }) {
-  const [count, setCount] = useState(0);
-  const [exiting, setExiting] = useState(false);
-
-  useEffect(() => {
-    const stepMs = SPLASH_COUNT_MS / 100;
-    let step = 0;
-    const interval = setInterval(() => {
-      step += 1;
-      setCount(step);
-      if (step >= 100) {
-        clearInterval(interval);
-        setExiting(true);
-      }
-    }, stepMs);
-
-    // Let an impatient visitor straight through to the offer.
-    const skip = () => setExiting(true);
-    const opts = { passive: true, once: true } as const;
-    window.addEventListener('pointerdown', skip, opts);
-    window.addEventListener('wheel', skip, opts);
-    window.addEventListener('touchstart', skip, opts);
-    window.addEventListener('keydown', skip, opts);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('pointerdown', skip);
-      window.removeEventListener('wheel', skip);
-      window.removeEventListener('touchstart', skip);
-      window.removeEventListener('keydown', skip);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!exiting) return;
-    try {
-      sessionStorage.setItem('wsd_splash_seen', '1');
-    } catch {
-      /* private mode — just show it again next time */
-    }
-    const timeout = setTimeout(onComplete, SPLASH_FADE_MS);
-    return () => clearTimeout(timeout);
-  }, [exiting, onComplete]);
-
-  return (
-    <div
-      aria-hidden="true"
-      className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-300 ${
-        exiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+    <a
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener' : undefined}
+      {...rest}
+      className={`group inline-flex items-center gap-3 rounded-lg bg-brand-600 px-5 py-3.5 text-white shadow-card transition-colors hover:bg-brand-700 ${className}`}
     >
-      <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-black">
-        {count}
+      <span className="flex-1 text-left leading-tight">
+        <span className="flex items-center gap-2 text-[15px] font-semibold">
+          {children}
+          <Arrow className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+        </span>
+        {sub && <span className="mt-0.5 block text-xs font-normal text-brand-100">{sub}</span>}
       </span>
+    </a>
+  );
+}
+
+function BtnOutline({
+  href,
+  children,
+  sub,
+  className = '',
+  ...rest
+}: {
+  href: string;
+  children: ReactNode;
+  sub?: string;
+  className?: string;
+  [k: string]: unknown;
+}) {
+  const external = href.startsWith('http');
+  return (
+    <a
+      href={href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener' : undefined}
+      {...rest}
+      className={`group inline-flex items-center gap-3 rounded-lg border border-brand-200 bg-white px-5 py-3.5 text-brand-700 transition-colors hover:border-brand-500 hover:bg-brand-50 ${className}`}
+    >
+      <IconPhone className="w-5 h-5 shrink-0" />
+      <span className="flex-1 text-left leading-tight">
+        <span className="flex items-center gap-2 text-[15px] font-semibold">
+          {children}
+          <Arrow className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+        </span>
+        {sub && <span className="mt-0.5 block text-xs font-normal text-muted">{sub}</span>}
+      </span>
+    </a>
+  );
+}
+
+function SectionTitle({ children, className = '' }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`text-center ${className}`}>
+      <h2 className="text-[clamp(1.6rem,3.2vw,2.15rem)] font-bold text-navy-900">{children}</h2>
+      <span className="mx-auto mt-3 block h-[3px] w-12 rounded-full bg-brand-500" />
     </div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Navbar                                                               */
+/* Header                                                              */
 /* ------------------------------------------------------------------ */
 
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+function Header() {
+  const [open, setOpen] = useState(false);
+  const cta = useCtaProps('header');
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [menuOpen]);
+  }, [open]);
 
   return (
-    <>
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-md">
-        <a href="#hero" className="flex flex-col" aria-label="Willow Street Dental, Chippewa Falls">
-          <img
-            src={LOGO}
-            alt="Willow Street Dental"
-            className="h-10 md:h-14 w-auto"
-            width={342}
-            height={184}
-          />
-          <span className="text-[8px] md:text-[9px] font-medium leading-none mt-0.5 md:mt-1">
-            chippewa falls, wi
-          </span>
+    <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
+      <div className={`${SHELL} flex items-center justify-between gap-4 py-3`}>
+        <a href="#top" className="shrink-0" aria-label="Willow Street Dental, Chippewa Falls">
+          <img src={LOGO} alt="Willow Street Dental" width={342} height={184} className="h-9 w-auto md:h-11" />
         </a>
 
-        <div className="hidden md:flex items-center gap-6">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-medium text-ink transition-colors hover:text-brand-600">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
           <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener"
-            className="px-6 py-3 bg-white rounded-full border border-black text-sm font-semibold hover:bg-black hover:text-white transition-colors duration-200"
+            href={PHONE_HREF}
+            {...cta('Header phone')}
+            className="hidden items-center gap-2 text-sm font-semibold text-brand-700 md:inline-flex"
           >
-            Book Online
-          </a>
-          <a href={PHONE_HREF} className="text-sm font-semibold text-black">
+            <IconPhone className="w-4 h-4" />
             {PHONE_DISPLAY}
           </a>
-        </div>
-
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden w-10 h-10 flex items-center justify-center relative"
-        >
-          <span
-            className={`absolute h-0.5 w-6 bg-black rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              menuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
-            }`}
-          />
-          <span
-            className={`absolute h-0.5 w-6 bg-black rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              menuOpen ? 'opacity-0 scale-x-0' : 'opacity-100 scale-x-100'
-            }`}
-          />
-          <span
-            className={`absolute h-0.5 w-6 bg-black rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              menuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
-            }`}
-          />
-        </button>
-      </nav>
-
-      <div
-        className="md:hidden fixed inset-0 z-40"
-        style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
-      >
-        <div
-          onClick={() => setMenuOpen(false)}
-          className={`absolute inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-500 ${
-            menuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-        <div
-          className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-            menuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
-          <div className="flex flex-col justify-center h-full px-8 gap-1">
-            {navLinks.map((link, i) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                style={{ transitionDelay: menuOpen ? `${100 + i * 60}ms` : '0ms' }}
-                className={`text-4xl font-bold text-black hover:text-neutral-500 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-                  menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-
-            <div
-              style={{ transitionDelay: menuOpen ? '450ms' : '0ms' }}
-              className={`mt-8 pt-8 border-t border-neutral-200 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-                menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-              }`}
-            >
-              <a href={PHONE_HREF} className="block text-sm font-semibold text-black mb-4">
-                {PHONE_DISPLAY} &middot; Mon&ndash;Thu, 8am&ndash;5pm
-              </a>
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener"
-                className="block text-center w-full px-6 py-4 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
-              >
-                Book Appointment
-              </a>
-            </div>
-          </div>
+          <a
+            href={VIRTUAL_CONSULT_URL}
+            target="_blank"
+            rel="noopener"
+            {...cta('Header Request Consultation')}
+            className="hidden rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-700 sm:inline-block"
+          >
+            Request Consultation
+          </a>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="relative flex h-10 w-10 items-center justify-center lg:hidden"
+          >
+            <span className={`absolute h-0.5 w-6 rounded bg-navy-900 transition-all duration-300 ${open ? 'rotate-45' : '-translate-y-1.5'}`} />
+            <span className={`absolute h-0.5 w-6 rounded bg-navy-900 transition-all duration-300 ${open ? 'opacity-0' : 'opacity-100'}`} />
+            <span className={`absolute h-0.5 w-6 rounded bg-navy-900 transition-all duration-300 ${open ? '-rotate-45' : 'translate-y-1.5'}`} />
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Mobile menu */}
+      <div className={`lg:hidden ${open ? 'block' : 'hidden'} border-t border-slate-100 bg-white`}>
+        <nav className={`${SHELL} flex flex-col gap-1 py-4`} aria-label="Mobile">
+          {navLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-2 py-3 text-base font-semibold text-ink hover:bg-brand-50 hover:text-brand-700"
+            >
+              {l.label}
+            </a>
+          ))}
+          <div className="mt-3 grid gap-2">
+            <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Mobile menu consult')} className="justify-center">
+              Request a Virtual Consultation
+            </BtnPrimary>
+            <BtnOutline href={PHONE_HREF} {...cta('Mobile menu call')} className="justify-center">
+              Call {PHONE_DISPLAY}
+            </BtnOutline>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Section 1 - Hero                                                    */
+/* Hero                                                                */
 /* ------------------------------------------------------------------ */
 
-function Section1({ isMobile }: { isMobile: boolean }) {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const reveal = useStaggeredReveal(4);
-  const positions = useMaskPositions(sectionRef, cardRefs, 4);
-  const imageWidth = useImageWidth(HERO_IMAGE, positions[0].sh);
-  const focalX = isMobile ? 0.7 : 0.8;
-  const heroCta = useCtaProps('hero');
+function Hero() {
+  const cta = useCtaProps('hero');
 
   return (
-    <section
-      id="hero"
-      ref={(el) => {
-        sectionRef.current = el;
-        reveal.containerRef.current = el;
-      }}
-      className="h-screen w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-    >
-      {featureBars.map((label, i) => (
-        <MaskedCard
-          key={label}
-          cardRef={(el) => {
-            cardRefs.current[i] = el;
-          }}
-          bgImage={HERO_IMAGE}
-          position={positions[i]}
-          imageWidth={imageWidth}
-          focalX={focalX}
-          className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
-          style={reveal.getAnimStyle(i)}
-        >
-          <span className="flex items-center justify-center h-full text-black text-lg md:text-3xl font-bold text-center relative z-10">
-            {label}
-          </span>
-        </MaskedCard>
-      ))}
+    <section id="top" className="relative overflow-hidden bg-white">
+      <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+        <div className={`${SHELL} lg:ml-auto lg:mr-0 lg:max-w-[700px] py-10 md:py-16 lg:py-20`}>
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-600">
+            Clear Aligners in Chippewa Falls
+          </p>
 
-      <MaskedCard
-        cardRef={(el) => {
-          cardRefs.current[3] = el;
-        }}
-        bgImage={HERO_IMAGE}
-        position={positions[3]}
-        imageWidth={imageWidth}
-        focalX={focalX}
-        className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
-        style={reveal.getAnimStyle(3)}
-      >
-        <p className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
-          Modern dental technology with a personal,
-          <br />
-          down-to-earth approach
-        </p>
-
-        <div className="absolute bottom-5 left-3 right-3 md:bottom-8 md:left-4 md:right-8 z-10">
-          <h1 className="text-black">
-            <span className="block text-xs md:text-sm font-semibold mb-1 md:mb-2">
-              Invisalign &amp; Clear Aligners in Chippewa Falls, WI
-            </span>
-            <span className="block text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
-              Clear
-              <br />
-              Aligners
+          <h1 className="mt-4 text-[clamp(2rem,4.6vw,3.05rem)] font-bold leading-[1.14] text-navy-900">
+            Explore a Straighter Smile with Clear Aligners in{' '}
+            <span className="text-brand-600 underline decoration-brand-400 decoration-[3px] underline-offset-[6px]">
+              Chippewa&nbsp;Falls
             </span>
           </h1>
 
-          <div className="mt-4 md:mt-6 flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
-            <div className="flex flex-wrap gap-1.5 md:gap-2">
-              <a
-                href={VIRTUAL_CONSULT_URL}
-                target="_blank"
-                rel="noopener"
-                {...heroCta(VIRTUAL_CONSULT_URL, 'Request a Virtual Consultation')}
-                className="px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
-              >
-                Request a Virtual Consultation
-              </a>
-              <a
-                href={PHONE_HREF}
-                {...heroCta(PHONE_HREF, 'Call Willow Street Dental')}
-                className="px-5 py-3 md:px-8 md:py-5 bg-white/90 backdrop-blur-md rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-              >
-                Call {PHONE_DISPLAY}
-              </a>
-            </div>
-            <p className="text-black text-xs md:text-sm font-semibold md:ml-2">
-              Free — starts with a photo of your smile.
-            </p>
+          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted md:text-base">
+            A discreet, comfortable way to straighten your teeth — without metal braces. Start with a
+            virtual consultation and discover if clear aligners are right for you.
+          </p>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+            <BtnPrimary
+              href={VIRTUAL_CONSULT_URL}
+              sub="Start with a photo of your smile"
+              {...cta('Hero — Request a Virtual Consultation')}
+            >
+              Request a Virtual Consultation
+            </BtnPrimary>
+            <BtnOutline href={PHONE_HREF} sub={PHONE_DISPLAY} {...cta('Hero — Call Willow Street Dental')}>
+              Call Willow Street Dental
+            </BtnOutline>
           </div>
-        </div>
-      </MaskedCard>
-    </section>
-  );
-}
 
-/* ------------------------------------------------------------------ */
-/* Section 2 - Why Clear Aligners                                      */
-/* ------------------------------------------------------------------ */
-
-function Section2({ isMobile }: { isMobile: boolean }) {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const reveal = useStaggeredReveal(4);
-  const positions = useMaskPositions(sectionRef, cardRefs, 4);
-  const imageWidth = useImageWidth(SECTION2_IMAGE, positions[0].sh);
-  // Tuned for this frame so the patient's face lands in view at both widths.
-  const focalX = isMobile ? 0.85 : 0.8;
-
-  return (
-    <section
-      id="aligners"
-      ref={(el) => {
-        sectionRef.current = el;
-        reveal.containerRef.current = el;
-      }}
-      className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-    >
-      <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto_auto] md:grid-rows-[1fr_1fr_0.8fr] gap-1.5 md:gap-2">
-        <MaskedCard
-          cardRef={(el) => {
-            cardRefs.current[0] = el;
-          }}
-          bgImage={SECTION2_IMAGE}
-          position={positions[0]}
-          imageWidth={imageWidth}
-          focalX={focalX}
-          className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
-          style={reveal.getAnimStyle(0)}
-        >
-          <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
-            Why Clear Aligners
-          </h3>
-          <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10">
-            Transparent, custom-made, removable
-          </p>
-        </MaskedCard>
-
-        <MaskedCard
-          cardRef={(el) => {
-            cardRefs.current[1] = el;
-          }}
-          bgImage={SECTION2_IMAGE}
-          position={positions[1]}
-          imageWidth={imageWidth}
-          focalX={focalX}
-          className="md:row-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
-          style={reveal.getAnimStyle(1)}
-        >
-          <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10">
-            Wondering if clear aligners fit your smile?
-            <br />
-            Call our Chippewa Falls team to ask.
-          </p>
-          <a
-            href={PHONE_HREF}
-            className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold z-10 hover:scale-105 transition-transform"
-          >
-            Call Us
-          </a>
-        </MaskedCard>
-
-        <MaskedCard
-          cardRef={(el) => {
-            cardRefs.current[2] = el;
-          }}
-          bgImage={SECTION2_IMAGE}
-          position={positions[2]}
-          imageWidth={imageWidth}
-          focalX={focalX}
-          className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
-          style={reveal.getAnimStyle(2)}
-        >
-          <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
-            Removable
-            <br />
-            &amp; clear
-          </h3>
-        </MaskedCard>
-
-        <MaskedCard
-          cardRef={(el) => {
-            cardRefs.current[3] = el;
-          }}
-          bgImage={SECTION2_IMAGE}
-          position={positions[3]}
-          imageWidth={imageWidth}
-          focalX={focalX}
-          className="col-span-1 md:col-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
-          style={reveal.getAnimStyle(3)}
-        >
-          <div className="absolute inset-0 z-10 flex flex-wrap md:flex-nowrap gap-1.5 md:gap-2 p-2 md:p-3">
-            {services.map((svc) => (
-              <div
-                key={svc.name}
-                className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                  svc.active ? 'bg-white/90 backdrop-blur-md' : 'bg-white/20 backdrop-blur-xl'
-                }`}
-              >
-                <h3
-                  className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line ${
-                    svc.active ? 'text-black' : 'text-white'
-                  }`}
-                >
-                  {svc.name}
-                </h3>
-                {svc.num && (
-                  <span
-                    className={`self-end w-8 h-8 md:w-12 md:h-12 rounded-full border flex items-center justify-center text-xs md:text-sm font-semibold ${
-                      svc.active ? 'border-black text-black' : 'border-white text-white'
-                    }`}
-                  >
-                    {svc.num}
-                  </span>
-                )}
-              </div>
+          <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+            {heroTrust.map((t) => (
+              <li key={t} className="flex items-center gap-2 text-[13px] font-medium text-ink">
+                <IconCheck className="w-4 h-4 shrink-0 text-brand-500" />
+                {t}
+              </li>
             ))}
-          </div>
-        </MaskedCard>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Section 3 - Virtual Consults                                        */
-/* ------------------------------------------------------------------ */
-
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      className={`rotate-[-45deg] ${className ?? ''}`}
-    >
-      <path
-        d="M1 7h12m0 0L8 2m5 5L8 12"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function Section3() {
-  const reveal = useStaggeredReveal(4);
-
-  return (
-    <section
-      id="consult"
-      ref={reveal.containerRef}
-      className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-    >
-      <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-        <div className="flex flex-col gap-1.5 md:gap-2">
-          <div
-            className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-7 flex flex-col justify-between flex-[1.2] min-h-[180px] md:min-h-0"
-            style={reveal.getAnimStyle(0)}
-          >
-            <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-black">
-              Virtual
-              <br />
-              Consults
-            </h2>
-            <p className="text-xs md:text-sm font-semibold text-black">
-              Virtual clear aligner consultation in Chippewa Falls &middot; Free
-              <br />
-              123 W. Willow Street, Chippewa Falls, WI 54729 &middot; {PHONE_DISPLAY}
-            </p>
-          </div>
-
-          <div
-            className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0"
-            style={reveal.getAnimStyle(1)}
-          >
-            <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-              <img
-                src={SECTION3_IMG1}
-                alt="Clear aligner tray"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-              <img
-                src={SECTION3_IMG2}
-                alt="Digital scan used to plan clear aligner treatment"
-                className="w-full h-full object-cover object-left"
-              />
-            </div>
-          </div>
-
-          <div
-            className="rounded-xl md:rounded-2xl bg-zinc-200 p-5 md:p-7 flex items-end justify-between flex-[0.8] min-h-[160px] md:min-h-0"
-            style={reveal.getAnimStyle(2)}
-          >
-            <div>
-              <p className="text-xs md:text-sm font-semibold text-black mb-2 md:mb-3">
-                Step 01
-              </p>
-              <h3 className="text-xl md:text-3xl font-bold text-black leading-6 md:leading-8">
-                Submit
-                <br />
-                a Photo of
-                <br />
-                Your Smile
-              </h3>
-            </div>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener"
-              className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-            >
-              Book Online
-            </a>
-          </div>
+          </ul>
         </div>
 
-        <div
-          className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0"
-          style={reveal.getAnimStyle(3)}
-        >
+        <div className="relative min-h-[280px] sm:min-h-[380px] lg:min-h-[560px]">
           <img
-            src={SECTION3_BG}
-            alt="Smiling clear aligner patient in Chippewa Falls, WI"
-            className="w-full h-full object-cover"
+            src={HERO_IMAGE}
+            alt="Patient in Chippewa Falls holding a clear aligner tray"
+            className="absolute inset-0 h-full w-full object-cover"
+            fetchPriority="high"
           />
-
-          <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
-            <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
-              <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
-                Tell Us What
-                <br />
-                You&rsquo;d Like to
-                <br />
-                Change
-              </h4>
-              <div className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center">
-                <ArrowIcon />
-              </div>
-            </div>
-
-            <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
-              <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
-                We Contact
-                <br />
-                You to
-                <br />
-                Schedule
-              </h4>
-              <div className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center">
-                <ArrowIcon className="text-white" />
-              </div>
+          {/* Review badge: numbers stay blank until the practice confirms them. */}
+          <div className="absolute bottom-4 right-4 flex items-center gap-3 rounded-xl bg-white/95 px-4 py-3 shadow-lift backdrop-blur md:bottom-6 md:right-6">
+            <GoogleG />
+            <div className="leading-tight">
+              <p className="text-[11px] font-medium text-muted">
+                [INSERT VERIFIED REVIEW COUNT]
+              </p>
+              <p className="text-[13px] font-bold text-navy-900">Google Reviews</p>
+              <Stars className="mt-0.5" />
             </div>
           </div>
         </div>
@@ -1016,205 +593,28 @@ function Section3() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Shared content-section primitives                                    */
+/* Trust bar                                                           */
 /* ------------------------------------------------------------------ */
 
-const SECTION_SHELL = 'w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-1.5 md:pb-2';
-const CARD = 'rounded-xl md:rounded-2xl overflow-hidden';
-
-/**
- * One CTA style reused at every conversion moment, so the page has a single
- * hierarchy: white pill = primary (consultation), glass pill = secondary (call).
- */
-function CtaBand({
-  heading,
-  sub,
-  primaryLabel,
-  primaryHref = VIRTUAL_CONSULT_URL,
-  showCall = true,
-  location,
-}: {
-  heading: string;
-  sub?: string;
-  primaryLabel: string;
-  primaryHref?: string;
-  showCall?: boolean;
-  location: string;
-}) {
-  const reveal = useStaggeredReveal(1);
-  const cta = useCtaProps(location);
-
+function TrustBar() {
   return (
-    <section className={`${SECTION_SHELL}`} ref={reveal.containerRef}>
-      <div
-        className={`${CARD} bg-black p-5 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8`}
-        style={reveal.getAnimStyle(0)}
-      >
-        <div>
-          <p className="text-white text-lg md:text-2xl font-bold leading-tight">{heading}</p>
-          {sub && (
-            <p className="text-white/70 text-xs md:text-sm font-medium leading-4 md:leading-5 mt-1.5">
-              {sub}
-            </p>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-1.5 md:gap-2 shrink-0">
-          <a
-            href={primaryHref}
-            target={primaryHref.startsWith('http') ? '_blank' : undefined}
-            rel={primaryHref.startsWith('http') ? 'noopener' : undefined}
-            {...cta(primaryHref, primaryLabel)}
-            className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-          >
-            {primaryLabel}
-          </a>
-          {showCall && (
-            <a
-              href={PHONE_HREF}
-              {...cta(PHONE_HREF, 'Call the Office')}
-              className="px-5 py-3 md:px-8 md:py-5 bg-white/20 backdrop-blur-xl rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
-            >
-              Call the Office
-            </a>
-          )}
+    <section className="border-t border-slate-100 bg-white py-6 md:py-8">
+      <div className={SHELL}>
+        <div className="grid divide-y divide-slate-100 rounded-xl border border-slate-100 bg-white shadow-card sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+          {trustBar.map(({ Icon, title, sub }) => (
+            <div key={title} className="flex items-center gap-3 px-5 py-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                <Icon className="w-5 h-5" />
+              </span>
+              <p className="text-[13px] font-semibold leading-tight text-navy-900">
+                {title}
+                <span className="block font-normal text-muted">{sub}</span>
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-/** Persistent one-thumb conversion path on mobile, where most Ads traffic lands. */
-function StickyMobileCta() {
-  const [shown, setShown] = useState(false);
-  const cta = useCtaProps('sticky_mobile');
-
-  useEffect(() => {
-    const onScroll = () => setShown(window.scrollY > window.innerHeight * 0.8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  return (
-    <div
-      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 px-3 pb-3 pt-2 bg-white/80 backdrop-blur-md border-t border-neutral-200 flex gap-2 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-        shown ? 'translate-y-0' : 'translate-y-full'
-      }`}
-    >
-      <a
-        href={VIRTUAL_CONSULT_URL}
-        target="_blank"
-        rel="noopener"
-        {...cta(VIRTUAL_CONSULT_URL, 'Request Consultation')}
-        className="flex-1 text-center px-5 py-4 bg-black rounded-full text-white text-sm font-semibold"
-      >
-        Request Consultation
-      </a>
-      <a
-        href={PHONE_HREF}
-        aria-label={`Call Willow Street Dental at ${PHONE_DISPLAY}`}
-        {...cta(PHONE_HREF, 'Sticky Call')}
-        className="shrink-0 w-14 h-14 rounded-full border border-black flex items-center justify-center"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-        </svg>
-      </a>
-    </div>
-  );
-}
-
-/**
- * Search-intent bridge: connects the Google query to this page in one glance,
- * and plants an early trust cue long before the doctor section.
- */
-function IntentBridgeSection() {
-  const reveal = useStaggeredReveal(1);
-  const cta = useCtaProps('intent_bridge');
-
-  return (
-    <section id="intent" className={SECTION_SHELL} ref={reveal.containerRef}>
-      <div
-        className={`${CARD} bg-stone-50 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6`}
-        style={reveal.getAnimStyle(0)}
-      >
-        <div className="max-w-3xl">
-          <h2 className="text-black text-[clamp(1.75rem,4.5vw,3.25rem)] font-bold leading-[1.02] tracking-tight mb-3">
-            Looking for Invisalign
-            <br />
-            in Chippewa Falls?
-          </h2>
-          <p className="text-black text-sm md:text-base font-semibold leading-5 md:leading-6">
-            Willow Street Dental offers clear aligner treatment in Chippewa Falls for patients who
-            want a more discreet way to straighten their smile — with care from a local dental team
-            right here on West Willow Street.
-          </p>
-        </div>
-        <a
-          href={VIRTUAL_CONSULT_URL}
-          target="_blank"
-          rel="noopener"
-          {...cta(VIRTUAL_CONSULT_URL, 'Request a Virtual Consultation')}
-          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
-        >
-          Request a Virtual Consultation
-        </a>
-      </div>
-    </section>
-  );
-}
-
-/** Low-pressure entry point for visitors who are interested but uncertain. */
-function NotSureSection() {
-  const reveal = useStaggeredReveal(1);
-
-  return (
-    <section className={SECTION_SHELL} ref={reveal.containerRef}>
-      <div
-        className={`${CARD} bg-zinc-200 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6`}
-        style={reveal.getAnimStyle(0)}
-      >
-        <div className="max-w-2xl">
-          <h2 className="text-black text-[clamp(1.75rem,4vw,3rem)] font-bold leading-[1] tracking-tight mb-3">
-            Not sure if clear aligners
-            <br />
-            are right for you?
-          </h2>
-          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
-            You don’t have to know the answer before contacting the office. A consultation gives you
-            an opportunity to discuss your smile goals and learn whether clear aligner treatment may
-            be appropriate for you.
-          </p>
-        </div>
-        <a
-          href={PHONE_HREF}
-          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
-        >
-          Talk With Our Dental Team
-        </a>
-      </div>
-    </section>
-  );
-}
-
-function SectionHeading({
-  eyebrow,
-  title,
-  style,
-}: {
-  eyebrow: string;
-  title: ReactNode;
-  style?: CSSProperties;
-}) {
-  return (
-    <div className={`${CARD} bg-stone-50 p-5 md:p-10`} style={style}>
-      <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
-        {eyebrow}
-      </span>
-      <h2 className="text-black text-[clamp(2.25rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight">
-        {title}
-      </h2>
-    </div>
   );
 }
 
@@ -1222,296 +622,30 @@ function SectionHeading({
 /* Benefits                                                            */
 /* ------------------------------------------------------------------ */
 
-function BenefitsSection() {
-  const reveal = useStaggeredReveal(benefits.length + 1);
+function Benefits() {
+  const { ref, style } = useReveal();
+  const cta = useCtaProps('after_benefits');
 
   return (
-    <section
-      id="benefits"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="Why Consider Clear Aligners?"
-        title={
-          <>
-            Benefits
-            <br />
-            of aligners
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
+    <section id="benefits" ref={ref} className="bg-brand-50/60 py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>Why Patients Choose Clear Aligners</SectionTitle>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-2">
-        {benefits.map((b, i) => (
-          <div
-            key={b.title}
-            className={`${CARD} bg-zinc-200 p-5 md:p-7 flex flex-col justify-between min-h-[210px] md:min-h-[280px]`}
-            style={reveal.getAnimStyle(i + 1)}
-          >
-            <h3 className="text-black text-xl md:text-2xl font-bold leading-[1.05] whitespace-pre-line mb-4">
-              {b.title}
-            </h3>
-            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
-              {b.body}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Why Willow Street Dental                                            */
-/* ------------------------------------------------------------------ */
-
-function WhyUsSection() {
-  const reveal = useStaggeredReveal(whyUs.length + 2);
-
-  return (
-    <section
-      id="why"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="Why Choose Willow Street Dental for Clear Aligners?"
-        title={
-          <>
-            Local care,
-            <br />
-            personal plans
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-        {whyUs.map((w, i) => (
-          <div
-            key={w.title}
-            className={`${CARD} bg-stone-50 p-5 md:p-7`}
-            style={reveal.getAnimStyle(i + 1)}
-          >
-            <h3 className="text-black text-lg md:text-xl font-bold leading-tight mb-2">
-              {w.title}
-            </h3>
-            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
-              {w.body}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div
-        className={`${CARD} bg-black p-5 md:p-7`}
-        style={reveal.getAnimStyle(whyUs.length + 1)}
-      >
-        <h3 className="text-white text-lg md:text-xl font-bold leading-tight mb-2">
-          What Makes the Practice Different
-        </h3>
-        <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
-          Willow Street Dental offers a full range of dental care under one roof — from routine
-          cleanings to more advanced procedures — with a team that says it is “committed to treating
-          every patient like family.”
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Process                                                             */
-/* ------------------------------------------------------------------ */
-
-function ProcessSection() {
-  const reveal = useStaggeredReveal(processSteps.length + 1);
-
-  return (
-    <section
-      id="process"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="How the Clear Aligner Process Works"
-        title={
-          <>
-            Four
-            <br />
-            simple steps
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-1.5 md:gap-2">
-        {processSteps.map((s, i) => (
-          <div
-            key={s.num}
-            className={`${CARD} bg-zinc-200 p-5 md:p-7 flex flex-col justify-between min-h-[200px] md:min-h-[300px]`}
-            style={reveal.getAnimStyle(i + 1)}
-          >
-            <div>
-              <span className="inline-flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full border border-black text-black text-xs md:text-sm font-semibold mb-4 md:mb-6">
-                {s.num}
-              </span>
-              <h3 className="text-black text-xl md:text-2xl font-bold leading-[1.05] whitespace-pre-line">
-                {s.title}
-              </h3>
+        <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-slate-100 bg-slate-100 shadow-card sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          {benefits.map(({ Icon, title, body }, i) => (
+            <div key={title} style={style(i)} className="flex flex-col items-center bg-white px-4 py-7 text-center">
+              <Icon className="w-9 h-9 text-brand-500" />
+              <h3 className="mt-4 text-sm font-bold leading-snug text-brand-700">{title}</h3>
+              <p className="mt-2 text-[12.5px] leading-relaxed text-muted">{body}</p>
             </div>
-            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 mt-4">
-              {s.body}
-            </p>
-          </div>
-        ))}
-      </div>
-
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Candidacy + Invisalign vs clear aligners                            */
-/* ------------------------------------------------------------------ */
-
-function CandidacySection() {
-  const reveal = useStaggeredReveal(3);
-
-  return (
-    <section
-      id="candidacy"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2`}
-    >
-      <div
-        className={`${CARD} bg-stone-50 p-5 md:p-10 flex flex-col justify-between`}
-        style={reveal.getAnimStyle(0)}
-      >
-        <div>
-          <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
-            Could Clear Aligners Be Right for You?
-          </span>
-          <h2 className="text-black text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight mb-6 md:mb-8">
-            May help
-            <br />
-            with
-          </h2>
-        </div>
-        <ul className="flex flex-col gap-2 md:gap-3">
-          {concerns.map((c) => (
-            <li
-              key={c}
-              className="text-black text-base md:text-xl font-bold border-t border-black/15 pt-2 md:pt-3"
-            >
-              {c}
-            </li>
           ))}
-        </ul>
-      </div>
-
-      <div className="flex flex-col gap-1.5 md:gap-2">
-        <div className={`${CARD} bg-black p-5 md:p-7`} style={reveal.getAnimStyle(1)}>
-          <h3 className="text-white text-lg md:text-2xl font-bold leading-tight mb-2 md:mb-3">
-            A consultation comes first
-          </h3>
-          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
-            Every smile is different, and clear aligners are not appropriate for every situation.
-            Whether clear aligners may work for you depends on an in-person or virtual evaluation
-            with our Chippewa Falls dental team. This page is not a diagnosis — a consultation is
-            the best way to find out where you stand.
-          </p>
         </div>
 
-        <div
-          id="compare"
-          className={`${CARD} bg-zinc-200 p-5 md:p-7 flex-1`}
-          style={reveal.getAnimStyle(2)}
-        >
-          <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-3">
-            What Is the Difference Between Invisalign and Clear Aligners?
-          </span>
-          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 mb-3">
-            “Invisalign” is a well-known brand name within the broader category of clear aligner
-            treatment, which is why many patients search for “Invisalign” even when they are really
-            looking for clear, removable aligners in general. “Clear aligners” is the broader term
-            for this type of treatment.
-          </p>
-          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
-            Willow Street Dental’s Chippewa Falls service is described as clear aligner treatment.
-            If you are interested in a particular brand, including Invisalign, ask our team during
-            your consultation.
-          </p>
+        <div className="mt-8 flex justify-center">
+          <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Benefits — Explore Your Options')}>
+            Explore Your Clear Aligner Options
+          </BtnPrimary>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Team                                                                */
-/* ------------------------------------------------------------------ */
-
-function TeamSection() {
-  const reveal = useStaggeredReveal(team.length + 1);
-
-  return (
-    <section
-      id="team"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="Meet the Willow Street Dental Team"
-        title={
-          <>
-            Your Chippewa Falls
-            <br />
-            dental team
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-        {team.map((m, i) => (
-          <div
-            key={m.name}
-            className={`${CARD} bg-zinc-200 p-5 md:p-7`}
-            style={reveal.getAnimStyle(i + 1)}
-          >
-            {m.photo ? (
-              <img
-                src={m.photo}
-                alt={m.name}
-                loading="lazy"
-                className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover mb-4 md:mb-6"
-              />
-            ) : (
-              <span className="inline-flex items-center justify-center w-20 h-20 md:w-28 md:h-28 rounded-full bg-black text-white text-xl md:text-3xl font-bold mb-4 md:mb-6">
-                {m.initials}
-              </span>
-            )}
-            <h3 className="text-black text-xl md:text-3xl font-bold leading-tight mb-3">
-              {m.name}
-            </h3>
-            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
-              {m.body}
-            </p>
-            {m.quote && (
-              <p className="text-black text-xs md:text-sm font-semibold italic leading-4 md:leading-5 mt-4 pl-4 border-l-2 border-black">
-                {m.quote}
-              </p>
-            )}
-            {m.note && (
-              <p className="text-black/50 text-[10px] md:text-xs font-medium leading-3 md:leading-4 mt-4">
-                {m.note}
-              </p>
-            )}
-          </div>
-        ))}
       </div>
     </section>
   );
@@ -1521,389 +655,402 @@ function TeamSection() {
 /* Reviews                                                             */
 /* ------------------------------------------------------------------ */
 
-function ReviewsSection() {
-  const reveal = useStaggeredReveal(reviews.length + 2);
+function Reviews() {
+  const { ref, style } = useReveal();
 
   return (
-    <section
-      id="reviews"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="What Patients Say About Willow Street Dental"
-        title={
-          <>
-            Patient
-            <br />
-            reviews
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
+    <section id="reviews" ref={ref} className="bg-white py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>What Patients Say About Willow Street Dental</SectionTitle>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-2">
-        {reviews.map((r, i) => (
-          <div
-            key={r.name}
-            className={`${CARD} bg-stone-50 p-5 md:p-7 flex flex-col justify-between min-h-[190px] md:min-h-[260px]`}
-            style={reveal.getAnimStyle(i + 1)}
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {reviews.map((r, i) => (
+            <figure
+              key={r.name}
+              style={style(i)}
+              className="flex h-full flex-col rounded-xl border border-slate-100 bg-white p-6 text-center shadow-card"
+            >
+              <div className="flex justify-center">
+                <Stars />
+              </div>
+              <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-ink">
+                “{r.quote.replace(/^…|…$/g, '')}”
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-semibold text-navy-900">— {r.name}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <p className="mt-6 text-center text-[11px] text-muted">
+          Excerpts as published on the Willow Street Dental website. No overall rating or review
+          count is stated, as that figure is not confirmed.
+        </p>
+
+        <div className="mt-4 text-center">
+          <a
+            href={GOOGLE_REVIEWS_URL}
+            target="_blank"
+            rel="noopener"
+            data-cta="Read More Reviews"
+            data-cta-location="reviews"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
           >
-            <div>
-              <span className="block text-black/50 text-[10px] md:text-xs font-bold uppercase tracking-[0.14em] mb-2">
-                Patient Experience
-              </span>
-              <span className="block text-black text-base md:text-lg tracking-[0.2em] mb-4">
-                ★★★★★
-              </span>
-              <p className="text-black text-base md:text-xl font-bold leading-tight">{r.quote}</p>
-            </div>
-            <p className="text-black text-xs md:text-sm font-semibold mt-6 pt-3 border-t border-black/15">
-              {r.name}
-              <span className="block font-medium text-black/60">
-                Willow Street Dental website
-              </span>
-            </p>
-          </div>
-        ))}
+            Read More Reviews <Arrow />
+          </a>
+        </div>
       </div>
-
-      <p
-        className="text-black/50 text-[10px] md:text-xs font-medium px-1"
-        style={reveal.getAnimStyle(reviews.length + 1)}
-      >
-        Excerpts reflect review text as published on the Willow Street Dental website. No aggregate
-        review count or overall star rating is stated, as that figure is not confirmed.
-      </p>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Cost                                                                */
+/* Journey                                                             */
 /* ------------------------------------------------------------------ */
 
-function CostSection() {
-  const reveal = useStaggeredReveal(2);
+function Journey() {
+  const { ref, style } = useReveal();
+  const cta = useCtaProps('after_process');
 
   return (
-    <section
-      id="cost"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2`}
-    >
-      <div className={`${CARD} bg-stone-50 p-5 md:p-10`} style={reveal.getAnimStyle(0)}>
-        <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
-          Questions About Clear Aligner Costs?
-        </span>
-        <h2 className="text-black text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight mb-6">
-          Cost
-          <br />
-          depends on
-        </h2>
-        <ul className="flex flex-col gap-2">
-          {costFactors.map((f) => (
-            <li
-              key={f}
-              className="text-black text-sm md:text-lg font-semibold border-t border-black/15 pt-2"
-            >
-              {f}
+    <section id="journey" ref={ref} className="bg-brand-50/60 py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>Your Clear Aligner Journey</SectionTitle>
+
+        <ol className="mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
+          {journey.map(({ Icon, n, title, body }, i) => (
+            <li key={n} style={style(i)} className="relative text-center">
+              {/* dashed connector between steps on desktop */}
+              {i < journey.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute left-[calc(50%+2.4rem)] right-[calc(-50%+2.4rem)] top-8 hidden border-t-2 border-dashed border-brand-200 md:block"
+                />
+              )}
+              <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                <Icon className="w-7 h-7" />
+                <span className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-bold text-white">
+                  {n}
+                </span>
+              </span>
+              <h3 className="mt-5 whitespace-pre-line text-[15px] font-bold leading-snug text-navy-900">
+                {`${n}. ${title}`}
+              </h3>
+              <p className="mx-auto mt-2 max-w-[15rem] text-[12.5px] leading-relaxed text-muted">{body}</p>
             </li>
           ))}
-        </ul>
-      </div>
+        </ol>
 
-      <div
-        className={`${CARD} bg-black p-5 md:p-10 flex flex-col justify-between`}
-        style={reveal.getAnimStyle(1)}
-      >
-        <div>
-          <h3 className="text-white text-2xl md:text-4xl font-bold leading-tight mb-3 md:mb-4">
-            In network with
-            <br />
-            Delta Dental
-          </h3>
-          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
-            Ask the Willow Street Dental team about current fees, insurance benefits, and available
-            payment options.
-          </p>
+        <div className="mt-12 flex justify-center">
+          <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Journey — Start Your Virtual Consultation')}>
+            Start Your Virtual Consultation
+          </BtnPrimary>
         </div>
-        <a
-          href={PHONE_HREF}
-          className="self-start mt-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-        >
-          Call {PHONE_DISPLAY}
-        </a>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* FAQ                                                                 */
+/* Doctor + virtual consultation                                       */
 /* ------------------------------------------------------------------ */
 
-function FaqSection() {
-  const reveal = useStaggeredReveal(2);
-  const [open, setOpen] = useState<number | null>(0);
+function DoctorAndConsult() {
+  const { ref, style } = useReveal();
+  const cta = useCtaProps('doctor_consult');
 
   return (
-    <section
-      id="faq"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <SectionHeading
-        eyebrow="Clear Aligner FAQs"
-        title={
-          <>
-            Common
-            <br />
-            questions
-          </>
-        }
-        style={reveal.getAnimStyle(0)}
-      />
+    <section id="doctor" ref={ref} className="bg-white py-14 md:py-20">
+      <div className={SHELL}>
+        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+          {/* Doctor */}
+          <div style={style(0)} className="rounded-xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
+            <p className="text-sm font-medium text-muted">Meet Your Chippewa Falls Dentist</p>
+            <h2 className="mt-1 text-[clamp(1.4rem,2.6vw,1.9rem)] font-bold text-brand-700">
+              Dr. Curtis Calder, D.D.S.
+            </h2>
 
-      <div className={`${CARD} bg-zinc-200 px-5 md:px-10 py-2 md:py-4`} style={reveal.getAnimStyle(1)}>
-        {faqs.map((f, i) => (
-          <div key={f.q} className="border-b border-black/15 last:border-b-0">
-            <button
-              type="button"
-              onClick={() => {
-                const next = open === i ? null : i;
-                setOpen(next);
-                if (next !== null) track('faq_open', { faq_question: f.q });
-              }}
-              aria-expanded={open === i}
-              className="w-full flex items-center justify-between gap-6 py-4 md:py-6 text-left"
-            >
-              <span className="text-black text-base md:text-2xl font-bold leading-tight">
-                {f.q}
-              </span>
-              <span className="relative shrink-0 w-5 h-5 md:w-6 md:h-6">
-                <span className="absolute top-1/2 left-0 w-full h-0.5 -translate-y-1/2 bg-black rounded-full" />
-                <span
-                  className={`absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-black rounded-full transition-all duration-300 ${
-                    open === i ? 'opacity-0 scale-y-0' : 'opacity-100 scale-y-100'
-                  }`}
-                />
-              </span>
-            </button>
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                open === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-              }`}
-            >
-              <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 pb-5 md:pb-7 max-w-3xl">
-                {f.a}
-              </p>
+            <div className="mt-6 flex flex-col gap-5 sm:flex-row">
+              <img
+                src={DR_CALDER}
+                alt="Dr. Curtis Calder, D.D.S."
+                loading="lazy"
+                className="h-28 w-28 shrink-0 rounded-full object-cover ring-4 ring-brand-50 sm:h-32 sm:w-32"
+              />
+              <div className="text-[14px] leading-relaxed text-muted">
+                <p>
+                  Dr. Calder earned his Doctor of Dental Surgery degree from Creighton University
+                  School of Dentistry. He combines modern dental technology with a personal,
+                  down-to-earth approach focused on helping patients feel comfortable in the dental
+                  chair.
+                </p>
+                <p className="mt-3">
+                  His goal is always the same: to help each patient feel confident in their smile and
+                  comfortable in the dental chair.
+                </p>
+                <p className="mt-3 text-[11px] text-slate-400">
+                  [INSERT VERIFIED INFORMATION for any additional credentials or memberships]
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <BtnOutline href={PHONE_HREF} {...cta('Doctor — Talk With Our Team')}>
+                Talk With Our Dental Team
+              </BtnOutline>
             </div>
           </div>
-        ))}
+
+          {/* Virtual consultation */}
+          <div style={style(1)} className="rounded-xl bg-brand-50 p-6 md:p-8">
+            <div className="flex items-start gap-4">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600 shadow-card">
+                <IconMobile className="w-6 h-6" />
+              </span>
+              <h2 className="mt-1 text-[clamp(1.25rem,2.4vw,1.6rem)] font-bold text-brand-700">
+                Start with a Virtual Consultation
+              </h2>
+            </div>
+
+            <p className="mt-4 text-[14px] leading-relaxed text-muted">
+              Not sure if clear aligners are right for you? Start from home — it’s simple, and it’s
+              free.
+            </p>
+
+            <div className="mt-5 grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
+              <ol className="space-y-3">
+                {consultSteps.map((s, i) => (
+                  <li key={s} className="flex items-start gap-3 text-[13.5px] font-medium text-ink">
+                    <span className="mt-px flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white">
+                      {i + 1}
+                    </span>
+                    {s}
+                  </li>
+                ))}
+              </ol>
+              <img
+                src={ALIGNER_IMAGE}
+                alt="Clear aligner tray"
+                loading="lazy"
+                className="hidden h-32 w-40 rounded-xl object-cover shadow-card sm:block"
+              />
+            </div>
+
+            <div className="mt-6">
+              <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Consult panel — Request Your Virtual Consultation')}>
+                Request Your Virtual Consultation
+              </BtnPrimary>
+            </div>
+
+            <p className="mt-4 text-[11px] leading-relaxed text-muted">
+              Complete treatment may require an in-office visit. A virtual consultation is not a
+              substitute for a comprehensive dental exam.
+            </p>
+          </div>
+        </div>
+
+        {/* Mini FAQ row */}
+        <div className="mt-6 grid gap-px overflow-hidden rounded-xl border border-slate-100 bg-slate-100 shadow-card sm:grid-cols-2 lg:grid-cols-4">
+          {miniFaqs.map(({ Icon, title, body }, i) => (
+            <div key={title} style={style(i + 2)} className="flex gap-3 bg-white p-5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                <Icon className="w-4.5 h-4.5" />
+              </span>
+              <div>
+                <h3 className="text-[13px] font-bold text-navy-900">{title}</h3>
+                <p className="mt-1 text-[12px] leading-relaxed text-muted">{body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* Final CTA + contact                                                 */
+/* Final CTA                                                           */
 /* ------------------------------------------------------------------ */
 
-function FinalCtaSection() {
-  const reveal = useStaggeredReveal(2);
+function FinalCta() {
+  const cta = useCtaProps('final');
 
   return (
-    <section
-      id="contact"
-      ref={reveal.containerRef}
-      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
-    >
-      <div
-        className={`${CARD} bg-black p-5 md:p-12 flex flex-col justify-between min-h-[420px] md:min-h-[520px]`}
-        style={reveal.getAnimStyle(0)}
-      >
+    <section id="contact" className="bg-navy-800 py-10 md:py-12">
+      <div className={`${SHELL} grid items-center gap-7 lg:grid-cols-[auto_1fr_auto]`}>
+        <span className="hidden h-16 w-16 items-center justify-center rounded-full bg-white/10 text-white lg:flex">
+          <IconCalendar className="w-7 h-7" />
+        </span>
+
         <div>
-          <span className="block text-white/70 text-xs md:text-sm font-semibold mb-3 md:mb-5">
-            Ready to Explore a Straighter Smile?
-          </span>
-          <h2 className="text-white text-[clamp(2.25rem,7vw,6rem)] font-bold leading-[0.88] tracking-tight">
-            Explore clear aligners
-            <br />
-            in Chippewa Falls
+          <h2 className="text-[clamp(1.35rem,2.8vw,1.85rem)] font-bold text-white">
+            Ready to Explore Your Clear Aligner Options?
           </h2>
+          <p className="mt-2 max-w-xl text-[14px] leading-relaxed text-brand-100">
+            Take the first step toward a straighter smile with Willow Street Dental. Request a
+            virtual consultation or call our Chippewa Falls office today.
+          </p>
         </div>
 
-        <div className="mt-8 md:mt-10">
-          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5 max-w-xl mb-6">
-            A conversation with our team — by phone, virtual consultation, or in person — is a
-            simple, low-pressure way to find out what your options may look like. There is no
-            obligation to start.
-          </p>
-          <div className="flex flex-wrap gap-1.5 md:gap-2">
-            <a
-              href={VIRTUAL_CONSULT_URL}
-              target="_blank"
-              rel="noopener"
-              className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-            >
-              Request Your Consultation
-            </a>
-            <a
-              href={PHONE_HREF}
-              className="px-5 py-3 md:px-8 md:py-5 bg-white/20 backdrop-blur-xl rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
-            >
-              Call {PHONE_DISPLAY}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className={`${CARD} bg-stone-50 p-5 md:p-7 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2`}
-        style={reveal.getAnimStyle(1)}
-      >
-        <div>
-          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Visit</span>
-          <p className="text-black text-sm md:text-base font-bold leading-tight">
-            Willow Street Dental
-            <br />
-            123 W. Willow Street
-            <br />
-            Chippewa Falls, WI 54729
-          </p>
-        </div>
-        <div>
-          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Call</span>
-          <a href={PHONE_HREF} className="text-black text-sm md:text-base font-bold leading-tight">
-            {PHONE_DISPLAY}
-          </a>
-          <p className="text-black text-sm md:text-base font-bold leading-tight mt-2">
-            Mon–Thu: 8am–5pm
-            <br />
-            Fri–Sun: Closed
-          </p>
-        </div>
-        <div>
-          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Online</span>
+        <div className="grid w-full gap-3 sm:w-auto sm:min-w-[260px]">
           <a
             href={VIRTUAL_CONSULT_URL}
             target="_blank"
             rel="noopener"
-            className="block text-black text-sm md:text-base font-bold leading-tight underline"
+            {...cta('Final — Request a Virtual Consultation')}
+            className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3.5 text-[15px] font-semibold text-brand-700 transition-colors hover:bg-brand-50"
           >
-            Free virtual consultation
+            Request a Virtual Consultation
+            <Arrow className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <a
+            href={PHONE_HREF}
+            {...cta('Final — Call')}
+            className="group inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 px-5 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/10"
+          >
+            <IconPhone className="w-4 h-4" />
+            Call {PHONE_DISPLAY}
+            <Arrow className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
+
+function Footer() {
+  const cta = useCtaProps('footer');
+
+  return (
+    <footer className="bg-navy-900 py-10 text-white">
+      <div className={`${SHELL} grid gap-8 md:grid-cols-3`}>
+        <div>
+          <img
+            src={LOGO}
+            alt="Willow Street Dental"
+            loading="lazy"
+            className="h-10 w-auto brightness-0 invert"
+          />
+          <p className="mt-4 text-[13px] leading-relaxed text-white/70">
+            Personalized care. Comfortable visits.
+            <br />
+            Healthier smiles.
+          </p>
+        </div>
+
+        <div className="text-[13px]">
+          <div className="flex items-start gap-3">
+            <IconPin className="mt-0.5 w-4 h-4 shrink-0 text-brand-400" />
+            <p className="text-white/80">
+              {ADDRESS_LINE1}
+              <br />
+              {ADDRESS_LINE2}
+            </p>
+          </div>
+          <a href={PHONE_HREF} {...cta('Footer phone')} className="mt-4 flex items-center gap-3 text-white/80 hover:text-white">
+            <IconPhone className="w-4 h-4 shrink-0 text-brand-400" />
+            {PHONE_DISPLAY}
           </a>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener"
-            className="block text-black text-sm md:text-base font-bold leading-tight underline mt-2"
+            {...cta('Footer book online')}
+            className="mt-4 flex items-center gap-3 text-white/80 hover:text-white"
           >
+            <IconCalendar className="w-4 h-4 shrink-0 text-brand-400" />
             Book an appointment
           </a>
         </div>
+
+        <div className="text-[13px]">
+          <p className="font-semibold text-white">Office Hours</p>
+          <dl className="mt-3 space-y-1.5 text-white/80">
+            {HOURS.map((h) => (
+              <div key={h.days} className="flex gap-4">
+                <dt className="w-24 shrink-0">{h.days}</dt>
+                <dd>{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
 
-      <p className="text-black/50 text-[10px] md:text-xs font-medium px-1 pb-24 md:pb-0">
+      <div className={`${SHELL} mt-8 border-t border-white/10 pt-5 text-[11px] leading-relaxed text-white/50`}>
         Clear-aligner candidacy and treatment details are determined during an individual
-        evaluation.
-      </p>
-    </section>
+        evaluation. Invisalign is a registered trademark of Align Technology, Inc.
+      </div>
+    </footer>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/* App                                                                  */
+/* Sticky mobile CTA                                                   */
 /* ------------------------------------------------------------------ */
 
-function App() {
-  const [showSplash, setShowSplash] = useState(() => {
-    try {
-      return sessionStorage.getItem('wsd_splash_seen') !== '1';
-    } catch {
-      return true;
-    }
-  });
-  const isMobile = useIsMobile();
-  useConversionTracking();
+function StickyMobileCta() {
+  const [shown, setShown] = useState(false);
+  const cta = useCtaProps('sticky_mobile');
+
+  useEffect(() => {
+    const onScroll = () => setShown(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <div className="bg-white">
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <Navbar />
-      <Section1 isMobile={isMobile} />
-      <IntentBridgeSection />
-      <Section2 isMobile={isMobile} />
-
-      <BenefitsSection />
-      <CtaBand
-        location="after_benefits"
-        heading="Ready to explore clear aligners?"
-        sub="Start from home — a virtual consultation begins with a photo of your smile."
-        primaryLabel="Explore Your Options"
-      />
-
-      <WhyUsSection />
-      <ProcessSection />
-      <CtaBand
-        location="after_process"
-        heading="That's all it takes to get started."
-        primaryLabel="Start Your Virtual Consultation"
-      />
-
-      <CandidacySection />
-      <CtaBand
-        location="after_candidacy"
-        heading="Wondering whether this could work for your smile?"
-        sub="An evaluation is how candidacy is determined — it starts with a conversation."
-        primaryLabel="See If Clear Aligners May Be Right for You"
-      />
-
-      <NotSureSection />
-      <Section3 />
-
-      <TeamSection />
-      <CtaBand
-        location="after_doctor"
-        heading="Have a question for the dental team?"
-        sub="Willow Street Dental · 123 W. Willow Street, Chippewa Falls, WI"
-        primaryLabel="Talk With Our Dental Team"
-        primaryHref={PHONE_HREF}
-        showCall={false}
-      />
-
-      <ReviewsSection />
-      <CtaBand
-        location="after_reviews"
-        heading="Ready to explore your options?"
-        sub="Start with a conversation about your smile goals."
-        primaryLabel="Request Your Consultation"
-      />
-
-      <CostSection />
-      <CtaBand
-        location="after_cost"
-        heading="Questions about cost?"
-        sub="Ask about treatment options, insurance benefits and available payment options."
-        primaryLabel="Talk With Our Team"
-        primaryHref={PHONE_HREF}
-        showCall={false}
-      />
-
-      <FaqSection />
-      <CtaBand
-        location="after_faq"
-        heading="Still have questions?"
-        sub="Our Chippewa Falls team is happy to walk you through what to expect."
-        primaryLabel="Ask Our Team"
-        primaryHref={PHONE_HREF}
-      />
-
-      <FinalCtaSection />
-      <StickyMobileCta />
+    <div
+      className={`fixed inset-x-0 bottom-0 z-50 flex gap-2 border-t border-slate-200 bg-white/95 px-4 pb-4 pt-3 backdrop-blur transition-transform duration-300 lg:hidden ${
+        shown ? 'translate-y-0' : 'translate-y-full'
+      }`}
+    >
+      <a
+        href={VIRTUAL_CONSULT_URL}
+        target="_blank"
+        rel="noopener"
+        {...cta('Sticky — Request Consultation')}
+        className="flex-1 rounded-lg bg-brand-600 px-4 py-3.5 text-center text-sm font-semibold text-white"
+      >
+        Request Consultation
+      </a>
+      <a
+        href={PHONE_HREF}
+        aria-label={`Call Willow Street Dental at ${PHONE_DISPLAY}`}
+        {...cta('Sticky — Call')}
+        className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-lg border border-brand-200 text-brand-700"
+      >
+        <IconPhone className="w-5 h-5" />
+      </a>
     </div>
   );
 }
 
-export default App;
+/* ------------------------------------------------------------------ */
+/* App                                                                 */
+/* ------------------------------------------------------------------ */
+
+export default function App() {
+  useConversionTracking();
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <Hero />
+        <TrustBar />
+        <Benefits />
+        <Reviews />
+        <Journey />
+        <DoctorAndConsult />
+        <FinalCta />
+      </main>
+      <Footer />
+      <div className="h-20 lg:hidden" aria-hidden="true" />
+      <StickyMobileCta />
+    </div>
+  );
+}

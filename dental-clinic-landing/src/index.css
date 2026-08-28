@@ -4,7 +4,6 @@
 
 @layer base {
   html, body, #root {
-    height: 100%;
     margin: 0;
     padding: 0;
   }
@@ -12,8 +11,13 @@
     scroll-behavior: smooth;
   }
   body {
-    font-family: 'Open Sauce One', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: theme('colors.ink');
+    background: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Source Serif 4', Georgia, Cambria, serif;
   }
 }
