@@ -30,7 +30,171 @@ const services = [
   { name: 'Crowns &\nFillings', num: null, active: false },
 ];
 
-const navLinks = ['Clear Aligners', 'Benefits', 'Process', 'Our Team', 'Contact'];
+const navLinks = [
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'Process', href: '#process' },
+  { label: 'Our Team', href: '#team' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'FAQ', href: '#faq' },
+];
+
+const benefits = [
+  {
+    title: 'A More Discreet Way\nto Straighten Teeth',
+    body: 'Clear aligners are designed to be virtually invisible when worn, so they tend to blend in with your natural smile. Many patients like that they can work toward their smile goals without the more noticeable look of metal brackets and wires.',
+  },
+  {
+    title: 'Comfortable,\nCustom-Fitted Trays',
+    body: 'Because each set of aligners is custom-made for your teeth, they are designed to fit closely and comfortably. As with any new dental appliance, it can take a little time to adjust to wearing a new set.',
+  },
+  {
+    title: 'Removable for\nEating and Drinking',
+    body: 'Clear aligners can be taken out, so you are not restricted from the foods you enjoy the way you might be with fixed braces. Most patients remove them to eat and to drink anything other than water.',
+  },
+  {
+    title: 'Easier\nOral Hygiene',
+    body: 'Because clear aligners come out, brushing and flossing can be more straightforward than navigating around brackets and wires. Removing your aligners for regular oral care can help you keep up with your normal routine.',
+  },
+  {
+    title: 'A Personalized\nTreatment Plan',
+    body: 'Your clear aligner plan is built around your own teeth and smile goals. Digital scans and imaging are used to map out how your teeth may move over the course of treatment, so your plan is designed specifically for you.',
+  },
+  {
+    title: 'A Convenient Path to\nExploring Your Options',
+    body: 'You do not have to commit to anything to start learning more. A consultation — including a free virtual consultation — gives you a low-pressure way to ask questions and find out whether clear aligners may be a good fit.',
+  },
+];
+
+const whyUs = [
+  {
+    title: 'Local Care in Chippewa Falls',
+    body: 'Willow Street Dental is located at 123 W. Willow Street, Chippewa Falls, WI 54729, offering dental care to patients throughout the local community.',
+  },
+  {
+    title: 'The Dental Team',
+    body: 'Care is led by Dr. Curtis Calder, D.D.S., supported by a team that includes experienced staff such as dental hygienist Gena, who has been part of the team for 16 years.',
+  },
+  {
+    title: 'Doctor Education',
+    body: 'Dr. Calder earned his Doctor of Dental Surgery degree from Creighton University School of Dentistry.',
+  },
+  {
+    title: 'Personalized Recommendations',
+    body: 'Rather than a one-size-fits-all approach, treatment recommendations are based on your own dental exam and digital scans, so any plan discussed with you is specific to your smile and goals.',
+  },
+  {
+    title: 'Communication and Comfort',
+    body: 'Dr. Calder describes his approach as combining modern dental technology with “a personal, down-to-earth approach,” with the goal of helping each patient feel comfortable in the dental chair.',
+  },
+  {
+    title: 'Virtual Consultation Convenience',
+    body: 'For patients who want to start exploring their options before visiting the office, Willow Street Dental offers a free virtual consultation that begins with a photo of your smile.',
+  },
+];
+
+const processSteps = [
+  {
+    num: '01',
+    title: 'Request a\nConsultation',
+    body: 'Request a free virtual consultation from home by submitting a photo of your smile, or call our Chippewa Falls office directly.',
+  },
+  {
+    num: '02',
+    title: 'Discuss Your\nSmile Goals',
+    body: 'Let our team know what you would like to change about your smile. We follow up to schedule your personalized next step.',
+  },
+  {
+    num: '03',
+    title: 'Complete an\nEvaluation',
+    body: 'To determine whether clear aligners may be appropriate, our team completes a comprehensive dental exam along with a digital scan of your teeth.',
+  },
+  {
+    num: '04',
+    title: 'Review Your\nPersonalized Plan',
+    body: 'If clear aligners are a good fit, digital imaging helps map out a step-by-step plan. Your timeline and next steps are discussed with you directly.',
+  },
+];
+
+const concerns = [
+  'Crowded teeth',
+  'Spacing between teeth',
+  'Overbites, underbites, or crossbites',
+  'Minor tooth rotations',
+];
+
+const team = [
+  {
+    initials: 'CC',
+    name: 'Dr. Curtis Calder, D.D.S.',
+    body: 'Dr. Curtis Calder earned his Doctor of Dental Surgery degree from Creighton University School of Dentistry. He offers a full range of dental care at Willow Street Dental — from everyday needs like cleanings, fillings, and crowns to more advanced procedures such as root canal therapy, dental implants, and smile makeovers.',
+    quote:
+      '“My goal is always the same: to help each patient feel confident in their smile and comfortable in the dental chair. My team and I are committed to treating every patient like family.”',
+    note: '[INSERT VERIFIED INFORMATION for any additional credentials, specialty training, or professional memberships]',
+  },
+  {
+    initials: 'G',
+    name: 'Gena — Dental Hygienist',
+    body: 'Gena has been part of the Willow Street Dental team for 16 years. She attended the University of Minnesota for dental hygiene and graduated in 1982, bringing years of hands-on experience to every patient visit.',
+    quote: null,
+    note: null,
+  },
+];
+
+const reviews = [
+  {
+    quote: '“…best dental office I’ve ever visited. Doctor is incredibly knowledgeable and gentle…”',
+    name: 'Jason R.',
+  },
+  { quote: '“…amazing experience…exceptional care…”', name: 'Sarah M.' },
+  {
+    quote: '“…exceeded all expectations…best dental care I’ve received…”',
+    name: 'Emily C.',
+  },
+];
+
+const costFactors = [
+  'The complexity of your treatment',
+  'Estimated treatment length',
+  'The type of aligner treatment recommended',
+  'Your existing dental needs',
+  'Your insurance benefits',
+  'Available payment or financing options',
+];
+
+const faqs = [
+  {
+    q: 'What are clear aligners?',
+    a: 'Clear aligners are transparent, custom-made trays that fit over your teeth and are designed to gradually guide them into a straighter position, offering an alternative to traditional metal braces.',
+  },
+  {
+    q: 'Is Invisalign available in Chippewa Falls?',
+    a: 'Many patients searching for Invisalign in Chippewa Falls are really looking for a discreet way to straighten their smile. Willow Street Dental offers clear aligner treatment in Chippewa Falls, WI, and our team can talk with you about your specific options during a consultation.',
+  },
+  {
+    q: 'Am I a candidate for clear aligners?',
+    a: 'Clear aligners may help with mild to moderate concerns such as crowded or spaced teeth and certain bite issues, depending on your evaluation. An in-person or virtual consultation is needed to determine whether clear aligners are right for you.',
+  },
+  {
+    q: 'How long does clear aligner treatment take?',
+    a: 'Treatment length varies by patient. Most patients complete clear aligner treatment in about 6 to 18 months, though your specific timeline will be discussed as part of your evaluation.',
+  },
+  {
+    q: 'Are clear aligners comfortable?',
+    a: 'Clear aligners are custom-made to fit closely over your teeth. As with any orthodontic treatment, you may notice a short adjustment period with each new set. Our team can walk you through what to expect.',
+  },
+  {
+    q: 'Can I remove clear aligners to eat and brush?',
+    a: 'Yes. Clear aligners are removable, so you can take them out to eat, to drink anything other than water, and to brush and floss. Most patients wear their aligners for about 20 to 22 hours a day to stay on track with their plan.',
+  },
+  {
+    q: 'How does the virtual consultation work?',
+    a: 'You submit a photo of your smile and let us know what you would like to change. Our team then follows up to schedule your personalized virtual consultation. This option is free.',
+  },
+  {
+    q: 'How much do clear aligners cost?',
+    a: 'Cost depends on factors like treatment complexity, length, and your individual dental needs. Ask the Willow Street Dental team about current fees, insurance benefits, and available payment options.',
+  },
+];
 
 interface Position {
   x: number;
@@ -321,15 +485,15 @@ function Navbar() {
           <div className="flex flex-col justify-center h-full px-8 gap-1">
             {navLinks.map((link, i) => (
               <a
-                key={link}
-                href="#"
+                key={link.label}
+                href={link.href}
                 onClick={() => setMenuOpen(false)}
                 style={{ transitionDelay: menuOpen ? `${100 + i * 60}ms` : '0ms' }}
                 className={`text-4xl font-bold text-black hover:text-neutral-500 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                   menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
                 }`}
               >
-                {link}
+                {link.label}
               </a>
             ))}
 
@@ -372,6 +536,7 @@ function Section1({ isMobile }: { isMobile: boolean }) {
 
   return (
     <section
+      id="hero"
       ref={(el) => {
         sectionRef.current = el;
         reveal.containerRef.current = el;
@@ -454,6 +619,7 @@ function Section2({ isMobile }: { isMobile: boolean }) {
 
   return (
     <section
+      id="aligners"
       ref={(el) => {
         sectionRef.current = el;
         reveal.containerRef.current = el;
@@ -595,6 +761,7 @@ function Section3() {
 
   return (
     <section
+      id="consult"
       ref={reveal.containerRef}
       className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
     >
@@ -707,6 +874,629 @@ function Section3() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Shared content-section primitives                                    */
+/* ------------------------------------------------------------------ */
+
+const SECTION_SHELL = 'w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-1.5 md:pb-2';
+const CARD = 'rounded-xl md:rounded-2xl overflow-hidden';
+
+function SectionHeading({
+  eyebrow,
+  title,
+  style,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  style?: CSSProperties;
+}) {
+  return (
+    <div className={`${CARD} bg-stone-50 p-5 md:p-10`} style={style}>
+      <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
+        {eyebrow}
+      </span>
+      <h2 className="text-black text-[clamp(2.25rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Benefits                                                            */
+/* ------------------------------------------------------------------ */
+
+function BenefitsSection() {
+  const reveal = useStaggeredReveal(benefits.length + 1);
+
+  return (
+    <section
+      id="benefits"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="Why Consider Clear Aligners?"
+        title={
+          <>
+            Benefits
+            <br />
+            of aligners
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-2">
+        {benefits.map((b, i) => (
+          <div
+            key={b.title}
+            className={`${CARD} bg-zinc-200 p-5 md:p-7 flex flex-col justify-between min-h-[210px] md:min-h-[280px]`}
+            style={reveal.getAnimStyle(i + 1)}
+          >
+            <h3 className="text-black text-xl md:text-2xl font-bold leading-[1.05] whitespace-pre-line mb-4">
+              {b.title}
+            </h3>
+            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
+              {b.body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Why Willow Street Dental                                            */
+/* ------------------------------------------------------------------ */
+
+function WhyUsSection() {
+  const reveal = useStaggeredReveal(whyUs.length + 2);
+
+  return (
+    <section
+      id="why"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="Why Choose Willow Street Dental for Clear Aligners?"
+        title={
+          <>
+            Local care,
+            <br />
+            personal plans
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
+        {whyUs.map((w, i) => (
+          <div
+            key={w.title}
+            className={`${CARD} bg-stone-50 p-5 md:p-7`}
+            style={reveal.getAnimStyle(i + 1)}
+          >
+            <h3 className="text-black text-lg md:text-xl font-bold leading-tight mb-2">
+              {w.title}
+            </h3>
+            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
+              {w.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div
+        className={`${CARD} bg-black p-5 md:p-7`}
+        style={reveal.getAnimStyle(whyUs.length + 1)}
+      >
+        <h3 className="text-white text-lg md:text-xl font-bold leading-tight mb-2">
+          What Makes the Practice Different
+        </h3>
+        <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
+          Willow Street Dental offers a full range of dental care under one roof — from routine
+          cleanings to more advanced procedures — with a team that says it is “committed to treating
+          every patient like family.”
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Process                                                             */
+/* ------------------------------------------------------------------ */
+
+function ProcessSection() {
+  const reveal = useStaggeredReveal(processSteps.length + 2);
+
+  return (
+    <section
+      id="process"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="How the Clear Aligner Process Works"
+        title={
+          <>
+            Four
+            <br />
+            simple steps
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-1.5 md:gap-2">
+        {processSteps.map((s, i) => (
+          <div
+            key={s.num}
+            className={`${CARD} bg-zinc-200 p-5 md:p-7 flex flex-col justify-between min-h-[200px] md:min-h-[300px]`}
+            style={reveal.getAnimStyle(i + 1)}
+          >
+            <div>
+              <span className="inline-flex items-center justify-center w-8 h-8 md:w-12 md:h-12 rounded-full border border-black text-black text-xs md:text-sm font-semibold mb-4 md:mb-6">
+                {s.num}
+              </span>
+              <h3 className="text-black text-xl md:text-2xl font-bold leading-[1.05] whitespace-pre-line">
+                {s.title}
+              </h3>
+            </div>
+            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 mt-4">
+              {s.body}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div
+        className={`${CARD} bg-black p-5 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4`}
+        style={reveal.getAnimStyle(processSteps.length + 1)}
+      >
+        <p className="text-white text-lg md:text-2xl font-bold leading-tight">
+          Ready to see if clear aligners fit your smile?
+        </p>
+        <a
+          href={VIRTUAL_CONSULT_URL}
+          target="_blank"
+          rel="noopener"
+          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+        >
+          Request Your Virtual Consultation
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Candidacy + Invisalign vs clear aligners                            */
+/* ------------------------------------------------------------------ */
+
+function CandidacySection() {
+  const reveal = useStaggeredReveal(3);
+
+  return (
+    <section
+      id="candidacy"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2`}
+    >
+      <div
+        className={`${CARD} bg-stone-50 p-5 md:p-10 flex flex-col justify-between`}
+        style={reveal.getAnimStyle(0)}
+      >
+        <div>
+          <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
+            Could Clear Aligners Be Right for You?
+          </span>
+          <h2 className="text-black text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight mb-6 md:mb-8">
+            May help
+            <br />
+            with
+          </h2>
+        </div>
+        <ul className="flex flex-col gap-2 md:gap-3">
+          {concerns.map((c) => (
+            <li
+              key={c}
+              className="text-black text-base md:text-xl font-bold border-t border-black/15 pt-2 md:pt-3"
+            >
+              {c}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-1.5 md:gap-2">
+        <div className={`${CARD} bg-black p-5 md:p-7`} style={reveal.getAnimStyle(1)}>
+          <h3 className="text-white text-lg md:text-2xl font-bold leading-tight mb-2 md:mb-3">
+            A consultation comes first
+          </h3>
+          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
+            Every smile is different, and clear aligners are not appropriate for every situation.
+            Whether clear aligners may work for you depends on an in-person or virtual evaluation
+            with our Chippewa Falls dental team. This page is not a diagnosis — a consultation is
+            the best way to find out where you stand.
+          </p>
+        </div>
+
+        <div
+          id="compare"
+          className={`${CARD} bg-zinc-200 p-5 md:p-7 flex-1`}
+          style={reveal.getAnimStyle(2)}
+        >
+          <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-3">
+            What Is the Difference Between Invisalign and Clear Aligners?
+          </span>
+          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 mb-3">
+            “Invisalign” is a well-known brand name within the broader category of clear aligner
+            treatment, which is why many patients search for “Invisalign” even when they are really
+            looking for clear, removable aligners in general. “Clear aligners” is the broader term
+            for this type of treatment.
+          </p>
+          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
+            Willow Street Dental’s Chippewa Falls service is described as clear aligner treatment.
+            If you are interested in a particular brand, including Invisalign, ask our team during
+            your consultation.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Team                                                                */
+/* ------------------------------------------------------------------ */
+
+function TeamSection() {
+  const reveal = useStaggeredReveal(team.length + 1);
+
+  return (
+    <section
+      id="team"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="Meet the Willow Street Dental Team"
+        title={
+          <>
+            Meet
+            <br />
+            the team
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
+        {team.map((m, i) => (
+          <div
+            key={m.name}
+            className={`${CARD} bg-zinc-200 p-5 md:p-7`}
+            style={reveal.getAnimStyle(i + 1)}
+          >
+            <span className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-black text-white text-base md:text-xl font-bold mb-4 md:mb-6">
+              {m.initials}
+            </span>
+            <h3 className="text-black text-xl md:text-3xl font-bold leading-tight mb-3">
+              {m.name}
+            </h3>
+            <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
+              {m.body}
+            </p>
+            {m.quote && (
+              <p className="text-black text-xs md:text-sm font-semibold italic leading-4 md:leading-5 mt-4 pl-4 border-l-2 border-black">
+                {m.quote}
+              </p>
+            )}
+            {m.note && (
+              <p className="text-black/50 text-[10px] md:text-xs font-medium leading-3 md:leading-4 mt-4">
+                {m.note}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Reviews                                                             */
+/* ------------------------------------------------------------------ */
+
+function ReviewsSection() {
+  const reveal = useStaggeredReveal(reviews.length + 2);
+
+  return (
+    <section
+      id="reviews"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="What Patients Say About Willow Street Dental"
+        title={
+          <>
+            Patient
+            <br />
+            reviews
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-2">
+        {reviews.map((r, i) => (
+          <div
+            key={r.name}
+            className={`${CARD} bg-stone-50 p-5 md:p-7 flex flex-col justify-between min-h-[190px] md:min-h-[260px]`}
+            style={reveal.getAnimStyle(i + 1)}
+          >
+            <div>
+              <span className="block text-black text-base md:text-lg tracking-[0.2em] mb-4">
+                ★★★★★
+              </span>
+              <p className="text-black text-base md:text-xl font-bold leading-tight">{r.quote}</p>
+            </div>
+            <p className="text-black text-xs md:text-sm font-semibold mt-6 pt-3 border-t border-black/15">
+              {r.name}
+              <span className="block font-medium text-black/60">
+                Willow Street Dental website
+              </span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p
+        className="text-black/50 text-[10px] md:text-xs font-medium px-1"
+        style={reveal.getAnimStyle(reviews.length + 1)}
+      >
+        Excerpts reflect review text as published on the Willow Street Dental website. No aggregate
+        review count or overall star rating is stated, as that figure is not confirmed.
+      </p>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Cost                                                                */
+/* ------------------------------------------------------------------ */
+
+function CostSection() {
+  const reveal = useStaggeredReveal(2);
+
+  return (
+    <section
+      id="cost"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2`}
+    >
+      <div className={`${CARD} bg-stone-50 p-5 md:p-10`} style={reveal.getAnimStyle(0)}>
+        <span className="block text-black text-xs md:text-sm font-semibold mb-2 md:mb-4">
+          Questions About Clear Aligner Costs?
+        </span>
+        <h2 className="text-black text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[0.95] tracking-tight mb-6">
+          Cost
+          <br />
+          depends on
+        </h2>
+        <ul className="flex flex-col gap-2">
+          {costFactors.map((f) => (
+            <li
+              key={f}
+              className="text-black text-sm md:text-lg font-semibold border-t border-black/15 pt-2"
+            >
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div
+        className={`${CARD} bg-black p-5 md:p-10 flex flex-col justify-between`}
+        style={reveal.getAnimStyle(1)}
+      >
+        <div>
+          <h3 className="text-white text-2xl md:text-4xl font-bold leading-tight mb-3 md:mb-4">
+            In network with
+            <br />
+            Delta Dental
+          </h3>
+          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5">
+            Ask the Willow Street Dental team about current fees, insurance benefits, and available
+            payment options.
+          </p>
+        </div>
+        <a
+          href={PHONE_HREF}
+          className="self-start mt-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+        >
+          Call {PHONE_DISPLAY}
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* FAQ                                                                 */
+/* ------------------------------------------------------------------ */
+
+function FaqSection() {
+  const reveal = useStaggeredReveal(2);
+  const [open, setOpen] = useState<number | null>(0);
+
+  return (
+    <section
+      id="faq"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <SectionHeading
+        eyebrow="Clear Aligner FAQs"
+        title={
+          <>
+            Common
+            <br />
+            questions
+          </>
+        }
+        style={reveal.getAnimStyle(0)}
+      />
+
+      <div className={`${CARD} bg-zinc-200 px-5 md:px-10 py-2 md:py-4`} style={reveal.getAnimStyle(1)}>
+        {faqs.map((f, i) => (
+          <div key={f.q} className="border-b border-black/15 last:border-b-0">
+            <button
+              type="button"
+              onClick={() => setOpen(open === i ? null : i)}
+              aria-expanded={open === i}
+              className="w-full flex items-center justify-between gap-6 py-4 md:py-6 text-left"
+            >
+              <span className="text-black text-base md:text-2xl font-bold leading-tight">
+                {f.q}
+              </span>
+              <span className="relative shrink-0 w-5 h-5 md:w-6 md:h-6">
+                <span className="absolute top-1/2 left-0 w-full h-0.5 -translate-y-1/2 bg-black rounded-full" />
+                <span
+                  className={`absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-black rounded-full transition-all duration-300 ${
+                    open === i ? 'opacity-0 scale-y-0' : 'opacity-100 scale-y-100'
+                  }`}
+                />
+              </span>
+            </button>
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                open === i ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5 pb-5 md:pb-7 max-w-3xl">
+                {f.a}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Final CTA + contact                                                 */
+/* ------------------------------------------------------------------ */
+
+function FinalCtaSection() {
+  const reveal = useStaggeredReveal(2);
+
+  return (
+    <section
+      id="contact"
+      ref={reveal.containerRef}
+      className={`${SECTION_SHELL} flex flex-col gap-1.5 md:gap-2`}
+    >
+      <div
+        className={`${CARD} bg-black p-5 md:p-12 flex flex-col justify-between min-h-[420px] md:min-h-[520px]`}
+        style={reveal.getAnimStyle(0)}
+      >
+        <div>
+          <span className="block text-white/70 text-xs md:text-sm font-semibold mb-3 md:mb-5">
+            Ready to Explore a Straighter Smile?
+          </span>
+          <h2 className="text-white text-[clamp(2.75rem,9vw,8rem)] font-bold leading-[0.85] tracking-tight">
+            Start your
+            <br />
+            consult
+          </h2>
+        </div>
+
+        <div className="mt-8 md:mt-10">
+          <p className="text-white/80 text-xs md:text-sm font-medium leading-4 md:leading-5 max-w-xl mb-6">
+            A conversation with our team — by phone, virtual consultation, or in person — is a
+            simple, low-pressure way to find out what your options may look like. There is no
+            obligation to start.
+          </p>
+          <div className="flex flex-wrap gap-1.5 md:gap-2">
+            <a
+              href={VIRTUAL_CONSULT_URL}
+              target="_blank"
+              rel="noopener"
+              className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+            >
+              Request Your Consultation
+            </a>
+            <a
+              href={PHONE_HREF}
+              className="px-5 py-3 md:px-8 md:py-5 bg-white/20 backdrop-blur-xl rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
+            >
+              Call {PHONE_DISPLAY}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`${CARD} bg-stone-50 p-5 md:p-7 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-2`}
+        style={reveal.getAnimStyle(1)}
+      >
+        <div>
+          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Visit</span>
+          <p className="text-black text-sm md:text-base font-bold leading-tight">
+            Willow Street Dental
+            <br />
+            123 W. Willow Street
+            <br />
+            Chippewa Falls, WI 54729
+          </p>
+        </div>
+        <div>
+          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Call</span>
+          <a href={PHONE_HREF} className="text-black text-sm md:text-base font-bold leading-tight">
+            {PHONE_DISPLAY}
+          </a>
+          <p className="text-black text-sm md:text-base font-bold leading-tight mt-2">
+            Mon–Thu: 8am–5pm
+            <br />
+            Fri–Sun: Closed
+          </p>
+        </div>
+        <div>
+          <span className="block text-black text-xs md:text-sm font-semibold mb-2">Online</span>
+          <a
+            href={VIRTUAL_CONSULT_URL}
+            target="_blank"
+            rel="noopener"
+            className="block text-black text-sm md:text-base font-bold leading-tight underline"
+          >
+            Free virtual consultation
+          </a>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener"
+            className="block text-black text-sm md:text-base font-bold leading-tight underline mt-2"
+          >
+            Book an appointment
+          </a>
+        </div>
+      </div>
+
+      <p className="text-black/50 text-[10px] md:text-xs font-medium px-1">
+        Clear-aligner candidacy and treatment details are determined during an individual
+        evaluation.
+      </p>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* App                                                                  */
 /* ------------------------------------------------------------------ */
 
@@ -720,7 +1510,16 @@ function App() {
       <Navbar />
       <Section1 isMobile={isMobile} />
       <Section2 isMobile={isMobile} />
+      <BenefitsSection />
+      <WhyUsSection />
+      <ProcessSection />
+      <CandidacySection />
       <Section3 />
+      <TeamSection />
+      <ReviewsSection />
+      <CostSection />
+      <FaqSection />
+      <FinalCtaSection />
     </div>
   );
 }
