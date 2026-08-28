@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react'
-import { about, aboutImage } from '../data/content.js'
+import { about, aboutMedia } from '../data/content.js'
 import Section, { GLASS } from './Section.jsx'
-import ToothPlaceholder from './ToothPlaceholder.jsx'
+import MediaPanel from './MediaPanel.jsx'
 
 export default function About() {
   return (
@@ -23,9 +23,20 @@ export default function About() {
           </ul>
         </div>
 
-        {/* image slot — same swap contract as the tooth placeholders */}
-        <div className={`${GLASS} grid aspect-[4/3] place-items-center overflow-hidden`}>
-          <ToothPlaceholder className="size-[62%]" glow="from-blue-800/45" src={aboutImage.src} />
+        {/* Media slot — same swap contract as the tooth placeholders. The panel takes
+            the shape of what it holds: 16:9 once footage is configured, otherwise the
+            4:3 it has always been, so adding a clip never crops it. */}
+        <div
+          className={`${GLASS} grid place-items-center overflow-hidden ${
+            aboutMedia.video ? 'aspect-video' : 'aspect-[4/3]'
+          }`}
+        >
+          <MediaPanel
+            video={aboutMedia.video}
+            poster={aboutMedia.poster}
+            label={aboutMedia.label}
+            glow="from-blue-800/45"
+          />
         </div>
       </div>
     </Section>

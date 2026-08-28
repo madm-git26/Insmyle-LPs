@@ -96,6 +96,22 @@ request. The form already handles the surrounding UX:
 
 **All copy lives in `src/data/content.js`.** Edit it there rather than in the JSX.
 
+## The About video
+
+The About panel takes a looping muted video. Drop `about.mp4` and `about-poster.webp` into
+`public/media/` and point `aboutMedia` in `src/data/content.js` at them — no component change.
+Left unset (the current state) the panel keeps its 4:3 shape and the vector tooth; with a video
+configured it becomes 16:9 to match the footage, so nothing is ever cropped.
+
+`MediaPanel.jsx` handles the cases a background video actually hits: autoplay refused (battery
+saver, data saver, iOS Low Power Mode) leaves the poster up, a file that fails to load falls back
+to the poster and then to the vector tooth, and `prefers-reduced-motion` shows the poster without
+fetching the video at all. That last one needs saying — an autoplaying loop is exactly what the
+preference exists to suppress, and the global reduced-motion rule in `src/index.css` only
+neutralises CSS animation; it does nothing to a `<video>`.
+
+`public/media/README.md` has the encode specs and the licensing note.
+
 ## The tooth artwork
 
 The built-in tooth is inline SVG, redrawn to match the reference render the client supplied

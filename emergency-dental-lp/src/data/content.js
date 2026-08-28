@@ -8,6 +8,20 @@ export const heroTooth = { src: tooth('hero-molar.webp'), alt: '' }
 // no artwork supplied yet -> these slots render the vector tooth
 export const aboutImage = { src: tooth(null), alt: '' }
 
+/* Video for the About panel. Same contract as the artwork above: drop files into
+ * public/media/ and point these at them, and they appear. Left null, the panel keeps
+ * its current look. See public/media/README.md for the encode specs.
+ *
+ * `label` describes the clip for screen readers. Leave it empty when the footage is
+ * decorative -- the copy beside it already carries the meaning, and an empty label
+ * keeps the panel out of the accessibility tree rather than announcing a filename. */
+const media = (file) => (file ? `${import.meta.env.BASE_URL}media/${file}` : undefined)
+export const aboutMedia = {
+  video: media(null), //  e.g. media('about.mp4')
+  poster: media(null), // e.g. media('about-poster.webp')
+  label: '',
+}
+
 /* ------------------------------------------------------------------ *
  * All page copy lives here so it can be edited without touching JSX.
  *
