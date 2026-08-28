@@ -20,8 +20,28 @@ if (!cssFile || !jsFile) {
 }
 
 const css = readFileSync(join(assets, cssFile), 'utf8');
-const js = readFileSync(join(assets, jsFile), 'utf8');
+let js = readFileSync(join(assets, jsFile), 'utf8');
 const favicon = readFileSync(join(dist, 'favicon.svg'), 'utf8');
+
+// Embed /img/* assets as data URIs so the single file works offline.
+const MIME = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml' };
+const imgDir = join(dist, 'img');
+let embedded = 0;
+for (const name of readdirSync(imgDir)) {
+  const ext = name.slice(name.lastIndexOf('.'));
+  const mime = MIME[ext];
+  if (!mime) continue;
+  const dataUri = `data:${mime};base64,${readFileSync(join(imgDir, name)).toString('base64')}`;
+  const ref = `/img/${name}`;
+  if (js.includes(ref)) {
+    js = js.split(ref).join(dataUri);
+    embedded += 1;
+  }
+}
+console.log(`Embedded ${embedded} image(s) as data URIs.`);
+if (js.includes('/img/')) {
+  throw new Error('An /img/ reference survived inlining.');
+}
 
 let html = readFileSync(join(dist, 'index.html'), 'utf8');
 

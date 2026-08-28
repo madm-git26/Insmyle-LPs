@@ -1,20 +1,20 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import type { CSSProperties, ReactNode, RefObject } from 'react';
 
-const HERO_IMAGE =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_113640_ccf3cf97-d447-425b-a134-d7b09fc743fc.png&w=1280&q=85';
+/* Willow Street Dental brand assets (from the practice's own media library). */
+const LOGO = `${import.meta.env.BASE_URL}img/logo.png`;
+const DR_CALDER = `${import.meta.env.BASE_URL}img/dr-calder.webp`;
 
-const SECTION2_IMAGE =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114219_414dfe80-f15c-4e25-bf52-b13721f4bd88.png&w=1280&q=85';
-
-const SECTION3_IMG1 =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_115253_c19ab167-8dd5-48b4-967d-b9f0d9d6e8fb.png&w=1280&q=85';
-
-const SECTION3_IMG2 =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_115237_fc519057-6e87-4abf-999a-9610b8b085b4.png&w=1280&q=85';
-
-const SECTION3_BG =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114355_752ba9e6-0942-4abb-9047-5d9bb16632e9.png&w=1280&q=85';
+/* Hero mosaic: patient holding a clear aligner tray — direct message match. */
+const HERO_IMAGE = `${import.meta.env.BASE_URL}img/invisalign-smile.webp`;
+/* Section 2 mosaic: wide smile-design frame, enough width to pan across cards. */
+const SECTION2_IMAGE = `${import.meta.env.BASE_URL}img/smile-design.webp`;
+/* Educational: what the treatment actually looks like. */
+const SECTION3_IMG1 = `${import.meta.env.BASE_URL}img/clear-aligners.webp`;
+/* Evaluation: the digital-scan side of the smile-design frame. */
+const SECTION3_IMG2 = `${import.meta.env.BASE_URL}img/smile-design.webp`;
+/* Outcome: a patient smile. */
+const SECTION3_BG = `${import.meta.env.BASE_URL}img/smile-makeover.webp`;
 
 const PHONE_DISPLAY = '(715) 723-5688';
 const PHONE_HREF = 'tel:+17157235688';
@@ -122,9 +122,17 @@ const concerns = [
   'Minor tooth rotations',
 ];
 
-const team = [
+const team: {
+  initials: string;
+  photo: string | null;
+  name: string;
+  body: string;
+  quote: string | null;
+  note: string | null;
+}[] = [
   {
     initials: 'CC',
+    photo: DR_CALDER,
     name: 'Dr. Curtis Calder, D.D.S.',
     body: 'Dr. Curtis Calder earned his Doctor of Dental Surgery degree from Creighton University School of Dentistry. He offers a full range of dental care at Willow Street Dental — from everyday needs like cleanings, fillings, and crowns to more advanced procedures such as root canal therapy, dental implants, and smile makeovers.',
     quote:
@@ -133,6 +141,7 @@ const team = [
   },
   {
     initials: 'G',
+    photo: null,
     name: 'Gena — Dental Hygienist',
     body: 'Gena has been part of the Willow Street Dental team for 16 years. She attended the University of Minnesota for dental hygiene and graduated in 1982, bringing years of hands-on experience to every patient visit.',
     quote: null,
@@ -417,17 +426,18 @@ function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-md">
-        <div className="flex flex-col">
-          <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none">
-            Willow
+        <a href="#hero" className="flex flex-col" aria-label="Willow Street Dental, Chippewa Falls">
+          <img
+            src={LOGO}
+            alt="Willow Street Dental"
+            className="h-10 md:h-14 w-auto"
+            width={342}
+            height={184}
+          />
+          <span className="text-[8px] md:text-[9px] font-medium leading-none mt-0.5 md:mt-1">
+            chippewa falls, wi
           </span>
-          <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none -mt-1.5 md:-mt-2">
-            Street
-          </span>
-          <span className="text-[8px] md:text-[9px] font-medium leading-none mt-1.5 md:mt-2">
-            dental &middot; chippewa falls, wi
-          </span>
-        </div>
+        </a>
 
         <div className="hidden md:flex items-center gap-6">
           <a
@@ -579,7 +589,7 @@ function Section1({ isMobile }: { isMobile: boolean }) {
           down-to-earth approach
         </p>
 
-        <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
+        <div className="absolute bottom-5 left-3 right-3 md:bottom-8 md:left-4 md:right-8 z-10">
           <h1 className="text-black">
             <span className="block text-xs md:text-sm font-semibold mb-1 md:mb-2">
               Invisalign &amp; Clear Aligners in Chippewa Falls, WI
@@ -590,16 +600,29 @@ function Section1({ isMobile }: { isMobile: boolean }) {
               Aligners
             </span>
           </h1>
-        </div>
 
-        <a
-          href={VIRTUAL_CONSULT_URL}
-          target="_blank"
-          rel="noopener"
-          className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10"
-        >
-          Free Virtual Consult
-        </a>
+          <div className="mt-4 md:mt-6 flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
+            <div className="flex flex-wrap gap-1.5 md:gap-2">
+              <a
+                href={VIRTUAL_CONSULT_URL}
+                target="_blank"
+                rel="noopener"
+                className="px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
+              >
+                Request a Virtual Consultation
+              </a>
+              <a
+                href={PHONE_HREF}
+                className="px-5 py-3 md:px-8 md:py-5 bg-white/90 backdrop-blur-md rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+              >
+                Call {PHONE_DISPLAY}
+              </a>
+            </div>
+            <p className="text-black text-xs md:text-sm font-semibold md:ml-2">
+              Free — starts with a photo of your smile.
+            </p>
+          </div>
+        </div>
       </MaskedCard>
     </section>
   );
@@ -615,7 +638,8 @@ function Section2({ isMobile }: { isMobile: boolean }) {
   const reveal = useStaggeredReveal(4);
   const positions = useMaskPositions(sectionRef, cardRefs, 4);
   const imageWidth = useImageWidth(SECTION2_IMAGE, positions[0].sh);
-  const focalX = isMobile ? 0.65 : 0.8;
+  // Tuned for this frame so the patient's face lands in view at both widths.
+  const focalX = isMobile ? 0.85 : 0.8;
 
   return (
     <section
@@ -797,8 +821,8 @@ function Section3() {
             <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
               <img
                 src={SECTION3_IMG2}
-                alt="Clear aligner treatment at Willow Street Dental"
-                className="w-full h-full object-cover"
+                alt="Digital scan used to plan clear aligner treatment"
+                className="w-full h-full object-cover object-left"
               />
             </div>
           </div>
@@ -879,6 +903,133 @@ function Section3() {
 
 const SECTION_SHELL = 'w-full px-3 md:px-5 pt-1.5 md:pt-2 pb-1.5 md:pb-2';
 const CARD = 'rounded-xl md:rounded-2xl overflow-hidden';
+
+/**
+ * One CTA style reused at every conversion moment, so the page has a single
+ * hierarchy: white pill = primary (consultation), glass pill = secondary (call).
+ */
+function CtaBand({
+  heading,
+  sub,
+  primaryLabel,
+  primaryHref = VIRTUAL_CONSULT_URL,
+  showCall = true,
+}: {
+  heading: string;
+  sub?: string;
+  primaryLabel: string;
+  primaryHref?: string;
+  showCall?: boolean;
+}) {
+  const reveal = useStaggeredReveal(1);
+
+  return (
+    <section className={`${SECTION_SHELL}`} ref={reveal.containerRef}>
+      <div
+        className={`${CARD} bg-black p-5 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8`}
+        style={reveal.getAnimStyle(0)}
+      >
+        <div>
+          <p className="text-white text-lg md:text-2xl font-bold leading-tight">{heading}</p>
+          {sub && (
+            <p className="text-white/70 text-xs md:text-sm font-medium leading-4 md:leading-5 mt-1.5">
+              {sub}
+            </p>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5 md:gap-2 shrink-0">
+          <a
+            href={primaryHref}
+            target={primaryHref.startsWith('http') ? '_blank' : undefined}
+            rel={primaryHref.startsWith('http') ? 'noopener' : undefined}
+            className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+          >
+            {primaryLabel}
+          </a>
+          {showCall && (
+            <a
+              href={PHONE_HREF}
+              className="px-5 py-3 md:px-8 md:py-5 bg-white/20 backdrop-blur-xl rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
+            >
+              Call the Office
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Persistent one-thumb conversion path on mobile, where most Ads traffic lands. */
+function StickyMobileCta() {
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShown(window.scrollY > window.innerHeight * 0.8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <div
+      className={`md:hidden fixed bottom-0 left-0 right-0 z-40 px-3 pb-3 pt-2 bg-white/80 backdrop-blur-md border-t border-neutral-200 flex gap-2 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        shown ? 'translate-y-0' : 'translate-y-full'
+      }`}
+    >
+      <a
+        href={VIRTUAL_CONSULT_URL}
+        target="_blank"
+        rel="noopener"
+        className="flex-1 text-center px-5 py-4 bg-black rounded-full text-white text-sm font-semibold"
+      >
+        Request Consultation
+      </a>
+      <a
+        href={PHONE_HREF}
+        aria-label={`Call Willow Street Dental at ${PHONE_DISPLAY}`}
+        className="shrink-0 w-14 h-14 rounded-full border border-black flex items-center justify-center"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      </a>
+    </div>
+  );
+}
+
+/** Low-pressure entry point for visitors who are interested but uncertain. */
+function NotSureSection() {
+  const reveal = useStaggeredReveal(1);
+
+  return (
+    <section className={SECTION_SHELL} ref={reveal.containerRef}>
+      <div
+        className={`${CARD} bg-zinc-200 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6`}
+        style={reveal.getAnimStyle(0)}
+      >
+        <div className="max-w-2xl">
+          <h2 className="text-black text-[clamp(1.75rem,4vw,3rem)] font-bold leading-[1] tracking-tight mb-3">
+            Not sure if clear aligners
+            <br />
+            are right for you?
+          </h2>
+          <p className="text-black text-xs md:text-sm font-medium leading-4 md:leading-5">
+            You don’t have to know the answer before contacting the office. A consultation gives you
+            an opportunity to discuss your smile goals and learn whether clear aligner treatment may
+            be appropriate for you.
+          </p>
+        </div>
+        <a
+          href={PHONE_HREF}
+          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
+        >
+          Talk With Our Dental Team
+        </a>
+      </div>
+    </section>
+  );
+}
 
 function SectionHeading({
   eyebrow,
@@ -1010,7 +1161,7 @@ function WhyUsSection() {
 /* ------------------------------------------------------------------ */
 
 function ProcessSection() {
-  const reveal = useStaggeredReveal(processSteps.length + 2);
+  const reveal = useStaggeredReveal(processSteps.length + 1);
 
   return (
     <section
@@ -1052,22 +1203,6 @@ function ProcessSection() {
         ))}
       </div>
 
-      <div
-        className={`${CARD} bg-black p-5 md:p-7 flex flex-col md:flex-row md:items-center md:justify-between gap-4`}
-        style={reveal.getAnimStyle(processSteps.length + 1)}
-      >
-        <p className="text-white text-lg md:text-2xl font-bold leading-tight">
-          Ready to see if clear aligners fit your smile?
-        </p>
-        <a
-          href={VIRTUAL_CONSULT_URL}
-          target="_blank"
-          rel="noopener"
-          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
-        >
-          Request Your Virtual Consultation
-        </a>
-      </div>
     </section>
   );
 }
@@ -1181,9 +1316,18 @@ function TeamSection() {
             className={`${CARD} bg-zinc-200 p-5 md:p-7`}
             style={reveal.getAnimStyle(i + 1)}
           >
-            <span className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-black text-white text-base md:text-xl font-bold mb-4 md:mb-6">
-              {m.initials}
-            </span>
+            {m.photo ? (
+              <img
+                src={m.photo}
+                alt={m.name}
+                loading="lazy"
+                className="w-20 h-20 md:w-28 md:h-28 rounded-full object-cover mb-4 md:mb-6"
+              />
+            ) : (
+              <span className="inline-flex items-center justify-center w-20 h-20 md:w-28 md:h-28 rounded-full bg-black text-white text-xl md:text-3xl font-bold mb-4 md:mb-6">
+                {m.initials}
+              </span>
+            )}
             <h3 className="text-black text-xl md:text-3xl font-bold leading-tight mb-3">
               {m.name}
             </h3>
@@ -1488,7 +1632,7 @@ function FinalCtaSection() {
         </div>
       </div>
 
-      <p className="text-black/50 text-[10px] md:text-xs font-medium px-1">
+      <p className="text-black/50 text-[10px] md:text-xs font-medium px-1 pb-24 md:pb-0">
         Clear-aligner candidacy and treatment details are determined during an individual
         evaluation.
       </p>
@@ -1510,16 +1654,53 @@ function App() {
       <Navbar />
       <Section1 isMobile={isMobile} />
       <Section2 isMobile={isMobile} />
+
       <BenefitsSection />
+      <CtaBand
+        heading="Ready to explore clear aligners?"
+        sub="Start from home — a virtual consultation begins with a photo of your smile."
+        primaryLabel="Explore Your Options"
+      />
+
       <WhyUsSection />
       <ProcessSection />
+      <CtaBand
+        heading="That's all it takes to get started."
+        primaryLabel="Start Your Virtual Consultation"
+      />
+
       <CandidacySection />
+      <NotSureSection />
+
       <Section3 />
+
       <TeamSection />
+      <CtaBand
+        heading="Have a question for the dental team?"
+        sub="Willow Street Dental · 123 W. Willow Street, Chippewa Falls, WI"
+        primaryLabel="Talk With Our Dental Team"
+        primaryHref={PHONE_HREF}
+        showCall={false}
+      />
+
       <ReviewsSection />
+      <CtaBand
+        heading="Ready to explore your options?"
+        sub="Start with a conversation about your smile goals."
+        primaryLabel="Request a Consultation"
+      />
+
       <CostSection />
       <FaqSection />
+      <CtaBand
+        heading="Still have questions?"
+        sub="Our Chippewa Falls team is happy to walk you through what to expect."
+        primaryLabel="Ask Our Team"
+        primaryHref={PHONE_HREF}
+      />
+
       <FinalCtaSection />
+      <StickyMobileCta />
     </div>
   );
 }
