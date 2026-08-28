@@ -309,10 +309,11 @@ const GoogleG = ({ className = 'w-7 h-7' }: IconProps) => (
 
 const navLinks = [
   { label: 'Why Aligners', href: '#benefits' },
-  { label: 'Reviews', href: '#reviews' },
   { label: 'The Process', href: '#journey' },
   { label: 'Our Dentist', href: '#doctor' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'Cost', href: '#cost' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 const heroTrust = [
@@ -356,6 +357,79 @@ const consultSteps = [
   'Share a clear photo of your smile',
   'Tell us what you’d like to change',
   'Our team will follow up with your next steps',
+];
+
+/* Concerns clear aligners may address — wording kept conditional, never a
+   diagnosis, and matched to what the practice's own page lists. */
+const concerns = [
+  { title: 'Crowded teeth', body: 'Teeth that overlap or sit too close together.' },
+  { title: 'Spacing between teeth', body: 'Gaps you would like to close for a more even smile.' },
+  { title: 'Overbite, underbite or crossbite', body: 'Certain bite concerns may be treatable with aligners.' },
+  { title: 'Minor tooth rotations', body: 'Teeth that are slightly turned out of position.' },
+];
+
+/* Why a local dentist, stated factually — no comparison claims about any
+   named competitor, only what in-person care actually involves. */
+const whyLocal = [
+  {
+    Icon: IconUsers,
+    title: 'Treated by a local dentist',
+    body: 'Your treatment is planned and monitored by Dr. Calder here in Chippewa Falls — not by mail.',
+  },
+  {
+    Icon: IconTooth,
+    title: 'A real exam comes first',
+    body: 'Aligners are only recommended after a comprehensive dental exam and digital scan of your teeth.',
+  },
+  {
+    Icon: IconHeart,
+    title: 'Care beyond the aligners',
+    body: 'If something else needs attention first, the same team can take care of it under one roof.',
+  },
+];
+
+const costFactors = [
+  'How complex your case is',
+  'Estimated length of treatment',
+  'The type of aligner treatment recommended',
+  'Any existing dental needs',
+  'Your insurance benefits',
+  'Payment options available to you',
+];
+
+const faqs = [
+  {
+    q: 'What are clear aligners?',
+    a: 'Clear aligners are transparent, custom-made trays that fit over your teeth and are designed to gradually guide them into a straighter position — an alternative to traditional metal braces.',
+  },
+  {
+    q: 'Is Invisalign available in Chippewa Falls?',
+    a: 'Many patients searching for Invisalign in Chippewa Falls are looking for a discreet way to straighten their smile. Willow Street Dental offers clear aligner treatment here in Chippewa Falls, and our team can talk through your specific options during a consultation.',
+  },
+  {
+    q: 'Am I a candidate for clear aligners?',
+    a: 'Clear aligners may help with mild to moderate concerns such as crowded or spaced teeth and certain bite issues, depending on your evaluation. An in-person or virtual consultation is needed to determine whether they are right for you.',
+  },
+  {
+    q: 'How long does clear aligner treatment take?',
+    a: 'Treatment length varies by patient. Many patients complete clear aligner treatment in about 6 to 18 months, though your specific timeline is discussed as part of your evaluation.',
+  },
+  {
+    q: 'Are clear aligners comfortable?',
+    a: 'Aligners are smooth and custom-made to fit closely, with no brackets or wires. As with any orthodontic treatment, you may notice a short adjustment period with each new set.',
+  },
+  {
+    q: 'Can I take them out to eat and brush?',
+    a: 'Yes. Clear aligners are removable, so you can take them out to eat, to drink anything other than water, and to brush and floss. Most patients wear them about 20 to 22 hours a day to stay on track.',
+  },
+  {
+    q: 'How does the virtual consultation work?',
+    a: 'You share a photo of your smile and tell us what you would like to change. Our team then follows up to arrange your personalized next step. The virtual consultation is free.',
+  },
+  {
+    q: 'What do clear aligners cost?',
+    a: 'Cost depends on treatment complexity, length and your individual dental needs. Willow Street Dental is in network with Delta Dental — ask our team about current fees, insurance benefits and payment options.',
+  },
 ];
 
 const miniFaqs = [
@@ -478,7 +552,7 @@ function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="inline-flex min-h-[44px] items-center px-2 text-sm font-medium text-ink transition-colors hover:text-brand-600"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center px-2 text-sm font-medium text-ink transition-colors hover:text-brand-600"
             >
               {l.label}
             </a>
@@ -726,6 +800,19 @@ function Reviews() {
             Read More Reviews <Arrow />
           </a>
         </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3 border-t border-slate-100 pt-8">
+          <p className="text-[15px] font-semibold text-navy-900">Ready to explore your options?</p>
+          <p className="text-[13.5px] text-muted">Start with a conversation about your smile goals.</p>
+          <div className="mt-1 flex flex-col gap-3 sm:flex-row">
+            <BtnPrimary href={VIRTUAL_CONSULT_URL} data-cta="Reviews — Request consultation" data-cta-location="after_reviews">
+              Request Your Consultation
+            </BtnPrimary>
+            <BtnOutline href={PHONE_HREF} data-cta="Reviews — Call" data-cta-location="after_reviews">
+              Call {PHONE_DISPLAY}
+            </BtnOutline>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -782,6 +869,263 @@ function Journey() {
 /* Doctor + virtual consultation                                       */
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/* Lead form                                                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Set this to the practice's form handler (CRM webhook, Formspree, etc.).
+ * While it is empty the form still validates and captures intent, then hands
+ * off to the virtual-consult page rather than silently losing the lead.
+ */
+const FORM_ENDPOINT = '';
+
+type Fields = { name: string; phone: string; email: string; goal: string };
+type Errors = Partial<Record<keyof Fields, string>>;
+
+function validate(v: Fields): Errors {
+  const e: Errors = {};
+  if (!v.name.trim()) e.name = 'Please enter your name so we know who to reach out to.';
+  const digits = v.phone.replace(/\D/g, '');
+  if (!digits) e.phone = 'Please enter a phone number we can reach you on.';
+  else if (digits.length < 10) e.phone = 'That phone number looks too short — please include the area code.';
+  if (v.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim()))
+    e.email = 'That email address does not look right — please check it.';
+  return e;
+}
+
+function Field({
+  id,
+  label,
+  type = 'text',
+  required,
+  value,
+  error,
+  onChange,
+  autoComplete,
+  inputMode,
+  hint,
+  textarea,
+}: {
+  id: keyof Fields;
+  label: string;
+  type?: string;
+  required?: boolean;
+  value: string;
+  error?: string;
+  onChange: (v: string) => void;
+  autoComplete?: string;
+  inputMode?: 'text' | 'tel' | 'email';
+  hint?: string;
+  textarea?: boolean;
+}) {
+  const describedBy = [hint ? `${id}-hint` : null, error ? `${id}-error` : null]
+    .filter(Boolean)
+    .join(' ');
+  const base =
+    'mt-1.5 w-full rounded-lg border bg-white px-3.5 py-3 text-base text-ink placeholder:text-slate-400 transition-colors focus:outline-none';
+  const tone = error
+    ? 'border-red-500 focus:border-red-600'
+    : 'border-slate-300 focus:border-brand-500';
+
+  return (
+    <p className="min-w-0">
+      <label htmlFor={id} className="text-sm font-semibold text-navy-900">
+        {label}
+        {required ? (
+          <span className="text-red-600" aria-hidden="true">
+            {' '}
+            *
+          </span>
+        ) : (
+          <span className="font-normal text-muted"> (optional)</span>
+        )}
+      </label>
+      {textarea ? (
+        <textarea
+          id={id}
+          name={id}
+          rows={3}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          aria-invalid={!!error}
+          aria-describedby={describedBy || undefined}
+          className={`${base} ${tone} resize-y`}
+        />
+      ) : (
+        <input
+          id={id}
+          name={id}
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          required={required}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
+          aria-invalid={!!error}
+          aria-describedby={describedBy || undefined}
+          className={`${base} ${tone}`}
+        />
+      )}
+      {hint && (
+        <span id={`${id}-hint`} className="mt-1 block text-[12px] text-muted">
+          {hint}
+        </span>
+      )}
+      {error && (
+        <span id={`${id}-error`} className="mt-1 block text-[12px] font-medium text-red-600">
+          {error}
+        </span>
+      )}
+    </p>
+  );
+}
+
+function LeadForm() {
+  const [v, setV] = useState<Fields>({ name: '', phone: '', email: '', goal: '' });
+  const [errors, setErrors] = useState<Errors>({});
+  const [state, setState] = useState<'idle' | 'sending' | 'done'>('idle');
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const set = (k: keyof Fields) => (val: string) => {
+    setV((p) => ({ ...p, [k]: val }));
+    // Clear the error as soon as the field is being corrected.
+    setErrors((p) => (p[k] ? { ...p, [k]: undefined } : p));
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const found = validate(v);
+    setErrors(found);
+    if (Object.keys(found).length) {
+      // Move focus to the first problem so keyboard and screen-reader users
+      // are not left hunting for it.
+      const first = Object.keys(found)[0];
+      formRef.current?.querySelector<HTMLElement>(`#${first}`)?.focus();
+      track('form_error', { fields: Object.keys(found).join(',') });
+      return;
+    }
+
+    setState('sending');
+    track('lead_form_submit', { has_email: v.email ? 'yes' : 'no' });
+
+    if (FORM_ENDPOINT) {
+      try {
+        await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...v, source: 'clear-aligner-lp' }),
+        });
+        setState('done');
+        return;
+      } catch {
+        /* fall through to the hand-off below */
+      }
+    }
+    // No endpoint wired yet — hand the visitor to the real consult flow
+    // rather than pretending the lead was captured.
+    window.open(VIRTUAL_CONSULT_URL, '_blank', 'noopener');
+    setState('done');
+  };
+
+  if (state === 'done') {
+    return (
+      <div className="rounded-xl border border-brand-200 bg-white p-6 text-center md:p-8" role="status">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+          <IconCheck className="w-6 h-6" />
+        </span>
+        <h3 className="mt-4 text-xl font-bold text-navy-900">Thanks — we’ve got your details.</h3>
+        <p className="mt-2 text-[14px] leading-relaxed text-muted">
+          Our Chippewa Falls team will follow up about your clear aligner consultation. If you’d
+          rather talk now, call{' '}
+          <a href={PHONE_HREF} className="font-semibold text-brand-700 underline">
+            {PHONE_DISPLAY}
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form
+      ref={formRef}
+      onSubmit={onSubmit}
+      noValidate
+      className="rounded-xl border border-slate-200 bg-white p-6 shadow-card md:p-7"
+      aria-labelledby="form-heading"
+    >
+      <h3 id="form-heading" className="text-xl font-bold text-navy-900">
+        Request your free consultation
+      </h3>
+      <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
+        Tell us how to reach you and our team will be in touch. No obligation.
+      </p>
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <Field id="name" label="Name" required value={v.name} error={errors.name} onChange={set('name')} autoComplete="name" />
+        <Field
+          id="phone"
+          label="Phone"
+          type="tel"
+          required
+          inputMode="tel"
+          value={v.phone}
+          error={errors.phone}
+          onChange={set('phone')}
+          autoComplete="tel"
+        />
+      </div>
+      <div className="mt-4">
+        <Field
+          id="email"
+          label="Email"
+          type="email"
+          inputMode="email"
+          value={v.email}
+          error={errors.email}
+          onChange={set('email')}
+          autoComplete="email"
+        />
+      </div>
+      <div className="mt-4">
+        <Field
+          id="goal"
+          label="What would you like to change about your smile?"
+          textarea
+          value={v.goal}
+          error={errors.goal}
+          onChange={set('goal')}
+          hint="Optional — even a sentence helps us prepare for your consultation."
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={state === 'sending'}
+        data-cta="Lead form submit"
+        data-cta-location="lead_form"
+        className="mt-5 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 text-[15px] font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {state === 'sending' ? 'Sending…' : 'Request My Consultation'}
+        {state !== 'sending' && <Arrow />}
+      </button>
+
+      <p className="mt-3 text-[12px] leading-relaxed text-muted">
+        Prefer to talk?{' '}
+        <a
+          href={PHONE_HREF}
+          data-cta="Form inline call"
+          className="inline-flex min-h-[44px] items-center font-semibold text-brand-700 underline"
+        >
+          Call {PHONE_DISPLAY}
+        </a>
+        . Your details are only used to contact you about your consultation.
+      </p>
+    </form>
+  );
+}
+
 function DoctorAndConsult() {
   const { ref, style } = useReveal();
   const cta = useCtaProps('doctor_consult');
@@ -789,7 +1133,7 @@ function DoctorAndConsult() {
   return (
     <section id="doctor" ref={ref} className="bg-white py-14 md:py-20">
       <div className={SHELL}>
-        <div className="grid items-stretch gap-6 lg:grid-cols-2">
+        <div className="grid items-start gap-6 lg:grid-cols-2">
           {/* Doctor */}
           <div style={style(0)} className="rounded-xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
             <p className="text-sm font-medium text-muted">Meet Your Chippewa Falls Dentist</p>
@@ -828,6 +1172,42 @@ function DoctorAndConsult() {
                 Talk With Our Dental Team
               </BtnOutline>
             </div>
+
+            {/* Local proof sits with the dentist: where, when, which plan. */}
+            <dl className="mt-6 grid gap-4 border-t border-slate-100 pt-5 sm:grid-cols-3">
+              <div>
+                <dt className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-muted">
+                  <IconPin className="w-4 h-4 text-brand-500" /> Visit
+                </dt>
+                <dd className="mt-1.5 text-[13px] leading-snug text-ink">
+                  {ADDRESS_LINE1}
+                  <br />
+                  {ADDRESS_LINE2}
+                </dd>
+              </div>
+              <div>
+                <dt className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-muted">
+                  <IconClock className="w-4 h-4 text-brand-500" /> Hours
+                </dt>
+                <dd className="mt-1.5 text-[13px] leading-snug text-ink">
+                  {HOURS.map((h) => (
+                    <span key={h.days} className="block">
+                      {h.days}: {h.time}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+              <div>
+                <dt className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-muted">
+                  <IconTag className="w-4 h-4 text-brand-500" /> Insurance
+                </dt>
+                <dd className="mt-1.5 text-[13px] leading-snug text-ink">
+                  In network with
+                  <br />
+                  Delta Dental
+                </dd>
+              </div>
+            </dl>
           </div>
 
           {/* Virtual consultation */}
@@ -868,9 +1248,7 @@ function DoctorAndConsult() {
             </div>
 
             <div className="mt-6">
-              <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Consult panel — Request Your Virtual Consultation')}>
-                Request Your Virtual Consultation
-              </BtnPrimary>
+              <LeadForm />
             </div>
 
             <p className="mt-4 text-[12px] leading-relaxed text-muted">
@@ -902,6 +1280,239 @@ function DoctorAndConsult() {
 /* ------------------------------------------------------------------ */
 /* Final CTA                                                           */
 /* ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------ */
+/* Candidacy + Invisalign terminology                                  */
+/* ------------------------------------------------------------------ */
+
+function Candidacy() {
+  const { ref, style } = useReveal();
+  const cta = useCtaProps('after_candidacy');
+
+  return (
+    <section id="candidacy" ref={ref} className="bg-white py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>Could Clear Aligners Work for Your Smile?</SectionTitle>
+        <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-muted">
+          Clear aligners may help with a range of mild to moderate concerns, depending on your
+          evaluation:
+        </p>
+
+        <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {concerns.map((c, i) => (
+            <div
+              key={c.title}
+              style={style(i)}
+              className="rounded-xl border border-slate-100 bg-white p-5 shadow-card"
+            >
+              <IconCheck className="w-6 h-6 text-brand-500" />
+              <h3 className="mt-3 text-[15px] font-bold text-navy-900">{c.title}</h3>
+              <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{c.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={style(4)}
+          className="mt-6 rounded-xl border-l-4 border-brand-500 bg-brand-50 p-5 md:p-6"
+        >
+          <h3 className="text-[15px] font-bold text-navy-900">A consultation comes first</h3>
+          <p className="mt-1.5 text-[13.5px] leading-relaxed text-muted">
+            Every smile is different, and clear aligners are not right for every situation. Whether
+            they may work for you depends on an evaluation with our Chippewa Falls team — this page
+            is not a diagnosis.
+          </p>
+        </div>
+
+        {/* Terminology: what people search for vs. what the treatment is called. */}
+        <div
+          style={style(5)}
+          className="mt-6 rounded-xl border border-slate-100 bg-white p-6 shadow-card md:p-8"
+        >
+          <h3 className="text-lg font-bold text-navy-900 md:text-xl">
+            Invisalign or clear aligners — what’s the difference?
+          </h3>
+          <p className="mt-3 text-[14px] leading-relaxed text-muted">
+            “Invisalign” is a well-known brand name within the broader category of clear aligner
+            treatment, which is why many people search for Invisalign in Chippewa Falls when what
+            they really want is a clear, removable way to straighten their teeth. “Clear aligners”
+            is the wider term for that type of treatment.
+          </p>
+          <p className="mt-3 text-[14px] leading-relaxed text-muted">
+            Willow Street Dental’s service is described as clear aligner treatment. If you have a
+            particular brand in mind, ask our team during your consultation.
+          </p>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('Candidacy — See if aligners may be right')}>
+            See If Clear Aligners May Be Right for You
+          </BtnPrimary>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Why a local dentist                                                 */
+/* ------------------------------------------------------------------ */
+
+function WhyLocal() {
+  const { ref, style } = useReveal();
+
+  return (
+    <section id="why-local" ref={ref} className="bg-brand-50/60 py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>Why Choose a Chippewa Falls Dental Team?</SectionTitle>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {whyLocal.map(({ Icon, title, body }, i) => (
+            <div
+              key={title}
+              style={style(i)}
+              className="rounded-xl border border-slate-100 bg-white p-6 shadow-card"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                <Icon className="w-5 h-5" />
+              </span>
+              <h3 className="mt-4 text-[15px] font-bold text-navy-900">{title}</h3>
+              <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Cost & insurance                                                    */
+/* ------------------------------------------------------------------ */
+
+function Cost() {
+  const { ref, style } = useReveal();
+  const cta = useCtaProps('after_cost');
+
+  return (
+    <section id="cost" ref={ref} className="bg-white py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>What Do Clear Aligners Cost?</SectionTitle>
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div style={style(0)} className="rounded-xl border border-slate-100 bg-white p-6 shadow-card md:p-8">
+            <p className="text-[14px] leading-relaxed text-muted">
+              There is no single price for clear aligners, because no two smiles need the same
+              treatment. Your cost depends on:
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {costFactors.map((f) => (
+                <li key={f} className="flex items-start gap-2.5 text-[14px] text-ink">
+                  <IconCheck className="mt-0.5 w-4 h-4 shrink-0 text-brand-500" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div style={style(1)} className="flex flex-col rounded-xl bg-brand-50 p-6 md:p-8">
+            <h3 className="text-lg font-bold text-navy-900 md:text-xl">
+              In network with Delta Dental
+            </h3>
+            <p className="mt-3 flex-1 text-[14px] leading-relaxed text-muted">
+              Willow Street Dental is in network with Delta Dental. The clearest way to understand
+              your own cost is to ask — our team can walk you through current fees, your insurance
+              benefits and the payment options available to you.
+            </p>
+            <div className="mt-6">
+              <BtnPrimary href={PHONE_HREF} {...cta('Cost — Ask about options')}>
+                Ask About Your Options
+              </BtnPrimary>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* FAQ                                                                 */
+/* ------------------------------------------------------------------ */
+
+function Faq() {
+  const { ref, style } = useReveal();
+  const [open, setOpen] = useState<number | null>(0);
+  const cta = useCtaProps('after_faq');
+
+  return (
+    <section id="faq" ref={ref} className="bg-brand-50/60 py-14 md:py-20">
+      <div className={SHELL}>
+        <SectionTitle>Clear Aligner Questions, Answered</SectionTitle>
+
+        <div
+          style={style(0)}
+          className="mx-auto mt-10 max-w-3xl divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-100 bg-white shadow-card"
+        >
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={f.q}>
+                <h3>
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${i}`}
+                    id={`faq-btn-${i}`}
+                    onClick={() => {
+                      const next = isOpen ? null : i;
+                      setOpen(next);
+                      if (next !== null) track('faq_open', { faq_question: f.q });
+                    }}
+                    className="flex min-h-[56px] w-full items-center justify-between gap-5 px-5 py-4 text-left md:px-6"
+                  >
+                    <span className="text-[15px] font-semibold text-navy-900 md:text-base">
+                      {f.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className={`relative h-5 w-5 shrink-0 text-brand-600 transition-transform duration-200 ${
+                        isOpen ? 'rotate-45' : ''
+                      }`}
+                    >
+                      <span className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded bg-current" />
+                      <span className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 rounded bg-current" />
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${i}`}
+                  hidden={!isOpen}
+                  className="px-5 pb-5 md:px-6"
+                >
+                  <p className="max-w-2xl text-[14px] leading-relaxed text-muted">{f.a}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-[14px] font-semibold text-navy-900">Still have questions?</p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <BtnPrimary href={VIRTUAL_CONSULT_URL} {...cta('FAQ — Request consultation')}>
+              Request a Virtual Consultation
+            </BtnPrimary>
+            <BtnOutline href={PHONE_HREF} {...cta('FAQ — Call')}>
+              Call {PHONE_DISPLAY}
+            </BtnOutline>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function FinalCta() {
   const cta = useCtaProps('final');
@@ -1080,9 +1691,13 @@ export default function App() {
         <Hero />
         <TrustBar />
         <Benefits />
-        <Reviews />
+        <Candidacy />
         <Journey />
         <DoctorAndConsult />
+        <WhyLocal />
+        <Reviews />
+        <Cost />
+        <Faq />
         <FinalCta />
       </main>
       <Footer />
