@@ -213,6 +213,93 @@ interface Position {
 }
 
 /* ------------------------------------------------------------------ */
+/* Conversion tracking                                                 */
+/* ------------------------------------------------------------------ */
+
+type TrackPayload = Record<string, string | number | undefined>;
+
+declare global {
+  interface Window {
+    dataLayer?: TrackPayload[];
+  }
+}
+
+/**
+ * Pushes a GTM-compatible event. No-ops when no tag manager is present, so the
+ * page works standalone. Each CTA reports its own type and location, letting
+ * phone clicks, consult requests and bookings be counted as separate
+ * conversions rather than lumped together.
+ */
+function track(event: string, payload: TrackPayload = {}) {
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event, ...payload });
+  } catch {
+    /* tracking must never break the page */
+  }
+}
+
+/** Classifies a CTA by destination so reporting stays consistent everywhere. */
+function ctaKind(href: string) {
+  if (href.startsWith('tel:')) return 'phone_click';
+  if (href.includes('book.allinone')) return 'booking_click';
+  if (href.includes('virtual-consult')) return 'virtual_consult_request';
+  return 'cta_click';
+}
+
+/**
+ * Labels a CTA for reporting. Clicks are captured by one delegated listener
+ * (see useConversionTracking), so these attributes only enrich the event —
+ * every link stays tracked even without them.
+ */
+function useCtaProps(location: string) {
+  return useCallback(
+    (_href: string, label: string) => ({
+      'data-cta': label,
+      'data-cta-location': location,
+    }),
+    [location],
+  );
+}
+
+/** Delegated CTA clicks plus scroll-depth milestones, each reported once. */
+function useConversionTracking() {
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (href.startsWith('#')) return; // in-page nav, not a conversion
+      track(ctaKind(href), {
+        cta_label: link.dataset.cta || link.textContent?.trim().slice(0, 60) || 'unlabelled',
+        cta_location: link.dataset.ctaLocation || link.closest('section')?.id || 'page',
+        cta_href: href,
+      });
+    };
+    document.addEventListener('click', onClick, true);
+
+    const hit = new Set<number>();
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max <= 0) return;
+      const pct = Math.round((window.scrollY / max) * 100);
+      for (const mark of [25, 50, 75, 90]) {
+        if (pct >= mark && !hit.has(mark)) {
+          hit.add(mark);
+          track('scroll_depth', { percent: mark });
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener('click', onClick, true);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+}
+
+/* ------------------------------------------------------------------ */
 /* Hooks                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -372,34 +459,62 @@ function MaskedCard({
 /* Splash Screen                                                       */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Paid traffic pays for every second the H1, CTA and phone are covered, so the
+ * counter runs fast, any interaction skips it, and it shows once per session.
+ */
+const SPLASH_COUNT_MS = 650;
+const SPLASH_FADE_MS = 300;
+
 function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [count, setCount] = useState(0);
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
+    const stepMs = SPLASH_COUNT_MS / 100;
     let step = 0;
     const interval = setInterval(() => {
       step += 1;
       setCount(step);
       if (step >= 100) {
         clearInterval(interval);
-        setTimeout(() => setExiting(true), 200);
+        setExiting(true);
       }
-    }, 20);
+    }, stepMs);
 
-    return () => clearInterval(interval);
+    // Let an impatient visitor straight through to the offer.
+    const skip = () => setExiting(true);
+    const opts = { passive: true, once: true } as const;
+    window.addEventListener('pointerdown', skip, opts);
+    window.addEventListener('wheel', skip, opts);
+    window.addEventListener('touchstart', skip, opts);
+    window.addEventListener('keydown', skip, opts);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('pointerdown', skip);
+      window.removeEventListener('wheel', skip);
+      window.removeEventListener('touchstart', skip);
+      window.removeEventListener('keydown', skip);
+    };
   }, []);
 
   useEffect(() => {
     if (!exiting) return;
-    const timeout = setTimeout(onComplete, 700);
+    try {
+      sessionStorage.setItem('wsd_splash_seen', '1');
+    } catch {
+      /* private mode — just show it again next time */
+    }
+    const timeout = setTimeout(onComplete, SPLASH_FADE_MS);
     return () => clearTimeout(timeout);
   }, [exiting, onComplete]);
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-700 ${
-        exiting ? 'opacity-0' : 'opacity-100'
+      aria-hidden="true"
+      className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-300 ${
+        exiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-black">
@@ -543,6 +658,7 @@ function Section1({ isMobile }: { isMobile: boolean }) {
   const positions = useMaskPositions(sectionRef, cardRefs, 4);
   const imageWidth = useImageWidth(HERO_IMAGE, positions[0].sh);
   const focalX = isMobile ? 0.7 : 0.8;
+  const heroCta = useCtaProps('hero');
 
   return (
     <section
@@ -607,12 +723,14 @@ function Section1({ isMobile }: { isMobile: boolean }) {
                 href={VIRTUAL_CONSULT_URL}
                 target="_blank"
                 rel="noopener"
+                {...heroCta(VIRTUAL_CONSULT_URL, 'Request a Virtual Consultation')}
                 className="px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
               >
                 Request a Virtual Consultation
               </a>
               <a
                 href={PHONE_HREF}
+                {...heroCta(PHONE_HREF, 'Call Willow Street Dental')}
                 className="px-5 py-3 md:px-8 md:py-5 bg-white/90 backdrop-blur-md rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
               >
                 Call {PHONE_DISPLAY}
@@ -801,7 +919,7 @@ function Section3() {
               Consults
             </h2>
             <p className="text-xs md:text-sm font-semibold text-black">
-              Free &middot; Three simple steps
+              Virtual clear aligner consultation in Chippewa Falls &middot; Free
               <br />
               123 W. Willow Street, Chippewa Falls, WI 54729 &middot; {PHONE_DISPLAY}
             </p>
@@ -914,14 +1032,17 @@ function CtaBand({
   primaryLabel,
   primaryHref = VIRTUAL_CONSULT_URL,
   showCall = true,
+  location,
 }: {
   heading: string;
   sub?: string;
   primaryLabel: string;
   primaryHref?: string;
   showCall?: boolean;
+  location: string;
 }) {
   const reveal = useStaggeredReveal(1);
+  const cta = useCtaProps(location);
 
   return (
     <section className={`${SECTION_SHELL}`} ref={reveal.containerRef}>
@@ -942,6 +1063,7 @@ function CtaBand({
             href={primaryHref}
             target={primaryHref.startsWith('http') ? '_blank' : undefined}
             rel={primaryHref.startsWith('http') ? 'noopener' : undefined}
+            {...cta(primaryHref, primaryLabel)}
             className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
           >
             {primaryLabel}
@@ -949,6 +1071,7 @@ function CtaBand({
           {showCall && (
             <a
               href={PHONE_HREF}
+              {...cta(PHONE_HREF, 'Call the Office')}
               className="px-5 py-3 md:px-8 md:py-5 bg-white/20 backdrop-blur-xl rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
             >
               Call the Office
@@ -963,6 +1086,7 @@ function CtaBand({
 /** Persistent one-thumb conversion path on mobile, where most Ads traffic lands. */
 function StickyMobileCta() {
   const [shown, setShown] = useState(false);
+  const cta = useCtaProps('sticky_mobile');
 
   useEffect(() => {
     const onScroll = () => setShown(window.scrollY > window.innerHeight * 0.8);
@@ -981,6 +1105,7 @@ function StickyMobileCta() {
         href={VIRTUAL_CONSULT_URL}
         target="_blank"
         rel="noopener"
+        {...cta(VIRTUAL_CONSULT_URL, 'Request Consultation')}
         className="flex-1 text-center px-5 py-4 bg-black rounded-full text-white text-sm font-semibold"
       >
         Request Consultation
@@ -988,6 +1113,7 @@ function StickyMobileCta() {
       <a
         href={PHONE_HREF}
         aria-label={`Call Willow Street Dental at ${PHONE_DISPLAY}`}
+        {...cta(PHONE_HREF, 'Sticky Call')}
         className="shrink-0 w-14 h-14 rounded-full border border-black flex items-center justify-center"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -995,6 +1121,46 @@ function StickyMobileCta() {
         </svg>
       </a>
     </div>
+  );
+}
+
+/**
+ * Search-intent bridge: connects the Google query to this page in one glance,
+ * and plants an early trust cue long before the doctor section.
+ */
+function IntentBridgeSection() {
+  const reveal = useStaggeredReveal(1);
+  const cta = useCtaProps('intent_bridge');
+
+  return (
+    <section id="intent" className={SECTION_SHELL} ref={reveal.containerRef}>
+      <div
+        className={`${CARD} bg-stone-50 p-5 md:p-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6`}
+        style={reveal.getAnimStyle(0)}
+      >
+        <div className="max-w-3xl">
+          <h2 className="text-black text-[clamp(1.75rem,4.5vw,3.25rem)] font-bold leading-[1.02] tracking-tight mb-3">
+            Looking for Invisalign
+            <br />
+            in Chippewa Falls?
+          </h2>
+          <p className="text-black text-sm md:text-base font-semibold leading-5 md:leading-6">
+            Willow Street Dental offers clear aligner treatment in Chippewa Falls for patients who
+            want a more discreet way to straighten their smile — with care from a local dental team
+            right here on West Willow Street.
+          </p>
+        </div>
+        <a
+          href={VIRTUAL_CONSULT_URL}
+          target="_blank"
+          rel="noopener"
+          {...cta(VIRTUAL_CONSULT_URL, 'Request a Virtual Consultation')}
+          className="shrink-0 self-start md:self-auto px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform"
+        >
+          Request a Virtual Consultation
+        </a>
+      </div>
+    </section>
   );
 }
 
@@ -1301,9 +1467,9 @@ function TeamSection() {
         eyebrow="Meet the Willow Street Dental Team"
         title={
           <>
-            Meet
+            Your Chippewa Falls
             <br />
-            the team
+            dental team
           </>
         }
         style={reveal.getAnimStyle(0)}
@@ -1384,6 +1550,9 @@ function ReviewsSection() {
             style={reveal.getAnimStyle(i + 1)}
           >
             <div>
+              <span className="block text-black/50 text-[10px] md:text-xs font-bold uppercase tracking-[0.14em] mb-2">
+                Patient Experience
+              </span>
               <span className="block text-black text-base md:text-lg tracking-[0.2em] mb-4">
                 ★★★★★
               </span>
@@ -1501,7 +1670,11 @@ function FaqSection() {
           <div key={f.q} className="border-b border-black/15 last:border-b-0">
             <button
               type="button"
-              onClick={() => setOpen(open === i ? null : i)}
+              onClick={() => {
+                const next = open === i ? null : i;
+                setOpen(next);
+                if (next !== null) track('faq_open', { faq_question: f.q });
+              }}
               aria-expanded={open === i}
               className="w-full flex items-center justify-between gap-6 py-4 md:py-6 text-left"
             >
@@ -1554,10 +1727,10 @@ function FinalCtaSection() {
           <span className="block text-white/70 text-xs md:text-sm font-semibold mb-3 md:mb-5">
             Ready to Explore a Straighter Smile?
           </span>
-          <h2 className="text-white text-[clamp(2.75rem,9vw,8rem)] font-bold leading-[0.85] tracking-tight">
-            Start your
+          <h2 className="text-white text-[clamp(2.25rem,7vw,6rem)] font-bold leading-[0.88] tracking-tight">
+            Explore clear aligners
             <br />
-            consult
+            in Chippewa Falls
           </h2>
         </div>
 
@@ -1645,18 +1818,27 @@ function FinalCtaSection() {
 /* ------------------------------------------------------------------ */
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    try {
+      return sessionStorage.getItem('wsd_splash_seen') !== '1';
+    } catch {
+      return true;
+    }
+  });
   const isMobile = useIsMobile();
+  useConversionTracking();
 
   return (
     <div className="bg-white">
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       <Navbar />
       <Section1 isMobile={isMobile} />
+      <IntentBridgeSection />
       <Section2 isMobile={isMobile} />
 
       <BenefitsSection />
       <CtaBand
+        location="after_benefits"
         heading="Ready to explore clear aligners?"
         sub="Start from home — a virtual consultation begins with a photo of your smile."
         primaryLabel="Explore Your Options"
@@ -1665,17 +1847,25 @@ function App() {
       <WhyUsSection />
       <ProcessSection />
       <CtaBand
+        location="after_process"
         heading="That's all it takes to get started."
         primaryLabel="Start Your Virtual Consultation"
       />
 
       <CandidacySection />
-      <NotSureSection />
+      <CtaBand
+        location="after_candidacy"
+        heading="Wondering whether this could work for your smile?"
+        sub="An evaluation is how candidacy is determined — it starts with a conversation."
+        primaryLabel="See If Clear Aligners May Be Right for You"
+      />
 
+      <NotSureSection />
       <Section3 />
 
       <TeamSection />
       <CtaBand
+        location="after_doctor"
         heading="Have a question for the dental team?"
         sub="Willow Street Dental · 123 W. Willow Street, Chippewa Falls, WI"
         primaryLabel="Talk With Our Dental Team"
@@ -1685,14 +1875,25 @@ function App() {
 
       <ReviewsSection />
       <CtaBand
+        location="after_reviews"
         heading="Ready to explore your options?"
         sub="Start with a conversation about your smile goals."
-        primaryLabel="Request a Consultation"
+        primaryLabel="Request Your Consultation"
       />
 
       <CostSection />
+      <CtaBand
+        location="after_cost"
+        heading="Questions about cost?"
+        sub="Ask about treatment options, insurance benefits and available payment options."
+        primaryLabel="Talk With Our Team"
+        primaryHref={PHONE_HREF}
+        showCall={false}
+      />
+
       <FaqSection />
       <CtaBand
+        location="after_faq"
         heading="Still have questions?"
         sub="Our Chippewa Falls team is happy to walk you through what to expect."
         primaryLabel="Ask Our Team"
