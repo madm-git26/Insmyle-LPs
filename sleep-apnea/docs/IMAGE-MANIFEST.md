@@ -18,10 +18,16 @@ back to its placeholder if the file is not there yet
 | `provider.jpg` | Provider trust | Portrait 4:5 | ~560 × 700 | Real provider photograph. Do not use stock here. |
 | `well-rested-couple.jpg` | Final CTA | Landscape 5:4 | ~600 × 480 | Warm, awake, sunlit — the payoff shot. |
 
-The two client-supplied photographs arrived in the brief conversation rather
-than as files, so they are **not** in the repo. Save them as
+The two client-supplied photographs arrived in conversation rather than as
+files, so they are **not** in the repo. Save them as
 `public/images/hero-restful-sleep.jpg` and `public/images/tired-morning.jpg`
 and they appear immediately — the alt text is already written for them.
+
+That one copy is the whole swap, for both builds:
+
+* the **React build** loads the photo and stops using the placeholder;
+* the **standalone build** inlines it as a data URI on the next
+  `npm run build:standalone`, so the single HTML file carries the real image.
 
 ## Formats and sizes (spec 33)
 

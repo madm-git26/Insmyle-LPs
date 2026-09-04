@@ -11,7 +11,7 @@
  *
  * Run: npm run build:standalone
  */
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -44,12 +44,27 @@ for (const file of readdirSync(join(root, 'public/images'))) {
   IMAGES[`/images/${file}`] = `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
 }
 
+const MIME = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', avif: 'image/avif', svg: 'image/svg+xml' };
+
 /**
- * Production photography first, inlined placeholder as the fallback — the same
- * contract as the React <Img>, expressed with an onerror handler so the static
- * file behaves identically once the real files are dropped in.
+ * Real photography wins whenever it exists.
+ *
+ * Drop a photo into public/images with the name the copy expects
+ * (hero-restful-sleep.jpg, tired-morning.jpg, …) and it is inlined as a data
+ * URI here, so the single file carries the actual image. Until then the file
+ * points at the production path and falls back to the inlined placeholder, so
+ * it never shows a broken image and never needs a code change to swap.
  */
 function img(image, { className = '', priority = false, extra = '' } = {}) {
+  const realPath = join(root, 'public', image.src.replace(/^\//, ''));
+  const ext = image.src.split('.').pop().toLowerCase();
+
+  if (existsSync(realPath)) {
+    const data = `data:${MIME[ext] || 'image/jpeg'};base64,${readFileSync(realPath).toString('base64')}`;
+    return `<img class="${className}" src="${data}" alt="${t(image.alt)}"
+      ${priority ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" ${extra}>`;
+  }
+
   const fallback = IMAGES[image.placeholder] || '';
   return `<img class="${className}" src="${esc(image.src)}" alt="${t(image.alt)}"
     ${priority ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"

@@ -18,6 +18,14 @@ self-contained file — no server, no build, no framework, images inlined — an
 it is the paste-ready deliverable for a WordPress or CMS block, matching the
 convention of the other landing pages in this repo.
 
+**Adding the real photography is a file copy.** Drop a photo into
+`public/images/` under the name the copy expects (`hero-restful-sleep.jpg`,
+`tired-morning.jpg`, …) and re-run `npm run build:standalone`. The build
+inlines any real photo it finds as a data URI, so the single file carries the
+actual image; slots with no photo yet keep the production path and fall back to
+the inlined placeholder, so nothing ever renders broken. No code change either
+way — see `docs/IMAGE-MANIFEST.md` for the crops.
+
 Nothing to configure to see it run: placeholder photography and placeholder
 practice details ship with the repo.
 
