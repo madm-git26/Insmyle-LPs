@@ -6,10 +6,17 @@ reference comp (light clinical navy / ice-blue system).
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # → dist/
+npm run dev              # http://localhost:5173
+npm run build            # React build → dist/
+npm run build:standalone # single-file HTML → dist-standalone/
 npm run preview
 ```
+
+**Just want to look at the page?** Run `npm run build:standalone` and open
+`dist-standalone/sleep-apnea-landing-page.html` in any browser. It is one
+self-contained file — no server, no build, no framework, images inlined — and
+it is the paste-ready deliverable for a WordPress or CMS block, matching the
+convention of the other landing pages in this repo.
 
 Nothing to configure to see it run: placeholder photography and placeholder
 practice details ship with the repo.
@@ -25,6 +32,7 @@ practice details ship with the repo.
 | `src/components/` | One component per section, mirroring the specified architecture. |
 | `src/styles/` | `tokens.css` → `base.css` → `components.css` → `sections.css`, in that cascade order. |
 | `src/hooks/`, `src/lib/` | Reveal / scroll / sticky behaviour, analytics, UTM persistence. |
+| `tools/build-standalone.mjs` | Emits the single-file HTML build from the same content modules, so it can never drift from the React app. `tools/runtime.js` is its vanilla-JS behaviour layer. |
 | [`docs/IMAGE-MANIFEST.md`](docs/IMAGE-MANIFEST.md) | Every image slot, its crop, and how to generate the responsive derivatives. |
 
 ## Swapping in the client
@@ -117,6 +125,29 @@ overlap with sections that stay — remove their lines from `src/App.jsx`:
 That lands around **14,900px** while leaving the conversion spine intact
 (hero → problem → symptoms → breathing → airway → treatment → appliance →
 journey → candidate → CPAP → provider → testimonials → FAQ → local → final).
+
+## Two builds, one source
+
+Both builds import the same `src/content/` modules — copy, practice details,
+icon paths and ad-group variants — so the wording, the icons and the hero
+variants cannot drift between them.
+
+| | React (`dist/`) | Standalone (`dist-standalone/`) |
+|---|---|---|
+| Use for | a React or Next.js site | a CMS paste, a client preview, an email-able file |
+| Needs a build | yes | no — one file, opens anywhere |
+| Weight | 68 kB gzip JS + 7 kB CSS | 157 kB single file, images inlined |
+| Behaviour | React components | `tools/runtime.js`, vanilla, ~350 lines |
+
+Everything behaves identically in both: sticky header, mobile menu, scroll
+reveals, breathing loop, airway state machine, step activation, FAQ accordion,
+booking dialog with validation and success state, mobile sticky bar, scroll
+depth and CTA tracking, UTM/GCLID capture and link decoration, and the four
+hero variants.
+
+To wire the standalone form to a real endpoint, set
+`window.SLEEP_APNEA_LEAD_ENDPOINT` before the runtime script; without it the
+form runs the demo path and shows the success state.
 
 ## Framework notes
 

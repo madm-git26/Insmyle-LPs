@@ -22,6 +22,10 @@ body {
 #root { max-width: var(--page-max); margin: 0 auto; }
 
 img, svg, video { max-width: 100%; display: block; }
+
+/* The hidden attribute must win over any display rule — a hidden overlay that
+   still lays out will swallow clicks meant for the page behind it. */
+[hidden] { display: none !important; }
 a { color: inherit; }
 button { font: inherit; }
 
