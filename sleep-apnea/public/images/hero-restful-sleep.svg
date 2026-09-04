@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1040" viewBox="0 0 1040 1040" role="img" aria-label="Hero — man sleeping comfortably (placeholder)">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DCE9F8"/>
+      <stop offset="1" stop-color="#BFD8F2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1040" height="1040" fill="url(#g)"/>
+  <g fill="none" stroke="#123C7A" stroke-opacity=".35" stroke-width="2" stroke-linecap="round">
+    <path d="M187.2 644.8c83.2 0 104-166.4 187.2-166.4s104 166.4 187.2 166.4 104-166.4 187.2-166.4 104 166.4 187.2 166.4"/>
+  </g>
+  <text x="50%" y="48%" text-anchor="middle" font-family="Inter, sans-serif" font-size="47" font-weight="700" fill="#123C7A" fill-opacity=".72">Hero — man sleeping comfortably</text>
+  <text x="50%" y="53.5%" text-anchor="middle" font-family="Inter, sans-serif" font-size="33" fill="#123C7A" fill-opacity=".5">PLACEHOLDER · 1040×1040 · replace before launch</text>
+</svg>

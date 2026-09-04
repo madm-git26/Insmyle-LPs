@@ -1,0 +1,135 @@
+/* ============================================================
+   Base — reset, typography, containers, reveal system
+   Spec: 01, 02, 03, 32, 35, 36
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink-body);
+  font-family: var(--font-body);
+  font-size: var(--body);
+  line-height: var(--body-lh);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* The page itself is capped; the viewport keeps the outer margin. */
+#root { max-width: var(--page-max); margin: 0 auto; }
+
+img, svg, video { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin: 0;
+  font-weight: 800;
+}
+h1 { font-size: var(--h1); line-height: var(--h1-lh); letter-spacing: var(--h1-ls); }
+h2 { font-size: var(--h2); line-height: var(--h2-lh); letter-spacing: var(--h2-ls); }
+h3 { font-size: var(--h3); line-height: var(--h3-lh); letter-spacing: var(--h3-ls); font-weight: 700; }
+h4 { font-size: 19px; line-height: 1.3; font-weight: 700; }
+p  { margin: 0; }
+
+/* ---------- Containers ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--side-pad) * 2);
+  margin: 0 auto;
+  padding-inline: var(--side-pad);
+}
+
+.section { padding-block: var(--section-pad); position: relative; }
+.section--lg { padding-block: var(--section-pad-lg); }
+.section--tint { background: var(--blue-050); }
+.section--ice  { background: var(--ice); }
+.section--navy { background: var(--navy-900); }
+.section--navy h2, .section--navy h3, .section--navy h4 { color: var(--ink-invert); }
+.section--navy p { color: var(--ink-invert-soft); }
+
+/* ---------- Type helpers ---------- */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--eyebrow-ls);
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: var(--space-4); /* eyebrow → H1/H2: 16px */
+}
+.section--navy .eyebrow { color: var(--blue-200); }
+
+.lede { font-size: var(--body-lg); line-height: var(--body-lg-lh); color: var(--ink-body); }
+.small { font-size: var(--small); line-height: var(--small-lh); }
+.measure { max-width: 62ch; }
+.measure-tight { max-width: 46ch; }
+
+/* Section intro block: eyebrow → h2 (16) → paragraph (24) → content (48) */
+.section-intro { max-width: 680px; }
+.section-intro--center { margin-inline: auto; text-align: center; }
+.section-intro h2 + p { margin-top: var(--space-6); }
+.section-intro + * { margin-top: var(--space-12); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: -100px; z-index: 200;
+  background: var(--navy-700); color: var(--white);
+  padding: var(--space-3) var(--space-5); border-radius: var(--r-md); font-weight: 600;
+  transition: top var(--dur-fast) ease;
+}
+.skip-link:focus { top: var(--space-4); }
+
+:focus-visible {
+  outline: 3px solid var(--blue-600);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- Reveal system (spec 32) ---------- */
+.reveal { opacity: 0; will-change: opacity, transform; }
+.reveal--fade-up    { transform: translateY(24px); }
+.reveal--fade-in    { transform: none; }
+.reveal--slide-left { transform: translateX(28px); }
+.reveal--slide-right{ transform: translateX(-28px); }
+.reveal--scale-in   { transform: scale(.96); }
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-expo),
+    transform var(--dur-reveal) var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Horizontal reveals would push past the viewport on small screens, so below
+   md every variant falls back to the vertical one. Keeps CLS and horizontal
+   overflow at zero (spec 33). */
+@media (max-width: 767px) {
+  .reveal--slide-left,
+  .reveal--slide-right { transform: translateY(24px); }
+}
+
+/* ---------- Reduced motion (spec 35) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

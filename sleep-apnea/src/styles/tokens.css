@@ -1,0 +1,107 @@
+/* ============================================================
+   Sleep Apnea Landing Page — Design Tokens
+   Palette, type scale and spacing are lifted from the approved
+   reference comp (light clinical navy / ice-blue system).
+   Spec: 01 Global Design System, 02 Spacing, 03 Typography
+   ============================================================ */
+
+:root {
+  /* ---------- Brand colour ---------- */
+  --navy-950: #071B36; /* deepest — footer base                  */
+  --navy-900: #0B2545; /* dark bands, footer                     */
+  --navy-800: #0E3164; /* headings on light                      */
+  --navy-700: #123C7A; /* PRIMARY button fill                    */
+  --navy-600: #17498F; /* primary button hover                   */
+  --blue-600: #1F6FD0; /* eyebrow / accent / icon strokes        */
+  --blue-500: #3E8AE0;
+  --blue-200: #BFD8F2; /* icon-badge ring                        */
+  --blue-100: #DCE9F8; /* soft fills                             */
+  --blue-050: #EDF4FC; /* tinted section background              */
+  --ice:      #F5F9FD; /* page background                        */
+  --white:    #FFFFFF;
+
+  /* ---------- Ink ---------- */
+  --ink:        #0E2A54; /* headings                             */
+  --ink-body:   #566578; /* body copy                            */
+  --ink-muted:  #7C8A9C; /* captions, meta                       */
+  --ink-invert: #FFFFFF;
+  --ink-invert-soft: #C6D8EE; /* body copy on navy               */
+
+  /* ---------- Lines & shadow ---------- */
+  --line:        #E3EBF4;
+  --line-strong: #CFDDEC;
+  --line-invert: rgba(255, 255, 255, 0.16);
+  --shadow-sm: 0 1px 2px rgba(11, 37, 69, 0.05);
+  --shadow-md: 0 6px 20px rgba(11, 37, 69, 0.07);
+  --shadow-lg: 0 18px 48px rgba(11, 37, 69, 0.12);
+  --shadow-cta: 0 8px 24px rgba(18, 60, 122, 0.24);
+
+  /* ---------- Status ---------- */
+  --ok:    #1F9D6B;
+  --warn:  #C97A34;
+  --error: #C4453B;
+
+  /* ---------- Type ---------- */
+  --font-display: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --h1: 64px;   --h1-lh: 1.05;  --h1-ls: -0.025em;
+  --h2: 48px;   --h2-lh: 1.10;  --h2-ls: -0.02em;
+  --h3: 26px;   --h3-lh: 1.20;  --h3-ls: -0.01em;
+  --body-lg: 20px; --body-lg-lh: 1.6;
+  --body: 17px;    --body-lh: 1.65;
+  --small: 14px;   --small-lh: 1.5;
+  --eyebrow: 13px; --eyebrow-ls: 0.12em;
+
+  /* ---------- Spacing (8px base) ---------- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+  --space-30: 120px; --space-40: 160px;
+
+  /* ---------- Canvas ---------- */
+  --page-max: 1440px;
+  --content-max: 1200px;
+  --side-pad: 40px;
+  --section-pad: 120px;
+  --section-pad-lg: 160px;
+
+  /* ---------- Radius ---------- */
+  --r-sm: 6px;  --r-md: 10px;  --r-lg: 16px;  --r-xl: 24px;  --r-pill: 999px;
+
+  /* ---------- Motion ---------- */
+  --ease-out-expo: cubic-bezier(.22, 1, .36, 1);
+  --dur-fast: 180ms;
+  --dur-base: 250ms;
+  --dur-reveal: 600ms;
+
+  /* ---------- Layers ---------- */
+  --z-sticky-cta: 60;
+  --z-header: 80;
+  --z-modal: 100;
+}
+
+/* md and below — spec 01/03 */
+@media (max-width: 1023px) {
+  :root {
+    --side-pad: 32px;
+    --section-pad: 96px;
+    --section-pad-lg: 120px;
+    --h1: 48px;  --h1-lh: 1.06;
+    --h2: 38px;  --h2-lh: 1.12;
+    --h3: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --side-pad: 20px;
+    --section-pad: 72px;
+    --section-pad-lg: 88px;
+    --h1: 40px;  --h1-lh: 1.08;
+    --h2: 32px;  --h2-lh: 1.15;
+    --h3: 22px;
+    --body-lg: 18px; --body-lg-lh: 1.55;
+    --body: 16px;    --body-lh: 1.6;
+  }
+}
