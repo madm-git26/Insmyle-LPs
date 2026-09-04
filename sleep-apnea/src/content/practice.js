@@ -55,13 +55,20 @@ export const practice = {
   },
 };
 
-/** Convenience token map for copy strings: "{{CITY}}" → "Springfield". */
+/**
+ * Token map for copy strings. The copy deck is written with the client's own
+ * bracket convention — "[PRACTICE NAME]", "[CITY]" — and copy.js carries those
+ * strings verbatim, so the deck and the build are literally the same text.
+ */
 export const tokens = {
-  '{{PRACTICE}}': practice.name,
-  '{{CITY}}': practice.address.city,
-  '{{STATE}}': practice.address.state,
-  '{{PHONE}}': practice.phone.display,
-  '{{DOCTOR}}': practice.doctor.name,
+  '[PRACTICE NAME]': practice.name,
+  '[DOCTOR NAME]': practice.doctor.name,
+  '[CREDENTIALS]': practice.doctor.credentials,
+  '[ADDRESS]': `${practice.address.line1}, ${practice.address.line2}`,
+  '[CITY]': practice.address.city,
+  '[STATE]': practice.address.state,
+  '[ZIP]': practice.address.zip,
+  '[PHONE]': practice.phone.display,
 };
 
 export function fill(str) {

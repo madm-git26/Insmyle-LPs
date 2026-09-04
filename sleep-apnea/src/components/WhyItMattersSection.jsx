@@ -1,22 +1,24 @@
-import { Section, SectionIntro } from './ui/Section';
+import { Section } from './ui/Section';
 import { Reveal } from './ui/Reveal';
 import { Icon } from './ui/Icon';
+import { Button } from './ui/Button';
 import { whyItMatters } from '../content/copy';
+import { useBooking } from './BookingProvider';
 
-/**
- * Four consequence cards (spec 16).
- * No statistics by design — any figure added here needs a source and a
- * medical review first.
- */
+/** Section 07 — four supporting areas (spec 16). No statistics by design. */
 export function WhyItMattersSection() {
+  const { openBooking } = useBooking();
+
   return (
     <Section tone="ice" aria-labelledby="matters-heading">
-      <SectionIntro
-        eyebrow={whyItMatters.eyebrow}
-        heading={whyItMatters.heading}
-        body={whyItMatters.body}
-        headingId="matters-heading"
-      />
+      <Reveal className="section-intro section-intro--center">
+        <span className="eyebrow">{whyItMatters.eyebrow}</span>
+        <h2 id="matters-heading">{whyItMatters.heading}</h2>
+        {whyItMatters.paragraphs.map((text) => (
+          <p key={text.slice(0, 24)} className="lede">{text}</p>
+        ))}
+      </Reveal>
+
       <div className="matters-grid">
         {whyItMatters.cards.map((card, i) => (
           <Reveal key={card.title} delay={i * 100}>
@@ -30,9 +32,12 @@ export function WhyItMattersSection() {
           </Reveal>
         ))}
       </div>
-      <p className="small" style={{ marginTop: 'var(--space-8)', color: 'var(--ink-muted)' }}>
-        {whyItMatters.disclaimer}
-      </p>
+
+      <div className="section__foot">
+        <Button location="why_it_matters" onClick={() => openBooking('why_it_matters')}>
+          {whyItMatters.cta}
+        </Button>
+      </div>
     </Section>
   );
 }

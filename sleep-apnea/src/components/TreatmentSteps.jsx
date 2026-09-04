@@ -1,24 +1,27 @@
 import { Section, SectionIntro } from './ui/Section';
 import { StepList } from './StepList';
-import { OralApplianceViewer } from './OralApplianceViewer';
-import { treatment } from '../content/copy';
+import { Button } from './ui/Button';
+import { applianceSteps } from '../content/copy';
+import { useBooking } from './BookingProvider';
 
-/** How the appliance is made and worn — four steps + the viewer (spec 19). */
+/** Section 10 — how oral appliance therapy works, four steps (spec 19). */
 export function TreatmentSteps() {
+  const { openBooking } = useBooking();
+
   return (
-    <Section aria-labelledby="treatment-steps-heading">
-      <div className="airway__grid" style={{ marginBottom: 'var(--space-16)' }}>
-        <div>
-          <SectionIntro
-            eyebrow="How It Fits Into Your Night"
-            heading="What Wearing An Oral Appliance Is Like"
-            body="It goes in before bed and comes out in the morning. That's the whole routine."
-            headingId="treatment-steps-heading"
-          />
-        </div>
-        <OralApplianceViewer />
+    <Section aria-labelledby="appliance-steps-heading">
+      <SectionIntro
+        center
+        heading={applianceSteps.heading}
+        body={applianceSteps.body}
+        headingId="appliance-steps-heading"
+      />
+      <StepList steps={applianceSteps.steps} />
+      <div className="section__foot">
+        <Button location="appliance_steps" onClick={() => openBooking('appliance_steps')}>
+          {applianceSteps.cta}
+        </Button>
       </div>
-      <StepList steps={treatment.steps} />
     </Section>
   );
 }

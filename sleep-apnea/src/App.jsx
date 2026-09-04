@@ -5,9 +5,11 @@ import { HeroSection } from './components/HeroSection';
 import { ProblemSection } from './components/ProblemSection';
 import { SymptomSection } from './components/SymptomSection';
 import { AirwaySection } from './components/AirwaySection';
+import { BreathingSection } from './components/BreathingSection';
 import { EducationSection } from './components/EducationSection';
 import { WhyItMattersSection } from './components/WhyItMattersSection';
 import { TreatmentSection } from './components/TreatmentSection';
+import { ApplianceSection } from './components/ApplianceSection';
 import { TreatmentSteps } from './components/TreatmentSteps';
 import { PatientJourney } from './components/PatientJourney';
 import { CandidateSection } from './components/CandidateSection';
@@ -17,7 +19,6 @@ import { TechnologySection } from './components/TechnologySection';
 import { Testimonials } from './components/Testimonials';
 import { FAQSection } from './components/FAQSection';
 import { LocalSEOSection } from './components/LocalSEOSection';
-import { TrustBand } from './components/TrustBand';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
 import { MobileStickyCTA } from './components/MobileStickyCTA';
@@ -29,7 +30,7 @@ import { meta } from './content/copy';
 import { fill } from './content/practice';
 
 /**
- * SleepApneaLandingPage — section order follows spec 43.
+ * SleepApneaLandingPage — section order follows the client copy deck (01–23).
  *
  * The first ~35% of the page (hero → symptoms → airway) is the
  * conversion-focused block: the booking CTA appears three times before any
@@ -54,24 +55,25 @@ export default function App() {
       <Header />
 
       <main id="main">
-        <HeroSection ref={heroRef} variant={variant} />
-        <ProblemSection />
-        <SymptomSection />
-        <AirwaySection />
-        <EducationSection />
-        <WhyItMattersSection />
-        <TreatmentSection />
-        <TreatmentSteps />
-        <PatientJourney />
-        <CandidateSection />
-        <CPAPSection />
-        <ProviderSection />
-        <TechnologySection />
-        <Testimonials />
-        <FAQSection />
-        <LocalSEOSection />
-        <TrustBand />
-        <FinalCTA ref={finalRef} />
+        {/* 01 */} <HeroSection ref={heroRef} variant={variant} />
+        {/* 02 */} <ProblemSection />
+        {/* 03 */} <SymptomSection />
+        {/* 04 */} <BreathingSection />
+        {/* 05 */} <AirwaySection />
+        {/* 06 */} <EducationSection />
+        {/* 07 */} <WhyItMattersSection />
+        {/* 08 */} <TreatmentSection />
+        {/* 09 */} <ApplianceSection />
+        {/* 10 */} <TreatmentSteps />
+        {/* 11 */} <PatientJourney />
+        {/* 12 */} <CandidateSection />
+        {/* 13 */} <CPAPSection />
+        {/* 14 */} <ProviderSection />
+        {/* 15 */} <TechnologySection />
+        {/* 16 */} <Testimonials />
+        {/* 17 */} <FAQSection />
+        {/* 18 */} <LocalSEOSection />
+        {/* 19 */} <FinalCTA ref={finalRef} />
       </main>
 
       <Footer />

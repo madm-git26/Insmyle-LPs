@@ -1,13 +1,9 @@
 import { Section, SectionIntro } from './ui/Section';
 import { StepList } from './StepList';
-import { Button } from './ui/Button';
 import { journey } from '../content/copy';
-import { useBooking } from './BookingProvider';
 
-/** Five-step journey on navy (spec 20). */
+/** Section 11 — five-step journey on navy (spec 20). Step 01 carries its own CTA. */
 export function PatientJourney() {
-  const { openBooking } = useBooking();
-
   return (
     <Section id={journey.id} tone="navy" className="journey" aria-labelledby="journey-heading">
       <SectionIntro
@@ -16,12 +12,8 @@ export function PatientJourney() {
         body={journey.body}
         headingId="journey-heading"
       />
-      <StepList steps={journey.steps} />
-      <div style={{ marginTop: 'var(--space-12)' }}>
-        <Button variant="invert" location="journey" onClick={() => openBooking('journey')}>
-          {journey.cta}
-        </Button>
-      </div>
+      <StepList steps={journey.steps} ctaLocation="journey" />
+      <p className="journey__closing">{journey.closing}</p>
     </Section>
   );
 }

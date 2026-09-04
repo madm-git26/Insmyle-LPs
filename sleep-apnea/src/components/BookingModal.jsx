@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { BookingForm } from './BookingForm';
 import { Icon } from './ui/Icon';
 import { booking } from '../content/copy';
-import { fill, practice } from '../content/practice';
+import { fill } from '../content/practice';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
 /** Accessible dialog: focus trap, Escape to close, background scroll locked. */
@@ -61,9 +61,7 @@ export function BookingModal({ onClose, location }) {
         <div className="modal__head">
           <div>
             <h3 id="booking-title">{booking.title}</h3>
-            <p className="small" style={{ marginTop: 'var(--space-2)' }}>
-              {fill(booking.body).replace(practice.phone.display, practice.phone.display)}
-            </p>
+            <p className="small" style={{ marginTop: 'var(--space-2)' }}>{fill(booking.body)}</p>
           </div>
           <button type="button" className="modal__close" onClick={onClose} aria-label="Close">
             <Icon name="close" size={18} />

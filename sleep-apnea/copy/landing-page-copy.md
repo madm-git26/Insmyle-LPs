@@ -1,508 +1,631 @@
-# Sleep Apnea Landing Page — Full Copy Deck
+# Sleep Apnea Landing Page — Complete Copy
 
-Google Ads landing page for a dental sleep medicine practice.
-Every word below is live in the build; the code reads it from
-[`src/content/copy.js`](../src/content/copy.js), so this deck and the page
-cannot drift apart. Edit either one and mirror the change in the other.
+**Status: client-approved copy, implemented verbatim.**
 
-**Placeholders** — replace before launch. They are tokens, not prose:
-`{{PRACTICE}}` `{{CITY}}` `{{STATE}}` `{{PHONE}}` `{{DOCTOR}}`
-(set once in [`src/content/practice.js`](../src/content/practice.js)).
+This deck is the source of truth for every word on the page. The build reads
+the same strings from [`src/content/copy.js`](../src/content/copy.js), so the
+deck and the page cannot drift — edit one and mirror the other.
 
----
+Tokens in `[BRACKETS]` resolve at render from
+[`src/content/practice.js`](../src/content/practice.js). Set them once there;
+never find-and-replace through the components.
 
-## Editorial rules this copy follows
-
-These are not style preferences — they are what keeps the page compliant and
-approvable for a healthcare advertiser.
-
-| Rule | Why |
+| Token | Resolves to |
 |---|---|
-| A dentist screens and treats; a **physician diagnoses**. Never implied otherwise. | Legally and clinically accurate; also what Google's healthcare policies expect. |
-| **No statistics, percentages, or outcome promises.** | Every number would need a source and a medical review. There are none to check. |
-| Symptom language is descriptive — "can be", "may be", "is associated with". | Avoids diagnosing the reader from a landing page. |
-| CPAP is described as **effective and important**, never as the inferior option. | Truthful, and it avoids alienating the diagnosed CPAP user who is the best-qualified visitor on the page. |
-| Testimonials are **real and permissioned**, or they do not ship. | The placeholders in the build are marked as such in code. |
-| No fear imagery or language — no gasping, no alarm, no "silent killer". | The page converts on recognition, not fear. |
+| `[PRACTICE NAME]` `[PHONE]` | practice name, display phone |
+| `[ADDRESS]` `[CITY]` `[STATE]` `[ZIP]` | practice address parts |
+| `[DOCTOR NAME]` `[CREDENTIALS]` | provider name and credentials |
+
+Section numbers below match the approved deck. The component that renders each
+one is noted so copy edits land in the right place.
 
 ---
 
-## Metadata
-
-**Title tag**
-> Sleep Apnea Treatment in {{CITY}} | {{PRACTICE}}
-
-**Meta description**
-> Personalized sleep apnea evaluations and mask-free oral appliance therapy in {{CITY}}, {{STATE}}. Snoring, morning headaches, daytime fatigue — find out what is behind them. Call {{PHONE}}.
-
-**H1 (one per page)**
-> Breathe Better. Sleep Deeper. Wake Up Better.
-
----
-
-## 01 · Header
-
-Nav: `Sleep Apnea Treatment` · `Oral Appliance Therapy` · `How It Works` · `FAQs`
-Phone: **{{PHONE}}**
-CTA: **Schedule Evaluation**
-
----
-
-## 02 · Hero  *(CTA level 1)*
+## 01 — HERO SECTION
+`HeroSection` · `HeroCopy` · `BreathingHero`
 
 **Eyebrow**
-> SLEEP APNEA TREATMENT
+SLEEP APNEA TREATMENT
 
-**H1** *(set on three lines)*
-> Breathe Better.
-> Sleep Deeper.
-> Wake Up Better.
+**H1**
+Breathe Better. Sleep Deeper. Wake Up Better.
 
-**Body**
-> If snoring, restless sleep, morning headaches, or daytime fatigue are affecting your life, sleep apnea may be the reason. Our team provides personalized sleep apnea evaluations and treatment options designed to help you breathe more comfortably while you sleep.
+**Body Copy**
+You may be spending enough time in bed—but still waking up exhausted.
 
-**CTAs**
-> [ Schedule A Sleep Apnea Evaluation ]  [ Call {{PHONE}} ]
+If you snore loudly, wake with headaches or a dry mouth, feel tired throughout the day, or have been told that you stop breathing during sleep, sleep apnea may be affecting the quality of your rest.
 
-**Trust row**
-> ✓ Personalized Evaluation ✓ Comfortable Treatment Options ✓ Convenient Scheduling
+At [PRACTICE NAME], we provide personalized sleep apnea evaluations and treatment options designed around your individual needs.
 
-**Visual caption**
-> Steady, uninterrupted breathing
+**Primary CTA** Schedule A Sleep Apnea Evaluation
+**Secondary CTA** Call [PHONE]
 
----
+**Trust Points**
+✓ Personalized Evaluation
+✓ Comfortable Treatment Options
+✓ Personalized Care
 
-## 03 · Problem recognition
-
-**Eyebrow**
-> COULD THIS BE YOU?
-
-**H2**
-> You Sleep. But You Don't Feel Rested.
-
-**Body**
-> A full night in bed doesn't always mean a full night of restorative sleep.
->
-> Sleep apnea can repeatedly interrupt normal breathing while you're asleep. You may not remember waking up, but those interruptions can leave you feeling tired, unfocused, or simply unlike yourself the next morning.
->
-> Sometimes the first signs are noticed by the person sleeping next to you. Sometimes they're noticed when you realize that you're exhausted despite getting what should be enough sleep.
-
-**Pull quote**
-> If something doesn't feel right about your sleep, it's worth finding out why.
-
-**CTA**
-> Schedule A Sleep Apnea Evaluation
+**Microcopy**
+Take the first step toward understanding what's happening while you sleep.
 
 ---
 
-## 04 · Symptoms
+## 02 — PROBLEM RECOGNITION
+`ProblemSection`
 
-**H2**
-> Could Your Sleep Be Trying To Tell You Something?
+**Eyebrow** COULD THIS BE YOU?
 
-**Body**
-> Sleep apnea can look different from person to person. If several of these sound familiar, talking with a qualified healthcare professional may be a good next step.
+**H2** You Sleep. But You Don't Feel Rested.
 
-| Card | Copy |
+**Body Copy**
+A full night in bed doesn't always mean a full night of restorative sleep.
+
+Sleep apnea can repeatedly interrupt normal breathing while you're asleep. You may not remember waking up, but those interruptions can leave you feeling tired, unfocused, or simply unlike yourself the next morning.
+
+Sometimes, the first signs are noticed by the person sleeping next to you.
+
+Sometimes, they're noticed when you realize that you're exhausted despite getting what should be enough sleep.
+
+**Supporting Statement**
+If something doesn't feel right about your sleep, it's worth finding out why.
+
+**CTA** Schedule A Sleep Apnea Evaluation
+
+---
+
+## 03 — SYMPTOMS
+`SymptomSection` · `SymptomGrid`
+
+**H2** Could Your Sleep Be Trying To Tell You Something?
+
+**Intro**
+Sleep apnea can look different from person to person. If several of these symptoms sound familiar, talking with a qualified healthcare professional may be a good next step.
+
+| # | Symptom | Copy |
+|---|---|---|
+| 01 | **Loud Snoring** | Persistent or disruptive snoring can be one sign of obstructed breathing during sleep—especially when it is loud or occurs regularly. |
+| 02 | **Morning Headaches** | Waking with headaches may be associated with disrupted sleep and nighttime breathing problems. |
+| 03 | **Daytime Fatigue** | Do you wake up tired even after spending a full night in bed? Poor-quality sleep can leave you feeling exhausted throughout the day. |
+| 04 | **Gasping During Sleep** | Waking up choking, gasping, or suddenly short of breath can be an important sign that your breathing may be interrupted while you sleep. |
+| 05 | **Difficulty Concentrating** | Interrupted or poor-quality sleep can make it harder to stay focused, alert, and productive during the day. |
+| 06 | **Dry Mouth** | Regularly waking with a dry mouth may be another clue that you're experiencing nighttime breathing problems. |
+
+**CTA** Talk To Our Sleep Apnea Team
+
+---
+
+## 04 — BREATHING TIMELINE
+`BreathingSection` · `BreathingTimeline`
+
+**Eyebrow** WHAT CAN HAPPEN WHILE YOU SLEEP?
+
+**H2** Your Body May Be Working Harder Than You Realize.
+
+**Body Copy**
+During healthy sleep, breathing follows a natural rhythm.
+
+With obstructive sleep apnea, the upper airway can become narrowed or blocked, interrupting normal airflow. Your body responds to restore breathing, and this can happen repeatedly throughout the night.
+
+**Visual Labels**
+NORMAL BREATHING — Smooth, uninterrupted airflow.
+INTERRUPTED BREATHING — Airflow becomes restricted or interrupted.
+
+**Supporting Text**
+You may not fully wake up or remember these interruptions the next morning—which is one reason sleep apnea can sometimes go unnoticed.
+
+---
+
+## 05 — AIRWAY EDUCATION SECTION
+`AirwaySection` · `AirwayVisualization`
+
+**Eyebrow** UNDERSTANDING SLEEP APNEA
+
+**H2** Sleep Apnea Doesn't Always Wake You Up.
+
+**Body Copy**
+Obstructive sleep apnea occurs when the upper airway becomes repeatedly narrowed or blocked during sleep.
+
+When airflow is interrupted, your body works to restore normal breathing. These events can disrupt the natural quality of your sleep, even when you don't consciously wake up.
+
+**Supporting Copy**
+Understanding what's happening is the first step toward finding an appropriate treatment approach.
+
+**CTA** Explore Your Treatment Options
+
+**Educational Disclaimer**
+Illustration for educational purposes only. Individual anatomy, diagnosis, and treatment needs vary.
+
+*Readout states: Normal Airflow · Restricted Airflow · Breathing Interruption · Airflow Returning*
+
+---
+
+## 06 — WHAT IS OBSTRUCTIVE SLEEP APNEA?
+`EducationSection`
+
+**Eyebrow** WHAT IS SLEEP APNEA?
+
+**H2** What Is Obstructive Sleep Apnea?
+
+**Body Copy**
+Obstructive sleep apnea is a sleep-related breathing disorder in which the upper airway becomes repeatedly narrowed or blocked during sleep.
+
+These breathing interruptions can affect sleep quality and may contribute to symptoms such as loud snoring, daytime fatigue, morning headaches, and excessive daytime sleepiness.
+
+Because symptoms can vary, proper evaluation and diagnosis are important before choosing a treatment.
+
+**01 — The Airway Narrows**
+When you fall asleep, the muscles and soft tissues around the upper airway relax. In some people, this can cause the airway to become narrowed.
+
+**02 — Breathing Becomes Restricted**
+As the airway becomes restricted, airflow may decrease or temporarily stop.
+
+**03 — Your Body Responds**
+Your body responds to the change in breathing and works to restore normal airflow. These events may repeat throughout the night.
+
+**Bottom CTA** Find Out What Your Sleep Needs
+
+---
+
+## 07 — WHY IT MATTERS
+`WhyItMattersSection`
+
+**Eyebrow** YOUR SLEEP MATTERS
+
+**H2** Poor Sleep Can Affect More Than Your Morning.
+
+**Body Copy**
+When your sleep is repeatedly disrupted, you may notice the effects long after you leave your bedroom.
+
+You might feel tired during the day, struggle to concentrate, or wonder why you never feel completely refreshed.
+
+Sleep apnea can also be associated with important health concerns, which is why suspected sleep apnea should be properly evaluated rather than ignored.
+
+| Area | Copy |
 |---|---|
-| **Loud Snoring** | Persistent or disruptive snoring can be a sign of obstructed breathing during sleep. |
-| **Morning Headaches** | Waking with headaches may be associated with disrupted sleep. |
-| **Daytime Fatigue** | Do you wake up tired even after a full night in bed? |
-| **Gasping During Sleep** | Waking up choking, gasping, or short of breath can be a sign of interrupted breathing. |
-| **Difficulty Concentrating** | Interrupted or poor-quality sleep can make it harder to stay focused. |
-| **Dry Mouth** | Regularly waking with a dry mouth may be a clue to nighttime breathing problems. |
+| **Better Sleep Quality** | The goal of treatment is to address nighttime breathing problems and support healthier, more restorative sleep. |
+| **Daytime Alertness** | Better-quality sleep may help you feel more awake and engaged during the day. |
+| **Better Focus** | When you're not constantly dealing with poor-quality sleep, everyday activities can feel easier to manage. |
+| **Long-Term Health** | Proper diagnosis and treatment of sleep apnea can be an important part of taking care of your overall health. |
 
-**Breathing timeline labels**
-> NORMAL BREATHING — Smooth, uninterrupted airflow.
-> INTERRUPTED BREATHING — Airflow becomes restricted or interrupted.
-
-**CTA**
-> Talk To Our Sleep Apnea Team
+**CTA** Schedule Your Sleep Apnea Evaluation
 
 ---
 
-## 05 · What happens while you sleep  *(navy section)*
+## 08 — TREATMENT INTRODUCTION
+`TreatmentSection`
 
-**Eyebrow**
-> WHAT CAN HAPPEN WHILE YOU SLEEP?
+**Eyebrow** PERSONALIZED TREATMENT
 
-**H2**
-> Your Body May Be Working Harder Than You Realize.
+**H2** A More Comfortable Approach To Sleep Apnea Treatment
 
-**Body**
-> During healthy sleep, breathing follows a natural rhythm.
->
-> With obstructive sleep apnea, the upper airway can become narrowed or blocked, interrupting normal airflow.
->
-> Your body responds to restore breathing, and this can happen repeatedly throughout the night.
->
-> You may not fully wake up or remember these interruptions the next morning — which is one reason sleep apnea can sometimes go unnoticed.
+**Body Copy**
+Treatment for sleep apnea isn't necessarily one-size-fits-all.
 
-**Airway readout states**
-> Normal Airflow · Restricted Airflow · Breathing Interruption · Airflow Returning
+Depending on your diagnosis, symptoms, anatomy, and individual treatment needs, an oral appliance may be an appropriate option for managing obstructive sleep apnea or snoring.
 
-**CTA**
-> Learn About Your Treatment Options
+At [PRACTICE NAME], we take the time to understand your situation and discuss the treatment options that may be right for you.
+
+**Highlight**
+Your treatment should be based on your needs—not a one-size-fits-all approach.
+
+**CTA** Explore Oral Appliance Therapy
 
 ---
 
-## 06 · What is obstructive sleep apnea
+## 09 — ORAL APPLIANCE SECTION
+`ApplianceSection` · `OralApplianceViewer`
 
-**Eyebrow** THE BASICS
+**Eyebrow** ORAL APPLIANCE THERAPY
 
-**H2**
-> What Is Obstructive Sleep Apnea?
+**H2** A Small Appliance Designed For Your Sleep.
 
-**Body**
-> Obstructive sleep apnea is a sleep-related breathing condition. The soft tissues at the back of the throat can relax during sleep and narrow the airway, which interrupts normal breathing. It is diagnosed by a physician, usually after a sleep study you can often take at home.
+**Body Copy**
+Oral appliance therapy uses a custom-fitted dental device worn while you sleep.
 
-**01 The Airway Narrows** — Muscles and soft tissue relax during sleep, and the space air travels through can become smaller.
-**02 Breathing Is Interrupted** — Airflow is reduced or briefly stops. This can happen more than once, throughout the night.
-**03 Your Body Responds** — The body works to reopen the airway and restore breathing — often without you fully waking up.
+Certain oral appliances are designed to gently position the lower jaw forward to help maintain space for airflow in appropriate patients with obstructive sleep apnea.
 
----
+Because every patient is different, your appliance should be selected, fitted, and adjusted according to your individual needs.
 
-## 07 · Why it matters
-
-**Eyebrow** WHY IT MATTERS
-
-**H2**
-> Poor Sleep Can Affect More Than Your Morning.
-
-**Body**
-> Sleep is when the body recovers. When it's repeatedly interrupted, the effects can show up in places you might not connect to sleep at all.
-
-| Card | Copy |
+| Feature | Copy |
 |---|---|
-| **Sleep Quality** | Interrupted breathing can keep sleep from feeling restorative, even after a full night in bed. |
-| **Daytime Alertness** | Tiredness during the day is one of the most commonly reported effects of disrupted sleep. |
-| **Concentration** | Focus, memory and mood can all be harder to maintain when sleep is poor. |
-| **Overall Health** | Untreated sleep apnea is associated with other health concerns, which is why physicians take it seriously. |
+| **Custom Fit** | Your appliance is designed to fit your mouth comfortably and securely. |
+| **Designed For Sleep** | The appliance is worn while you sleep, following your provider's instructions. |
+| **Personalized Adjustments** | Follow-up appointments allow your provider to evaluate comfort, fit, and treatment needs. |
 
-**Disclaimer under the cards**
-> This page is general health information, not medical advice, and no individual outcome is implied.
-
-> **Note:** this section deliberately contains no statistics. If the practice wants figures here, they must be sourced and medically reviewed first.
+**CTA** Learn About Oral Appliance Therapy
 
 ---
 
-## 08 · Treatment  *(CTA level 2 — "explore", not "book")*
+## 10 — HOW ORAL APPLIANCE THERAPY WORKS
+`TreatmentSteps` · `StepList`
 
-**Eyebrow**
-> PERSONALIZED TREATMENT
+**H2** Designed To Support Better Airflow While You Sleep.
 
-**H2**
-> A More Comfortable Approach To Sleep Apnea Treatment
+**Intro**
+For appropriate patients, an oral appliance can help address airway obstruction by positioning the lower jaw in a way that may support improved airflow during sleep.
 
-**Body**
-> Treatment for sleep apnea isn't necessarily one-size-fits-all. Depending on your diagnosis, symptoms, anatomy, and individual treatment needs, an oral appliance may be an appropriate option for managing obstructive sleep apnea or snoring.
->
-> An oral appliance is a custom-made device worn like a retainer while you sleep. It supports the position of the lower jaw to help keep the airway open — no mask, no hose, and nothing to plug in.
->
-> At {{PRACTICE}}, we take the time to understand your situation and discuss the treatment options that may be right for you.
+**01 Custom Fit** — Your provider evaluates your oral health, bite, anatomy, and treatment needs to determine whether oral appliance therapy may be appropriate.
+**02 Gentle Positioning** — The appliance is designed to position the lower jaw in a therapeutic position while you sleep.
+**03 Wear While Sleeping** — You wear the appliance at night according to your provider's instructions.
+**04 Follow-Up & Adjustments** — Your provider monitors your progress and can make adjustments when necessary.
 
-**Callout**
-> Your treatment should be based on your needs — not a one-size-fits-all approach.
-
-**CTA**
-> Explore Oral Appliance Therapy
+**CTA** Discuss Your Treatment Options
 
 ---
 
-## 09 · What wearing an appliance is like
+## 11 — YOUR TREATMENT JOURNEY
+`PatientJourney` · `StepList`
 
-**H2**
-> What Wearing An Oral Appliance Is Like
+**Eyebrow** WHAT TO EXPECT
 
-**Body**
-> It goes in before bed and comes out in the morning. That's the whole routine.
+**H2** Your Sleep Apnea Treatment Journey
 
-**01 Custom Fit** — We take a digital scan so the appliance is made specifically for your teeth and bite.
-**02 Gentle Positioning** — The appliance supports your lower jaw in a position that helps keep the airway open.
-**03 Wear While Sleeping** — You wear it only at night. It's small enough to travel with and needs no power.
-**04 Follow-Up** — We adjust gradually and follow up, so comfort and fit are dialed in over time.
+**Intro**
+Getting started doesn't have to feel complicated. We'll guide you through each step so you know what to expect.
 
----
+**01 Schedule Your Evaluation** — Start by telling us about your sleep concerns, symptoms, and treatment goals.
+*Step CTA: Schedule My Evaluation*
 
-## 10 · Patient journey  *(navy section)*
+**02 Comprehensive Evaluation** — We'll review your symptoms, oral health, anatomy, and treatment needs. If appropriate, we can coordinate with the appropriate medical or sleep-care professionals for diagnosis and treatment planning.
 
-**Eyebrow** HOW IT WORKS
+**03 Determine The Right Approach** — Once your condition and treatment needs have been appropriately evaluated, we'll discuss the options that may be available to you.
 
-**H2**
-> Your Sleep Apnea Treatment Journey
+**04 Custom Treatment** — If oral appliance therapy is appropriate, your appliance will be custom-fitted and adjusted for your needs.
 
-**Body**
-> Here's what working with our team actually looks like, from first call to follow-up.
+**05 Follow-Up & Monitoring** — We'll continue to evaluate your comfort, fit, and treatment progress and make adjustments when appropriate.
 
-**01 Evaluation** — We talk through your symptoms and sleep history, and examine your airway, teeth and bite.
-**02 Testing** — If a sleep study makes sense, we help arrange it — often a take-home test you do in your own bed.
-**03 Diagnosis** — A physician reviews the study and makes the diagnosis. That step is required before treatment.
-**04 Custom Treatment** — If an oral appliance fits your case, we scan, design and fit a device made for you.
-**05 Ongoing Care** — We fine-tune the fit, check in on how you're sleeping, and coordinate with your physician.
-
-**CTA**
-> Start With An Evaluation
+**Closing Statement**
+You don't have to figure it all out at once. We'll help you understand your options.
 
 ---
 
-## 11 · Is this right for me?
+## 12 — IS THIS RIGHT FOR ME?
+`CandidateSection`
 
-**Eyebrow** IS THIS RIGHT FOR ME?
+**Eyebrow** COULD YOU BE A CANDIDATE?
 
-**H2**
-> You Might Be A Candidate For Oral Appliance Therapy
+**H2** Could Sleep Apnea Treatment Be Right For You?
 
-**Body**
-> Oral appliance therapy isn't right for everyone, and the only way to know is a conversation and a proper evaluation.
->
-> That said, if you recognize yourself in several of the statements here, it's worth asking about.
+**Body Copy**
+An evaluation may be worthwhile if you regularly experience one or more of the following:
 
-**Checklist — "See how many of these sound like you:"**
-> ✓ Regular or disruptive snoring
-> ✓ Morning headaches
-> ✓ Daytime fatigue after a full night in bed
-> ✓ Gasping or choking during sleep
-> ✓ Excessive daytime sleepiness
-> ✓ Diagnosed obstructive sleep apnea
-> ✓ Difficulty tolerating CPAP
-> ✓ Interested in oral appliance therapy
+**Checklist**
+✓ Loud or persistent snoring
+✓ Waking up feeling exhausted
+✓ Morning headaches
+✓ Dry mouth when you wake up
+✓ Gasping or choking during sleep
+✓ Excessive daytime sleepiness
+✓ Difficulty concentrating during the day
+✓ A diagnosis of obstructive sleep apnea
+✓ Difficulty tolerating CPAP
+✓ Interest in exploring oral appliance therapy
 
-**CTA**
-> Let's Talk About Your Options
+**Important Note**
+These symptoms do not necessarily mean you have sleep apnea. The right way to find out is through an appropriate evaluation and diagnosis.
 
----
-
-## 12 · CPAP
-
-**Eyebrow** ALREADY ON CPAP?
-
-**H2**
-> Already Using CPAP? Let's Talk About Your Options.
-
-**Body**
-> CPAP remains an important treatment for many people with obstructive sleep apnea. Some patients, however, have difficulty tolerating CPAP or may be candidates for other approaches.
->
-> We can discuss your situation and help determine whether oral appliance therapy may be appropriate — including whether it makes more sense alongside CPAP rather than instead of it.
-
-**Visual**
-> CPAP — Effective for many people, especially with severe sleep apnea.
-> **+**
-> Oral Appliance — A mask-free option that may be appropriate in some cases.
-> **=**
-> A Personalized Treatment Discussion — We look at your diagnosis and what you can realistically wear every night.
-
-**CTA**
-> Discuss My Treatment Options
+**CTA** Schedule A Sleep Apnea Evaluation
 
 ---
 
-## 13 · Provider trust
+## 13 — CPAP SECTION
+`CPAPSection`
 
-**Eyebrow** YOUR CARE TEAM
+**Eyebrow** EXPLORING YOUR OPTIONS
 
-**H2**
-> Care That Starts With Listening
+**H2** Already Using CPAP? Let's Talk About Your Options.
 
-**Standfirst**
-> {{DOCTOR}}, [CREDENTIALS] · {{PRACTICE}}
+**Body Copy**
+CPAP remains an important and effective treatment for many people with obstructive sleep apnea.
 
-**Body**
-> Sleep apnea treatment works best when it's built around the person, not just the diagnosis. We take time to understand your history, your symptoms, and what you've already tried.
->
-> We work alongside your physician and sleep specialist so that screening, testing, diagnosis and treatment stay connected.
+However, some patients have difficulty tolerating CPAP or may be candidates for other treatment approaches.
 
-**Credentials list** — *only list what the practice actually holds*
-> ✓ Focused training in dental sleep medicine
-> ✓ Custom oral appliance therapy provided in-office
-> ✓ Works alongside your physician and sleep specialist
-> ✓ Ongoing follow-up and appliance adjustment
+If you're struggling with your current treatment, don't simply stop using it on your own.
 
-**CTA**
-> Meet With Our Team
+Instead, talk with your healthcare provider about your concerns and ask whether another treatment option, such as oral appliance therapy, may be appropriate for your situation.
+
+**Highlight**
+The goal isn't to choose the most popular treatment. It's to find an appropriate treatment approach for you.
+
+**CTA** Discuss My Treatment Options
 
 ---
 
-## 14 · Technology
+## 14 — PROVIDER TRUST SECTION
+`ProviderSection`
 
-**Eyebrow** TECHNOLOGY
+**Eyebrow** PERSONALIZED SLEEP CARE
 
-**H2**
-> A Modern, Comfortable Process
+**H2** Sleep Treatment From A Team You Can Trust.
 
-**Body**
-> A digital workflow means fewer impressions, a more precise fit, and less back-and-forth for you.
+**Body Copy**
+At [PRACTICE NAME], we believe treatment starts with listening.
 
-| Card | Copy |
+Your sleep concerns are personal. That's why we take the time to understand your symptoms, answer your questions, evaluate your individual needs, and explain your treatment options clearly.
+
+Our goal is to make the process straightforward, comfortable, and focused on your needs.
+
+| Trust Point | Copy |
 |---|---|
-| **Digital Imaging** | Imaging helps us evaluate your airway, teeth and bite as part of your evaluation. |
-| **Digital Scanning** | A digital scan replaces messy impression material and supports a precise, comfortable fit. |
-| **Personalized Follow-Up** | We adjust the appliance over time and check in on how you're actually sleeping. |
+| **Experienced Dental Care** | Personalized treatment planning based on your individual needs. |
+| **Modern Technology** | Digital tools can help support accurate evaluation and treatment planning. |
+| **Patient-Focused Care** | Clear communication and thoughtful follow-up throughout your treatment journey. |
+
+**CTA** Meet Our Team
 
 ---
 
-## 15 · Testimonials  *(navy section)*
+## 15 — TECHNOLOGY SECTION
+`TechnologySection`
+
+**Eyebrow** MODERN DENTAL TECHNOLOGY
+
+**H2** Modern Technology. Personalized Care.
+
+**Intro**
+Technology can make the treatment process more precise, comfortable, and convenient.
+
+| Technology | Copy |
+|---|---|
+| **Digital Imaging** | Advanced imaging may help your provider evaluate relevant dental and anatomical structures as part of your treatment planning. |
+| **Digital Scanning** | Comfortable digital scanning can create accurate models used to plan and customize dental appliances. |
+| **Personalized Follow-Up** | Your treatment doesn't end when you receive your appliance. Follow-up allows your provider to evaluate fit, comfort, and ongoing treatment needs. |
+
+**CTA** Explore Your Treatment Options
+
+---
+
+## 16 — TESTIMONIALS
+`Testimonials`
 
 **Eyebrow** PATIENT EXPERIENCES
-**H2** What Patients Tell Us
 
-> ⚠️ **PLACEHOLDER — do not launch as written.** Replace with real, permissioned
-> patient reviews. The build marks these as placeholders in code for the same reason.
+**H2** Better Sleep Can Change How You Feel Every Day.
 
-Placeholder lead quote:
-> "I didn't realize how much my sleep was affecting my day until it changed. The appliance was easier to get used to than I expected."
+**Intro**
+Read about the experiences of patients who chose to take the next step toward addressing their sleep concerns.
 
----
+> ⚠️ **These are placeholders and must not go live as written.**
+> Replace with verified, permissioned patient testimonials, or remove the
+> section. The build renders the bracket text verbatim so it is impossible to
+> miss in review.
 
-## 16 · FAQ
+**Placeholder 01**
+"[INSERT VERIFIED PATIENT TESTIMONIAL ABOUT SLEEP APNEA TREATMENT OR ORAL APPLIANCE EXPERIENCE.]"
+— [PATIENT FIRST NAME / VERIFIED PATIENT]
 
-**Eyebrow** COMMON QUESTIONS
-**H2** Sleep Apnea Questions, Answered
+**Placeholder 02**
+"[INSERT VERIFIED PATIENT TESTIMONIAL ABOUT COMFORT, CARE, OR TREATMENT EXPERIENCE.]"
+— [PATIENT FIRST NAME / VERIFIED PATIENT]
 
-**Can a dentist diagnose sleep apnea?**
-> No. Obstructive sleep apnea is a medical diagnosis made by a physician, usually based on a sleep study. What we do is screen for risk, evaluate your airway, help you arrange testing, and provide oral appliance therapy once a diagnosis is in place.
+**Placeholder 03**
+"[INSERT VERIFIED PATIENT TESTIMONIAL ABOUT THE OVERALL EXPERIENCE.]"
+— [PATIENT FIRST NAME / VERIFIED PATIENT]
 
-**What is an oral appliance?**
-> It's a custom-made device worn like a retainer while you sleep. It supports the position of your lower jaw to help keep the airway open. There's no mask, no hose and no power cord, and it fits in a travel case.
-
-**Is the appliance uncomfortable?**
-> Most people adapt within a week or two — it feels similar to a retainer or nightguard. Temporary jaw soreness or a slightly different-feeling bite in the morning is common early on and usually settles. We adjust gradually rather than all at once.
-
-**Do I need a sleep study first?**
-> For sleep apnea treatment, yes. Snoring and sleep apnea can't reliably be told apart by questionnaire or exam alone, and treatment should follow a diagnosis. Testing is often a single night at home in your own bed.
-
-**Will my insurance cover it?**
-> Oral appliance therapy for diagnosed obstructive sleep apnea is generally billed to medical insurance rather than dental. Coverage varies by plan, so we'll review your benefits and go over the numbers with you before anything is made.
-
-**I already have a CPAP but I struggle with it.**
-> That's a common reason people come to us, and it's worth a conversation. Bring your diagnosis and your CPAP settings. Some patients transition to an appliance, some use it for travel, and some do best using both.
-
-**How long does the process take?**
-> It varies. After your evaluation and any testing, a custom appliance is typically fabricated and fitted over a few visits, followed by adjustment appointments to fine-tune comfort and fit.
-
-**What happens at the evaluation?**
-> We talk through your symptoms and sleep history, look at your airway, teeth and bite, and explain what your options would look like. You'll leave knowing what the next step is — and whether one is needed at all.
+**Trust Microcopy**
+Real experiences. Real patients. Personalized care.
 
 ---
 
-## 17 · Local SEO
+## 17 — FAQ
+`FAQSection`
 
-**H2**
-> Sleep Apnea Treatment In {{CITY}}
+**Eyebrow** SLEEP APNEA QUESTIONS
+**H2** Questions About Sleep Apnea Treatment?
 
-**Body**
-> Our team provides sleep apnea treatment in {{CITY}} for people who snore, wake up tired, or have been told they stop breathing during sleep. If you've been searching for a sleep apnea dentist near you, we're here to help you understand what's going on and what your options are.
->
-> We offer snoring treatment and custom oral appliance therapy, and we coordinate with local physicians and sleep specialists on testing and diagnosis. Patients travel to see us from {{CITY}} and the surrounding communities.
+**01 · What is sleep apnea?**
+Sleep apnea is a sleep-related breathing disorder in which breathing repeatedly becomes interrupted or restricted during sleep. Obstructive sleep apnea is the most common type.
 
-Target terms, placed in sentences rather than stuffed: *sleep apnea treatment in {{CITY}}* · *sleep apnea dentist* · *oral appliance therapy* · *snoring treatment*.
+**02 · What are the signs of sleep apnea?**
+Common signs can include loud snoring, gasping or choking during sleep, morning headaches, dry mouth, daytime fatigue, excessive sleepiness, and difficulty concentrating. Having these symptoms does not automatically mean you have sleep apnea. An appropriate evaluation is needed for diagnosis.
 
----
+**03 · Can a dentist treat sleep apnea?**
+Dentists with appropriate training can provide oral appliance therapy for qualified patients with obstructive sleep apnea. Because sleep apnea is a medical condition, proper diagnosis and coordination with qualified medical or sleep-care professionals may be part of the treatment process.
 
-## 18 · Trust band
+**04 · What is an oral appliance for sleep apnea?**
+An oral appliance is a custom dental device worn during sleep. Certain appliances work by repositioning the lower jaw to help maintain airway space for appropriate patients.
 
-> **Experienced Care** — Focused training and experience in sleep apnea treatment.
-> **Advanced Technology** — A modern, digital workflow for precision, comfort and better outcomes.
-> **Patient-Focused** — We listen, we care, and we support you every step of the way.
-> **Better Sleep. Better Life.** — Our goal is better sleep, better health, and better days ahead.
+**05 · Can an oral appliance replace CPAP?**
+For some appropriately diagnosed patients, oral appliance therapy may be an alternative to CPAP. However, treatment decisions depend on the individual's diagnosis, severity, anatomy, medical history, and treatment needs. You should discuss any changes to your current sleep apnea treatment with your healthcare provider.
 
----
+**06 · Does an oral appliance cure sleep apnea?**
+An oral appliance is generally considered a treatment rather than a guaranteed cure. Its effectiveness varies from patient to patient, and appropriate follow-up is important.
 
-## 19 · Final CTA  *(CTA level 3 — same ask as the hero, word for word)*
+**07 · Is an oral appliance comfortable?**
+Modern oral appliances are designed to be compact and custom-fitted. There can be an adjustment period when you first begin wearing one. Follow-up appointments can help address fit, comfort, and treatment-related concerns.
 
-**Eyebrow**
-> TAKE THE FIRST STEP
+**08 · Do I need a sleep study?**
+A proper diagnosis of sleep apnea generally requires an appropriate medical evaluation and, when indicated, sleep testing. Your healthcare provider can help determine whether a sleep study or additional evaluation is appropriate.
 
-**H2**
-> Ready To Sleep Better?
+**09 · Can you help with snoring?**
+Snoring can have different causes, and not everyone who snores has sleep apnea. If you're experiencing persistent or disruptive snoring, an evaluation can help determine whether there may be an underlying breathing or sleep-related issue.
 
-**Body**
-> If snoring, fatigue, disrupted sleep, or concerns about sleep apnea are affecting your life, you don't have to keep guessing what's causing it.
->
-> Take the first step toward understanding your sleep and exploring the treatment options that may be right for you.
+**10 · What happens during a sleep apnea evaluation?**
+Your provider will review your symptoms, medical and dental history, oral health, and other relevant factors. Depending on your situation, additional sleep testing or coordination with a sleep physician may be recommended before treatment is selected.
 
-**CTAs**
-> [ Schedule A Sleep Apnea Evaluation ]  [ Call {{PHONE}} ]
+**11 · How long does it take to get a sleep apnea appliance?**
+The timeline depends on the evaluation process, whether a diagnosis is already available, the appliance selected, and the laboratory or digital workflow used by the practice. Your team can explain the expected timeline during your consultation.
 
----
+**12 · What if I've been diagnosed with sleep apnea already?**
+Bring your existing sleep study and relevant treatment information to your appointment if available. Your provider can review your situation and discuss whether oral appliance therapy may be an appropriate treatment option.
 
-## 20 · Mobile sticky bar
-
-> [ Call Now ] [ Schedule Evaluation ]
-
-Appears only after the hero CTA scrolls away, and hides again when the final CTA is on screen.
+*All twelve are emitted as FAQPage JSON-LD by `StructuredData`.*
 
 ---
 
-## 21 · Booking form
+## 18 — LOCAL SEO SECTION
+`LocalSEOSection`
 
-**Title** Schedule Your Sleep Apnea Evaluation
-**Body** Tell us how to reach you and we'll confirm a time that works. Prefer to talk now? Call {{PHONE}}.
-**Fields** First Name · Last Name · Phone · Email · Preferred Appointment Time
-**Submit** Request My Evaluation → **Scheduling…** while sending
-**Success** Thank You — Your Request Has Been Received / Our team will contact you to help schedule your evaluation.
-**Error** Something went wrong sending your request. Please try again, or call {{PHONE}} and we'll take care of it.
-**Privacy line** We use your information only to contact you about your evaluation.
+**H2** Sleep Apnea Treatment In [CITY], [STATE]
+
+**Body Copy**
+Looking for sleep apnea treatment in [CITY]?
+
+At [PRACTICE NAME], we help patients who are experiencing symptoms such as loud snoring, daytime fatigue, disrupted sleep, and other concerns associated with sleep-disordered breathing.
+
+Our team provides personalized sleep apnea evaluations and treatment options, including oral appliance therapy for appropriate patients.
+
+If you've been searching for a sleep apnea dentist in [CITY], sleep apnea treatment near me, or an oral appliance for sleep apnea, we're here to help you understand your options.
+
+**Local Trust Copy**
+Conveniently located at:
+[PRACTICE NAME]
+[ADDRESS]
+[CITY], [STATE] [ZIP]
+
+**CTA** Schedule Your Sleep Apnea Evaluation
+**Local Phone CTA** Call [PHONE]
+
+---
+
+## 19 — FINAL CTA
+`FinalCTA`
+
+**Eyebrow** TAKE THE FIRST STEP
+
+**H2** Ready To Sleep Better?
+
+**Body Copy**
+If snoring, fatigue, disrupted sleep, or concerns about sleep apnea are affecting your life, you don't have to keep guessing what's causing it.
+
+Take the first step toward understanding your sleep and exploring the treatment options that may be right for you.
+
+**Primary CTA** Schedule A Sleep Apnea Evaluation
+**Secondary CTA** Call [PHONE]
+
+**Reassurance**
+Personalized Care • Convenient Scheduling • Treatment Options For Qualified Patients
+
+**Final Microcopy**
+Your journey toward better sleep starts with understanding what's happening while you sleep.
+
+---
+
+## 20 — MOBILE STICKY CTA
+`MobileStickyCTA`
+
+**Left Button** Call Now
+**Right Button** Schedule Evaluation
+
+Appears once the hero CTA scrolls away; hides again while the final CTA is on
+screen so it never competes with the primary ask.
+
+---
+
+## 21 — BOOKING FORM
+`BookingModal` · `BookingForm`
+
+**H2** Let's Talk About Your Sleep.
+
+**Intro**
+Tell us a little about what you're experiencing, and our team will help you determine the next step.
+
+**Fields**
+First Name · Last Name · Phone Number · Email Address · Preferred Appointment Time
+
+**Optional dropdown — What brings you in?**
+Sleep Apnea · Snoring · CPAP Concerns · Oral Appliance Therapy · Other
+
+**Submit CTA** Request My Evaluation
+
+**Privacy Microcopy**
+Your information is used to respond to your request and help coordinate your appointment.
 
 **Validation messages**
-> This field is required. · Please enter a valid phone number. · Please enter a valid email address.
+This field is required. · Please enter a valid phone number. · Please enter a valid email address.
 
 ---
 
-## 22 · Footer
+## 22 — FORM SUCCESS STATE
 
-**Blurb** Personalized sleep apnea treatment for better sleep, better health, and better days ahead.
-**Columns** Quick Links · Our Practice · Hours · Schedule Today
-**Schedule Today** Take the first step toward better sleep. → [ Schedule Evaluation ]
+**H2** Thank You — Your Request Has Been Received.
 
-**Legal note**
-> This page provides general health information and is not medical advice. Obstructive sleep apnea is diagnosed by a physician, typically following a home or in-lab sleep study. Individual results vary, and no specific outcome is implied. Oral appliance therapy is not appropriate for everyone; suitability is determined after evaluation and diagnosis.
+**Body**
+We've received your request. A member of our team will contact you to help coordinate your sleep apnea evaluation and answer any questions you may have.
+
+**CTA** Call [PHONE]
+
+---
+
+## 23 — FOOTER CTA
+`Footer`
+
+**Short CTA**
+Questions About Sleep Apnea?
+Call [PHONE] · Schedule An Evaluation
+
+**Footer Links**
+Sleep Apnea Treatment · Oral Appliance Therapy · Snoring Treatment · About Our Practice · Contact · Privacy Policy
+
+---
+
+## 24 — SEO PAGE TITLE
+
+Sleep Apnea Treatment in [CITY], [STATE] | [PRACTICE NAME]
+
+**Alternative**
+Sleep Apnea Dentist in [CITY] | Oral Appliance Therapy
+
+---
+
+## 25 — META DESCRIPTION
+
+Looking for sleep apnea treatment in [CITY]? Explore personalized sleep apnea evaluations and oral appliance therapy options at [PRACTICE NAME].
+
+---
+
+## 26 — PRIMARY SEO KEYWORDS
+
+sleep apnea treatment · sleep apnea dentist · sleep apnea treatment near me ·
+sleep apnea dentist near me · sleep apnea treatment [CITY] ·
+sleep apnea dentist [CITY] · obstructive sleep apnea treatment ·
+oral appliance for sleep apnea · sleep apnea oral appliance ·
+oral appliance therapy · sleep apnea dental appliance · snoring treatment ·
+snoring dentist · CPAP alternative · sleep apnea evaluation
+
+*Also exported as `seoKeywords` from `src/content/copy.js` for QA.*
+
+---
+
+## 27 — IMAGE ALT TEXT
+
+| Slot | Alt text |
+|---|---|
+| Hero | Person sleeping peacefully while exploring sleep apnea treatment |
+| Problem | Person awake at night experiencing disrupted sleep |
+| Airway visualization | Illustration showing how obstructive sleep apnea can restrict airflow during sleep |
+| Oral appliance | Custom oral appliance used for sleep apnea treatment |
+| Dentist | [DOCTOR NAME], [CREDENTIALS], at [PRACTICE NAME] |
+| Final CTA | Person waking up feeling rested after sleep apnea treatment |
+
+Decorative visuals (breathing wave, timeline traces) are inline SVG with
+`aria-hidden` and need no alt text.
+
+---
+
+## 28 — MEDICAL DISCLAIMER
+
+Rendered in the footer on every view:
+
+> This page provides general educational information and is not a substitute for professional medical advice, diagnosis, or treatment. Sleep apnea diagnosis and treatment should be determined by qualified healthcare professionals based on each patient's individual circumstances. Treatment options and results vary by patient.
 
 ---
 
 # Ad-group message match
 
-The hero swaps to mirror the search intent that paid for the click. Everything
-below the hero is shared. Resolution: `?variant=` → `utm_content` / `utm_term`
+The hero adapts to the ad group that paid for the click; everything below the
+hero is shared. Resolution order: `?variant=` → `utm_content` / `utm_term`
 keyword sniff → default. Source: [`src/content/adGroups.js`](../src/content/adGroups.js).
 
-### Sleep Apnea *(default)* — `?variant=default`
-**Eyebrow** SLEEP APNEA TREATMENT
-**H1** Breathe Better. Sleep Deeper. Wake Up Better.
-**CTA** Schedule A Sleep Apnea Evaluation
+| Variant | Preview URL | H1 | Primary CTA |
+|---|---|---|---|
+| Sleep Apnea *(default)* | `?variant=default` | Breathe Better. Sleep Deeper. Wake Up Better. | Schedule A Sleep Apnea Evaluation |
+| Oral Appliance | `?variant=oral_appliance` | Explore Oral Appliance Therapy For Sleep Apnea. | Schedule An Oral Appliance Consultation |
+| Snoring | `?variant=snoring` | Find Out What's Behind Your Snoring. | Schedule A Snoring Evaluation |
+| CPAP Alternative | `?variant=cpap_alternative` | Exploring Options Beyond CPAP? Let's Talk. | Discuss My Treatment Options |
 
-### Oral Appliance — `?variant=oral_appliance`
-**Eyebrow** ORAL APPLIANCE THERAPY
-**H1** Explore Oral Appliance Therapy For Sleep Apnea
-**Body** A custom oral appliance is worn like a retainer while you sleep — no mask, no hose, nothing to plug in. We'll evaluate whether it's an appropriate option for your diagnosis and your anatomy.
-**CTA** Schedule An Oral Appliance Consultation
-
-### Snoring — `?variant=snoring`
-**Eyebrow** SNORING TREATMENT
-**H1** Find Out What's Behind Your Snoring
-**Body** Snoring can be disruptive on its own — and it can also be a sign of interrupted breathing during sleep. We'll help you find out which it is, and what can be done about it.
-**CTA** Schedule A Snoring Evaluation
-
-### CPAP Alternative — `?variant=cpap_alternative`
-**Eyebrow** BEYOND CPAP
-**H1** Exploring Options Beyond CPAP? Let's Talk.
-**Body** CPAP works well for many people — but not everyone can tolerate it. If you've been diagnosed with obstructive sleep apnea and CPAP isn't working for you, an oral appliance may be worth discussing.
-**CTA** Discuss My Treatment Options
-
----
-
-# Image alt text
-
-| Slot | Alt text |
-|---|---|
-| Hero | A man asleep on his side in bed, resting comfortably against a grey pillow in a bright bedroom. |
-| Problem | A woman clamping a pillow over her ears with a pained expression, unable to sleep. |
-| Airway — open | Side-profile illustration of an open upper airway with air moving freely. |
-| Airway — restricted | Side-profile illustration of a narrowed upper airway restricting airflow. |
-| Treatment | A clinician holding a clear custom oral appliance used for sleep apnea treatment. |
-| Provider | A dentist talking with a patient in a bright consultation room. |
-| Final CTA | A couple waking up rested and stretching in bed in a sunlit bedroom. |
-
-Decorative animation carries `alt=""` and `aria-hidden`.
+Variant body copy is drawn from the approved sections it maps to (09 for oral
+appliance, 03/09 for snoring, 13 for CPAP), so no new claims are introduced.
 
 ---
 
@@ -512,19 +635,22 @@ Decorative animation carries `alt=""` and `aria-hidden`.
 `sleep_apnea_form_submit` · `sleep_apnea_booking_start` ·
 `sleep_apnea_booking_complete` · `faq_open` · `scroll_50` · `scroll_75` · `scroll_90`
 
-Every event carries `cta_location` (`hero` · `problem` · `symptoms` · `airway` ·
-`treatment` · `journey` · `candidate` · `cpap` · `provider` · `sticky_bar` ·
-`final_cta` · `footer` · `header` · `mobile_menu` · `booking_modal`),
-`device` (`desktop` · `tablet` · `mobile`), and the stored UTM / GCLID set.
+Every event carries `cta_location` — `header` · `hero` · `problem` ·
+`symptoms` · `airway` · `education` · `why_it_matters` · `treatment` ·
+`appliance` · `appliance_steps` · `journey_step_01` · `candidate` · `cpap` ·
+`provider` · `technology` · `local` · `sticky_bar` · `final_cta` · `footer` ·
+`mobile_menu` · `booking_modal` · `booking_success` — plus `device` and the
+stored UTM / GCLID set.
 
 ---
 
 # Pre-launch checklist
 
-- [ ] Replace every `{{TOKEN}}` via `src/content/practice.js`
-- [ ] Swap placeholder testimonials for real, permissioned reviews — or delete the section
-- [ ] Confirm the credentials list matches what the practice actually holds
-- [ ] Replace placeholder photography (see `docs/IMAGE-MANIFEST.md`)
-- [ ] Point the booking form at the real endpoint (`submitLead` in `src/components/BookingForm.jsx`)
-- [ ] Confirm the phone number is a tracking number if call conversions are being counted
+- [ ] Fill every `[TOKEN]` in `src/content/practice.js`
+- [ ] Replace the three testimonial placeholders with verified, permissioned reviews — or delete section 16
+- [ ] Confirm section 14's trust points describe the practice accurately
+- [ ] Add the real photography (see `docs/IMAGE-MANIFEST.md`)
+- [ ] Point `submitLead` in `src/components/BookingForm.jsx` at the real endpoint
+- [ ] Use a call-tracking number if call conversions are being counted
+- [ ] Confirm the section 06 bottom CTA reads as intended — "Find Out What Your Sleep Needs" is carried verbatim from the approved deck
 - [ ] Have a clinician read the page end to end before it takes traffic

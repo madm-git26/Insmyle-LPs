@@ -1,13 +1,18 @@
 import { Section, SectionIntro } from './ui/Section';
 import { Reveal } from './ui/Reveal';
 import { Icon } from './ui/Icon';
+import { Button } from './ui/Button';
 import { technology } from '../content/copy';
+import { useBooking } from './BookingProvider';
 
-/** Three technology cards — a quiet reveal, no spinning icons (spec 24). */
+/** Section 15 — three technology cards, quiet reveal, no spinning icons (spec 24). */
 export function TechnologySection() {
+  const { openBooking } = useBooking();
+
   return (
     <Section aria-labelledby="technology-heading">
       <SectionIntro
+        center
         eyebrow={technology.eyebrow}
         heading={technology.heading}
         body={technology.body}
@@ -25,6 +30,11 @@ export function TechnologySection() {
             </article>
           </Reveal>
         ))}
+      </div>
+      <div className="section__foot">
+        <Button location="technology" onClick={() => openBooking('technology')}>
+          {technology.cta}
+        </Button>
       </div>
     </Section>
   );

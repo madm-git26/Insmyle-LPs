@@ -20,7 +20,7 @@ practice details ship with the repo.
 
 | Path | What it is |
 |---|---|
-| [`copy/landing-page-copy.md`](copy/landing-page-copy.md) | **The full page copy**, section by section, with the ad-group variants, alt text, event names and a pre-launch checklist. |
+| [`copy/landing-page-copy.md`](copy/landing-page-copy.md) | **The client-approved copy**, sections 01–28 verbatim, with the ad-group variants, alt text, SEO keywords, event names and a pre-launch checklist. |
 | `src/content/` | The same copy as data — `copy.js`, `practice.js` (the only file with client details), `adGroups.js` (message match). |
 | `src/components/` | One component per section, mirroring the specified architecture. |
 | `src/styles/` | `tokens.css` → `base.css` → `components.css` → `sections.css`, in that cascade order. |
@@ -30,16 +30,16 @@ practice details ship with the repo.
 ## Swapping in the client
 
 Almost everything lives in **one file**: `src/content/practice.js` — name,
-phone, address, hours, provider, booking URL, social links. Copy tokens
-(`{{PRACTICE}}`, `{{CITY}}`, `{{PHONE}}`, `{{DOCTOR}}`) resolve from it, so
-there is no find-and-replace through the components.
+phone, address, hours, provider, booking URL, social links. The copy deck's own
+tokens (`[PRACTICE NAME]`, `[CITY]`, `[PHONE]`, `[DOCTOR NAME]`…) resolve from
+it, so there is no find-and-replace through the components.
 
 Three things must be reviewed by a human before launch:
 
-1. **Testimonials** are placeholders and are marked as such in code. Replace
-   with real, permissioned reviews or delete the section.
-2. **Credentials** in `practice.doctor.highlights` must match what the practice
-   actually holds.
+1. **Testimonials** render the deck's bracketed placeholders verbatim, so they
+   are impossible to miss in review. Replace with verified, permissioned
+   reviews or delete section 16.
+2. **Section 14's trust points** must describe the practice accurately.
 3. **The booking endpoint** — `submitLead()` in `src/components/BookingForm.jsx`
    currently logs in dev and POSTs to `/api/leads` in production.
 
@@ -53,7 +53,9 @@ on landing, kept for the session, and re-appended to outbound links
 
 **Message match.** `?variant=oral_appliance` (or a matching `utm_content` /
 `utm_term`) swaps the hero eyebrow, H1, body and CTA. Everything below stays
-shared. Try `?variant=snoring` and `?variant=cpap_alternative`.
+shared. Try `?variant=snoring` and `?variant=cpap_alternative`. Variant body
+copy is drawn from the approved sections it maps to, so no new claims are
+introduced.
 
 **Motion.** One reveal utility (`Reveal`), one IntersectionObserver contract,
 `600ms` / `cubic-bezier(.22,1,.36,1)`, fires once. Scroll-linked work is
@@ -72,33 +74,49 @@ bar is `inert` while hidden so it never traps a tab.
 
 ## Measured
 
-Production build: **66.8 kB gzip JS** (React included), **6.6 kB gzip CSS**,
-zero horizontal overflow at 390px and 1440px, no console errors.
+Production build: **68.2 kB gzip JS** (React included), **7.2 kB gzip CSS**,
+zero horizontal overflow at 390px and 1440px, no console errors, one H1.
+Verified in Chromium: booking modal (open, validate, submit, success), the
+journey step CTA, FAQ expansion, sticky-bar show/hide, header sticky state and
+all four hero variants.
 
-Section heights at 1440px, measured in Chromium:
+The page runs the client copy deck's 19 sections in order, 01–19, with 20–23
+(sticky bar, booking form, success state, footer) layered on top.
 
-| Section | Height | | Section | Height |
-|---|---:|---|---|---:|
-| Hero | 889px | | Candidate | 788px |
-| Problem | 809px | | CPAP | 726px |
-| Symptoms | 1162px | | Provider | 922px |
-| Airway | 814px | | Technology | 773px |
-| Education | 736px | | Testimonials | 826px |
-| Why it matters | 834px | | FAQ | 1009px |
-| Treatment | 906px | | Local SEO | 526px |
-| Appliance steps | 1033px | | Trust band | 171px |
-| Journey | 763px | | Final CTA | 701px |
+Section heights at 1440px:
 
-**Total: ~14,700px desktop / ~22,500px mobile.** That is meaningful content
-every ~830px, which meets the spec's density rule — but it is roughly double the
-spec's stated page-height target of 7,000–9,000px. The two cannot both hold: the
-specified component architecture is 18 sections, and the reference comp is 9.
-Nothing has been dropped, so the decision stays with you. For a page that lands
-inside the stated target (~8,300px), cut the four sections that carry the least
-conversion weight — **Education, Why It Matters, Appliance Steps, Technology** —
-by removing their four lines from `src/App.jsx`. The conversion spine (hero →
-problem → symptoms → airway → treatment → journey → trust → final CTA) is
-untouched by that cut.
+| # | Section | Height | | # | Section | Height |
+|---|---|---:|---|---|---|---:|
+| 01 | Hero | 1092px | | 11 | Journey | 943px |
+| 02 | Problem | 825px | | 12 | Candidate | 802px |
+| 03 | Symptoms | 911px | | 13 | CPAP | 842px |
+| 04 | Breathing timeline | 983px | | 14 | Provider | 1204px |
+| 05 | Airway | 726px | | 15 | Technology | 894px |
+| 06 | What is OSA | 1025px | | 16 | Testimonials | 1144px |
+| 07 | Why it matters | 1077px | | 17 | FAQ | 1301px |
+| 08 | Treatment intro | 822px | | 18 | Local SEO | 722px |
+| 09 | Oral appliance | 1001px | | 19 | Final CTA | 849px |
+| 10 | How it works | 811px | | — | Footer | 691px |
+
+**Total: ~18,700px desktop / ~27,900px mobile.** That is meaningful content
+every ~930px, which meets the density rule from the original spec — but it is
+roughly double that spec's stated 7,000–9,000px page-height target. The two
+cannot both hold: the approved copy deck is 19 sections and the reference comp
+is 9. Nothing has been cut, so the call is yours.
+
+If you want a shorter page, these four carry the least conversion weight and
+overlap with sections that stay — remove their lines from `src/App.jsx`:
+
+| Cut | Saves | Overlaps with |
+|---|---:|---|
+| 06 What is OSA | 1025px | 04 + 05 already explain the mechanism |
+| 07 Why it matters | 1077px | 02 covers the felt experience |
+| 15 Technology | 894px | 14's "Modern Technology" trust point |
+| 10 How it works | 811px | 09's three features |
+
+That lands around **14,900px** while leaving the conversion spine intact
+(hero → problem → symptoms → breathing → airway → treatment → appliance →
+journey → candidate → CPAP → provider → testimonials → FAQ → local → final).
 
 ## Framework notes
 

@@ -14,7 +14,7 @@ Enhanced, paste-ready versions of the two live Google Ads landing pages for
 
 | Project | What it is |
 |---|---|
-| [`sleep-apnea/`](sleep-apnea/) | Sleep apnea Google Ads landing page — full copy deck and a running React scaffold built to the approved design spec. See [`sleep-apnea/README.md`](sleep-apnea/README.md) and [`sleep-apnea/copy/landing-page-copy.md`](sleep-apnea/copy/landing-page-copy.md). Separate from the In Smyle pages below. |
+| [`sleep-apnea/`](sleep-apnea/) | Sleep apnea Google Ads landing page — the client-approved copy deck (sections 01–28) and a running React scaffold built to the approved design spec. See [`sleep-apnea/README.md`](sleep-apnea/README.md) and [`sleep-apnea/copy/landing-page-copy.md`](sleep-apnea/copy/landing-page-copy.md). Separate from the In Smyle pages below. |
 
 ---
 

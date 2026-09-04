@@ -403,3 +403,104 @@
   border-top: 1px solid var(--line-invert); font-size: 13px;
 }
 .footer__legal { max-width: 92ch; margin-top: var(--space-5); font-size: 12px; line-height: 1.6; color: #7E96B4; }
+
+/* ============================================================
+   Additions for the client copy deck (sections 04, 09, 13, 18, 23)
+   ============================================================ */
+
+/* Shared: a centred CTA under a section's content */
+.section__foot { display: flex; justify-content: center; margin-top: var(--space-12); }
+.stack-4 { display: grid; gap: var(--space-4); }
+.section-intro p + p { margin-top: var(--space-4); }
+
+/* Hero microcopy */
+.hero__microcopy { margin-top: var(--space-6); font-size: 14px; color: var(--ink-muted); max-width: 44ch; }
+.hero__lede p + p { margin-top: var(--space-4); }
+.trust-row { list-style: none; padding: 0; margin: var(--space-10) 0 0; }
+
+/* 04 Breathing timeline section */
+.timeline-chart__caption { margin-top: var(--space-2); font-size: 14px; color: var(--ink-body); }
+.breathing__supporting {
+  max-width: 720px; margin: var(--space-10) auto 0; text-align: center;
+  font-size: 17px; color: var(--ink-body);
+}
+
+/* 05 Airway additions */
+.airway__supporting {
+  margin-top: var(--space-6); padding-left: var(--space-5);
+  border-left: 3px solid var(--blue-500);
+  font-size: 17px; font-weight: 600; color: var(--white);
+}
+.airway__disclaimer { margin-top: var(--space-5); font-size: 13px; color: var(--ink-invert-soft); opacity: .8; text-align: center; }
+
+/* 09 Oral appliance section */
+.appliance__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items: center; }
+@media (max-width: 1023px) { .appliance__grid { grid-template-columns: 1fr; gap: var(--space-10); } }
+.appliance__features { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-16); }
+@media (max-width: 1023px) { .appliance__features { grid-template-columns: 1fr; margin-top: var(--space-10); } }
+
+/* 11 Journey additions */
+.step__cta { margin-top: var(--space-4); }
+.journey__closing {
+  margin-top: var(--space-12); text-align: center;
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  color: var(--white); max-width: 60ch; margin-inline: auto;
+}
+
+/* 12 Candidate note */
+.candidate__note {
+  margin-top: var(--space-6); padding: var(--space-5) var(--space-6);
+  background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--blue-600);
+  border-radius: var(--r-md); font-size: 15px; color: var(--ink-body);
+}
+
+/* 13 CPAP highlight */
+.cpap__highlight {
+  display: grid; gap: var(--space-5); margin: 0; padding: var(--space-10);
+  background: var(--blue-050); border-color: var(--line-strong);
+}
+.cpap__highlight svg { color: var(--blue-500); }
+.cpap__highlight p {
+  font-family: var(--font-display); font-size: 22px; line-height: 1.4;
+  font-weight: 600; color: var(--ink); letter-spacing: -0.01em;
+}
+
+/* 14 Provider trust points */
+.provider__points { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); margin-top: var(--space-16); }
+@media (max-width: 1023px) { .provider__points { grid-template-columns: 1fr; margin-top: var(--space-10); } }
+
+/* 16 Testimonials microcopy */
+.testimonials__microcopy {
+  margin-top: var(--space-8); text-align: center; font-size: 14px;
+  letter-spacing: .04em; color: var(--ink-invert-soft);
+}
+.quote blockquote { margin: 0; }
+
+/* 18 Local card */
+.local__card { padding: var(--space-8); }
+.local__label { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue-600); }
+.local__address { margin: var(--space-4) 0 0; font-style: normal; font-size: 16px; line-height: 1.6; color: var(--ink-body); }
+.local__address b { display: block; color: var(--ink); font-family: var(--font-display); font-size: 18px; margin-bottom: var(--space-1); }
+.local__link { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-4); font-size: 15px; font-weight: 600; color: var(--navy-700); }
+.local__meta { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--line); }
+.local__meta a { color: var(--navy-700); font-weight: 600; text-decoration: none; }
+
+/* 19 Final CTA additions */
+.final-cta__reassurance {
+  list-style: none; padding: 0; margin: var(--space-8) 0 0;
+  display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6);
+}
+.final-cta__reassurance li { display: flex; align-items: center; gap: var(--space-2); font-size: 14px; font-weight: 600; color: var(--ink); }
+.final-cta__reassurance svg { color: var(--blue-600); }
+.final-cta__microcopy { margin-top: var(--space-6); font-size: 14px; color: var(--ink-muted); max-width: 52ch; }
+
+/* 23 Footer CTA band */
+.footer__cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--space-6); padding-bottom: var(--space-12); margin-bottom: var(--space-12);
+  border-bottom: 1px solid var(--line-invert);
+}
+.footer__cta h3 { color: var(--white); font-size: 26px; margin: 0; }
+.footer__cta .btn { min-width: 0; }
+.footer__inline { display: inline-flex; gap: 8px; align-items: center; }
+.footer__legal-links { display: flex; gap: var(--space-6); }

@@ -12,7 +12,7 @@ import { getAttribution } from '../lib/utm';
  *    never destructive, entered values are always preserved.
  *  • Success replaces the form in place. No browser alerts.
  */
-const EMPTY = { firstName: '', lastName: '', phone: '', email: '', preferredTime: '' };
+const EMPTY = { firstName: '', lastName: '', phone: '', email: '', preferredTime: '', reason: '' };
 
 const RULES = {
   firstName: (v) => (v.trim() ? '' : booking.validation.required),
@@ -26,6 +26,7 @@ const RULES = {
     return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : booking.validation.email;
   },
   preferredTime: () => '',
+  reason: () => '',
 };
 
 export function BookingForm({ location = 'booking_modal', onSubmitted }) {
@@ -81,12 +82,15 @@ export function BookingForm({ location = 'booking_modal', onSubmitted }) {
       <div className="form__status" role="status" aria-live="polite">
         <h4>{booking.successTitle}</h4>
         <p style={{ marginTop: 'var(--space-3)' }}>{booking.successBody}</p>
-        <p className="small" style={{ marginTop: 'var(--space-5)' }}>
-          Prefer to talk now?{' '}
-          <a href={practice.phone.href} style={{ fontWeight: 700, color: 'var(--navy-700)' }}>
-            {practice.phone.display}
-          </a>
-        </p>
+        <Button
+          variant="secondary"
+          href={practice.phone.href}
+          icon="phone"
+          location="booking_success"
+          style={{ marginTop: 'var(--space-6)' }}
+        >
+          {fill(booking.successCta)}
+        </Button>
       </div>
     );
   }
@@ -114,6 +118,18 @@ export function BookingForm({ location = 'booking_modal', onSubmitted }) {
           <option value="">Select a time</option>
           {booking.preferredTimes.map((t) => (
             <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="field">
+        <label className="field__label" htmlFor="field-reason">
+          {booking.fields.reason}
+        </label>
+        <select id="field-reason" value={values.reason} onChange={setField('reason')}>
+          <option value="">Select an option</option>
+          {booking.reasons.map((r) => (
+            <option key={r} value={r}>{r}</option>
           ))}
         </select>
       </div>

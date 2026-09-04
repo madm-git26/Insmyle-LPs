@@ -3,7 +3,7 @@ import { Icon } from './ui/Icon';
 import { hero } from '../content/copy';
 import { fill } from '../content/practice';
 
-/** Eyebrow → H1 → paragraph → CTAs → trust row (spec 07). */
+/** Eyebrow → H1 → body → CTAs → trust row → microcopy (spec 07). */
 export function HeroCopy({ variant }) {
   return (
     <div className="hero__copy">
@@ -15,7 +15,13 @@ export function HeroCopy({ variant }) {
         ))}
       </h1>
 
-      <p className="lede hero__lede">{fill(variant.body)}</p>
+      <div className="hero__lede">
+        {variant.paragraphs.map((text, i) => (
+          <p key={text.slice(0, 24)} className={i === 0 ? 'lede' : undefined}>
+            {fill(text)}
+          </p>
+        ))}
+      </div>
 
       <CTAGroup
         primaryLabel={variant.primaryCta}
@@ -23,7 +29,7 @@ export function HeroCopy({ variant }) {
         location="hero"
       />
 
-      <ul className="trust-row" style={{ listStyle: 'none', padding: 0, margin: 'var(--space-10) 0 0' }}>
+      <ul className="trust-row">
         {hero.trust.map((item) => (
           <li className="trust-item" key={item.label}>
             <span className="icon-badge">
@@ -33,6 +39,8 @@ export function HeroCopy({ variant }) {
           </li>
         ))}
       </ul>
+
+      <p className="hero__microcopy">{hero.microcopy}</p>
     </div>
   );
 }

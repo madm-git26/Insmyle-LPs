@@ -14,32 +14,44 @@ export const adGroups = {
     key: 'default',
     eyebrow: 'Sleep Apnea Treatment',
     headlineLines: ['Breathe Better.', 'Sleep Deeper.', 'Wake Up Better.'],
-    body:
-      'If snoring, restless sleep, morning headaches, or daytime fatigue are affecting your life, sleep apnea may be the reason. Our team provides personalized sleep apnea evaluations and treatment options designed to help you breathe more comfortably while you sleep.',
+    paragraphs: [
+      'You may be spending enough time in bed—but still waking up exhausted.',
+      'If you snore loudly, wake with headaches or a dry mouth, feel tired throughout the day, or have been told that you stop breathing during sleep, sleep apnea may be affecting the quality of your rest.',
+      'At [PRACTICE NAME], we provide personalized sleep apnea evaluations and treatment options designed around your individual needs.',
+    ],
     primaryCta: 'Schedule A Sleep Apnea Evaluation',
   },
   oral_appliance: {
     key: 'oral_appliance',
     eyebrow: 'Oral Appliance Therapy',
     headlineLines: ['Explore Oral Appliance', 'Therapy For', 'Sleep Apnea.'],
-    body:
-      'A custom oral appliance is worn like a retainer while you sleep — no mask, no hose, nothing to plug in. We’ll evaluate whether it’s an appropriate option for your diagnosis and your anatomy.',
+    paragraphs: [
+      'Oral appliance therapy uses a custom-fitted dental device worn while you sleep—no mask and no hose.',
+      'Certain oral appliances are designed to gently position the lower jaw forward to help maintain space for airflow in appropriate patients with obstructive sleep apnea.',
+      'At [PRACTICE NAME], we evaluate whether oral appliance therapy may be an appropriate option for your individual needs.',
+    ],
     primaryCta: 'Schedule An Oral Appliance Consultation',
   },
   snoring: {
     key: 'snoring',
     eyebrow: 'Snoring Treatment',
     headlineLines: ['Find Out What’s', 'Behind Your', 'Snoring.'],
-    body:
-      'Snoring can be disruptive on its own — and it can also be a sign of interrupted breathing during sleep. We’ll help you find out which it is, and what can be done about it.',
+    paragraphs: [
+      'Snoring can be disruptive on its own—and it can also be a sign of interrupted breathing during sleep.',
+      'Snoring can have different causes, and not everyone who snores has sleep apnea. An evaluation can help determine whether there may be an underlying breathing or sleep-related issue.',
+      'At [PRACTICE NAME], we provide personalized evaluations and treatment options designed around your individual needs.',
+    ],
     primaryCta: 'Schedule A Snoring Evaluation',
   },
   cpap_alternative: {
     key: 'cpap_alternative',
-    eyebrow: 'Beyond CPAP',
+    eyebrow: 'Exploring Your Options',
     headlineLines: ['Exploring Options', 'Beyond CPAP?', 'Let’s Talk.'],
-    body:
-      'CPAP works well for many people — but not everyone can tolerate it. If you’ve been diagnosed with obstructive sleep apnea and CPAP isn’t working for you, an oral appliance may be worth discussing.',
+    paragraphs: [
+      'CPAP remains an important and effective treatment for many people with obstructive sleep apnea.',
+      'However, some patients have difficulty tolerating CPAP or may be candidates for other treatment approaches. If you’re struggling with your current treatment, don’t simply stop using it on your own.',
+      'Talk with us about your concerns and whether oral appliance therapy may be appropriate for your situation.',
+    ],
     primaryCta: 'Discuss My Treatment Options',
   },
 };

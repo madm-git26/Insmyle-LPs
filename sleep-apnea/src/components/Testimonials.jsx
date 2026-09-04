@@ -2,16 +2,17 @@ import { useRef, useState } from 'react';
 import { Section, SectionIntro } from './ui/Section';
 import { Icon } from './ui/Icon';
 import { testimonials } from '../content/copy';
-import { fill } from '../content/practice';
 
 /**
- * One lead quote + two supporting quotes on desktop; a swipeable, keyboard
- * accessible carousel on mobile (spec 25).
+ * Section 16 — one lead quote + two supporting quotes on desktop; a swipeable,
+ * keyboard accessible carousel on mobile (spec 25).
  *
- * No autoplay: it is user-controlled by default, so there is no pause button
- * to get wrong and nothing moving while someone reads.
+ * No autoplay: user-controlled by default, so nothing moves while someone reads
+ * and there is no pause button to get wrong.
  *
- * PUBLISH RULE: only real, permissioned patient reviews go here.
+ * PUBLISH RULE: the quotes below are bracketed placeholders. Replace them with
+ * verified, permissioned patient testimonials or delete the section — never
+ * publish invented reviews.
  */
 export function Testimonials() {
   const trackRef = useRef(null);
@@ -19,9 +20,11 @@ export function Testimonials() {
 
   const goTo = (i) => {
     setIndex(i);
-    const track = trackRef.current;
-    const card = track?.children?.[i];
-    card?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    trackRef.current?.children?.[i]?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block: 'nearest',
+    });
   };
 
   const [lead, ...rest] = testimonials.items;
@@ -29,8 +32,10 @@ export function Testimonials() {
   return (
     <Section tone="navy" aria-labelledby="testimonials-heading">
       <SectionIntro
+        center
         eyebrow={testimonials.eyebrow}
         heading={testimonials.heading}
+        body={testimonials.body}
         headingId="testimonials-heading"
       />
 
@@ -42,22 +47,18 @@ export function Testimonials() {
           setIndex(Math.round(scrollLeft / (clientWidth * 0.9)));
         }}
       >
-        <figure className="card card--invert quote quote--lead" style={{ margin: 0 }}>
+        <figure className="card card--invert quote quote--lead">
           <Icon className="quote__mark" name="quote" size={32} filled />
-          <blockquote style={{ margin: 0 }}>
-            <p>{fill(lead.quote)}</p>
-          </blockquote>
-          <figcaption className="quote__by">— {fill(lead.by)}</figcaption>
+          <blockquote><p>{lead.quote}</p></blockquote>
+          <figcaption className="quote__by">— {lead.by}</figcaption>
         </figure>
 
         <div className="testimonials__stack">
           {rest.map((item) => (
-            <figure className="card card--invert quote" key={item.quote} style={{ margin: 0 }}>
+            <figure className="card card--invert quote" key={item.quote}>
               <Icon className="quote__mark" name="quote" size={24} filled />
-              <blockquote style={{ margin: 0 }}>
-                <p>{fill(item.quote)}</p>
-              </blockquote>
-              <figcaption className="quote__by">— {fill(item.by)}</figcaption>
+              <blockquote><p>{item.quote}</p></blockquote>
+              <figcaption className="quote__by">— {item.by}</figcaption>
             </figure>
           ))}
         </div>
@@ -75,6 +76,8 @@ export function Testimonials() {
           />
         ))}
       </div>
+
+      <p className="testimonials__microcopy">{testimonials.microcopy}</p>
     </Section>
   );
 }

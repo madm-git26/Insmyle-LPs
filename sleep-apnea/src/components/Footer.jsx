@@ -2,9 +2,10 @@ import { Logo } from './ui/Logo';
 import { Icon } from './ui/Icon';
 import { Button } from './ui/Button';
 import { footer } from '../content/copy';
-import { practice } from '../content/practice';
+import { fill, practice } from '../content/practice';
 import { useBooking } from './BookingProvider';
 
+/** Section 23 — footer CTA, link columns and the medical disclaimer (spec 28). */
 export function Footer() {
   const { openBooking } = useBooking();
   const { quickLinks, practice: practiceCol, hours, schedule } = footer.columns;
@@ -12,6 +13,18 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container">
+        <div className="footer__cta">
+          <h3>{footer.ctaHeading}</h3>
+          <div className="cta-group">
+            <Button variant="invert" href={practice.phone.href} icon="phone" location="footer">
+              {fill(footer.ctaPhone)}
+            </Button>
+            <Button variant="ghost-invert" location="footer" onClick={() => openBooking('footer')}>
+              {footer.ctaBook}
+            </Button>
+          </div>
+        </div>
+
         <div className="footer__grid">
           <div>
             <Logo invert />
@@ -47,12 +60,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={practice.phone.href} style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
+                <a href={practice.phone.href} className="footer__inline">
                   <Icon name="phone" size={15} /> {practice.phone.display}
                 </a>
               </li>
               <li>
-                <a href={`mailto:${practice.email}`} style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>
+                <a href={`mailto:${practice.email}`} className="footer__inline">
                   <Icon name="mail" size={15} /> {practice.email}
                 </a>
               </li>
@@ -73,7 +86,7 @@ export function Footer() {
 
           <div>
             <h4>{schedule.title}</h4>
-            <p style={{ fontSize: 15, marginBottom: 'var(--space-5)' }}>{schedule.body}</p>
+            <p className="footer__blurb" style={{ marginTop: 0 }}>{schedule.body}</p>
             <Button variant="invert" size="sm" location="footer" onClick={() => openBooking('footer')}>
               {schedule.cta}
             </Button>
@@ -84,7 +97,7 @@ export function Footer() {
 
         <div className="footer__bottom">
           <span>{practice.legal.copyright}</span>
-          <span style={{ display: 'flex', gap: 'var(--space-6)' }}>
+          <span className="footer__legal-links">
             {practice.legal.links.map((link) => (
               <a key={link.label} href={link.href}>{link.label}</a>
             ))}

@@ -1,17 +1,23 @@
-import { Section, SectionIntro } from './ui/Section';
+import { Section } from './ui/Section';
 import { Reveal } from './ui/Reveal';
+import { Button } from './ui/Button';
 import { education } from '../content/copy';
+import { useBooking } from './BookingProvider';
 
-/** 01 / 02 / 03 explainer, numbers staggered in (spec 15). */
+/** Section 06 — 01 / 02 / 03 explainer, numbers staggered in (spec 15). */
 export function EducationSection() {
+  const { openBooking } = useBooking();
+
   return (
     <Section aria-labelledby="education-heading">
-      <SectionIntro
-        eyebrow={education.eyebrow}
-        heading={education.heading}
-        body={education.body}
-        headingId="education-heading"
-      />
+      <Reveal className="section-intro section-intro--center">
+        <span className="eyebrow">{education.eyebrow}</span>
+        <h2 id="education-heading">{education.heading}</h2>
+        {education.paragraphs.map((text) => (
+          <p key={text.slice(0, 24)} className="lede">{text}</p>
+        ))}
+      </Reveal>
+
       <div className="edu-grid">
         {education.steps.map((step, i) => (
           <Reveal key={step.num} delay={i * 120}>
@@ -22,6 +28,12 @@ export function EducationSection() {
             </article>
           </Reveal>
         ))}
+      </div>
+
+      <div className="section__foot">
+        <Button location="education" onClick={() => openBooking('education')}>
+          {education.cta}
+        </Button>
       </div>
     </Section>
   );

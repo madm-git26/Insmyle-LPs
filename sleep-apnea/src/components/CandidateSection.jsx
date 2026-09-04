@@ -5,7 +5,7 @@ import { Button } from './ui/Button';
 import { candidate } from '../content/copy';
 import { useBooking } from './BookingProvider';
 
-/** Self-qualification checklist (spec 21). */
+/** Section 12 — self-qualification checklist (spec 21). */
 export function CandidateSection() {
   const { openBooking } = useBooking();
 
@@ -15,16 +15,12 @@ export function CandidateSection() {
         <Reveal variant="slide-right">
           <span className="eyebrow">{candidate.eyebrow}</span>
           <h2 id="candidate-heading">{candidate.heading}</h2>
-          <div style={{ marginTop: 'var(--space-6)', display: 'grid', gap: 'var(--space-4)' }}>
-            {candidate.paragraphs.map((text) => (
-              <p key={text.slice(0, 24)} className="measure">{text}</p>
-            ))}
-          </div>
+          <p className="lede" style={{ marginTop: 'var(--space-6)' }}>{candidate.body}</p>
+          <p className="candidate__note">{candidate.note}</p>
         </Reveal>
 
         <Reveal variant="slide-left" delay={120}>
           <div className="card candidate__card">
-            <h3 style={{ marginBottom: 'var(--space-6)' }}>{candidate.checklistTitle}</h3>
             <ul className="checklist">
               {candidate.checklist.map((item) => (
                 <li key={item}>
