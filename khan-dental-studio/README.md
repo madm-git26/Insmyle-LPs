@@ -107,7 +107,12 @@ actually happens?* → *Where are you?* → *Everything else.*
 - Reveal animations are a **progressive enhancement** — the `.js` class gates
   them, so if scripting fails the page renders fully visible rather than blank.
   On paid traffic a blank page is a wasted click.
-- `prefers-reduced-motion` is honoured throughout.
+- The trust marquee under the hero is **pure CSS** — three duplicated copies and
+  one `translate3d` keyframe, no JavaScript and no library. It pauses on hover,
+  and the duplicate copies are `aria-hidden` so screen readers read the claims
+  once.
+- `prefers-reduced-motion` is honoured throughout, including the marquee, which
+  falls back to the original static centred row.
 
 ### Accessibility
 

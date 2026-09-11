@@ -95,6 +95,14 @@ All sixteen names and one-line descriptions are taken from the `HOME`
 | Mercury-free practice | `HOME` marquee strip |
 | Emergency slots on every clinic day | `HOME` marquee strip, `ABOUT` |
 
+### Trust marquee
+
+The eight claims scrolling under the hero are the site's own marquee, in the
+site's own order: Open Friday evenings & weekends · Delta Dental, Cigna, Aetna,
+MetLife in-network · Mercury-free practice · Same-day ceramic crowns · Digital
+low-dose X-rays · Free second opinions · Membership plan from $29/mo ·
+Emergency slots every clinic day. Source: `HOME`.
+
 ## Social proof
 
 | Claim | Source |

@@ -208,10 +208,27 @@ button{font:inherit}
 .is-sent .form-done{display:block}
 
 /* ---------- Trust strip ---------- */
-.strip{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding-block:14px;overflow:hidden}
-.strip-in{display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center}
+.strip{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding-block:14px;overflow:hidden;position:relative}
+/* Navy fade on both edges so items enter and leave instead of being chopped off. */
+.strip::before,.strip::after{content:"";position:absolute;top:0;bottom:0;width:clamp(36px,7vw,110px);z-index:2;pointer-events:none}
+.strip::before{left:0;background:linear-gradient(90deg,var(--navy) 12%,rgba(0,3,66,0))}
+.strip::after{right:0;background:linear-gradient(270deg,var(--navy) 12%,rgba(0,3,66,0))}
+/* Three identical copies scroll left by exactly one copy, then the animation
+   restarts — the seam is invisible because copy 2 is already where copy 1 was.
+   Three (not two) keeps the track wider than any viewport, so no gap appears. */
+.marquee{display:flex;width:max-content;animation:marquee-scroll 46s linear infinite;will-change:transform}
+.strip:hover .marquee,.marquee:focus-within{animation-play-state:paused}
+.strip-in{display:flex;gap:28px;align-items:center;flex:none;padding-right:28px}
 .strip-in li{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-size:13.4px;font-weight:500;white-space:nowrap}
 .strip-in svg{width:15px;height:15px;color:var(--accent);flex:none}
+@keyframes marquee-scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-100% / 3),0,0)}}
+/* Motion-sensitive users get the original static, centred, wrapping row. */
+@media (prefers-reduced-motion:reduce){
+  .marquee{animation:none;width:100%;flex-wrap:wrap;justify-content:center}
+  .marquee .strip-in[aria-hidden="true"]{display:none}
+  .strip-in{flex-wrap:wrap;justify-content:center;padding-right:0;padding-inline:var(--pad)}
+  .strip::before,.strip::after{display:none}
+}
 
 /* ---------- Cards / grids ---------- */
 .grid{display:grid;gap:clamp(14px,1.6vw,20px)}
@@ -593,13 +610,38 @@ button{font:inherit}
 
 <!-- ====================== TRUST STRIP ====================== -->
 <div class="strip">
-  <ul class="wrap strip-in">
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mercury-free practice</li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Same-day ceramic crowns</li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Low-dose digital X-rays</li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free second opinions</li>
-    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Emergency slots every clinic day</li>
-  </ul>
+  <div class="marquee">
+    <ul class="strip-in">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Open Friday evenings &amp; weekends</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Delta Dental &middot; Cigna &middot; Aetna &middot; MetLife in-network</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mercury-free practice</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Same-day ceramic crowns</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Digital low-dose X-rays</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free second opinions</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Membership plan from $29/mo</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Emergency slots every clinic day</li>
+    </ul>
+    <ul class="strip-in" aria-hidden="true">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Open Friday evenings &amp; weekends</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Delta Dental &middot; Cigna &middot; Aetna &middot; MetLife in-network</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mercury-free practice</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Same-day ceramic crowns</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Digital low-dose X-rays</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free second opinions</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Membership plan from $29/mo</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Emergency slots every clinic day</li>
+    </ul>
+    <ul class="strip-in" aria-hidden="true">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Open Friday evenings &amp; weekends</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Delta Dental &middot; Cigna &middot; Aetna &middot; MetLife in-network</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mercury-free practice</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Same-day ceramic crowns</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Digital low-dose X-rays</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free second opinions</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Membership plan from $29/mo</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Emergency slots every clinic day</li>
+    </ul>
+  </div>
 </div>
 
 <!-- ====================== INTENT MATCH ====================== -->
