@@ -131,17 +131,16 @@ without JavaScript.
 
 ## Hero photo — one file to add
 
-The hero sits behind the studio's own exterior photograph. The page expects it at:
+The hero sits behind the studio's own exterior photograph. **Save the photo as
+`clinic-exterior.jpg` in the same folder as `dentist-mansfield-tx.html`** and it
+appears — no code change, and it works when you open the file locally as well as
+once it is deployed.
 
-```
-https://www.khandentalstudio.com/assets/img/clinic-exterior.jpg
-```
-
-Upload the photo there and it appears — no code change. To point somewhere else,
-edit the single line near the top of the stylesheet:
+Already hosted somewhere? Put the full URL in the one line near the top of the
+stylesheet instead:
 
 ```css
-:root{--hero-photo:url("…")}
+:root{--hero-photo:url("https://…/clinic-exterior.jpg")}
 ```
 
 If the file is missing the layer renders nothing and the navy hero shows through,
