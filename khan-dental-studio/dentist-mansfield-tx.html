@@ -246,10 +246,9 @@ button{font:inherit}
 .svc-group-h h3{font-size:clamp(17px,1.6vw,21px);display:flex;align-items:center;gap:11px}
 .svc-group-h h3::before{content:"";width:5px;height:1.05em;border-radius:3px;background:var(--accent);flex:none}
 .svc-group-h span{height:1px;background:var(--line);flex:1}
-/* Flex rather than grid so a short trailing row centres instead of hanging left
-   with empty slots — the groups are 4, 7 and 5, so every layout leaves a
-   remainder somewhere. Four across from 1100px makes the 4-card group exact. */
-.svc-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+/* Flex rather than grid so the tiles size evenly and wrap on their own. Four
+   across from 1100px makes the 4-card Preventive group an exact row. */
+.svc-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
 .svc{flex:1 1 100%;max-width:100%}
 @media (min-width:560px){.svc{flex-basis:calc(50% - 6px);max-width:calc(50% - 6px)}}
 @media (min-width:960px){.svc{flex-basis:calc(33.333% - 8px);max-width:calc(33.333% - 8px)}}
@@ -316,7 +315,7 @@ button{font:inherit}
 .rev footer span span{display:block;font-size:12.8px;color:var(--muted);margin-top:2px}
 
 /* ---------- Insurance ---------- */
-.ins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.ins{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start;margin-top:8px}
 .ins li{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius-chip);padding:12px 20px;font-size:14.6px;font-weight:600;color:var(--ink);transition:border-color .3s,transform .4s var(--ease)}
 .ins li:hover{border-color:var(--accent);transform:translateY(-2px)}
 .pay{display:grid;gap:14px;grid-template-columns:1fr;margin-top:clamp(28px,3vw,44px)}
@@ -344,7 +343,7 @@ button{font:inherit}
 .map iframe{width:100%;max-width:100%;height:100%;min-height:340px;border:0;display:block}
 
 /* ---------- FAQ ---------- */
-.faq{max-width:880px;margin:0 auto;display:grid;gap:10px}
+.faq{max-width:880px;display:grid;gap:10px}
 .faq details{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;transition:border-color .3s}
 .faq details[open]{border-color:#d4d4d8;box-shadow:var(--shadow)}
 .faq summary{
@@ -361,7 +360,8 @@ button{font:inherit}
 
 /* ---------- Final CTA ---------- */
 .final{text-align:center}
-.final .h2{margin-inline:auto}
+.final .h2,.final .sub{margin-inline:auto}
+.final .btn-row{justify-content:center}
 .final-tel{display:inline-flex;align-items:center;gap:11px;margin-top:22px;font-size:clamp(24px,3vw,34px);font-weight:700;color:#fff}
 .final-tel svg{width:26px;height:26px;color:var(--accent)}
 
@@ -496,7 +496,7 @@ button{font:inherit}
 <!-- ====================== INTENT MATCH ====================== -->
 <section class="section" aria-labelledby="intent-h">
   <div class="wrap">
-    <div class="sec-head center rv">
+    <div class="sec-head rv">
       <span class="eyebrow">You&rsquo;re in the right place</span>
       <h2 class="h2" id="intent-h">Looking for a dentist in <span class="mark">Mansfield, TX</span>? Here are three ways to start.</h2>
       <p class="sub">One location on the U.S. 287 frontage road, one dentist who examines every new patient personally, and a schedule built around people who work Monday to Thursday.</p>
@@ -564,7 +564,7 @@ button{font:inherit}
 <!-- ====================== SERVICES ====================== -->
 <section class="section" aria-labelledby="svc-h">
   <div class="wrap">
-    <div class="sec-head center rv">
+    <div class="sec-head rv">
       <span class="eyebrow">What we do</span>
       <h2 class="h2" id="svc-h">Sixteen treatments. <span class="mark">One address.</span></h2>
       <p class="sub">Cleanings, implants, root canals, aligners and cosmetic work all happen in our Mansfield studio, performed by our own team. We rarely need to send you anywhere else.</p>
@@ -600,7 +600,7 @@ button{font:inherit}
         <div class="svc"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span><b>TMD / TMJ Treatment</b><span>Relief for jaw pain, clicking, clenching and morning headaches.</span></span></div>
       </div>
     </div>
-    <div class="btn-row center" style="justify-content:center;margin-top:36px">
+    <div class="btn-row" style="margin-top:36px">
       <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="services">Call to book your visit</a>
       <a class="btn btn-ghost btn-lg" href="tel:+18178397412" data-track="call" data-loc="services">Call (817) 839-7412</a>
     </div>
@@ -628,7 +628,7 @@ button{font:inherit}
       <div class="step rv d3"><h4>Rotary endodontics</h4><p>Faster, quieter root canals &mdash; most finished in one sitting.</p></div>
     </div>
 
-    <div class="btn-row" style="justify-content:flex-start">
+    <div class="btn-row">
       <a class="btn btn-accent btn-lg" href="tel:+18178397412" data-track="call" data-loc="crowns">Ask about a same-day crown</a>
       <a class="btn btn-outline-light btn-lg" href="tel:+18178397412" data-track="call" data-loc="crowns">Call (817) 839-7412</a>
     </div>
@@ -676,7 +676,7 @@ button{font:inherit}
 <!-- ====================== REVIEWS ====================== -->
 <section class="section section-soft" aria-labelledby="rev-h">
   <div class="wrap">
-    <div class="sec-head center rv">
+    <div class="sec-head rv">
       <span class="eyebrow">In their own words</span>
       <h2 class="h2" id="rev-h">What Mansfield <span class="mark">says about us</span>.</h2>
       <p class="sub">We do not curate these. Below is a straight sample from Google and our post-visit surveys &mdash; good days and honest details included.</p>
@@ -731,7 +731,7 @@ button{font:inherit}
       </figure>
     </div>
 
-    <div class="btn-row center" style="justify-content:center;margin-top:38px">
+    <div class="btn-row" style="margin-top:38px">
       <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="reviews">Become the next review</a>
       <a class="btn btn-ghost btn-lg" href="tel:+18178397412" data-track="call" data-loc="reviews">Call (817) 839-7412</a>
     </div>
@@ -740,7 +740,7 @@ button{font:inherit}
 <!-- ====================== INSURANCE ====================== -->
 <section class="section" aria-labelledby="ins-h">
   <div class="wrap">
-    <div class="sec-head center rv">
+    <div class="sec-head rv">
       <span class="eyebrow">Insurance &amp; payment</span>
       <h2 class="h2" id="ins-h">In-network with the plans North Texas <span class="mark">actually has</span>.</h2>
       <p class="sub">We file your claim for you either way &mdash; in-network or out. Bring your card to the first visit and we will verify your benefits before anything is scheduled.</p>
@@ -821,7 +821,7 @@ button{font:inherit}
 <!-- ====================== FAQ ====================== -->
 <section class="section" aria-labelledby="faq-h">
   <div class="wrap">
-    <div class="sec-head center rv">
+    <div class="sec-head rv">
       <span class="eyebrow">Questions</span>
       <h2 class="h2" id="faq-h">The things people ask <span class="mark">before booking</span>.</h2>
     </div>
