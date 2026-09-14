@@ -32,7 +32,7 @@ Every CTA carries `data-track` and `data-loc`. A delegated listener pushes to
 | `dataLayer` event | Fires on | `cta_location` values |
 |---|---|---|
 | `kds_call` | any `tel:` link | `header`, `hero`, `form`, `intent`, `offer`, `services`, `crowns`, `reviews`, `location`, `final`, `sticky` |
-| `kds_cta` | any scroll-to-form button | `header`, `hero`, `intent`, `offer`, `services`, `crowns`, `doctor`, `reviews`, `plan-child`, `plan-adult`, `plan-perio`, `firstvisit`, `location`, `final`, `sticky` |
+| `kds_cta` | any scroll-to-form button | `header`, `hero`, `intent`, `offer`, `services`, `crowns`, `doctor`, `reviews`, `firstvisit`, `location`, `final`, `sticky` |
 | `kds_directions` | Google Maps links | `intent`, `location`, `final` |
 | `kds_email` | the `mailto:` link | `location` |
 | `kds_form_submit` | validated form submit | `lead_form` |
@@ -47,7 +47,7 @@ To report a value-bearing Google Ads conversion, add inside the submit handler
 ```js
 gtag('event', 'conversion', {
   send_to: 'AW-XXXXXXXXX/YOUR_LABEL',
-  value: 99.0,
+  value: 55.0,
   currency: 'USD'
 });
 ```
@@ -113,6 +113,10 @@ silently dropped client-side. Add server-side validation too.
 
 ---
 
+> The page now runs a **single offer** — $55 exam and X-rays. Keep the ads on that
+> one promise: no membership pricing, no free-second-opinion angle, no competing
+> discount. A single-offer page is only worth having if the ads match it.
+
 ## 4. Suggested campaign mapping
 
 The page is written for one tight ad group so the ad → keyword → page chain
@@ -124,7 +128,7 @@ stays literal, which is what Quality Score's *landing page experience* and
 | Ad group | Dentist — Mansfield TX (general / new patient) |
 | Core keywords | `dentist in mansfield tx`, `dentist near me mansfield`, `new patient dentist mansfield`, `dental office mansfield tx`, `weekend dentist mansfield`, `saturday dentist near me` |
 | Headline echo on page | H1 "Dentist in Mansfield, TX", plus the "Looking for a dentist in Mansfield, TX?" section directly under the hero |
-| Offer echo | `$99` appears in the hero badge, the offer section, the first-visit CTA, the FAQ and the sticky mobile bar |
+| Offer echo | `$55` appears in the hero badge, the first-visit CTA, the final CTA, the FAQ, the form's reason list and the sticky mobile bar |
 | Final URL | `https://www.khandentalstudio.com/lp/dentist-mansfield-tx` |
 | Final URL suffix | `utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&gclid={gclid}` |
 
@@ -133,8 +137,8 @@ compete with the main site in organic results.
 
 ### Ad extensions that match what the page proves
 
-- **Sitelinks:** $99 new patient visit · Same-day crowns · Membership from $25/mo · Insurance accepted
-- **Callouts:** Open Fri, Sat & Sun · Free second opinions · Mercury-free · Emergency slots daily
+- **Sitelinks:** $55 new patient exam & X-rays · Same-day crowns · Emergency appointments · Insurance accepted
+- **Callouts:** Open Fri, Sat & Sun · Same-day crowns · Mercury-free · Emergency slots daily
 - **Structured snippet (Services):** Preventive Care, Dental Implants, Same-Day Crowns, Invisalign, Teeth Whitening, Root Canal Therapy
 - **Call extension:** (817) 839-7412, scheduled to Fri 12:00–19:00 and Sat/Sun 10:00–15:00 so the extension is only live when someone answers
 

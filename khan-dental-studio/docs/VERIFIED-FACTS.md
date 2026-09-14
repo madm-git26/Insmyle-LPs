@@ -46,25 +46,44 @@ Sources harvested 2026-09-11:
 
 ## Offer & pricing
 
+> ⚠️ **The $55 new patient offer is client-supplied and contradicts the live site.**
+> The website advertises **$99** for exam + digital X-rays + oral cancer screening
+> + standard cleaning (`HOME` FAQ, `NEW`). The agency specified **$55 for exam and
+> X-rays only**, so that is what the landing page carries. Google Ads requires the
+> offer on the landing page to be the one actually honoured, and a mismatch between
+> the ad landing page and the main site is a disapproval and trust risk.
+> **Update khandentalstudio.com to $55, or confirm the $55 price, before the
+> campaign is enabled.**
+
 | Claim | Source |
 |---|---|
-| $99 new patient visit | `HOME` FAQ + offer strip, `NEW` |
-| Includes comprehensive exam, full set of digital X-rays, oral cancer screening, standard cleaning | `HOME` FAQ, `NEW` |
-| ~90 minutes for the first appointment | `NEW` FAQ |
-| Free second opinion on a plan quoted elsewhere | `HOME` FAQ, `FIN` |
-| $65 charge if new images are needed for a second opinion | `FIN` FAQ |
-| Six-point gum charting, intraoral photographs, ultrasonic + hand scaling, polish and fluoride | `NEW` ("minute by minute") |
+| $55 new patient exam and X-rays | **Client-supplied** (agency instruction, 2026-09-14) — not on the live site |
+| Comprehensive exam with Dr. Khan | `NEW`, `HOME` |
+| Full set of low-dose digital X-rays | `NEW`, `HOME` |
+| Intraoral photographs | `NEW` ("minute by minute"), `HOME` |
 | Written estimate with insurance applied before you leave | `NEW`, `FIN` |
-| 5% courtesy discount for treatment paid in full on the day | `FIN` |
+| Benefits verified before treatment is scheduled | `FIN`, `NEW` |
+| CareCredit and Sunbit, 6/12/24-month plans, several interest-free | `FIN` |
+| Cash, card, check, HSA and FSA accepted | `FIN` |
+| Roughly a third of new patients have not been in five years or more | `HOME` FAQ, `NEW` |
 
-## Membership plans
+### Removed from the page on instruction
 
-| Claim | Source |
+These are all true and still on the practice's own site, but the agency asked for
+a single-offer page, so they were taken off the landing page entirely:
+
+| Removed | Where it lived on the site |
 |---|---|
-| Child plan $25/mo — 2 cleanings, 2 exams & X-rays, fluoride, 1 emergency exam, 15% off | `HOME` |
-| Adult plan $29/mo (most popular) — 2 cleanings, 2 exams & X-rays, oral cancer screening, 1 emergency exam & X-ray, 20% off | `HOME` |
-| Perio plan $49/mo — 4 perio maintenance visits, 2 exams & X-rays, localised antibiotic therapy, 1 emergency exam, 20% off | `HOME` |
-| No deductible, no annual maximum, no claim forms; not insurance | `HOME`, `HOME` FAQ |
+| $99 new patient package (replaced by the $55 exam + X-rays) | `HOME` FAQ, `NEW` |
+| Free second opinion (and the $65 new-images caveat) | `HOME` FAQ, `FIN` |
+| Membership plans — Child $25/mo, Adult $29/mo, Perio $49/mo, 15–20% off | `HOME` |
+| 5% courtesy discount for payment in full on the day | `FIN` |
+
+Claims about appointment **duration** were also dropped. The site's "about ninety
+minutes" covers a visit that includes a cleaning; the $55 visit does not, and no
+verified length for the shorter visit exists. The page now says the length is
+confirmed at booking rather than inventing a number. **Confirm the actual length
+of the $55 visit** and it can go back in.
 
 ## Insurance & payment
 
@@ -102,6 +121,9 @@ site's own order: Open Friday evenings & weekends · Delta Dental, Cigna, Aetna,
 MetLife in-network · Mercury-free practice · Same-day ceramic crowns · Digital
 low-dose X-rays · Free second opinions · Membership plan from $29/mo ·
 Emergency slots every clinic day. Source: `HOME`.
+
+The "Free second opinions" and "Membership plan from $29/mo" items were removed
+from the marquee along with the offers themselves.
 
 ## Social proof
 
@@ -153,11 +175,13 @@ Photography is served from the live site (`reception.jpg`, `dr-khan-hero.jpg`,
    Do not publish a rating that has not been checked against the live profile —
    Google Ads misrepresentation policy treats unverifiable review claims as a
    disapproval risk.
-2. **Form endpoint.** The page currently confirms submission in place. Wire it
+2. **Confirm the $55 price and the visit length** — see the warning at the top of
+   "Offer & pricing". The live site still says $99.
+3. **Form endpoint.** The page currently confirms submission in place. Wire it
    to the practice's real handler before spending — see `docs/TRACKING.md`.
-3. **Conversion labels.** `AW-XXXXXXXXX` / `SEND_TO_ID` placeholders must be
+4. **Conversion labels.** `AW-XXXXXXXXX` / `SEND_TO_ID` placeholders must be
    replaced with the account's real IDs — see `docs/TRACKING.md`.
-4. **Privacy policy — LAUNCH BLOCKER.** Google Ads requires a reachable privacy
+5. **Privacy policy — LAUNCH BLOCKER.** Google Ads requires a reachable privacy
    policy on any page that collects personal data, and this page has a lead form.
    The main site has no privacy policy: its footer "Privacy policy" and
    "Accessibility" links are both `href="#"`, and `/privacy-policy` and
