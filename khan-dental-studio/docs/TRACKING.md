@@ -32,7 +32,7 @@ Every CTA carries `data-track` and `data-loc`. A delegated listener pushes to
 | `dataLayer` event | Fires on | `cta_location` values |
 |---|---|---|
 | `kds_call` | any `tel:` link | `header`, `hero`, `form`, `intent`, `offer`, `services`, `crowns`, `reviews`, `location`, `final`, `sticky` |
-| `kds_cta` | any scroll-to-form button | `header`, `hero`, `intent`, `offer`, `services`, `crowns`, `doctor`, `reviews`, `firstvisit`, `location`, `final`, `sticky` |
+| `kds_cta` | any scroll-to-form button | `header`, `hero`, `intent`, `offer`, `services`, `crowns`, `doctor`, `reviews`, `location`, `final`, `sticky` |
 | `kds_directions` | Google Maps links | `intent`, `location`, `final` |
 | `kds_email` | the `mailto:` link | `location` |
 | `kds_form_submit` | validated form submit | `lead_form` |
@@ -128,7 +128,7 @@ stays literal, which is what Quality Score's *landing page experience* and
 | Ad group | Dentist — Mansfield TX (general / new patient) |
 | Core keywords | `dentist in mansfield tx`, `dentist near me mansfield`, `new patient dentist mansfield`, `dental office mansfield tx`, `weekend dentist mansfield`, `saturday dentist near me` |
 | Headline echo on page | H1 "Dentist in Mansfield, TX", plus the "Looking for a dentist in Mansfield, TX?" section directly under the hero |
-| Offer echo | `$55` appears in the hero badge, the first-visit CTA, the final CTA, the FAQ, the form's reason list and the sticky mobile bar |
+| Offer echo | `$55` appears in the hero badge, the final CTA, the FAQ, the form's reason list and the sticky mobile bar |
 | Final URL | `https://www.khandentalstudio.com/lp/dentist-mansfield-tx` |
 | Final URL suffix | `utm_source=google&utm_medium=cpc&utm_campaign={campaignid}&utm_term={keyword}&gclid={gclid}` |
 

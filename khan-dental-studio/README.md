@@ -59,12 +59,13 @@ addresses both deliberately:
 - **Literal keyword echo.** The H1 reads "Dentist in Mansfield, TX", and the very
   first section below the hero is "Looking for a dentist in Mansfield, TX? Here
   are three ways to start" — so a searcher confirms intent within one scroll.
-- **Offer echo.** `$99` appears in the hero badge, the offer section, the
-  first-visit CTA, the FAQ and the sticky bar, matching the ad's promotion.
-- **Substance, not a splash page.** ~2,700 words covering all 16 services,
-  technology, the dentist's credentials, pricing, insurance, membership plans,
-  the first-visit walkthrough and 10 FAQs. Thin landing pages are the single
-  most common cause of a poor landing page experience score.
+- **Offer echo.** `$55` appears in the hero badge, the final CTA, the FAQ, the
+  form's reason list and the sticky bar, matching the ad's promotion.
+- **Substance, not a splash page.** ~2,340 words covering all 16 services,
+  technology, the dentist's credentials, insurance and payment, nine
+  testimonials and 9 FAQs. Thin landing pages are the single most common cause
+  of a poor landing page experience score — this has room to lose a little more
+  and still read as a real page, but not much.
 - **Transparency signals.** Real address, real hours, named dentist, named team
   member, a map, and links back to the main site's About, Contact and Insurance
   pages.
@@ -77,8 +78,7 @@ The sections answer the questions a Mansfield searcher actually has, in the
 order they occur: *Are you open when I'm free?* → *What does the first visit
 cost?* → *Why you and not the chain down the road?* → *Do you do what I need?* →
 *Will it take three appointments?* → *Who is the dentist?* → *Do other people
-trust you?* → *What if I have no insurance?* → *Do you take my plan?* → *What
-actually happens?* → *Where are you?* → *Everything else.*
+trust you?* → *Do you take my plan?* → *Where are you?* → *Everything else.*
 
 ### Built for mobile first
 

@@ -279,14 +279,11 @@ button{font:inherit}
 /* ---------- Steps ---------- */
 .steps{display:grid;gap:14px;grid-template-columns:1fr;counter-reset:s}
 @media (min-width:640px){.steps{grid-template-columns:1fr 1fr}}
-@media (min-width:1040px){.steps.s4{grid-template-columns:repeat(4,1fr)}.steps.s5{grid-template-columns:repeat(5,1fr)}}
+@media (min-width:1040px){.steps.s4{grid-template-columns:repeat(4,1fr)}}
 .step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:22px}
 .step b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--navy);font-weight:700;font-size:14.5px;margin-bottom:14px}
 .step h4{font-size:16.5px;color:#fff}
 .step p{color:rgba(255,255,255,.72);font-size:14.2px;margin-top:8px;line-height:1.5}
-.steps-light .step{background:#fff;border-color:var(--line)}
-.steps-light .step h4{color:var(--ink)}
-.steps-light .step p{color:var(--muted)}
 
 /* ---------- Doctor ---------- */
 .doc{display:grid;gap:clamp(24px,3vw,48px);align-items:center;grid-template-columns:1fr}
@@ -903,28 +900,8 @@ button{font:inherit}
   </div>
 </section>
 
-<!-- ====================== FIRST VISIT ====================== -->
-<section class="section section-soft" aria-labelledby="first-h">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <span class="eyebrow">Your first visit</span>
-      <h2 class="h2" id="first-h">Minute by minute, so <span class="mark">nothing surprises you</span>.</h2>
-      <p class="sub">Roughly a third of our new patients have not seen a dentist in five years or more. There is no lecture waiting for you here &mdash; just a thorough look and an honest plan.</p>
-    </div>
-    <div class="steps s5 steps-light">
-      <div class="step rv"><b>1</b><h4>Paperwork before you arrive</h4><p>We email your forms the day you book. Fill them in at home and walk straight through.</p></div>
-      <div class="step rv d1"><b>2</b><h4>A conversation first</h4><p>Before anything goes in your mouth, we ask what you want out of your teeth over the next ten years.</p></div>
-      <div class="step rv d2"><b>3</b><h4>Images and measurements</h4><p>A full set of low-dose digital X-rays and intraoral photographs of every tooth we are concerned about.</p></div>
-      <div class="step rv d3"><b>4</b><h4>The exam itself</h4><p>Dr. Khan goes through your teeth, bite and gums, and puts each finding up on the monitor next to you.</p></div>
-      <div class="step rv d4"><b>5</b><h4>The plan, on paper</h4><p>Findings reviewed on screen with you, priorities agreed, written estimate with insurance applied before you leave.</p></div>
-    </div>
-    <div class="btn-row center" style="justify-content:center;margin-top:34px">
-      <a class="btn btn-primary btn-lg" href="#lead-form" data-track="cta" data-loc="firstvisit">Book my first visit &mdash; $55</a>
-    </div>
-  </div>
-</section>
 <!-- ====================== LOCATION ====================== -->
-<section class="section" aria-labelledby="loc-h">
+<section class="section section-soft" aria-labelledby="loc-h">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Find us</span>
@@ -970,7 +947,7 @@ button{font:inherit}
 </section>
 
 <!-- ====================== FAQ ====================== -->
-<section class="section section-soft" aria-labelledby="faq-h">
+<section class="section" aria-labelledby="faq-h">
   <div class="wrap">
     <div class="sec-head center rv">
       <span class="eyebrow">Questions</span>
