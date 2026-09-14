@@ -44,6 +44,7 @@ body{
 }
 h1,h2,h3,h4{margin:0;line-height:1.14;letter-spacing:0;font-weight:600;color:var(--ink)}
 p{margin:0}
+blockquote,figure{margin:0}
 ul,ol{margin:0;padding:0;list-style:none}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -303,6 +304,14 @@ button{font:inherit}
 .rev-stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(18px,2vw,26px);text-align:center}
 .rev-stat b{display:block;font-size:clamp(28px,3.6vw,44px);font-weight:700;color:var(--ink);line-height:1}
 .rev-stat span{display:block;color:var(--muted);font-size:13.6px;margin-top:9px;line-height:1.4}
+/* Three stat columns leave ~74px of text width on a phone, which shreds the
+   labels into three lines. Below 560px lay each stat out as a single row. */
+@media (max-width:559px){
+  .rev-stats{grid-template-columns:1fr;gap:10px}
+  .rev-stat{display:flex;align-items:center;gap:16px;text-align:left;padding:15px 20px}
+  .rev-stat b{font-size:32px;flex:none;min-width:76px}
+  .rev-stat span{margin-top:0;font-size:14.6px}
+}
 .rev-grid{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:700px){.rev-grid{grid-template-columns:1fr 1fr}}
 @media (min-width:1040px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
@@ -310,11 +319,12 @@ button{font:inherit}
 .rev:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .stars{display:flex;gap:3px;margin-bottom:13px}
 .stars svg{width:16px;height:16px;color:var(--accent);fill:var(--accent)}
-.rev p{font-size:15.2px;line-height:1.6;color:var(--ink-2);flex:1}
+.rev blockquote{flex:1}
+.rev blockquote p{font-size:15.2px;line-height:1.6;color:var(--ink-2)}
 .rev footer{display:flex;align-items:center;gap:11px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line-soft)}
 .avatar{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:14.5px;flex:none}
 .rev footer b{display:block;font-size:14.4px;color:var(--ink);font-weight:600}
-.rev footer span{display:block;font-size:12.8px;color:var(--muted);margin-top:2px}
+.rev footer span span{display:block;font-size:12.8px;color:var(--muted);margin-top:2px}
 
 /* ---------- Insurance ---------- */
 .ins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
