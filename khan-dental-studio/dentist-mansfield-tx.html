@@ -148,11 +148,15 @@ button{font:inherit}
    clears the right-hand side so the building is actually visible; on phones the
    copy spans the full width, so the scrim closes up to protect contrast. */
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,3,66,.93) 0%,rgba(0,3,66,.88) 60%,rgba(0,3,66,.92) 100%),
-             radial-gradient(820px 560px at 84% -8%,rgba(246,183,86,.14),transparent 62%)}
+  background:linear-gradient(180deg,rgba(0,3,66,.84) 0%,rgba(0,3,66,.78) 55%,rgba(0,3,66,.86) 100%),
+             radial-gradient(820px 560px at 84% -8%,rgba(246,183,86,.12),transparent 62%)}
 @media (min-width:1000px){
-  .hero::after{background:linear-gradient(100deg,rgba(0,3,66,.96) 0%,rgba(0,3,66,.92) 46%,rgba(0,3,66,.62) 78%,rgba(0,3,66,.45) 100%),
-                          radial-gradient(820px 560px at 88% -8%,rgba(246,183,86,.16),transparent 62%)}
+  /* Heavy enough behind the copy to hold white text on a pale, bright facade,
+     then falls away fast so the building is plainly the background. Do not push
+     the first two stops below .70 — the photo is light stone under a white sky,
+     and white type stops being readable. */
+  .hero::after{background:linear-gradient(100deg,rgba(0,3,66,.88) 0%,rgba(0,3,66,.74) 44%,rgba(0,3,66,.34) 72%,rgba(0,3,66,.14) 100%),
+                          radial-gradient(820px 560px at 88% -8%,rgba(246,183,86,.14),transparent 62%)}
 }
 .hero .inner{display:block}
 .hero-copy{max-width:none}

@@ -155,6 +155,13 @@ paid page, quite apart from being obvious to a local.
 Shoot or supply a wide landscape frame (≈2000×1200), and keep the subject to the
 right — the left ~60% carries the headline behind a navy scrim.
 
+**The scrim is tuned for a bright photo.** The exterior is pale limestone under
+an overcast sky, so the gradient holds ~.88→.74 opacity behind the copy before
+falling to .14 at the right edge. Measured against a pale stand-in, white text
+lands at **5.18:1 worst case on desktop and 11.87:1 on mobile** — both clear
+WCAG AA. If you lighten it further, do not take the first two stops below .70 or
+the headline stops being readable against the stone.
+
 ## Brand fidelity
 
 Nothing here is an approximation. The design tokens were read directly from the
