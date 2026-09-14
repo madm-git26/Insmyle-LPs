@@ -180,57 +180,6 @@ button{font:inherit}
 .hero-proof b{color:#fff;font-weight:700;font-size:16px}
 .hero-proof svg{width:16px;height:16px;color:var(--accent);flex:none}
 
-/* ---------- Lead form ---------- */
-.form-card{
-  background:#fff;border-radius:var(--radius);padding:clamp(22px,2.4vw,32px);
-  box-shadow:var(--shadow-lg);border:1px solid var(--line);color:var(--ink-2);
-  scroll-margin-top:90px;
-}
-.form-card h2{font-size:clamp(21px,2vw,26px);line-height:1.22}
-.form-card .form-sub{color:var(--muted);font-size:14.4px;margin-top:9px;line-height:1.5}
-.form-tag{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);color:var(--accent-deep);
-  border-radius:999px;padding:7px 14px;font-size:12.4px;font-weight:700;margin-bottom:13px;letter-spacing:.02em}
-.form-tag svg{width:14px;height:14px}
-.fgrid{display:grid;gap:12px;margin-top:20px}
-@media (min-width:420px){.fgrid.two{grid-template-columns:1fr 1fr}}
-.field label{display:block;font-size:12.6px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:.01em}
-.field .req{color:var(--accent-deep)}
-.field input,.field select,.field textarea{
-  width:100%;font:inherit;font-size:15.5px;color:var(--ink-2);background:#fff;
-  border:1px solid var(--soft-2);border-radius:var(--radius-chip);padding:12px 14px;min-height:48px;
-  transition:border-color .25s,box-shadow .25s;
-}
-.field textarea{min-height:78px;resize:vertical}
-.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2352525b' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 13px center;background-size:17px;padding-right:40px}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,3,66,.1)}
-.field input:user-invalid{border-color:#dc2626}
-.field .err{display:none;color:#dc2626;font-size:12.2px;margin-top:5px;font-weight:500}
-.field.invalid .err{display:block}
-.field.invalid input,.field.invalid select{border-color:#dc2626}
-.form-note{display:flex;gap:9px;align-items:flex-start;margin-top:14px;font-size:12.4px;color:var(--muted);line-height:1.45}
-.form-note svg{width:15px;height:15px;color:#16a34a;flex:none;margin-top:1px}
-.form-or{display:flex;align-items:center;gap:12px;margin-top:18px;color:var(--muted);font-size:12.4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.form-or::before,.form-or::after{content:"";height:1px;background:var(--line);flex:1}
-.form-call{display:flex;align-items:center;justify-content:center;gap:11px;margin-top:14px;padding:13px;
-  border:1px solid var(--line);border-radius:var(--radius-sm);font-weight:700;color:var(--navy);font-size:18px;transition:background .25s,border-color .25s}
-.form-call:hover{background:var(--soft);border-color:var(--ink)}
-.form-call svg{width:19px;height:19px;color:var(--accent-deep)}
-.form-done{display:none;text-align:center;padding:14px 0}
-.form-done svg{width:52px;height:52px;color:#16a34a;margin:0 auto 14px}
-.form-done h3{font-size:23px}
-.form-done p{color:var(--muted);margin-top:10px;font-size:15px;line-height:1.55}
-.is-sent .form-body{display:none}
-.is-sent .form-done{display:block}
-
-/* ---------- Book section ---------- */
-.book{display:grid;gap:clamp(24px,3vw,46px);grid-template-columns:1fr;align-items:start}
-@media (min-width:980px){.book{grid-template-columns:.92fr 1.08fr}}
-.book>*{min-width:0}
-.book-pts{display:grid;gap:11px;margin-top:26px}
-.book-pts li{display:flex;gap:11px;align-items:flex-start;font-size:15.2px;color:var(--ink-2);line-height:1.45}
-.book-pts svg{width:19px;height:19px;color:#16a34a;flex:none;margin-top:1px}
-
 /* ---------- Trust strip ---------- */
 .strip{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding-block:14px;overflow:hidden;position:relative}
 /* Navy fade on both edges so items enter and leave instead of being chopped off. */
@@ -334,7 +283,12 @@ button{font:inherit}
 }
 .rev-grid{display:grid;gap:14px;grid-template-columns:1fr}
 @media (min-width:700px){.rev-grid{grid-template-columns:1fr 1fr}}
-@media (min-width:1040px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+/* Eight cards, four across, two rows. The 4-up track only starts at 1180px —
+   below that four columns squeeze the quotes under ~200px of text width. */
+@media (min-width:1180px){
+  .rev-grid{grid-template-columns:repeat(4,1fr);gap:13px}
+  .rev{padding:clamp(18px,1.6vw,22px)}
+}
 .rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .4s}
 .rev:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .stars{display:flex;gap:3px;margin-bottom:13px}
@@ -405,7 +359,7 @@ button{font:inherit}
 
 /* ---------- Sticky mobile bar ---------- */
 .sticky{
-  position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:1fr 1fr;gap:9px;
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:1fr;gap:9px;
   padding:9px 12px calc(9px + env(safe-area-inset-bottom));
   background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);
   box-shadow:0 -6px 22px -14px rgba(0,0,0,.35);
@@ -426,7 +380,7 @@ button{font:inherit}
 </head>
 <body>
 <script>document.documentElement.className+=" js";</script>
-<a class="skip" href="#lead-form">Skip to appointment form</a>
+<a class="skip" href="#main">Skip to main content</a>
 
 <!-- ====================== HEADER ====================== -->
 <header class="hdr">
@@ -441,12 +395,12 @@ button{font:inherit}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       (817) 839-7412
     </a>
-    <a class="btn btn-accent btn-sm" href="#lead-form" data-track="cta" data-loc="header">Book my visit</a>
+    <a class="btn btn-accent btn-sm" href="tel:+18178397412" data-track="call" data-loc="header">Call now</a>
   </div>
 </header>
 
 <!-- ====================== HERO ====================== -->
-<section class="hero" aria-labelledby="hero-h">
+<section class="hero" id="main" aria-labelledby="hero-h">
   <div class="wrap inner">
     <div class="hero-copy">
       <span class="eyebrow hero-eyebrow"><span class="dot"></span> Mansfield, TX &middot; Open Friday evenings &amp; weekends</span>
@@ -481,7 +435,7 @@ button{font:inherit}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call (817) 839-7412
         </a>
-        <a class="btn btn-outline-light btn-lg" href="#lead-form" data-track="cta" data-loc="hero">Request an appointment</a>
+        <a class="btn btn-outline-light btn-lg" href="https://maps.google.com/?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063" target="_blank" rel="noopener" data-track="directions" data-loc="hero">Get directions</a>
       </div>
 
       <div class="hero-proof">
@@ -524,139 +478,6 @@ button{font:inherit}
   </div>
 </div>
 
-<!-- ====================== BOOK ====================== -->
-<section class="section section-soft" aria-labelledby="book-h">
-  <div class="wrap">
-    <div class="book">
-      <div class="rv">
-        <span class="eyebrow">Book in</span>
-        <h2 class="h2" id="book-h">Tell us when suits you &mdash; we&rsquo;ll do the <span class="mark">rest</span>.</h2>
-        <p class="sub">We are open Friday 12&ndash;7pm and both weekend days, so you should not have to burn a vacation day to get seen. Send the form and our front desk replies on the next clinic day with a time that fits.</p>
-        <ul class="book-pts">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> We verify your insurance before you arrive</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Your forms are emailed the day you book</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Emergency slots held open on every clinic day</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Closed Monday to Thursday &mdash; the form still reaches us</li>
-        </ul>
-      </div>
-      <div class="form-card" id="lead-form">
-        <div class="form-body">
-          <span class="form-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Same business day reply
-          </span>
-          <h2>Request your appointment</h2>
-          <p class="form-sub">Tell us what you need and when suits you. We&rsquo;ll confirm a Friday evening or weekend slot and verify your insurance before you arrive.</p>
-
-          <form id="apptForm" novalidate>
-            <div class="fgrid two">
-              <div class="field">
-                <label for="f-first">First name <span class="req">*</span></label>
-                <input id="f-first" name="first_name" type="text" autocomplete="given-name" required>
-                <span class="err">Please enter your first name.</span>
-              </div>
-              <div class="field">
-                <label for="f-last">Last name <span class="req">*</span></label>
-                <input id="f-last" name="last_name" type="text" autocomplete="family-name" required>
-                <span class="err">Please enter your last name.</span>
-              </div>
-            </div>
-            <div class="fgrid two">
-              <div class="field">
-                <label for="f-phone">Phone <span class="req">*</span></label>
-                <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(817) 000-0000" required>
-                <span class="err">Please enter a phone number we can reach you on.</span>
-              </div>
-              <div class="field">
-                <label for="f-email">Email</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
-                <span class="err">Please check your email address.</span>
-              </div>
-            </div>
-            <div class="fgrid">
-              <div class="field">
-                <label for="f-reason">What brings you in? <span class="req">*</span></label>
-                <select id="f-reason" name="reason" required>
-                  <option value="">Choose one&hellip;</option>
-                  <option>New patient exam &amp; X-rays ($55)</option>
-                  <option>Dental emergency / pain</option>
-                  <option>Same-day crown</option>
-                  <option>Cosmetic consultation</option>
-                  <option>Implant consultation</option>
-                  <option>Invisalign consultation</option>
-                  <option>Something else</option>
-                </select>
-                <span class="err">Please choose a reason for your visit.</span>
-              </div>
-            </div>
-            <div class="fgrid two">
-              <div class="field">
-                <label for="f-day">Preferred day</label>
-                <select id="f-day" name="preferred_day">
-                  <option value="">No preference</option>
-                  <option>Friday afternoon or evening</option>
-                  <option>Saturday</option>
-                  <option>Sunday</option>
-                  <option>Soonest available</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="f-ins">Dental insurance</label>
-                <select id="f-ins" name="insurance">
-                  <option value="">Select&hellip;</option>
-                  <option>Delta Dental</option><option>Cigna</option><option>Aetna</option>
-                  <option>MetLife</option><option>Guardian</option><option>United Concordia</option>
-                  <option>United Healthcare</option><option>Humana</option><option>GEHA Connection</option>
-                  <option>Ameritas</option><option>Other carrier</option><option>No insurance</option>
-                </select>
-              </div>
-            </div>
-            <div class="fgrid">
-              <div class="field">
-                <label for="f-msg">Anything we should know?</label>
-                <textarea id="f-msg" name="message" rows="2" placeholder="Nervous patient, tooth pain since Tuesday, need the whole family seen&hellip;"></textarea>
-              </div>
-            </div>
-
-            <input type="hidden" name="gclid" id="f-gclid">
-            <input type="hidden" name="utm_source" id="f-utm-source">
-            <input type="hidden" name="utm_medium" id="f-utm-medium">
-            <input type="hidden" name="utm_campaign" id="f-utm-campaign">
-            <input type="hidden" name="utm_term" id="f-utm-term">
-            <input type="hidden" name="landing_page" value="dentist-mansfield-tx">
-            <div class="sr-only" aria-hidden="true">
-              <label for="f-company">Company</label>
-              <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off">
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-block" type="submit" style="margin-top:20px" data-track="form_submit">
-              Request my appointment
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-
-            <p class="form-note">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              Your details go to our front desk only &mdash; never sold or shared. No obligation of any kind.
-            </p>
-          </form>
-
-          <div class="form-or">or call us now</div>
-          <a class="form-call" href="tel:+18178397412" data-track="call" data-loc="form">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            (817) 839-7412
-          </a>
-        </div>
-
-        <div class="form-done" role="status" aria-live="polite">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h3>Request received &mdash; thank you.</h3>
-          <p>Our front desk will call you back on the next clinic day to confirm your time. If it&rsquo;s urgent, please call <a href="tel:+18178397412" style="color:var(--navy);font-weight:700">(817) 839-7412</a>.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ====================== INTENT MATCH ====================== -->
 <section class="section" aria-labelledby="intent-h">
   <div class="wrap">
@@ -674,9 +495,9 @@ button{font:inherit}
       </div>
       <div class="qa-card rv d1">
         <span class="card-ico alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-        <h3 class="h4">Request a time online</h3>
-        <p>Send the form and we reply the same business day with a slot that fits &mdash; including Friday evenings and both weekend days.</p>
-        <a class="btn btn-accent btn-block" href="#lead-form" data-track="cta" data-loc="intent">Request an appointment</a>
+        <h3 class="h4">Email the front desk</h3>
+        <p>Closed Monday to Thursday, so email is the quickest way to reach us midweek. We reply on the next clinic day with a time that fits.</p>
+        <a class="btn btn-accent btn-block" href="mailto:reception@khandentalstudio.com?subject=Appointment%20request" data-track="email" data-loc="intent">reception@khandentalstudio.com</a>
       </div>
       <div class="qa-card rv d2">
         <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -765,7 +586,7 @@ button{font:inherit}
       </div>
     </div>
     <div class="btn-row center" style="justify-content:center;margin-top:36px">
-      <a class="btn btn-primary btn-lg" href="#lead-form" data-track="cta" data-loc="services">Book your visit</a>
+      <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="services">Call to book your visit</a>
       <a class="btn btn-ghost btn-lg" href="tel:+18178397412" data-track="call" data-loc="services">Call (817) 839-7412</a>
     </div>
   </div>
@@ -793,7 +614,7 @@ button{font:inherit}
     </div>
 
     <div class="btn-row" style="justify-content:flex-start">
-      <a class="btn btn-accent btn-lg" href="#lead-form" data-track="cta" data-loc="crowns">Ask about a same-day crown</a>
+      <a class="btn btn-accent btn-lg" href="tel:+18178397412" data-track="call" data-loc="crowns">Ask about a same-day crown</a>
       <a class="btn btn-outline-light btn-lg" href="tel:+18178397412" data-track="call" data-loc="crowns">Call (817) 839-7412</a>
     </div>
   </div>
@@ -830,7 +651,7 @@ button{font:inherit}
           </li>
         </ul>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="#lead-form" data-track="cta" data-loc="doctor">Book with Dr. Khan</a>
+          <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="doctor">Book with Dr. Khan</a>
         </div>
       </div>
     </div>
@@ -858,50 +679,45 @@ button{font:inherit}
         <blockquote><p>&ldquo;Dr. Khan walked me through every option on the screen before touching a thing. First dentist my husband has actually looked forward to seeing.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">M</span><span><b>Marissa H.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d2">
+      <figure class="rev rv d1">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Cracked a molar on a Thursday night. They booked me Friday evening and I walked out with a permanent crown the same visit. Unreal.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">D</span><span><b>Daniel W.</b><span>Arlington, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d3">
+      <figure class="rev rv d2">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;I avoided dentists for eleven years out of pure anxiety. Nobody made me feel bad about it. We built a plan and finished it in four visits.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">E</span><span><b>Erin K.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv">
+      <figure class="rev rv d3">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Weekend hours changed everything for us. Three kids, one Saturday morning, zero meltdowns &mdash; and nobody rushed them.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">P</span><span><b>Priya N.</b><span>Keller, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d2">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Got a second opinion here after being quoted for six crowns elsewhere. I needed two. That honesty earned my whole family.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">C</span><span><b>Chris L.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d3">
+      <figure class="rev rv d1">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;My six-year-old asked when she can go back. I have never written a review in my life but that deserved one.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">T</span><span><b>Tanya B.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv">
+      <figure class="rev rv d2">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Implant placed in March, crown in July, and I genuinely cannot tell which tooth it is any more.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">R</span><span><b>Robert F.</b><span>Benbrook, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d2">
+      <figure class="rev rv d3">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Kelsey found $1,400 of benefits my previous office told me I did not have. That alone was worth switching.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">A</span><span><b>Amanda J.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d3">
-        <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-        <blockquote><p>&ldquo;They fit me in on a Thursday morning with an abscess and did not charge me for the emergency exam. Class act.&rdquo;</p></blockquote>
-        <footer><span class="avatar" aria-hidden="true">V</span><span><b>Victor S.</b><span>Haltom City, TX</span></span></footer>
-      </figure>
     </div>
 
     <div class="btn-row center" style="justify-content:center;margin-top:38px">
-      <a class="btn btn-primary btn-lg" href="#lead-form" data-track="cta" data-loc="reviews">Become the next review</a>
+      <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="reviews">Become the next review</a>
       <a class="btn btn-ghost btn-lg" href="tel:+18178397412" data-track="call" data-loc="reviews">Call (817) 839-7412</a>
     </div>
   </div>
@@ -977,7 +793,7 @@ button{font:inherit}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
             Get directions
           </a>
-          <a class="btn btn-ghost" href="#lead-form" data-track="cta" data-loc="location">Request a time</a>
+          <a class="btn btn-ghost" href="tel:+18178397412" data-track="call" data-loc="location">Call to book</a>
         </div>
       </div>
       <div class="map rv d1">
@@ -1043,7 +859,7 @@ button{font:inherit}
       <h2 class="h2" id="final-h">Your best smile starts with <span class="mark">one easy conversation</span>.</h2>
       <p class="sub">Friday evening and weekend appointments, a $55 new patient exam and X-rays, and a written price before anything is booked. No pressure &mdash; ever.</p>
       <div class="btn-row">
-        <a class="btn btn-accent btn-lg" href="#lead-form" data-track="cta" data-loc="final">Request my appointment</a>
+        <a class="btn btn-accent btn-lg" href="tel:+18178397412" data-track="call" data-loc="final">Call (817) 839-7412</a>
         <a class="btn btn-outline-light btn-lg" href="https://maps.google.com/?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063" target="_blank" rel="noopener" data-track="directions" data-loc="final">Get directions</a>
       </div>
       <a class="final-tel" href="tel:+18178397412" data-track="call" data-loc="final">
@@ -1076,12 +892,11 @@ button{font:inherit}
 </footer>
 
 <!-- ====================== STICKY MOBILE BAR ====================== -->
-<div class="sticky" role="group" aria-label="Quick contact">
+<div class="sticky sticky-one" role="group" aria-label="Quick contact">
   <a class="btn btn-primary" href="tel:+18178397412" data-track="call" data-loc="sticky">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    Call now
+    Call (817) 839-7412 &mdash; $55 new patient visit
   </a>
-  <a class="btn btn-accent" href="#lead-form" data-track="cta" data-loc="sticky">Book $55 visit</a>
 </div>
 
 <script>
@@ -1114,16 +929,11 @@ button{font:inherit}
     if (v) { try { sessionStorage.setItem('kds_' + k, v); } catch(e){} }
     try { store[k] = v || sessionStorage.getItem('kds_' + k) || ''; } catch(e){ store[k] = v || ''; }
   });
-  function fill(id, key){ var el = document.getElementById(id); if (el) el.value = store[key] || ''; }
-  fill('f-gclid','gclid');
-  fill('f-utm-source','utm_source');
-  fill('f-utm-medium','utm_medium');
-  fill('f-utm-campaign','utm_campaign');
-  fill('f-utm-term','utm_term');
-
   /* ---- Conversion tracking hooks ----
-     Fires dataLayer + gtag events. Swap 'SEND_TO_ID' for the real
-     Google Ads conversion label before launch (see docs/TRACKING.md). */
+     This page is call-only: kds_call is the conversion. gclid and the UTMs are
+     still captured into sessionStorage so a call-tracking script (or offline
+     conversion import) can tie a booked patient back to the click.
+     See docs/TRACKING.md. */
   function track(action, label){
     var payload = { event: 'kds_' + action, cta_location: label || '', page: 'dentist-mansfield-tx' };
     window.dataLayer = window.dataLayer || [];
@@ -1135,88 +945,9 @@ button{font:inherit}
   document.addEventListener('click', function(e){
     var a = e.target.closest('[data-track]');
     if (!a) return;
-    var kind = a.getAttribute('data-track');
-    if (kind === 'form_submit') return; /* handled on successful submit */
-    track(kind, a.getAttribute('data-loc'));
+    track(a.getAttribute('data-track'), a.getAttribute('data-loc'));
   });
 
-  /* ---- Smooth-scroll to the form and focus the first field ---- */
-  document.addEventListener('click', function(e){
-    var a = e.target.closest('a[href="#lead-form"]');
-    if (!a) return;
-    e.preventDefault();
-    var card = document.getElementById('lead-form');
-    if (!card) return;
-    card.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-    var first = document.getElementById('f-first');
-    if (first && !card.classList.contains('is-sent')) {
-      setTimeout(function(){ try { first.focus({ preventScroll: true }); } catch(err){ first.focus(); } }, 520);
-    }
-  });
-
-  /* ---- Form validation + submit ---- */
-  var form = document.getElementById('apptForm');
-  if (!form) return;
-  var card = document.getElementById('lead-form');
-
-  function wrapOf(el){ return el.closest('.field'); }
-  function valid(el){
-    if (!el.hasAttribute('required') && !el.value) return true;
-    if (el.id === 'f-phone') return el.value.replace(/\D/g,'').length >= 10;
-    if (el.type === 'email' && el.value) return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value);
-    return el.value.trim() !== '';
-  }
-  var checked = ['f-first','f-last','f-phone','f-email','f-reason'];
-  checked.forEach(function(id){
-    var el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('blur', function(){
-      var w = wrapOf(el);
-      if (w) w.classList.toggle('invalid', !valid(el));
-    });
-    el.addEventListener('input', function(){
-      var w = wrapOf(el);
-      if (w && w.classList.contains('invalid') && valid(el)) w.classList.remove('invalid');
-    });
-  });
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    /* Honeypot — silently drop bot submissions */
-    var hp = document.getElementById('f-company');
-    if (hp && hp.value) return;
-
-    var firstBad = null;
-    checked.forEach(function(id){
-      var el = document.getElementById(id);
-      if (!el) return;
-      var ok = valid(el);
-      var w = wrapOf(el);
-      if (w) w.classList.toggle('invalid', !ok);
-      if (!ok && !firstBad) firstBad = el;
-    });
-    if (firstBad) { firstBad.focus(); return; }
-
-    /* Fire the conversion before any navigation/handoff */
-    track('form_submit', 'lead_form');
-    track('generate_lead', 'lead_form');
-
-    /* ----------------------------------------------------------------
-       SUBMIT TARGET — connect this to the practice's form handler.
-       Replace the block below with a fetch() POST to the CRM endpoint,
-       or set form.action + form.method and call form.submit().
-       Until then the page confirms receipt in place, so the Google Ads
-       conversion still fires on a real user action. See docs/TRACKING.md
-       ---------------------------------------------------------------- */
-    if (card) card.classList.add('is-sent');
-    var done = card ? card.querySelector('.form-done') : null;
-    if (done) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      var h = done.querySelector('h3');
-      if (h) { h.setAttribute('tabindex','-1'); h.focus(); }
-    }
-  });
 })();
 </script>
 

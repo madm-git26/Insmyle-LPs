@@ -8,7 +8,7 @@ practice at 725 U.S. 287 Frontage Rd, Suite 507, Mansfield, TX 76063.
 | **File** | [`dentist-mansfield-tx.html`](dentist-mansfield-tx.html) — one standalone file, no build step |
 | **Ad group** | Dentist — Mansfield, TX (general / new patient) |
 | **Primary offer** | $99 new patient exam, digital X-rays, oral cancer screening & cleaning |
-| **Conversions** | Lead form (above the fold) + click-to-call |
+| **Conversions** | Click-to-call (the page has no form) |
 | **Page weight** | ~112 KB of HTML with all CSS and JS inlined; zero libraries, zero frameworks |
 
 This page is built for **paid traffic only** and carries `noindex,follow` so it
@@ -22,8 +22,9 @@ Three things must be connected. Full instructions in [`docs/TRACKING.md`](docs/T
 
 1. **Add the Google tag** — the page fires all conversion events but ships no
    container, so you choose gtag or GTM.
-2. **Connect the form endpoint** — the form validates and confirms in place but
-   does not transmit yet. The handoff point is marked `SUBMIT TARGET` in the script.
+2. **Set up call tracking** — calls are the *only* conversion on this page, so
+   they have to be measured. Google forwarding numbers or a DNI provider both
+   work; see `docs/TRACKING.md`.
 3. **Publish a privacy policy and link it.** ⚠️ **Launch blocker.** Google Ads
    requires a reachable privacy policy on any page collecting personal data. The
    main site has none: its footer privacy and accessibility links are `href="#"`
@@ -46,11 +47,15 @@ because none could be verified — see [Social proof](#social-proof-is-real) bel
 | "Get directions" links | 4 |
 | Sticky mobile bar (Call / Book $99 visit) | always visible under 900px |
 
-The hero is photo-led with call and "request an appointment" CTAs; the lead form
-is the **first section under the hero**, so it is still the first thing a scroller
-meets. Every CTA that isn't a phone call scrolls to that same form and focuses the
-first field, so there is exactly one destination and no click-out to a third-party
-booking tool.
+**This page has no form.** Every conversion is a phone call, so the number is never
+more than a thumb away: 17 `tel:` links, and a sticky call bar pinned to the bottom
+of every phone viewport.
+
+⚠️ **The cost of that, stated plainly.** The practice is closed Monday to Thursday.
+A call-only page cannot capture anything on the four weekdays when most people
+search — they ring, nobody answers, and the click is spent. The only midweek path
+left is the `mailto:` in the "Email the front desk" card and in the location block.
+If weekday spend is ever wasted, that is the reason, and a form is the fix.
 
 ### Structured for Quality Score
 

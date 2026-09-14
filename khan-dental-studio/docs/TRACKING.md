@@ -1,4 +1,4 @@
-# Wiring the page up — conversions, form endpoint, Google Ads
+# Wiring the page up — call tracking, conversions, Google Ads
 
 Three things must be connected before the campaign is enabled. The page is
 built so each is a small, isolated edit.
@@ -32,25 +32,28 @@ Every CTA carries `data-track` and `data-loc`. A delegated listener pushes to
 | `dataLayer` event | Fires on | `cta_location` values |
 |---|---|---|
 | `kds_call` | any `tel:` link | `header`, `hero`, `form`, `intent`, `offer`, `services`, `crowns`, `reviews`, `location`, `final`, `sticky` |
-| `kds_cta` | any scroll-to-form button | `header`, `hero`, `intent`, `offer`, `services`, `crowns`, `doctor`, `reviews`, `location`, `final`, `sticky` |
 | `kds_directions` | Google Maps links | `intent`, `location`, `final` |
-| `kds_email` | the `mailto:` link | `location` |
-| `kds_form_submit` | validated form submit | `lead_form` |
-| `kds_generate_lead` | validated form submit | `lead_form` |
+| `kds_email` | either `mailto:` link | `intent`, `location` |
 
-**Recommended primary conversions:** `kds_generate_lead` and `kds_call`.
-Track the rest as secondary so they inform Smart Bidding without inflating CPA.
+**Recommended primary conversion:** `kds_call`. Track `kds_email` and
+`kds_directions` as secondary so they inform Smart Bidding without inflating CPA.
 
-To report a value-bearing Google Ads conversion, add inside the submit handler
-(marked `SUBMIT TARGET` in the page's script):
+To report a value-bearing Google Ads conversion, fire it alongside the call event
+— add this inside `track()` in the page's script, guarded to the call action:
 
 ```js
-gtag('event', 'conversion', {
-  send_to: 'AW-XXXXXXXXX/YOUR_LABEL',
-  value: 55.0,
-  currency: 'USD'
-});
+if (action === 'call' && typeof window.gtag === 'function') {
+  window.gtag('event', 'conversion', {
+    send_to: 'AW-XXXXXXXXX/YOUR_LABEL',
+    value: 55.0,
+    currency: 'USD'
+  });
+}
 ```
+
+A tap on a `tel:` link is an *intent* signal, not a completed call. If you want
+the conversion to mean "someone actually spoke to the front desk", drive it from
+the call-tracking provider's connected-call webhook instead of the click.
 
 ### Call tracking
 
@@ -64,58 +67,23 @@ Two options, both compatible with the page as written:
   every visible instance is `(817) 839-7412` and every `href` is
   `tel:+18178397412`, so a single find/replace rule covers the page.
 
-## 3. Form endpoint — required
+## 3. There is no form
 
-The form validates, fires the conversion, then shows an in-place confirmation.
-**It does not transmit anywhere yet.** Find the block marked
-`SUBMIT TARGET` in the page script and replace it with one of:
+The page was reduced to a single conversion path: the phone. There is no form,
+no hidden fields and no `SUBMIT TARGET` to wire up. What that changes:
 
-**A — POST to a CRM / form handler**
+- `kds_form_submit` and `kds_generate_lead` **never fire**. Do not configure a
+  Google Ads conversion against either.
+- **`kds_call` is the conversion.** Import it as the primary action, and treat
+  `kds_email` as secondary.
+- `gclid`, `gbraid`, `wbraid` and the UTMs are still read from the query string
+  and kept in `sessionStorage` under `kds_*`. A DNI script can read them at call
+  time, which is what makes **offline conversion import** possible — the only way
+  to feed Google Ads the appointments that actually showed up.
 
-```js
-fetch('https://YOUR-ENDPOINT', {
-  method: 'POST',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify(Object.fromEntries(new FormData(form)))
-})
-.then(function(){ card.classList.add('is-sent'); })
-.catch(function(){ window.location.href = 'tel:+18178397412'; });
-```
-
-**B — native form post**
-
-```js
-form.action = 'https://YOUR-ENDPOINT';
-form.method = 'POST';
-form.submit();
-```
-
-### Fields posted
-
-`first_name`, `last_name`, `phone`, `email`, `reason`, `preferred_day`,
-`insurance`, `message`, plus the attribution fields below and
-`landing_page=dentist-mansfield-tx`.
-
-### Attribution is already captured
-
-On load the page reads `gclid`, `gbraid`, `wbraid`, `utm_source`, `utm_medium`,
-`utm_campaign`, `utm_term` and `utm_content` from the query string, persists
-them in `sessionStorage` (so they survive in-page navigation), and writes
-`gclid` + the four main UTMs into hidden inputs. Store `gclid` against the lead
-in your CRM — that is what makes **offline conversion import** possible, which
-is how you feed Google Ads the appointments that actually showed up rather than
-the raw form fills.
-
-### Spam
-
-A hidden `company` honeypot field is present; submissions that fill it are
-silently dropped client-side. Add server-side validation too.
-
----
-
-> The page now runs a **single offer** — $55 exam and X-rays. Keep the ads on that
-> one promise: no membership pricing, no free-second-opinion angle, no competing
-> discount. A single-offer page is only worth having if the ads match it.
+Because the practice is closed Monday to Thursday, a call-only page has no way to
+capture a midweek lead. Either restrict ad scheduling to hours somebody answers,
+or accept that weekday clicks convert only through the `mailto:` links.
 
 ## 4. Suggested campaign mapping
 
