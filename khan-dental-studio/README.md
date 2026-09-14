@@ -46,10 +46,11 @@ because none could be verified — see [Social proof](#social-proof-is-real) bel
 | "Get directions" links | 4 |
 | Sticky mobile bar (Call / Book $99 visit) | always visible under 900px |
 
-The lead form sits **above the fold on desktop** and immediately after the hero
-copy on mobile — no scrolling required to convert. Every CTA that isn't a phone
-call scrolls to that same form and focuses the first field, so there is exactly
-one destination and no click-out to a third-party booking tool.
+The hero is photo-led with call and "request an appointment" CTAs; the lead form
+is the **first section under the hero**, so it is still the first thing a scroller
+meets. Every CTA that isn't a phone call scrolls to that same form and focuses the
+first field, so there is exactly one destination and no click-out to a third-party
+booking tool.
 
 ### Structured for Quality Score
 
@@ -122,6 +123,33 @@ decorative SVG, a titled map iframe, and a native `<details>` FAQ that works
 without JavaScript.
 
 ---
+
+## Hero photo — one file to add
+
+The hero sits behind the studio's own exterior photograph. The page expects it at:
+
+```
+https://www.khandentalstudio.com/assets/img/clinic-exterior.jpg
+```
+
+Upload the photo there and it appears — no code change. To point somewhere else,
+edit the single line near the top of the stylesheet:
+
+```css
+:root{--hero-photo:url("…")}
+```
+
+If the file is missing the layer renders nothing and the navy hero shows through,
+so the page never looks broken while you are getting the photo hosted.
+
+**Do not use the site's existing `clinic.jpg` or `reception.jpg` here.** Both are
+stock: `clinic.jpg` is an operatory in a high-rise, and `reception.jpg` is a
+Spanish-language hospital lobby (`BANCO DE SANGRE`, `TERAPIA NEONATAL`). Running
+either under a "this is our practice" headline is a misrepresentation risk on a
+paid page, quite apart from being obvious to a local.
+
+Shoot or supply a wide landscape frame (≈2000×1200), and keep the subject to the
+right — the left ~60% carries the headline behind a navy scrim.
 
 ## Brand fidelity
 
