@@ -1,16 +1,16 @@
 # Dr. Roxanne Salavati — Emergency Dentist landing page
 
-A Google Ads landing page for **Smile Expert**, the practice of Dr. Roxanne
-Salavati, DMD (Prosthodontics), built for the emergency / urgent / same-day
-keyword set in the West Hollywood – Beverly Hills – Century City area.
+A Google Ads landing page for the practice of **Dr. Roxanne Salavati, DMD**,
+board-certified prosthodontist, 436 N Roxbury Dr, Beverly Hills — built for the
+emergency / urgent / same-day keyword set across Beverly Hills, West Hollywood
+and Century City.
 
-**[`emergency-dentist-west-hollywood.html`](emergency-dentist-west-hollywood.html)** — one
+**[`emergency-dentist-beverly-hills.html`](emergency-dentist-beverly-hills.html)** — one
 self-contained file. Open it in a browser and it renders.
 
-> ⚠️ **Not publishable yet.** Phone number, address, hours and form endpoint
-> were not supplied and are placeholders. The page shows a banner listing what
-> is missing, withholds its structured data, and refuses to display an "open
-> now" status until the hours are confirmed. See [`docs/SETUP.md`](docs/SETUP.md).
+Every fact on it is sourced from drroxannesalavati.com or the supplied assets.
+The only thing between it and publication is dropping the image files into
+`assets/` — see [`docs/SETUP.md`](docs/SETUP.md).
 
 ## Why it looks the way it does
 
@@ -21,6 +21,12 @@ exclusively for urgency signals, gold carries the actions, navy is the ground.
 Fast and immediately actionable without looking like a walk-in clinic.
 
 Full reasoning in [`docs/INTENT-MAP.md`](docs/INTENT-MAP.md).
+
+One fact reshaped the copy more than any other: she sees **one patient at a
+time, 1–2 appointments a day**. So the page never promises "same-day" — it says
+emergencies are prioritised, the day's time is genuinely limited, and you get
+a real time on the call. Honest, and in Beverly Hills a stronger proposition
+than a crowded urgent-care waiting room.
 
 ## The two things that make it different
 
@@ -48,12 +54,13 @@ what Landing Page Experience actually rewards.
 | Motion | One entrance gesture, `IntersectionObserver` fires once then unobserves |
 | Verified | 390 / 768 / 1440 px — 0 px horizontal overflow, no console errors |
 | a11y | One `h1`, no heading skips, all inputs labelled, all tap targets ≥44 px, visible focus, full `prefers-reduced-motion` support |
-| Schema | `Dentist` + `FAQPage` JSON-LD, generated at runtime and **suppressed while any placeholder remains** |
+| Schema | `Dentist` + `FAQPage` JSON-LD with the real NAP, hours, specialty and payment methods |
+| Closed state | When the office is closed the hero tells the visitor when it opens and what to do, without moving the call button |
 
 ## Structure
 
 ```
-emergency-dentist-west-hollywood.html   the page
+emergency-dentist-beverly-hills.html    the page
 assets/README.md                        which image goes where
 docs/SETUP.md                           what to fill in before publishing
 docs/INTENT-MAP.md                      keyword intent → page decisions
