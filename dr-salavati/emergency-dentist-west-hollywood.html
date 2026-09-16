@@ -1,0 +1,1477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Emergency Dentist West Hollywood | Same-Day Care — Dr. Roxanne Salavati</title>
+<meta name="description" content="Cracked tooth, lost crown, or pain that won&#39;t quit? Dr. Roxanne Salavati, DMD sees same-day emergency patients in West Hollywood, near Beverly Hills.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Emergency Dentist in West Hollywood — Dr. Roxanne Salavati">
+<meta property="og:description" content="Same-day emergency dental care near Beverly Hills and Century City. Broken teeth, lost crowns, severe pain.">
+<meta name="theme-color" content="#0B1430">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap">
+
+<style>
+/* ============================================================
+   DR. ROXANNE SALAVATI — EMERGENCY DENTIST LANDING PAGE
+   Design system: "The Calm Room"
+   Navy ground · ivory relief · gold precision · maroon = urgency only
+   ============================================================ */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body,h1,h2,h3,h4,p,ul,ol,li,figure,blockquote{margin:0;padding:0}
+ul,ol{list-style:none}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+
+:root{
+  --navy-900:#0B1430; --navy-800:#101C42; --navy-700:#16255A; --navy-600:#1E3270;
+  --ivory:#FBF8F3; --paper:#FFFFFF; --sand:#F3EDE4;
+  --gold-600:#A8821C; --gold-500:#C9A227; --gold-400:#DCB94F; --gold-300:#EBD08A;
+  --maroon:#7B1E28; --maroon-bright:#A32B38;
+  --ink:#12182B; --muted:#57607A;
+  --line:rgba(18,24,43,.13);
+  --line-dark:rgba(235,208,138,.20);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --r-xl:26px; --r-lg:18px; --r-md:12px; --r-sm:8px;
+  --sh-sm:0 1px 2px rgba(11,20,48,.06),0 4px 14px rgba(11,20,48,.05);
+  --sh-md:0 2px 6px rgba(11,20,48,.07),0 18px 44px rgba(11,20,48,.09);
+  --sh-lg:0 40px 90px rgba(11,20,48,.22);
+  --maxw:1180px;
+  --bar-h:0px;
+}
+
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:var(--ivory); color:var(--ink);
+  font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-bottom:var(--bar-h);
+}
+
+.serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.01em}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:20px}
+@media(min-width:768px){.wrap{padding-inline:32px}}
+
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--gold-400);color:var(--navy-900);
+  padding:12px 20px;border-radius:0 0 10px 10px;font-weight:700;transition:top .2s}
+.skip:focus{top:0}
+
+:focus-visible{outline:3px solid var(--gold-400);outline-offset:3px;border-radius:4px}
+.on-dark :focus-visible{outline-color:var(--gold-300)}
+
+/* ---------- SETUP BANNER (self-removes once config is filled) ---------- */
+#setupBar{position:fixed;inset:0 0 auto 0;z-index:300;background:#2A2113;color:#FFE9A8;
+  border-bottom:2px solid var(--gold-500);font-size:13.5px;line-height:1.5;display:none}
+#setupBar.show{display:block}
+#setupBar .sb{max-width:var(--maxw);margin-inline:auto;padding:10px 20px;display:flex;gap:12px;align-items:flex-start}
+#setupBar strong{color:#FFD35C;letter-spacing:.06em;text-transform:uppercase;font-size:11.5px;white-space:nowrap;padding-top:2px}
+#setupBar button{margin-left:auto;background:none;border:1px solid rgba(255,211,92,.4);color:#FFD35C;
+  border-radius:6px;padding:3px 10px;cursor:pointer;font-size:12px}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:650;letter-spacing:-.005em;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;border-radius:var(--r-md);
+  padding:16px 26px;min-height:54px;
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),background-color .2s,border-color .2s,color .2s;
+  will-change:transform}
+.btn:active{transform:translateY(1px) scale(.994)}
+
+/* gold — used on dark grounds */
+.btn-gold{background:linear-gradient(170deg,var(--gold-300),var(--gold-400) 55%,var(--gold-500));
+  color:var(--navy-900);box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 12px 30px rgba(201,162,39,.30)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 18px 42px rgba(201,162,39,.40)}
+
+/* navy — used on light grounds */
+.btn-navy{background:var(--navy-700);color:#fff;box-shadow:var(--sh-sm)}
+.btn-navy:hover{background:var(--navy-600);transform:translateY(-2px);box-shadow:var(--sh-md)}
+
+/* ghost variants */
+.btn-ghost-d{border-color:var(--line-dark);color:var(--gold-300);background:rgba(235,208,138,.05)}
+.btn-ghost-d:hover{background:rgba(235,208,138,.11);border-color:rgba(235,208,138,.4);transform:translateY(-2px)}
+.btn-ghost-l{border-color:var(--line);color:var(--navy-700);background:var(--paper)}
+.btn-ghost-l:hover{border-color:var(--navy-700);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+
+.btn-xl{font-size:18px;padding:15px 24px;min-height:58px;border-radius:14px;width:100%}
+@media(min-width:560px){.btn-xl{width:auto}}
+.btn .ic{width:21px;height:21px;flex:none}
+.btn-sub{display:block;font-size:12.5px;font-weight:500;opacity:.72;letter-spacing:.01em;margin-top:2px}
+.btn-stack{display:flex;flex-direction:column;align-items:flex-start;line-height:1.25}
+
+/* ---------- TOP URGENT BAR ---------- */
+.topbar{background:var(--navy-900);color:var(--gold-300);border-bottom:1px solid rgba(235,208,138,.14);
+  font-size:13.5px}
+.topbar .wrap{display:flex;align-items:center;justify-content:center;gap:8px 18px;
+  padding-block:9px;flex-wrap:wrap;text-align:center}
+.topbar a{color:#fff;text-decoration:none;font-weight:650;border-bottom:1px solid rgba(255,255,255,.3)}
+.topbar a:hover{border-bottom-color:var(--gold-400)}
+.tb-sep{opacity:.3;display:none}
+@media(min-width:768px){.tb-sep{display:inline}}
+
+/* ---------- STATUS CHIP ---------- */
+.status{display:inline-flex;align-items:center;gap:9px;border-radius:999px;
+  padding:7px 15px 7px 12px;font-size:13.5px;font-weight:600;letter-spacing:.005em;
+  border:1px solid transparent;white-space:nowrap}
+.status .dot{width:8px;height:8px;border-radius:50%;flex:none;position:relative}
+.status.open{background:rgba(101,163,113,.13);border-color:rgba(101,163,113,.38);color:#9FE0AF}
+.status.open .dot{background:#5FCB7C;box-shadow:0 0 0 0 rgba(95,203,124,.55);animation:pulse 2.8s var(--ease) infinite}
+.status.soon{background:rgba(163,43,56,.16);border-color:rgba(200,90,100,.42);color:#FFB3B9}
+.status.soon .dot{background:#E4626F}
+.status.shut{background:rgba(235,208,138,.08);border-color:var(--line-dark);color:var(--gold-300)}
+.status.shut .dot{background:var(--gold-500)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,203,124,.5)}70%{box-shadow:0 0 0 9px rgba(95,203,124,0)}100%{box-shadow:0 0 0 0 rgba(95,203,124,0)}}
+/* light-ground variant */
+.status.lt.open{background:rgba(31,122,58,.10);border-color:rgba(31,122,58,.30);color:#17692F}
+.status.lt.soon{background:rgba(123,30,40,.09);border-color:rgba(123,30,40,.28);color:var(--maroon)}
+.status.lt.shut{background:rgba(18,24,43,.05);border-color:var(--line);color:var(--muted)}
+
+/* ---------- HEADER ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(251,248,243,.86);
+  backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);
+  border-bottom:1px solid var(--line)}
+.hdr .wrap{display:flex;align-items:center;gap:16px;padding-block:11px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0;flex:0 1 auto}
+.brand img{height:46px;width:auto}
+.brand-fb{display:flex;align-items:center;gap:10px}
+.brand-fb .nm{display:block;font-size:17px;font-weight:700;color:var(--navy-700);letter-spacing:-.02em;line-height:1.12;white-space:nowrap}
+@media(min-width:420px){.brand-fb .nm{font-size:19px}}
+.brand-fb .tag{display:block;width:max-content;max-width:100%;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-600);
+  font-weight:600;border-top:1.5px solid var(--maroon);padding-top:3px;margin-top:3px}
+@media(min-width:420px){.brand-fb .tag{font-size:8.5px;letter-spacing:.17em}}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:14px;flex:none}
+.hdr-ph{display:none;text-decoration:none;text-align:right;line-height:1.2}
+.hdr-ph .lb{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hdr-ph .nu{font-size:19px;font-weight:700;color:var(--navy-700);letter-spacing:-.02em}
+.hdr-ph:hover .nu{color:var(--maroon)}
+@media(min-width:900px){.hdr-ph{display:block}}
+.hdr .btn{padding:12px 20px;min-height:46px;font-size:15px}
+.hdr .hdr-cta{display:none}
+@media(min-width:600px){.hdr .hdr-cta{display:inline-flex}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--navy-900);color:#EFEFF4;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;z-index:-2;inset:-30% -10% auto -10%;height:120%;
+  background:radial-gradient(58% 48% at 26% 20%,rgba(201,162,39,.20),transparent 62%),
+             radial-gradient(48% 42% at 88% 72%,rgba(30,50,112,.75),transparent 66%);
+  animation:drift 34s var(--ease) infinite alternate}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(2.5%,2%,0) scale(1.07)}}
+.hero::after{content:"";position:absolute;z-index:-1;inset:0;
+  background:linear-gradient(to bottom,rgba(11,20,48,.28),rgba(11,20,48,0) 30%,rgba(11,20,48,.55))}
+.hero .wrap{position:relative;padding-block:24px 38px}
+@media(min-width:1000px){.hero .wrap{padding-block:40px 52px;
+  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:56px;align-items:center}}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--gold-300);margin-bottom:12px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold-500)}
+
+h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;letter-spacing:-.018em;
+  font-size:clamp(29px,6.4vw,50px);line-height:1.05;color:#fff;margin-bottom:14px}
+h1 em{font-style:italic;color:var(--gold-300)}
+h1 .brk{display:inline}
+
+.hero-sub{font-size:clamp(15.5px,1.9vw,17.5px);line-height:1.52;color:#C9CEDE;max-width:48ch;margin-bottom:7px}
+.hero-sub b{color:#fff;font-weight:600}
+.hero-near{font-size:14px;color:#9BA4BE;margin-bottom:18px}
+.hero-near b{color:var(--gold-300);font-weight:600}
+
+.hero-cta{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+@media(min-width:560px){.hero-cta{flex-direction:row;flex-wrap:wrap;align-items:stretch}}
+
+/* credential rail */
+.creds{border-top:1px solid var(--line-dark);padding-top:16px;margin-top:2px}
+.creds-lb{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8C95B0;font-weight:600;margin-bottom:11px}
+.creds-row{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.creds-row img{height:30px;width:auto;opacity:.82;filter:brightness(0) invert(1);transition:opacity .3s}
+.creds-row img:hover{opacity:1}
+.cred-fb{font-size:12px;font-weight:700;letter-spacing:.08em;color:#AEB6CC;
+  border:1px solid var(--line-dark);border-radius:6px;padding:6px 11px}
+
+/* hero photo stack */
+.stack{position:relative;margin-top:36px;perspective:1300px}
+@media(min-width:1000px){.stack{margin-top:0}}
+.stack-in{position:relative;transform-style:preserve-3d;transition:transform .5s var(--ease)}
+.ph{position:relative;border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--sh-lg);border:1px solid rgba(235,208,138,.16);background:var(--navy-800);
+  aspect-ratio:4/5;max-height:490px;margin-inline:auto;max-width:400px}
+.ph img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.ph-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:26px;
+  background:linear-gradient(150deg,var(--navy-700),var(--navy-900) 70%);
+  font-size:13px;color:#8C95B0;line-height:1.5}
+.ph::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(11,20,48,.62),transparent 44%)}
+.sheen{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(235,208,138,.20),transparent 46%)}
+.stack:hover .sheen{opacity:1}
+
+/* floating fact cards */
+.fcard{position:absolute;background:rgba(16,28,66,.80);
+  backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);
+  border:1px solid rgba(235,208,138,.24);border-radius:var(--r-lg);
+  padding:13px 17px;box-shadow:0 20px 50px rgba(5,10,28,.45);max-width:220px}
+.fcard .k{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-300);font-weight:700;margin-bottom:3px}
+.fcard .v{font-size:14px;color:#E6E9F2;line-height:1.4;font-weight:500}
+.fc-1{left:-4px;bottom:66px;transform:translateZ(46px)}
+.fc-2{right:-4px;top:34px;transform:translateZ(30px)}
+@media(min-width:1000px){.fc-1{left:-34px}.fc-2{right:-26px}}
+@media(max-width:479px){.fcard{max-width:168px;padding:10px 13px}.fcard .v{font-size:12.5px}.fc-1{bottom:46px}}
+
+/* ---------- SECTION SHELL ---------- */
+section{position:relative}
+.sec{padding-block:58px}
+@media(min-width:768px){.sec{padding-block:82px}}
+.sec-lt{background:var(--ivory)}
+.sec-pp{background:var(--paper)}
+.sec-sd{background:var(--sand)}
+.sec-dk{background:var(--navy-900);color:#E6E9F2}
+.sec-dk h2,.sec-dk h3{color:#fff}
+
+.lbl{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--gold-600);margin-bottom:14px}
+.lbl::before{content:"";width:22px;height:1px;background:var(--gold-500)}
+.sec-dk .lbl{color:var(--gold-300)}
+
+h2{font-family:"Playfair Display",Georgia,serif;font-weight:400;letter-spacing:-.016em;
+  font-size:clamp(28px,4.4vw,43px);line-height:1.11;color:var(--navy-900);margin-bottom:16px}
+h2 em{font-style:italic;color:var(--gold-600)}
+.sec-dk h2 em{color:var(--gold-300)}
+h3{font-size:19px;font-weight:650;letter-spacing:-.015em;color:var(--navy-800);line-height:1.3}
+.sec-dk h3{color:#fff}
+.lede{font-size:17.5px;color:var(--muted);max-width:60ch;line-height:1.66}
+.sec-dk .lede{color:#AFB7CE}
+.sec-hd{max-width:720px;margin-bottom:38px}
+
+/* ---------- REASSURANCE STRIP ---------- */
+.strip{background:var(--navy-800);border-block:1px solid rgba(235,208,138,.14);color:#DDE2EE}
+.strip-g{display:grid;gap:1px;background:rgba(235,208,138,.13)}
+@media(min-width:640px){.strip-g{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.strip-g{grid-template-columns:repeat(4,1fr)}}
+.strip-i{background:var(--navy-800);padding:24px 22px;display:flex;gap:14px;align-items:flex-start;
+  transition:background .35s var(--ease)}
+.strip-i:hover{background:var(--navy-700)}
+.strip-i .ic{width:26px;height:26px;flex:none;color:var(--gold-400);margin-top:2px}
+.strip-i h3{font-size:15.5px;margin-bottom:5px;letter-spacing:-.01em}
+.strip-i p{font-size:13.8px;color:#A8B0C8;line-height:1.55}
+
+/* ---------- TRIAGE MODULE ---------- */
+.tri{display:grid;gap:26px}
+@media(min-width:900px){.tri{grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:34px;align-items:start}}
+.tri-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(min-width:900px){.tri-list{grid-template-columns:1fr;gap:7px}}
+.tri-b{display:flex;align-items:center;gap:11px;width:100%;text-align:left;cursor:pointer;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:13px 14px;font-size:14.5px;font-weight:550;color:var(--navy-800);line-height:1.3;
+  transition:border-color .25s,box-shadow .25s,transform .25s var(--ease),background-color .25s}
+.tri-b .ic{width:22px;height:22px;flex:none;color:var(--gold-600);transition:color .25s}
+.tri-b:hover{border-color:var(--navy-600);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+.tri-b[aria-selected="true"]{background:var(--navy-700);border-color:var(--navy-700);color:#fff;
+  box-shadow:var(--sh-md)}
+.tri-b[aria-selected="true"] .ic{color:var(--gold-300)}
+
+.tri-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:24px 22px;box-shadow:var(--sh-sm);min-height:340px}
+@media(min-width:768px){.tri-panel{padding:32px 30px}}
+.tri-panel.swap{animation:swapIn .42s var(--ease)}
+@keyframes swapIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.urg{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 13px;
+  font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:13px}
+.urg.now{background:rgba(163,43,56,.11);color:var(--maroon);border:1px solid rgba(163,43,56,.28)}
+.urg.today{background:rgba(168,130,28,.13);color:#7E6114;border:1px solid rgba(168,130,28,.30)}
+.urg.soon{background:rgba(22,37,90,.08);color:var(--navy-700);border:1px solid rgba(22,37,90,.20)}
+.tri-panel h3{font-size:clamp(20px,2.6vw,25px);margin-bottom:11px;letter-spacing:-.018em}
+.tri-panel .why{font-size:16px;color:var(--muted);line-height:1.63;margin-bottom:20px}
+.tri-sub{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-600);margin-bottom:11px}
+.tri-steps{display:grid;gap:10px;margin-bottom:22px}
+.tri-steps li{display:flex;gap:11px;font-size:15px;line-height:1.55;color:var(--ink)}
+.tri-steps .n{width:22px;height:22px;flex:none;border-radius:50%;background:var(--navy-700);color:#fff;
+  font-size:11.5px;font-weight:700;display:grid;place-items:center;margin-top:2px}
+.tri-cta{display:flex;flex-wrap:wrap;gap:10px;padding-top:20px;border-top:1px solid var(--line)}
+.tri-cta .btn{flex:1 1 220px}
+
+.er-note{margin-top:22px;display:flex;gap:12px;align-items:flex-start;
+  background:rgba(123,30,40,.05);border:1px solid rgba(123,30,40,.20);
+  border-left:3px solid var(--maroon);border-radius:var(--r-sm);padding:15px 17px}
+.er-note .ic{width:20px;height:20px;flex:none;color:var(--maroon);margin-top:2px}
+.er-note p{font-size:14.2px;line-height:1.56;color:#4A3238}
+.er-note b{color:var(--maroon)}
+
+/* ---------- STEPS TIMELINE ---------- */
+.steps{display:grid;gap:14px;counter-reset:s}
+@media(min-width:768px){.steps{grid-template-columns:repeat(4,1fr);gap:18px}}
+.step{position:relative;padding:24px 20px;border-radius:var(--r-lg);
+  background:rgba(255,255,255,.04);border:1px solid var(--line-dark);
+  transition:transform .35s var(--ease),background-color .35s,border-color .35s}
+.step:hover{transform:translateY(-4px);background:rgba(235,208,138,.07);border-color:rgba(235,208,138,.36)}
+.step .n{font-family:"Playfair Display",Georgia,serif;font-size:34px;color:var(--gold-400);
+  line-height:1;margin-bottom:12px;display:block}
+.step h3{font-size:16.5px;margin-bottom:7px}
+.step p{font-size:14.2px;color:#A8B0C8;line-height:1.58}
+.step::after{content:"";position:absolute;top:38px;right:-10px;width:20px;height:1px;
+  background:var(--line-dark);display:none}
+@media(min-width:768px){.step:not(:last-child)::after{display:block}}
+
+/* ---------- SPLIT (prostho / doctor) ---------- */
+.split{display:grid;gap:34px;align-items:center}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:56px}}
+.split-rev>.split-media{order:-1}
+@media(min-width:900px){.split-rev>.split-media{order:1}}
+.split-media img{width:100%;border-radius:var(--r-xl);box-shadow:var(--sh-md);aspect-ratio:4/3;object-fit:cover}
+.media-fb{width:100%;aspect-ratio:4/3;border-radius:var(--r-xl);
+  background:linear-gradient(150deg,var(--navy-700),var(--navy-900));
+  display:flex;align-items:flex-end;padding:24px;color:#8C95B0;font-size:13px;box-shadow:var(--sh-md)}
+
+.ticks{display:grid;gap:14px;margin-top:22px}
+.ticks li{display:flex;gap:12px;font-size:15.5px;line-height:1.56}
+.ticks .ic{width:21px;height:21px;flex:none;color:var(--gold-600);margin-top:3px}
+.sec-dk .ticks .ic{color:var(--gold-400)}
+.ticks b{font-weight:650;color:var(--navy-800)}
+.sec-dk .ticks b{color:#fff}
+.sec-dk .ticks li{color:#AFB7CE}
+
+/* ---------- CREDENTIAL CARDS ---------- */
+.cred-g{display:grid;gap:14px;margin-top:30px}
+@media(min-width:700px){.cred-g{grid-template-columns:repeat(3,1fr)}}
+.cred-c{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:22px 20px;box-shadow:var(--sh-sm);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cred-c:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+.cred-c .logo{height:38px;display:flex;align-items:center;margin-bottom:15px}
+.cred-c .logo img{max-height:38px;width:auto;opacity:.88}
+.cred-c .logo .cred-fb{color:var(--navy-700);border-color:var(--line)}
+.cred-c h3{font-size:15.5px;margin-bottom:6px}
+.cred-c p{font-size:13.8px;color:var(--muted);line-height:1.56}
+
+/* ---------- COST ---------- */
+.cost-g{display:grid;gap:14px}
+@media(min-width:768px){.cost-g{grid-template-columns:repeat(3,1fr)}}
+.cost-c{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 22px;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cost-c:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.cost-c .ic{width:28px;height:28px;color:var(--gold-600);margin-bottom:13px}
+.cost-c h3{font-size:16.5px;margin-bottom:7px}
+.cost-c p{font-size:14.5px;color:var(--muted);line-height:1.6}
+
+/* ---------- LOCATION ---------- */
+.loc{display:grid;gap:28px}
+@media(min-width:900px){.loc{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:44px;align-items:center}}
+.areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.area{font-size:13.8px;font-weight:550;color:var(--navy-700);background:var(--paper);
+  border:1px solid var(--line);border-radius:999px;padding:7px 15px;transition:border-color .25s,transform .25s var(--ease)}
+.area:hover{border-color:var(--navy-600);transform:translateY(-2px)}
+.area.pri{background:var(--navy-700);color:#fff;border-color:var(--navy-700)}
+.hours-t{width:100%;border-collapse:collapse;font-size:15px;
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.hours-t th{text-align:left;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;padding:13px 18px;background:var(--sand);border-bottom:1px solid var(--line)}
+.hours-t td{padding:11px 18px;border-bottom:1px solid var(--line)}
+.hours-t tr:last-child td{border-bottom:0}
+.hours-t td:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.hours-t tr.now{background:rgba(201,162,39,.09)}
+.hours-t tr.now td{color:var(--navy-800);font-weight:650}
+.hours-t tr.now td:first-child::after{content:"Today";font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-600);margin-left:8px;font-weight:700;vertical-align:1px}
+.map-w{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-sm);
+  background:var(--sand);aspect-ratio:16/10}
+.map-w iframe{width:100%;height:100%;border:0;display:block}
+.map-fb{width:100%;height:100%;display:grid;place-items:center;text-align:center;padding:24px;
+  color:var(--muted);font-size:14px}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:840px;margin-inline:auto}
+.faq-i{border-bottom:1px solid var(--line)}
+.faq-i:first-child{border-top:1px solid var(--line)}
+.faq-q{display:flex;align-items:flex-start;gap:16px;width:100%;text-align:left;cursor:pointer;
+  background:none;border:0;padding:21px 4px;font-size:17px;font-weight:600;letter-spacing:-.01em;
+  color:var(--navy-800);line-height:1.42;transition:color .2s}
+.faq-q:hover{color:var(--maroon)}
+.faq-q .pm{width:20px;height:20px;flex:none;margin-left:auto;margin-top:2px;position:relative}
+.faq-q .pm::before,.faq-q .pm::after{content:"";position:absolute;background:var(--gold-600);
+  border-radius:2px;transition:transform .35s var(--ease),opacity .25s}
+.faq-q .pm::before{inset:9px 1px auto;height:2px}
+.faq-q .pm::after{inset:1px auto 1px 9px;width:2px}
+.faq-q[aria-expanded="true"] .pm::after{transform:scaleY(0);opacity:0}
+.faq-a{overflow:hidden;height:0;transition:height .38s var(--ease)}
+@media (prefers-reduced-motion:reduce){.faq-a{transition:none}}
+.faq-a-in{padding:0 40px 24px 0;font-size:16px;line-height:1.68;color:var(--muted)}
+.faq-a-in p+p{margin-top:12px}
+.faq-a-in a{color:var(--maroon);font-weight:600}
+.faq-a-in b{color:var(--navy-800);font-weight:650}
+
+/* ---------- FORM ---------- */
+.conv{display:grid;gap:30px}
+@media(min-width:900px){.conv{grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:52px;align-items:start}}
+.form-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-xl);
+  padding:26px 22px;box-shadow:var(--sh-lg)}
+@media(min-width:560px){.form-card{padding:32px 30px}}
+.form-card h3{font-size:22px;letter-spacing:-.02em;margin-bottom:6px;font-family:"Playfair Display",Georgia,serif;font-weight:400}
+.form-card .fnote{font-size:13.8px;color:var(--muted);margin-bottom:22px;line-height:1.55}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:13px;font-weight:650;letter-spacing:.01em;color:var(--navy-800);margin-bottom:6px}
+.fld label .req{color:var(--maroon);margin-left:2px}
+.fld input,.fld select,.fld textarea{width:100%;padding:13px 14px;font-size:16px;
+  background:var(--ivory);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);
+  transition:border-color .2s,background-color .2s,box-shadow .2s}
+.fld textarea{min-height:82px;resize:vertical}
+.fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2357607A' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:38px}
+.fld input:focus,.fld select:focus,.fld textarea:focus{background:var(--paper);border-color:var(--navy-600);
+  box-shadow:0 0 0 3px rgba(30,50,112,.12);outline:none}
+.fld input[aria-invalid="true"],.fld textarea[aria-invalid="true"]{border-color:var(--maroon-bright);
+  box-shadow:0 0 0 3px rgba(163,43,56,.11)}
+.err{display:block;font-size:12.8px;color:var(--maroon-bright);font-weight:600;margin-top:5px;min-height:0}
+.fld-row{display:grid;gap:16px}
+@media(min-width:520px){.fld-row{grid-template-columns:1fr 1fr}}
+.privacy{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:14px}
+.form-ok{display:none;text-align:center;padding:22px 8px}
+.form-ok.show{display:block;animation:swapIn .45s var(--ease)}
+.form-ok .ic{width:52px;height:52px;margin:0 auto 16px;color:#2E8B50}
+.form-ok h3{margin-bottom:8px}
+.form-ok p{font-size:15.5px;color:var(--muted);line-height:1.6}
+form.hide{display:none}
+
+/* ---------- FOOTER ---------- */
+.ftr{background:var(--navy-900);color:#8C95B0;font-size:14px;padding-block:44px 34px;
+  border-top:1px solid rgba(235,208,138,.14)}
+.ftr-g{display:grid;gap:28px;margin-bottom:30px}
+@media(min-width:768px){.ftr-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ftr h4{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-300);
+  font-weight:700;margin-bottom:13px}
+.ftr a{color:#C5CCDE;text-decoration:none}
+.ftr a:hover{color:var(--gold-300)}
+.ftr li+li{margin-top:8px}
+.ftr .bfb .nm{color:#fff;font-size:19px;font-weight:700;letter-spacing:-.02em}
+.ftr .bfb .tag{color:var(--gold-300);border-top-color:var(--gold-500)}
+.ftr-btm{border-top:1px solid rgba(235,208,138,.13);padding-top:22px;font-size:12.8px;line-height:1.6;
+  display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.ftr-btm p{max-width:72ch}
+
+/* ---------- STICKY MOBILE BAR ---------- */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:120;display:grid;grid-template-columns:1fr 1fr;
+  gap:9px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(11,20,48,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(235,208,138,.22);
+  transform:translateY(102%);transition:transform .4s var(--ease)}
+.sticky.up{transform:none}
+.sticky .btn{padding:13px 12px;min-height:52px;font-size:15.5px;border-radius:10px;width:100%}
+@media(min-width:900px){.sticky{display:none!important}}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .62s var(--ease),transform .62s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .hero::before{animation:none}
+  .stack-in{transform:none!important}
+  .sticky{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- =========================================================
+     SETUP NOTICE — auto-hides once SITE_CONFIG has real values.
+     ========================================================= -->
+<div id="setupBar" role="status" aria-live="polite">
+  <div class="sb">
+    <strong>Setup</strong>
+    <span id="setupMsg"></span>
+    <button type="button" onclick="this.closest('#setupBar').classList.remove('show')" aria-label="Dismiss setup notice">Hide</button>
+  </div>
+</div>
+
+<!-- icon sprite -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 6.8V12l3.4 2"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.8" width="18" height="16.4" rx="2.4"/><path d="M3 9.8h18M8 2.6v4.4M16 2.6v4.4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10.4c0 6.1-8 12.6-8 12.6s-8-6.5-8-12.6a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.2" r="2.9"/></symbol>
+<symbol id="i-tooth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.4c1.6-1.5 3.4-2.2 5-1.6 2 .8 2.8 3.2 2.4 6-.3 2.2-1 3.6-1.5 5.7-.4 1.7-.5 5.3-2.2 5.3-1.5 0-1.6-2.8-2.1-4.6-.3-1-.8-1.6-1.6-1.6s-1.3.6-1.6 1.6c-.5 1.8-.6 4.6-2.1 4.6-1.7 0-1.8-3.6-2.2-5.3-.5-2.1-1.2-3.5-1.5-5.7-.4-2.8.4-5.2 2.4-6 1.6-.6 3.4.1 5 1.6z"/></symbol>
+<symbol id="i-crack" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.4c1.6-1.5 3.4-2.2 5-1.6 2 .8 2.8 3.2 2.4 6-.3 2.2-1 3.6-1.5 5.7-.4 1.7-.5 5.3-2.2 5.3-1.5 0-1.6-2.8-2.1-4.6-.3-1-.8-1.6-1.6-1.6s-1.3.6-1.6 1.6c-.5 1.8-.6 4.6-2.1 4.6-1.7 0-1.8-3.6-2.2-5.3-.5-2.1-1.2-3.5-1.5-5.7-.4-2.8.4-5.2 2.4-6 1.6-.6 3.4.1 5 1.6z"/><path d="M12.6 6.6 10.4 10l2.8 1.6-1.9 3.2" stroke-width="1.5"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 8.6 6.8 12l3.1-5.2a2.4 2.4 0 0 1 4.2 0L17.2 12l3.4-3.4v8.2a2.4 2.4 0 0 1-2.4 2.4H5.8a2.4 2.4 0 0 1-2.4-2.4z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2.4 4 14.2h7L10.6 21.6 20 9.8h-7z"/></symbol>
+<symbol id="i-swell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12H5M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3 17 7M7 17l-1.7 1.7"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8s6.2 6.7 6.2 11a6.2 6.2 0 0 1-12.4 0c0-4.3 6.2-11 6.2-11z"/></symbol>
+<symbol id="i-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="3.2"/><path d="M8.4 12h7.2M12 8.4v7.2"/></symbol>
+<symbol id="i-denture" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 7.6h17.2v4.2a7.4 7.4 0 0 1-2.2 5.3l-2 2a4.8 4.8 0 0 1-6.8 0l-2-2a7.4 7.4 0 0 1-2.2-5.3z"/><path d="M8.6 7.6v4.6M12 7.6v5.4M15.4 7.6v4.6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4.8 12.6 4.6 4.6L19.2 7.4"/></symbol>
+<symbol id="i-checkc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.4"/><path d="m8 12.4 2.8 2.8L16.4 9.6"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4 1.8 20.6h20.4z"/><path d="M12 9.6v4.4M12 17.6h.01"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.4 4 5.8v5.6c0 4.9 3.4 9.5 8 10.6 4.6-1.1 8-5.7 8-10.6V5.8z"/><path d="m9 12 2.2 2.2L15.4 10"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.4" y="5.2" width="19.2" height="13.6" rx="2.6"/><path d="M2.4 10h19.2"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7.4" r="4"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 11.6a7.9 7.9 0 0 1-8.6 7.9 9 9 0 0 1-2.6-.5L3.4 21l1.9-5.6a8 8 0 0 1-.9-3.7 7.9 7.9 0 0 1 8.4-7.9 7.9 7.9 0 0 1 7.8 7.8z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 12h14.4M13.4 6.2 19.2 12l-5.8 5.8"/></symbol>
+</defs></svg>
+
+<!-- ========================= TOP URGENT BAR ========================= -->
+<div class="topbar">
+  <div class="wrap">
+    <span id="tbStatus">Same-day emergency appointments — West Hollywood</span>
+    <span class="tb-sep">·</span>
+    <span>In pain right now? <a href="#" data-tel>Call <span data-phone>(000) 000-0000</span></a></span>
+  </div>
+</div>
+
+<!-- ========================= HEADER ========================= -->
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#main" aria-label="Dr. Roxanne Salavati — home">
+      <img src="assets/logo-dr-roxanne-salavati.png" alt="Dr. Roxanne Salavati — Your Smile, My Specialty" width="240" height="46"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="brand-fb" style="display:none">
+        <svg width="34" height="38" viewBox="0 0 34 38" aria-hidden="true"><defs><linearGradient id="gld" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EBD08A"/><stop offset=".5" stop-color="#C9A227"/><stop offset="1" stop-color="#A8821C"/></linearGradient></defs><path d="M17 9.4c2.6-2.5 5.6-3.6 8.2-2.6 3.2 1.3 4.5 5.2 3.9 9.7-.5 3.6-1.7 5.8-2.5 9.2-.7 2.8-.8 8.6-3.6 8.6-2.5 0-2.6-4.6-3.4-7.5-.5-1.6-1.3-2.6-2.6-2.6s-2.1 1-2.6 2.6c-.8 2.9-.9 7.5-3.4 7.5-2.8 0-2.9-5.8-3.6-8.6-.8-3.4-2-5.6-2.5-9.2-.6-4.5.7-8.4 3.9-9.7 2.6-1 5.6.1 8.2 2.6z" fill="url(#gld)"/><path d="M28.4 3.2l.8 2.1 2.1.8-2.1.8-.8 2.1-.8-2.1-2.1-.8 2.1-.8z" fill="#C9A227"/></svg>
+        <span><span class="nm">Dr. Roxanne Salavati</span><span class="tag">Your Smile, My Specialty</span></span>
+      </span>
+    </a>
+    <div class="hdr-r">
+      <a class="hdr-ph" href="#" data-tel>
+        <span class="lb">Dental emergency</span>
+        <span class="nu" data-phone>(000) 000-0000</span>
+      </a>
+      <a class="btn btn-navy hdr-cta" href="#request">Request a slot</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ========================= HERO ========================= -->
+<section class="hero on-dark" aria-labelledby="h1">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Emergency &amp; same-day dental care</p>
+
+      <div style="margin-bottom:14px">
+        <span class="status shut" id="heroStatus"><span class="dot"></span><span id="heroStatusTxt">Checking today's hours…</span></span>
+      </div>
+
+      <h1 id="h1">Emergency Dentist in West&nbsp;Hollywood — <em>seen today,</em> not next week.</h1>
+
+      <p class="hero-sub">A tooth that cracked overnight, a crown that came off before a meeting, or pain that has stopped you sleeping. <b>Call and we will tell you the first time we can see you</b> — a real time, on the phone, in about a minute.</p>
+
+      <p class="hero-near"><svg class="ic" width="15" height="15" style="display:inline;vertical-align:-2px;margin-right:5px"><use href="#i-pin"></use></svg> Minutes from <b>Beverly Hills</b>, <b>Century City</b> and the Sunset Strip.</p>
+
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-xl" href="#" data-tel data-cta="hero-call">
+          <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg>
+          <span class="btn-stack"><span>Call <span data-phone>(000) 000-0000</span></span><span class="btn-sub">Fastest way to be seen today</span></span>
+        </a>
+        <a class="btn btn-ghost-d btn-xl" href="#request" data-cta="hero-form">
+          <svg class="ic" aria-hidden="true"><use href="#i-cal"></use></svg>
+          <span class="btn-stack"><span>Request a same-day slot</span><span class="btn-sub">If you can't talk right now</span></span>
+        </a>
+      </div>
+
+      <div class="creds">
+        <p class="creds-lb">Professional affiliations</p>
+        <div class="creds-row">
+          <img src="assets/acp.png" alt="American College of Prosthodontists" height="30" loading="lazy"
+               onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>ACP</span>'">
+          <img src="assets/iaomt.png" alt="International Academy of Oral Medicine and Toxicology" height="30" loading="lazy"
+               onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>IAOMT</span>'">
+          <img src="assets/wlads.png" alt="Western Los Angeles Dental Society" height="30" loading="lazy"
+               onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>WLADS</span>'">
+        </div>
+      </div>
+    </div>
+
+    <div class="stack" id="heroStack">
+      <div class="stack-in">
+        <figure class="ph">
+          <img src="assets/dr-salavati-operatory.jpg" alt="Dr. Roxanne Salavati, DMD, prosthodontist, in her West Hollywood treatment room" width="400" height="500" fetchpriority="high" decoding="async"
+               onerror="this.style.display='none';this.parentNode.querySelector('.ph-fb').style.display='flex'">
+          <div class="ph-fb" style="display:none">Add <code style="color:#EBD08A">assets/dr-salavati-operatory.jpg</code> — see docs/SETUP.md</div>
+          <span class="sheen" aria-hidden="true"></span>
+        </figure>
+        <div class="fcard fc-1">
+          <p class="k">Roxanne Salavati, DMD</p>
+          <p class="v">Prosthodontics. She treats you herself, start to finish.</p>
+        </div>
+        <div class="fcard fc-2">
+          <p class="k">Built for breakage</p>
+          <p class="v">Crowns, bridges &amp; broken teeth rebuilt properly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= REASSURANCE STRIP ========================= -->
+<section class="strip" aria-labelledby="strip-h">
+  <h2 id="strip-h" class="sr-only">What to expect as an emergency patient</h2>
+  <div class="strip-g">
+    <div class="strip-i rv"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg>
+      <div><h3>Today, if we possibly can</h3><p>Call while we're open and we'll work you into the day's schedule rather than booking you out a week.</p></div></div>
+    <div class="strip-i rv"><svg class="ic" aria-hidden="true"><use href="#i-user"></use></svg>
+      <div><h3>The same dentist every time</h3><p>No rotating roster of fill-ins. You are seen and treated by Dr.&nbsp;Salavati, DMD.</p></div></div>
+    <div class="strip-i rv"><svg class="ic" aria-hidden="true"><use href="#i-crown"></use></svg>
+      <div><h3>A prosthodontic specialty</h3><p>Rebuilding broken and missing teeth is the whole focus of prosthodontics — it is the core of this practice, not a sideline.</p></div></div>
+    <div class="strip-i rv"><svg class="ic" aria-hidden="true"><use href="#i-card"></use></svg>
+      <div><h3>The number before we start</h3><p>We check your benefits and tell you what the visit costs before any treatment begins.</p></div></div>
+  </div>
+</section>
+
+<!-- ========================= SYMPTOM TRIAGE ========================= -->
+<section class="sec sec-lt" aria-labelledby="tri-h">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <p class="lbl">Start here</p>
+      <h2 id="tri-h">What's going on <em>right now?</em></h2>
+      <p class="lede">Tap what's happening. You'll get what it usually means, what to do in the next ten minutes, and how quickly you should be seen — then we'll pick it up from there on the phone.</p>
+    </div>
+
+    <div class="tri">
+      <div class="tri-list" role="tablist" aria-label="Choose your symptom" id="triList"></div>
+      <div class="tri-panel" id="triPanel" role="tabpanel" tabindex="0" aria-live="polite"></div>
+    </div>
+
+    <div class="er-note rv">
+      <svg class="ic" aria-hidden="true"><use href="#i-alert"></use></svg>
+      <p><b>When it's a hospital, not a dentist.</b> Go to an emergency room or call 911 for a broken or dislocated jaw, an injury involving loss of consciousness, bleeding you cannot slow after 15 minutes of firm pressure, or swelling that is affecting your breathing, swallowing or vision. A dental office is not equipped for those. Everything else on this list, we can help with.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= WHAT HAPPENS WHEN YOU CALL ========================= -->
+<section class="sec sec-dk on-dark" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <p class="lbl">No mystery</p>
+      <h2 id="how-h">What actually happens <em>when you call</em></h2>
+      <p class="lede">The reason people put off calling a dentist in pain is that they don't know what they're walking into. So here is the whole thing, start to finish.</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step rv"><span class="n">01</span>
+        <h3>You tell us what's wrong</h3>
+        <p>About a minute. What hurts, when it started, whether anything is broken or loose. No forms to fill in first.</p></li>
+      <li class="step rv"><span class="n">02</span>
+        <h3>We give you a real time</h3>
+        <p>Not "we'll call you back." You'll leave the call knowing when you're being seen — today if there is any way to do it.</p></li>
+      <li class="step rv"><span class="n">03</span>
+        <h3>Coverage checked before you arrive</h3>
+        <p>We look up your plan while you're on the phone or before your slot, so cost isn't a surprise you meet in the chair.</p></li>
+      <li class="step rv"><span class="n">04</span>
+        <h3>Pain handled, then the tooth</h3>
+        <p>Getting you comfortable comes first. Then Dr.&nbsp;Salavati examines, explains the options in plain language, and stabilises the problem.</p></li>
+    </ol>
+
+    <div class="rv" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <a class="btn btn-gold" href="#" data-tel data-cta="how-call">
+        <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg>
+        Call <span data-phone>(000) 000-0000</span></a>
+      <a class="btn btn-ghost-d" href="#request" data-cta="how-form">Request a slot instead</a>
+      <span id="howStatus" style="font-size:14px;color:#9BA4BE"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= PROSTHODONTICS DIFFERENTIATOR ========================= -->
+<section class="sec sec-pp" aria-labelledby="pros-h">
+  <div class="wrap">
+    <div class="split">
+      <div class="rv">
+        <p class="lbl">Why this practice, for this problem</p>
+        <h2 id="pros-h">A broken tooth is <em>not a patch job</em></h2>
+        <p class="lede">Prosthodontics is the field of dentistry concerned with rebuilding and replacing teeth — crowns, bridges, implant restorations, dentures, full-mouth reconstruction. It is what Dr.&nbsp;Salavati does all day, which matters more than it sounds when the thing that has gone wrong is a tooth in pieces.</p>
+        <ul class="ticks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg>
+            <span><b>A crown that keeps coming off is a diagnosis, not an accident.</b> Re-cementing it without working out why it failed just books you a second emergency.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg>
+            <span><b>Broken teeth get assessed for what's salvageable</b> — how much healthy structure is left decides whether you're looking at a filling, a crown, or something more involved. You'll be told honestly which.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg>
+            <span><b>Front teeth are treated as front teeth.</b> If the break is somewhere visible, matching shape and shade is part of the job, not an upsell afterwards.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg>
+            <span><b>The emergency fix is planned around the permanent one.</b> What we do today is chosen so it doesn't limit your options next month.</span></li>
+        </ul>
+      </div>
+      <div class="split-media rv">
+        <img src="assets/dr-salavati-lab.jpg" alt="Dr. Roxanne Salavati in the dental laboratory where crowns and restorations are matched and finished" loading="lazy" decoding="async" width="720" height="540"
+             onerror="this.outerHTML='<div class=&quot;media-fb&quot;>Add assets/dr-salavati-lab.jpg</div>'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= THE DOCTOR ========================= -->
+<section class="sec sec-sd" aria-labelledby="dr-h">
+  <div class="wrap">
+    <div class="split split-rev">
+      <div class="split-media rv">
+        <img src="assets/dr-salavati-reception.jpg" alt="The reception area of Dr. Roxanne Salavati's West Hollywood dental practice" loading="lazy" decoding="async" width="720" height="540"
+             onerror="this.outerHTML='<div class=&quot;media-fb&quot;>Add assets/dr-salavati-reception.jpg</div>'">
+      </div>
+      <div class="rv">
+        <p class="lbl">Who you'll be seeing</p>
+        <h2 id="dr-h">Dr. Roxanne Salavati, <em>DMD</em></h2>
+        <p class="lede">Prosthodontics. The practice runs under the name <b style="color:var(--navy-800)">Smile Expert</b>, and the tagline on the door — <i>your smile, my specialty</i> — is meant fairly literally: this is a small practice built around one dentist's area of expertise rather than a high-volume clinic.</p>
+        <p class="lede" style="margin-top:14px">For an emergency patient that has one very practical consequence. The person who answers your questions on the phone, the person who examines you, and the person who rebuilds the tooth are the same person. Nothing gets lost being handed between them.</p>
+
+        <div class="cred-g">
+          <div class="cred-c rv"><div class="logo">
+            <img src="assets/acp.png" alt="American College of Prosthodontists" loading="lazy" onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>ACP</span>'"></div>
+            <h3>American College of Prosthodontists</h3>
+            <p>The professional body for prosthodontics — the specialty covering crowns, bridges, implants and reconstruction.</p></div>
+          <div class="cred-c rv"><div class="logo">
+            <img src="assets/iaomt.png" alt="International Academy of Oral Medicine and Toxicology" loading="lazy" onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>IAOMT</span>'"></div>
+            <h3>IAOMT</h3>
+            <p>The academy focused on biocompatibility — which materials go into your mouth, and how older ones are safely removed.</p></div>
+          <div class="cred-c rv"><div class="logo">
+            <img src="assets/wlads.png" alt="Western Los Angeles Dental Society" loading="lazy" onerror="this.outerHTML='<span class=&quot;cred-fb&quot;>WLADS</span>'"></div>
+            <h3>Western LA Dental Society</h3>
+            <p>The local component dental society for this side of Los Angeles.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= COST & INSURANCE ========================= -->
+<section class="sec sec-lt" aria-labelledby="cost-h">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <p class="lbl">Money, before it becomes a problem</p>
+      <h2 id="cost-h">What an emergency visit <em>costs</em></h2>
+      <p class="lede">The honest answer is that it depends on what's wrong — anyone quoting you a flat price before they've looked at the tooth is guessing. What we can promise is that you find out the number before we start, not after.</p>
+    </div>
+    <div class="cost-g">
+      <div class="cost-c rv"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg>
+        <h3>Your benefits, checked first</h3>
+        <p>Tell us your plan when you call and we'll verify what it covers before your appointment, so the estimate you get is the real one.</p></div>
+      <div class="cost-c rv"><svg class="ic" aria-hidden="true"><use href="#i-card"></use></svg>
+        <h3>No insurance is not a dead end</h3>
+        <p>Plenty of emergency patients don't have dental coverage. Ask about payment options when you call and we'll tell you what's available.</p></div>
+      <div class="cost-c rv"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg>
+        <h3>Treated in stages if it helps</h3>
+        <p>Getting you out of pain and the tooth stable can be separated from the final restoration. If spreading it out is easier, say so.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= LOCATION & HOURS ========================= -->
+<section class="sec sec-pp" aria-labelledby="loc-h">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <p class="lbl">Getting here</p>
+      <h2 id="loc-h">Where we are, and <em>when we're open</em></h2>
+      <p class="lede">The practice is in West Hollywood, which puts it within a short drive of most of the Westside — the reason a lot of patients here work in Century City or Beverly Hills and come in around their day.</p>
+    </div>
+
+    <div class="loc">
+      <div class="rv">
+        <table class="hours-t" id="hoursTable">
+          <caption class="sr-only">Opening hours</caption>
+          <thead><tr><th scope="col">Day</th><th scope="col">Hours</th></tr></thead>
+          <tbody id="hoursBody"></tbody>
+        </table>
+
+        <p style="margin-top:20px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-600);font-weight:700">Patients travel in from</p>
+        <div class="areas">
+          <span class="area pri">West Hollywood</span>
+          <span class="area">Beverly Hills</span>
+          <span class="area">Century City</span>
+          <span class="area">Hollywood</span>
+          <span class="area">Mid-Wilshire</span>
+          <span class="area">Miracle Mile</span>
+          <span class="area">Brentwood</span>
+          <span class="area">Westwood</span>
+        </div>
+        <p style="margin-top:16px;font-size:13.5px;color:var(--muted);line-height:1.6">These are neighbourhoods patients come from, not additional offices — there is one practice, at the address above.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+          <a class="btn btn-navy" href="#" data-tel data-cta="loc-call">
+            <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Call <span data-phone>(000) 000-0000</span></a>
+          <a class="btn btn-ghost-l" href="#" data-directions target="_blank" rel="noopener" data-cta="loc-directions">
+            <svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg> Get directions</a>
+        </div>
+      </div>
+
+      <div class="rv">
+        <div class="map-w" id="mapWrap">
+          <div class="map-fb">Map appears here once the practice address is set in <code>SITE_CONFIG</code>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= FAQ ========================= -->
+<section class="sec sec-sd" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-hd rv" style="text-align:center;margin-inline:auto">
+      <p class="lbl" style="justify-content:center">Straight answers</p>
+      <h2 id="faq-h">The questions people ask <em>while in pain</em></h2>
+    </div>
+    <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<!-- ========================= FINAL CTA + FORM ========================= -->
+<section class="sec sec-dk on-dark" id="request" aria-labelledby="req-h">
+  <div class="wrap">
+    <div class="conv">
+      <div class="rv">
+        <p class="lbl">Let's get you seen</p>
+        <h2 id="req-h">Call if it hurts. <em>Use the form if you can't talk.</em></h2>
+        <p class="lede">Calling is genuinely faster — most emergency slots get arranged in a single conversation. But if you're at work, in a meeting, or just not up to talking, send the form and we'll come back to you.</p>
+
+        <div style="margin:26px 0 22px">
+          <a class="btn btn-gold btn-xl" href="#" data-tel data-cta="final-call">
+            <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg>
+            <span class="btn-stack"><span>Call <span data-phone>(000) 000-0000</span></span><span class="btn-sub" id="finalCallSub">Same-day emergency line</span></span>
+          </a>
+        </div>
+
+        <ul class="ticks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg><span id="finalHours">Hours are listed in full above.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg><span data-address>West Hollywood, California</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-user"></use></svg><span>Dr. Roxanne Salavati, DMD — Prosthodontics</span></li>
+        </ul>
+      </div>
+
+      <div class="rv">
+        <div class="form-card">
+          <div class="form-ok" id="formOk" role="status">
+            <svg class="ic" aria-hidden="true"><use href="#i-checkc"></use></svg>
+            <h3>Request received</h3>
+            <p>We'll come back to you as quickly as we can during opening hours. If the pain gets worse before you hear from us, please call — that always moves faster.</p>
+            <p style="margin-top:16px"><a class="btn btn-navy" href="#" data-tel>Call <span data-phone>(000) 000-0000</span></a></p>
+          </div>
+
+          <form id="reqForm" novalidate>
+            <h3>Request a same-day slot</h3>
+            <p class="fnote">Four fields. We'll call you back to confirm a time.</p>
+
+            <div class="fld">
+              <label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+              <span class="err" id="e-name" role="alert"></span>
+            </div>
+
+            <div class="fld">
+              <label for="f-phone">Phone number <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="e-phone">
+              <span class="err" id="e-phone" role="alert"></span>
+            </div>
+
+            <div class="fld">
+              <label for="f-issue">What's going on? <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-issue" name="issue" required aria-describedby="e-issue">
+                <option value="">Choose the closest match…</option>
+              </select>
+              <span class="err" id="e-issue" role="alert"></span>
+            </div>
+
+            <div class="fld-row">
+              <div class="fld">
+                <label for="f-when">When suits you</label>
+                <select id="f-when" name="when">
+                  <option value="asap">As soon as possible</option>
+                  <option value="today">Later today</option>
+                  <option value="tomorrow">Tomorrow</option>
+                  <option value="flexible">I'm flexible</option>
+                </select>
+              </div>
+              <div class="fld">
+                <label for="f-since">How long has it been going on?</label>
+                <select id="f-since" name="since">
+                  <option value="today">Started today</option>
+                  <option value="days">A few days</option>
+                  <option value="weeks">A week or more</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="fld">
+              <label for="f-notes">Anything else we should know</label>
+              <textarea id="f-notes" name="notes" rows="3" placeholder="Optional — swelling, what you've taken for it, whether you can eat."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-navy btn-xl" data-cta="form-submit" style="width:100%">
+              Send request <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </button>
+            <p class="privacy">We use these details only to contact you about this appointment. In a severe emergency please call rather than waiting on a form.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-g">
+      <div>
+        <img src="assets/logo-white.png" alt="Smile Expert — Dr. Roxanne Salavati" height="52" style="height:52px;width:auto;margin-bottom:14px" loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="bfb" style="display:none;margin-bottom:14px">
+          <span class="nm">Dr. Roxanne Salavati</span>
+          <span class="tag" style="display:block;font-size:8.5px;letter-spacing:.17em;text-transform:uppercase;font-weight:600;border-top:1.5px solid var(--gold-500);padding-top:3px;margin-top:3px;width:max-content">Your Smile, My Specialty</span>
+        </div>
+        <p style="line-height:1.65;max-width:38ch">Smile Expert — the practice of Dr. Roxanne Salavati, DMD, Prosthodontics. Emergency, same-day and restorative dental care in West Hollywood, Los Angeles.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#" data-tel><span data-phone>(000) 000-0000</span></a></li>
+          <li><span data-address>West Hollywood, California</span></li>
+          <li><a href="#" data-directions target="_blank" rel="noopener">Get directions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul id="ftrHours"></ul>
+      </div>
+    </div>
+    <div class="ftr-btm">
+      <p>© <span id="yr">2026</span> Smile Expert · Dr. Roxanne Salavati, DMD. Information on this page is general and is not a substitute for examination and diagnosis. For a broken jaw, uncontrolled bleeding, or swelling affecting breathing or swallowing, go to a hospital emergency room or call 911.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= STICKY MOBILE BAR ========================= -->
+<div class="sticky" id="sticky">
+  <a class="btn btn-gold" href="#" data-tel data-cta="sticky-call">
+    <svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Call now</a>
+  <a class="btn btn-ghost-d" href="#request" data-cta="sticky-form">Request slot</a>
+</div>
+
+<script>
+/* ============================================================
+   1. SITE CONFIG  —  ⚠️ REPLACE EVERY PLACEHOLDER BEFORE PUBLISHING
+   Nothing here is invented. Values marked PLACEHOLDER were not
+   supplied and must come from the practice. See docs/SETUP.md.
+   ============================================================ */
+var SITE_CONFIG = {
+  practiceName : "Smile Expert",
+  doctorName   : "Dr. Roxanne Salavati, DMD",
+
+  phone        : "(000) 000-0000",              // PLACEHOLDER
+  address      : {
+    street     : "",                            // PLACEHOLDER e.g. "8500 Sunset Blvd, Suite 200"
+    city       : "West Hollywood",              // CONFIRM — H1 and location copy assume West Hollywood
+    region     : "CA",
+    postal     : "",                            // PLACEHOLDER
+    country    : "US"
+  },
+  mapQuery     : "",                            // PLACEHOLDER — full address for the map embed
+  formEndpoint : "",                            // PLACEHOLDER — where the request form POSTs
+
+  /* Set to true only once the hours below are the practice's real hours.
+     While false, the page honestly says "call to check" instead of
+     displaying an opening status it cannot vouch for. */
+  hoursConfirmed : false,
+  timeZone       : "America/Los_Angeles",
+  hours: {                                      // PLACEHOLDER pattern — 24h, [] = closed
+    mon:[["09:00","18:00"]],
+    tue:[["09:00","18:00"]],
+    wed:[["09:00","18:00"]],
+    thu:[["09:00","18:00"]],
+    fri:[["09:00","17:00"]],
+    sat:[],
+    sun:[]
+  }
+};
+
+(function(){
+"use strict";
+var C = SITE_CONFIG;
+var DAYS = ["sun","mon","tue","wed","thu","fri","sat"];
+var DAY_LABEL = {mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday"};
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var $  = function(s,r){return (r||document).querySelector(s);};
+var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+/* ---------- 2. SETUP GUARD ---------- */
+var missing = [];
+if(!C.phone || /^\(?0{3}\)?/.test(C.phone.replace(/\s/g,""))) missing.push("phone number");
+if(!C.address.street) missing.push("street address");
+if(!C.address.postal) missing.push("ZIP code");
+if(!C.hoursConfirmed)  missing.push("opening hours");
+if(!C.formEndpoint)    missing.push("form endpoint");
+var configured = missing.length === 0;
+if(missing.length){
+  var bar = $("#setupBar");
+  $("#setupMsg").textContent = "This page is not ready to publish. Still using placeholder values for: " +
+    missing.join(", ") + ". Edit SITE_CONFIG at the bottom of this file — this notice disappears on its own once they're real.";
+  bar.classList.add("show");
+  document.documentElement.style.scrollPaddingTop = "132px";
+}
+
+/* ---------- 3. PHONE / ADDRESS / DIRECTIONS ---------- */
+var telHref = "tel:" + C.phone.replace(/[^\d+]/g,"");
+$$("[data-phone]").forEach(function(el){ el.textContent = C.phone; });
+$$("[data-tel]").forEach(function(el){ el.setAttribute("href", telHref); });
+
+var addrLine = [C.address.street, C.address.city, C.address.region, C.address.postal]
+                 .filter(Boolean).join(", ");
+$$("[data-address]").forEach(function(el){ el.textContent = addrLine || (C.address.city + ", California"); });
+
+var mapQ = C.mapQuery || addrLine;
+if(mapQ){
+  var dirUrl = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(mapQ);
+  $$("[data-directions]").forEach(function(el){ el.setAttribute("href", dirUrl); });
+}else{
+  $$("[data-directions]").forEach(function(el){ el.setAttribute("aria-disabled","true"); el.setAttribute("href","#request"); });
+}
+
+/* ---------- 4. LIVE HOURS ENGINE (practice-local time) ---------- */
+function localParts(){
+  try{
+    var p = new Intl.DateTimeFormat("en-US",{timeZone:C.timeZone,weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false})
+              .formatToParts(new Date());
+    var o = {};
+    p.forEach(function(x){ o[x.type] = x.value; });
+    var wd = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday];
+    var h  = parseInt(o.hour,10) % 24;
+    return { dayIdx: wd, mins: h*60 + parseInt(o.minute,10) };
+  }catch(e){
+    var d = new Date();
+    return { dayIdx: d.getDay(), mins: d.getHours()*60 + d.getMinutes() };
+  }
+}
+function toMins(hhmm){ var a = hhmm.split(":"); return (+a[0])*60 + (+a[1]); }
+function fmt(hhmm){
+  var m = toMins(hhmm), h = Math.floor(m/60), mm = m%60;
+  var ap = h >= 12 ? "PM" : "AM", h12 = h % 12 === 0 ? 12 : h % 12;
+  return h12 + (mm ? ":" + String(mm).padStart(2,"0") : "") + " " + ap;
+}
+function rangeText(list){
+  if(!list || !list.length) return "Closed";
+  return list.map(function(r){ return fmt(r[0]) + " – " + fmt(r[1]); }).join(", ");
+}
+
+function getStatus(){
+  if(!C.hoursConfirmed) return { state:"unknown", label:"Call to check today's availability" };
+  var t = localParts(), key = DAYS[t.dayIdx], today = C.hours[key] || [];
+  for(var i=0;i<today.length;i++){
+    var o = toMins(today[i][0]), c = toMins(today[i][1]);
+    if(t.mins >= o && t.mins < c){
+      var left = c - t.mins;
+      if(left <= 90) return { state:"soon", label:"Closing at " + fmt(today[i][1]) + " — " + left + " min left to call today" };
+      return { state:"open", label:"Open now · until " + fmt(today[i][1]) };
+    }
+    if(t.mins < o) return { state:"closed", label:"Opens today at " + fmt(today[i][0]) };
+  }
+  for(var d=1; d<=7; d++){
+    var nk = DAYS[(t.dayIdx + d) % 7], nx = C.hours[nk] || [];
+    if(nx.length){
+      var when = d === 1 ? "tomorrow" : DAY_LABEL[nk];
+      return { state:"closed", label:"Closed now · opens " + when + " at " + fmt(nx[0][0]) };
+    }
+  }
+  return { state:"unknown", label:"Call to check availability" };
+}
+
+function paintStatus(){
+  var s = getStatus();
+  var chip = $("#heroStatus"), txt = $("#heroStatusTxt");
+  if(chip){
+    chip.className = "status " + (s.state === "open" ? "open" : s.state === "soon" ? "soon" : "shut");
+    txt.textContent = s.label;
+  }
+  var tb = $("#tbStatus");
+  if(tb) tb.textContent = s.state === "open" || s.state === "soon"
+      ? s.label
+      : "Same-day emergency appointments — " + C.address.city;
+  var hs = $("#howStatus");
+  if(hs) hs.textContent = s.state === "open" || s.state === "soon" ? s.label : "";
+  var fh = $("#finalHours");
+  if(fh && C.hoursConfirmed) fh.textContent = s.label;
+  var fcs = $("#finalCallSub");
+  if(fcs && s.state === "soon") fcs.textContent = s.label;
+}
+
+function paintHours(){
+  var body = $("#hoursBody"), ftr = $("#ftrHours");
+  if(!body) return;
+  var t = localParts(), order = ["mon","tue","wed","thu","fri","sat","sun"];
+  body.innerHTML = ""; if(ftr) ftr.innerHTML = "";
+  order.forEach(function(k){
+    var txt = C.hoursConfirmed ? rangeText(C.hours[k]) : "Call to confirm";
+    var tr = document.createElement("tr");
+    if(DAYS[t.dayIdx] === k) tr.className = "now";
+    tr.innerHTML = "<td>" + DAY_LABEL[k] + "</td><td>" + txt + "</td>";
+    body.appendChild(tr);
+    if(ftr){
+      var li = document.createElement("li");
+      li.innerHTML = "<span style='display:inline-block;min-width:92px'>" + DAY_LABEL[k] + "</span>" + txt;
+      ftr.appendChild(li);
+    }
+  });
+}
+paintStatus(); paintHours();
+setInterval(paintStatus, 60000);
+var y = $("#yr"); if(y) y.textContent = new Date().getFullYear();
+
+/* ---------- 5. SYMPTOM TRIAGE ---------- */
+var SYMPTOMS = [
+  { id:"knocked", icon:"i-bolt", label:"Knocked-out tooth", urg:"now", urgText:"Next 30–60 minutes",
+    h:"A tooth that has been knocked out",
+    why:"This is the one true race against the clock. A permanent tooth has the best chance of being saved if it is back in the socket within about an hour — after that the odds fall away quickly.",
+    steps:["Pick the tooth up by the crown, the chewing part. Do not touch the root.",
+           "If it is dirty, rinse it for a few seconds in milk or saline. No scrubbing, no soap, no tap water if you can avoid it.",
+           "If you can, put it straight back in the socket and bite gently on a clean cloth to hold it.",
+           "If you can't, keep it in a cup of milk — not water — and bring it with you.",
+           "Call us on your way rather than after you arrive."] },
+
+  { id:"pain", icon:"i-tooth", label:"Severe toothache", urg:"today", urgText:"Today",
+    h:"Pain that won't settle",
+    why:"Constant throbbing, pain that wakes you at night, or pain that lingers long after something hot or cold usually means the nerve inside the tooth is involved. That does not resolve on its own, and painkillers only postpone the conversation.",
+    steps:["Take whatever you would normally take for pain, at the normal dose.",
+           "Never hold aspirin against the gum — it burns the tissue and does nothing for the tooth.",
+           "Rinse with warm salt water; keep the area clean but brush gently around it.",
+           "Sleep propped up if it throbs when you lie flat.",
+           "Note what sets it off — hot, cold, biting. It genuinely helps the diagnosis."] },
+
+  { id:"cracked", icon:"i-crack", label:"Cracked or broken tooth", urg:"today", urgText:"Today",
+    h:"A tooth that has cracked or broken",
+    why:"How urgent this is depends on what broke. A chipped edge can often wait a day or two; a piece that has sheared off and left the tooth sensitive means the inner layers are exposed and it will get worse, often fast.",
+    steps:["Keep any fragments in a little milk or saline and bring them.",
+           "Rinse with warm water to clear any debris.",
+           "Stop chewing on that side entirely — biting on a cracked tooth spreads the crack.",
+           "Cover a sharp edge with dental wax or sugar-free gum if it is cutting your tongue.",
+           "Cold compress outside the cheek if there is any swelling."] },
+
+  { id:"crown", icon:"i-crown", label:"Lost or loose crown", urg:"today", urgText:"Today",
+    h:"A crown or bridge that has come off",
+    why:"The tooth underneath a crown is usually reduced and unprotected, so it gets sensitive quickly and can shift within days — which is what turns a simple re-cement into a whole new crown. This is squarely prosthodontic territory.",
+    steps:["Keep the crown. Rinse it, dry it, put it somewhere safe and bring it in.",
+           "Never glue it back with household adhesive. It contaminates the fit surface and can cost you the crown.",
+           "Temporary dental cement from a pharmacy is acceptable for a night, no longer.",
+           "Chew on the other side and keep the exposed tooth clean.",
+           "Call the same day — the window where the original crown still fits is short."] },
+
+  { id:"swelling", icon:"i-swell", label:"Swelling or abscess", urg:"now", urgText:"Same day — urgent",
+    h:"Swelling in the gum, face or jaw",
+    why:"Swelling means infection, and infection in the mouth does not stay in the mouth. A bad taste, a spot on the gum, a puffy cheek or a tender jaw all need to be seen promptly rather than waited out.",
+    steps:["Call today. This is the symptom least worth sleeping on.",
+           "Warm salt water rinses, several times a day.",
+           "Cold compress on the outside of the cheek for the swelling.",
+           "Do not attempt to lance or squeeze it.",
+           "Go to an emergency room instead if the swelling reaches your eye, or affects breathing or swallowing."] },
+
+  { id:"filling", icon:"i-fill", label:"Lost filling", urg:"soon", urgText:"Within a day or two",
+    h:"A filling that has fallen out",
+    why:"Less dramatic than the rest of this list, and usually not painful at first — but the cavity underneath is now open, collects food, and deepens. Left for weeks, a straightforward refill can become a root canal.",
+    steps:["Keep the area meticulously clean after eating.",
+           "Avoid anything very hot, cold or sweet on that side.",
+           "Pharmacy temporary filling material is fine as a stopgap.",
+           "Book within a couple of days — this is the cheapest problem on the page if caught early."] },
+
+  { id:"denture", icon:"i-denture", label:"Broken denture or bridge", urg:"today", urgText:"Today if you can't eat",
+    h:"A denture or bridge that has broken",
+    why:"Beyond the obvious, a broken or badly fitting appliance rubs, and a sore developing under it complicates the repair. Repairing and remaking these is core prosthodontic work.",
+    steps:["Stop wearing it if it is rubbing or cutting.",
+           "Bring every piece, including small fragments.",
+           "Do not repair it yourself — superglue is toxic in the mouth and ruins the repair surface.",
+           "Salt water rinses if the gum is already sore.",
+           "Call the same day if you cannot eat or speak properly without it."] },
+
+  { id:"bleeding", icon:"i-drop", label:"Bleeding that won't stop", urg:"now", urgText:"Urgent",
+    h:"Bleeding that will not stop",
+    why:"Some oozing after an extraction is normal for a few hours. Bleeding that is still going strong after that, or that follows an injury, is not — and needs assessing rather than waiting out.",
+    steps:["Bite firmly on clean, damp gauze for a full 15 minutes without checking it.",
+           "Sit upright, keep your head above your heart.",
+           "No rinsing, spitting, straws or smoking — all of them dislodge the clot.",
+           "If it is still not slowing after 15 minutes of steady pressure, go to an emergency room.",
+           "Otherwise call us and we will see you."] }
+];
+
+var list  = $("#triList"),
+    panel = $("#triPanel"),
+    sel   = $("#f-issue");
+
+SYMPTOMS.forEach(function(s,i){
+  var b = document.createElement("button");
+  b.type = "button"; b.className = "tri-b"; b.id = "tb-" + s.id;
+  b.setAttribute("role","tab");
+  b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+  b.setAttribute("aria-controls","triPanel");
+  b.tabIndex = i === 0 ? 0 : -1;
+  b.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#' + s.icon + '"></use></svg><span>' + s.label + '</span>';
+  b.addEventListener("click", function(){ pick(i); });
+  b.addEventListener("keydown", function(e){
+    var n = null;
+    if(e.key === "ArrowDown" || e.key === "ArrowRight") n = (i + 1) % SYMPTOMS.length;
+    if(e.key === "ArrowUp"   || e.key === "ArrowLeft")  n = (i - 1 + SYMPTOMS.length) % SYMPTOMS.length;
+    if(e.key === "Home") n = 0;
+    if(e.key === "End")  n = SYMPTOMS.length - 1;
+    if(n !== null){ e.preventDefault(); pick(n); $("#tb-" + SYMPTOMS[n].id).focus(); }
+  });
+  list.appendChild(b);
+
+  if(sel){
+    var o = document.createElement("option");
+    o.value = s.id; o.textContent = s.label;
+    sel.appendChild(o);
+  }
+});
+if(sel){
+  var oth = document.createElement("option");
+  oth.value = "other"; oth.textContent = "Something else";
+  sel.appendChild(oth);
+}
+
+function pick(i){
+  var s = SYMPTOMS[i];
+  $$(".tri-b", list).forEach(function(b,j){
+    b.setAttribute("aria-selected", j === i ? "true" : "false");
+    b.tabIndex = j === i ? 0 : -1;
+  });
+  panel.innerHTML =
+    '<span class="urg ' + s.urg + '">' + s.urgText + '</span>' +
+    '<h3>' + s.h + '</h3>' +
+    '<p class="why">' + s.why + '</p>' +
+    '<p class="tri-sub">What to do right now</p>' +
+    '<ol class="tri-steps">' + s.steps.map(function(t,k){
+        return '<li><span class="n">' + (k+1) + '</span><span>' + t + '</span></li>';
+      }).join("") + '</ol>' +
+    '<div class="tri-cta">' +
+      '<a class="btn btn-navy" href="' + telHref + '" data-cta="triage-call-' + s.id + '">' +
+        '<svg class="ic" aria-hidden="true"><use href="#i-phone"></use></svg> Call ' + C.phone + '</a>' +
+      '<a class="btn btn-ghost-l" href="#request" data-cta="triage-form-' + s.id + '">Request a slot for this</a>' +
+    '</div>';
+  panel.setAttribute("aria-labelledby","tb-" + s.id);
+  if(!reduced){ panel.classList.remove("swap"); void panel.offsetWidth; panel.classList.add("swap"); }
+  if(sel) sel.value = s.id;
+}
+pick(0);
+
+/* ---------- 6. FAQ ---------- */
+var FAQ = [
+  { q:"Are you open right now?",
+    a:"The status at the top of this page is live — it reflects the practice's actual opening hours in Los Angeles time, not a generic 'open 24/7' claim. The full week is listed in the hours table above. If we're closed as you're reading this, leave a message or send the request form and you'll be near the front of the queue when we open." },
+  { q:"Can I really be seen the same day?",
+    a:"Usually, yes, if you call while we're open. Genuine emergencies — swelling, a knocked-out tooth, pain that has stopped you sleeping — get priority over routine appointments. What we won't do is promise a slot on a web page before we know what's wrong; call and you'll be given a real time on that call." },
+  { q:"Do you take walk-ins, or do I need to book?",
+    a:"Call first, even if you're two minutes away. A single phone call means the right amount of time is set aside for you, the room is ready, and your coverage has been looked up — which almost always gets you treated sooner than arriving unannounced and waiting." },
+  { q:"What actually counts as a dental emergency?",
+    a:"As a rule: pain you can't control with ordinary painkillers, any swelling, a knocked-out or broken tooth, a crown or bridge that has come off, bleeding that won't stop, or an injury to the mouth. If it's stopping you eating, sleeping or working, treat it as an emergency and call. A chipped edge that doesn't hurt can generally wait a day or two." },
+  { q:"My crown came off — can you put it back today?",
+    a:"Often, yes, and bringing the crown with you makes that much more likely. Rinse it, keep it dry and safe, and don't use household glue on it — adhesive on the fitting surface is the single most common reason a crown that could have been re-cemented has to be remade instead. Because this practice is prosthodontic, re-cementing, repairing and remaking crowns is routine rather than a referral." },
+  { q:"How much will an emergency visit cost?",
+    a:"It depends entirely on what's wrong, and any practice quoting a fixed price before examining you is guessing. What we will do is check your insurance before you're seen and give you the cost of the recommended treatment before we begin, so nothing is decided while you're in the chair with a numb face." },
+  { q:"What if I don't have dental insurance?",
+    a:"A lot of emergency patients don't. Say so when you call and we'll go through what's available and what the visit will cost, before you commit to anything." },
+  { q:"Where exactly are you, and how far is it from Beverly Hills or Century City?",
+    a:"The practice is in West Hollywood — the full address and a map are above, along with a directions link that opens in Google Maps. For most people coming from Beverly Hills, Century City, Hollywood or Mid-Wilshire it's a short drive rather than a cross-town trip, which is why a lot of patients here fit an appointment around a working day." },
+  { q:"Should I go to the emergency room instead?",
+    a:"For a broken or dislocated jaw, an injury where you lost consciousness, bleeding you cannot slow with 15 minutes of firm pressure, or swelling affecting your breathing, swallowing or vision — yes, go to a hospital or call 911 immediately. For everything else, a hospital will generally give you antibiotics and painkillers and tell you to see a dentist, because they can't treat the tooth. Calling us directly saves you that round trip." },
+  { q:"What does a prosthodontist do differently in an emergency?",
+    a:"Prosthodontics is the area of dentistry concerned with rebuilding and replacing teeth. When the emergency is structural — a tooth in pieces, a failed crown, a broken bridge or denture — the practical difference is that the person stabilising it today is the same person who would rebuild it properly, so the temporary fix is chosen with the permanent one already in mind." }
+];
+
+var faqWrap = $("#faq");
+FAQ.forEach(function(f,i){
+  var d = document.createElement("div"); d.className = "faq-i";
+  d.innerHTML =
+    '<h3><button class="faq-q" id="fq-'+i+'" aria-expanded="false" aria-controls="fa-'+i+'">' +
+      '<span>' + f.q + '</span><span class="pm" aria-hidden="true"></span></button></h3>' +
+    '<div class="faq-a" id="fa-'+i+'" role="region" aria-labelledby="fq-'+i+'">' +
+      '<div class="faq-a-in"><p>' + f.a + '</p></div></div>';
+  faqWrap.appendChild(d);
+});
+faqWrap.addEventListener("click", function(e){
+  var btn = e.target.closest(".faq-q"); if(!btn) return;
+  var open = btn.getAttribute("aria-expanded") === "true";
+  var pane = document.getElementById(btn.getAttribute("aria-controls"));
+  btn.setAttribute("aria-expanded", open ? "false" : "true");
+  if(open){
+    pane.style.height = pane.scrollHeight + "px";
+    requestAnimationFrame(function(){ pane.style.height = "0px"; });
+  }else{
+    pane.style.height = pane.scrollHeight + "px";
+    pane.addEventListener("transitionend", function h(){ pane.style.height = "auto"; pane.removeEventListener("transitionend", h); });
+  }
+});
+
+/* ---------- 7. FORM ---------- */
+var form = $("#reqForm");
+function setErr(id,msg){
+  var i = $("#f-"+id), e = $("#e-"+id);
+  if(!i) return;
+  i.setAttribute("aria-invalid", msg ? "true" : "false");
+  if(e) e.textContent = msg || "";
+}
+if(form){
+  ["name","phone","issue"].forEach(function(k){
+    var el = $("#f-"+k);
+    if(el) el.addEventListener("input", function(){ setErr(k,""); });
+  });
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var ok = true;
+    if(!$("#f-name").value.trim()){ setErr("name","Please tell us your name."); ok = false; }
+    var ph = $("#f-phone").value.replace(/[^\d]/g,"");
+    if(ph.length < 10){ setErr("phone","Please enter a phone number we can reach you on."); ok = false; }
+    if(!$("#f-issue").value){ setErr("issue","Please choose the closest match."); ok = false; }
+    if(!ok){ form.querySelector('[aria-invalid="true"]').focus(); return; }
+
+    var data = {};
+    new FormData(form).forEach(function(v,k){ data[k] = v; });
+    data.page = location.pathname; data.submittedAt = new Date().toISOString();
+
+    function done(){ form.classList.add("hide"); $("#formOk").classList.add("show"); $("#formOk").focus(); }
+
+    if(C.formEndpoint){
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true; btn.style.opacity = ".65";
+      fetch(C.formEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
+        .then(done)
+        .catch(function(){
+          btn.disabled = false; btn.style.opacity = "";
+          setErr("phone","Something went wrong sending that. Please call us instead.");
+        });
+    }else{
+      console.warn("[SETUP] SITE_CONFIG.formEndpoint is empty — the form did not send anywhere.", data);
+      done();
+    }
+  });
+}
+
+/* ---------- 8. MAP (lazy, only once address is real) ---------- */
+if(mapQ){
+  var mw = $("#mapWrap");
+  var mo = new IntersectionObserver(function(en){
+    en.forEach(function(x){
+      if(!x.isIntersecting) return;
+      mo.disconnect();
+      var f = document.createElement("iframe");
+      f.src = "https://www.google.com/maps?q=" + encodeURIComponent(mapQ) + "&output=embed";
+      f.title = "Map showing " + C.practiceName + " in " + C.address.city;
+      f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+      f.setAttribute("allowfullscreen","");
+      mw.innerHTML = ""; mw.appendChild(f);
+    });
+  },{rootMargin:"300px"});
+  mo.observe(mw);
+}
+
+/* ---------- 9. SCROLL REVEAL (fires once, then releases) ---------- */
+if(!reduced && "IntersectionObserver" in window){
+  var groups = {};
+  var ro = new IntersectionObserver(function(en){
+    en.forEach(function(x){
+      if(!x.isIntersecting) return;
+      var p = x.target.parentNode;
+      var k = groups[p] = (groups[p] || 0);
+      x.target.style.transitionDelay = Math.min(k * 60, 300) + "ms";
+      groups[p] = k + 1;
+      x.target.classList.add("in");
+      ro.unobserve(x.target);
+    });
+  },{rootMargin:"0px 0px -8% 0px", threshold:.08});
+  $$(".rv").forEach(function(el){ ro.observe(el); });
+}else{
+  $$(".rv").forEach(function(el){ el.classList.add("in"); });
+}
+
+/* ---------- 10. HERO DEPTH (pointer only, never touch) ---------- */
+var stack = $("#heroStack");
+if(stack && !reduced && window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+  var inner = $(".stack-in", stack), sheen = $(".sheen", stack), raf = null;
+  stack.addEventListener("pointermove", function(e){
+    if(raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null;
+      var r = stack.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      inner.style.transform = "rotateY(" + ((px - .5) * 4.5).toFixed(2) + "deg) rotateX(" + ((.5 - py) * 4.5).toFixed(2) + "deg)";
+      if(sheen){ sheen.style.setProperty("--mx", (px*100).toFixed(1) + "%"); sheen.style.setProperty("--my", (py*100).toFixed(1) + "%"); }
+    });
+  });
+  stack.addEventListener("pointerleave", function(){ inner.style.transform = ""; });
+}
+
+/* ---------- 11. STICKY MOBILE BAR ---------- */
+var sticky = $("#sticky");
+if(sticky){
+  var hero = $(".hero");
+  var so = new IntersectionObserver(function(en){
+    en.forEach(function(x){
+      sticky.classList.toggle("up", !x.isIntersecting);
+      document.documentElement.style.setProperty("--bar-h", !x.isIntersecting && window.innerWidth < 900 ? "78px" : "0px");
+    });
+  },{threshold:0, rootMargin:"-120px 0px 0px 0px"});
+  so.observe(hero);
+}
+
+/* ---------- 12. STRUCTURED DATA (only when the facts are real) ---------- */
+if(configured){
+  var ld = {
+    "@context":"https://schema.org",
+    "@graph":[
+      { "@type":"Dentist",
+        "name": C.practiceName,
+        "description":"Emergency, same-day and prosthodontic dental care in " + C.address.city + ", Los Angeles.",
+        "url": location.href.split("#")[0],
+        "telephone": C.phone,
+        "address":{ "@type":"PostalAddress","streetAddress":C.address.street,"addressLocality":C.address.city,
+                    "addressRegion":C.address.region,"postalCode":C.address.postal,"addressCountry":C.address.country },
+        "areaServed":["West Hollywood","Beverly Hills","Century City","Hollywood","Mid-Wilshire","Los Angeles"],
+        "medicalSpecialty":"Prosthodontics",
+        "employee":{ "@type":"Dentist","name":"Dr. Roxanne Salavati","honorificSuffix":"DMD","medicalSpecialty":"Prosthodontics" },
+        "availableService":["Emergency dental care","Same-day dental appointments","Broken tooth repair",
+                            "Crown repair and replacement","Dental bridges","Dentures","Dental implant restoration","Toothache treatment"],
+        "openingHoursSpecification": Object.keys(C.hours).reduce(function(acc,k){
+            (C.hours[k]||[]).forEach(function(r){
+              acc.push({ "@type":"OpeningHoursSpecification",
+                         "dayOfWeek":"https://schema.org/" + DAY_LABEL[k],
+                         "opens":r[0],"closes":r[1] });
+            });
+            return acc;
+          },[])
+      },
+      { "@type":"FAQPage",
+        "mainEntity": FAQ.map(function(f){
+          return { "@type":"Question","name":f.q,
+                   "acceptedAnswer":{ "@type":"Answer","text":f.a } };
+        })
+      }
+    ]
+  };
+  var s = document.createElement("script");
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify(ld);
+  document.head.appendChild(s);
+}
+
+/* ---------- 13. CONVERSION EVENTS ---------- */
+document.addEventListener("click", function(e){
+  var el = e.target.closest("[data-cta]"); if(!el) return;
+  var id = el.getAttribute("data-cta");
+  var type = el.getAttribute("href") && el.getAttribute("href").indexOf("tel:") === 0 ? "call" : "engagement";
+  if(typeof window.gtag === "function"){
+    window.gtag("event", type === "call" ? "click_to_call" : "cta_click", { cta_id:id, page:"emergency-dentist-west-hollywood" });
+  }
+  if(typeof window.dataLayer !== "undefined" && window.dataLayer.push){
+    window.dataLayer.push({ event: type === "call" ? "click_to_call" : "cta_click", cta_id:id });
+  }
+});
+
+})();
+</script>
+</body>
+</html>
