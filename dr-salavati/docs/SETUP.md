@@ -49,3 +49,22 @@ All of these are consistent with what the site says, but they describe how the o
 ## Deliberately not on the page
 
 No star rating or review count (none verified — the four quotes are attributed and verbatim), no "open 24/7" (false: closed weekends), no specific prices, no parking claims, no "same-day guaranteed" (with 1–2 patients a day it would be dishonest). If you can confirm a Google rating and count, it is the strongest remaining trust element and belongs next to the status chip in the hero.
+
+---
+
+## Prosthodontist page — additional notes
+
+`prosthodontist-beverly-hills.html` shares `SITE_CONFIG` values with the
+emergency page (same address, hours, request URL) and currently the **same
+(424) 292-8732 tracking number**. If this ad group gets its own tracking
+number, change `phone` in that file's `SITE_CONFIG` only.
+
+Its primary conversion is the consultation request, so in Google Ads treat
+`cta_click` with `cta_id` = `form-external` as the primary conversion for this
+page and `click_to_call` as secondary — the reverse of the emergency page.
+
+Two keyword groups need a yes/no from the practice before this page is
+final: **dental bonding / composite veneers** and **standalone teeth
+whitening**. Neither is published on the website, so the page does not claim
+them. See `docs/INTENT-MAP-prosthodontist.md` for the wording used and what
+to change once you know.

@@ -5,8 +5,14 @@ board-certified prosthodontist, 436 N Roxbury Dr, Beverly Hills — built for th
 emergency / urgent / same-day keyword set across Beverly Hills, West Hollywood
 and Century City.
 
-**[`emergency-dentist-beverly-hills.html`](emergency-dentist-beverly-hills.html)** — one
-self-contained file. Open it in a browser and it renders.
+Two pages, one design system, each built for its own keyword set:
+
+| Page | Ad group | Primary CTA |
+|---|---|---|
+| **[`emergency-dentist-beverly-hills.html`](emergency-dentist-beverly-hills.html)** | Emergency / urgent / same-day / open now | Call |
+| **[`prosthodontist-beverly-hills.html`](prosthodontist-beverly-hills.html)** | Prosthodontist / cosmetic / veneers / comprehensive | Book a consultation |
+
+Both are single self-contained files — open one in a browser and it renders.
 
 Every fact on it is sourced from drroxannesalavati.com or the supplied assets.
 The only thing between it and publication is dropping the image files into
@@ -60,8 +66,10 @@ what Landing Page Experience actually rewards.
 ## Structure
 
 ```
-emergency-dentist-beverly-hills.html    the page
+emergency-dentist-beverly-hills.html    emergency page (call-first)
+prosthodontist-beverly-hills.html       prosthodontist / cosmetic page (consult-first)
 assets/README.md                        which image goes where
 docs/SETUP.md                           what to fill in before publishing
-docs/INTENT-MAP.md                      keyword intent → page decisions
+docs/INTENT-MAP.md                      keyword intent → page decisions (emergency)
+docs/INTENT-MAP-prosthodontist.md       keyword intent → page decisions (prosthodontist)
 ```
