@@ -67,7 +67,7 @@ addresses both deliberately:
   are three ways to start" — so a searcher confirms intent within one scroll.
 - **Offer echo.** `$55` appears in the hero badge, the final CTA, the FAQ, the
   form's reason list and the sticky bar, matching the ad's promotion.
-- **Substance, not a splash page.** ~2,340 words covering all 16 services,
+- **Substance, not a splash page.** ~2,040 words covering the 11 general-dentistry services,
   technology, the dentist's credentials, insurance and payment, nine
   testimonials and 9 FAQs. Thin landing pages are the single most common cause
   of a poor landing page experience score — this has room to lose a little more

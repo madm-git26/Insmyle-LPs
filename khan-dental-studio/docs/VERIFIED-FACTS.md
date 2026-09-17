@@ -98,8 +98,20 @@ of the $55 visit** and it can go back in.
 
 ## Services (16)
 
-All sixteen names and one-line descriptions are taken from the `HOME`
-"Sixteen treatments. One address." grid. No service was added or renamed.
+Eleven of the practice's sixteen treatments are listed, with names and
+one-line descriptions taken verbatim from the `HOME` "Sixteen treatments. One
+address." grid. No service was added or renamed.
+
+**The Cosmetic & Ortho group was removed on instruction** so the page covers
+only general dentistry, matching its ad group. Still offered by the practice,
+just not advertised here: Cosmetic Dentistry, Teeth Whitening, Porcelain
+Veneers, Invisalign & Braces, TMD / TMJ Treatment. If any of those ever need
+promoting, they want their own ad group and their own landing page — not a
+line on this one.
+
+Kept: Preventive Care, Family Dentistry, Dental Sealants, Emergency Dentistry,
+Restorative Dentistry, Dental Fillings, Crowns & Bridges, Same-Day Crowns,
+Root Canal Therapy, Dentures & Partials, Dental Implants.
 
 ## Technology
 
