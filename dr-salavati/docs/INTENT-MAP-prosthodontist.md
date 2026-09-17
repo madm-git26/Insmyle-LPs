@@ -58,20 +58,20 @@ before the click.
 | 6+ veneers include smile-design consult, night guard, whitening of untreated teeth | Services page ("Special offer") |
 | Five review quotes, attributed | About page |
 
-## Two keywords the site does not support
+## Two keyword groups confirmed by the client, not by the website
 
-**`dental bonding near me`** and **`composite veneers near me`** — neither
-appears anywhere on the practice's website; the veneers listed are porcelain
-and no-prep. The page does **not** claim them. It carries an honest FAQ
-("Do you do dental bonding or composite veneers?") that frames composite vs
-porcelain as a consultation question. **Confirm with the practice.** If she
-offers composite bonding, say so and I will add it to the selector and the
-FAQ; if not, consider negatives for those terms, because the ad → page match
-will be weak.
+**`dental bonding near me`**, **`composite veneers near me`** and
+**`teeth whitening appointment`** — none of these treatments appears on
+drroxannesalavati.com (the veneers listed there are porcelain and no-prep;
+whitening is published only as part of the 6+ veneer package). The client
+confirmed on 2026-09-17 that the practice offers composite bonding, composite
+veneers and standalone whitening, so the page now claims them: in the smile
+goal's treatment tags and consultation step, in FAQs 6 and 7, and in the
+schema `availableService` list.
 
-**`teeth whitening appointment`** — whitening is only published as part of
-the 6+ veneer package. The FAQ says exactly that and invites a phone question.
-Same recommendation: confirm whether standalone whitening is offered.
+Worth doing on the website too: a searcher who clicks through to the main
+site from this page will not find bonding or whitening there, which is a
+small trust gap and a missed organic opportunity.
 
 ## Section order and why
 

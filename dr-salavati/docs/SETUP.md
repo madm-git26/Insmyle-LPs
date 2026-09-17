@@ -63,8 +63,8 @@ Its primary conversion is the consultation request, so in Google Ads treat
 `cta_click` with `cta_id` = `form-external` as the primary conversion for this
 page and `click_to_call` as secondary — the reverse of the emergency page.
 
-Two keyword groups need a yes/no from the practice before this page is
-final: **dental bonding / composite veneers** and **standalone teeth
-whitening**. Neither is published on the website, so the page does not claim
-them. See `docs/INTENT-MAP-prosthodontist.md` for the wording used and what
-to change once you know.
+**Bonding, composite veneers and standalone whitening** are on the page on the
+client's confirmation (2026-09-17); they are not on the practice website. If
+that ever changes, the three places to edit are the smile goal in `GOALS`,
+FAQs 6–7, and `availableService` in the schema. See
+`docs/INTENT-MAP-prosthodontist.md`.

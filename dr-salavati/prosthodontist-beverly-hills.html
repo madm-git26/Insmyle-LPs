@@ -8,7 +8,7 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Prosthodontist in Beverly Hills — Dr. Roxanne Salavati, DMD">
-<meta property="og:description" content="Board-certified prosthodontist. Veneers, smile design, crowns, implants and full-mouth reconstruction on N Roxbury Dr, Beverly Hills.">
+<meta property="og:description" content="Board-certified prosthodontist. Veneers, bonding, whitening, smile design, crowns, implants and full-mouth reconstruction on N Roxbury Dr, Beverly Hills.">
 <meta name="theme-color" content="#FBF8F3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -872,11 +872,11 @@ paintStatus(); paintHours(); setInterval(paintStatus,60000);
 /* ---------- goals selector ---------- */
 var GOALS = [
   { id:"smile", icon:"i-sparkle", label:"I don't like how my teeth look", h:"Changing the look of your smile",
-    why:"Chips, discolouration, gaps, worn edges, teeth that are the wrong shape or size for your face. This is smile design — and in a prosthodontist's hands it starts with the bite and the gum line, not just the front surface, so the result lasts as well as it looks.",
-    tags:["Porcelain veneers","No-prep veneers","Smile design","Crowns","Digital preview"],
+    why:"Chips, discolouration, gaps, worn edges, teeth that are the wrong shape or size for your face. This is smile design — and in a prosthodontist's hands it starts with the bite and the gum line, not just the front surface, so the result lasts as well as it looks. Sometimes the answer is whitening or a little bonding; sometimes it is veneers. You will be told which.",
+    tags:["Teeth whitening","Composite bonding","Composite veneers","Porcelain veneers","No-prep veneers","Smile design","Digital preview"],
     steps:["What you want changed, and what you want kept — plenty of people like their own smile and want it corrected, not replaced.",
            "Shade, shape, proportion, gum line and how your teeth show when you talk and laugh.",
-           "Whether no-prep veneers are an option, or whether the case needs conventional veneers or crowns.",
+           "Which material actually suits the tooth — whitening alone, composite bonding, composite veneers, porcelain or no-prep veneers, or a crown — and why. If the less expensive option is the better one, you will hear that.",
            "A digital preview of the proposed result before anything is done.",
            "Six or more veneers include whitening of the untreated teeth, a night guard and the smile-design consultation."] },
   { id:"missing", icon:"i-gap", label:"I'm missing one or more teeth", h:"Replacing missing teeth",
@@ -947,9 +947,9 @@ var FAQ = [
   { q:"What does 'one patient at a time' mean in practice?",
     a:"Dr. Salavati limits her schedule to one or two patient appointments a day. There is no double-booking and no waiting room full of people ahead of you; when it is your appointment, the whole of her attention is on your case. It also means consultations are unhurried — bring your questions." },
   { q:"Do you offer teeth whitening?",
-    a:"Whitening of the untreated teeth is included when a case involves six or more veneers, so that the veneers and your natural teeth match. If whitening on its own is what you are after, ask when you book — it is a quick question to answer on the phone." },
+    a:"Yes — professional teeth whitening is offered on its own, and it is also included on the untreated teeth whenever a case involves six or more veneers, so that everything matches. If whitening is all you are after, say so when you book; it is a straightforward appointment to arrange, and a good first step before deciding whether anything more is needed." },
   { q:"Do you do dental bonding or composite veneers?",
-    a:"The veneers described on the practice's website are porcelain and no-prep porcelain. Whether composite bonding or porcelain is the better choice for a given tooth depends on how much needs correcting, where the tooth is, and how long you want the result to last — exactly the kind of question a consultation settles. Mention it when you book and it will be part of the discussion." },
+    a:"Yes. Composite bonding and composite veneers are offered alongside porcelain and no-prep veneers. Composite is sculpted directly onto the tooth, usually in a single visit, and costs less; porcelain is made in the laboratory, lasts longer and holds its shade better. Which is right depends on the tooth, how much needs correcting and how long you want the result to last — that is settled at the consultation, and if the less expensive option is the better one for you, Dr. Salavati will say so." },
   { q:"How long do veneers or implants take?",
     a:"Veneers are typically a few visits over a few weeks: consultation and preview, preparation and temporaries, then the final bonding. Implants are longer because bone has to heal around the implant before the final tooth goes on — usually several months, staged. You will be given the sequence and the timeline for your own case at the consultation, before anything starts." },
   { q:"What will it cost, and do you take insurance?",
@@ -997,7 +997,7 @@ var ld={"@context":"https://schema.org","@graph":[
    "address":{"@type":"PostalAddress","streetAddress":C.address.street,"addressLocality":C.address.city,"addressRegion":C.address.region,"postalCode":C.address.postal,"addressCountry":C.address.country},
    "areaServed":["Beverly Hills","West Hollywood","Century City","Westwood","Bel Air","Los Angeles"],"medicalSpecialty":"Prosthodontics",
    "employee":{"@type":"Dentist","name":"Dr. Roxanne Salavati","honorificSuffix":"DMD","gender":"Female","medicalSpecialty":"Prosthodontics","alumniOf":["University of Louisville School of Dentistry","University of Illinois Chicago"]},
-   "availableService":["Porcelain veneers","No-prep veneers","Smile design","Dental crowns","Dental bridges","Dental implants","All-on-X implants","Full mouth reconstruction","Digital dentures","TMJ treatment","Sedation dentistry","Laser dentistry","Cleanings and exams"],
+   "availableService":["Teeth whitening","Composite bonding","Composite veneers","Porcelain veneers","No-prep veneers","Smile design","Dental crowns","Dental bridges","Dental implants","All-on-X implants","Full mouth reconstruction","Digital dentures","TMJ treatment","Sedation dentistry","Laser dentistry","Cleanings and exams"],
    "openingHoursSpecification":Object.keys(C.hours).reduce(function(a,k){ (C.hours[k]||[]).forEach(function(r){ a.push({"@type":"OpeningHoursSpecification","dayOfWeek":"https://schema.org/"+DAY_LABEL[k],"opens":r[0],"closes":r[1]}); }); return a; },[])},
   {"@type":"FAQPage","mainEntity":FAQ.map(function(f){ return {"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}; })}]};
 var s=document.createElement("script"); s.type="application/ld+json"; s.textContent=JSON.stringify(ld); document.head.appendChild(s);
