@@ -349,24 +349,33 @@ button{font:inherit}
 .modal .btn-row{margin-top:22px}
 
 /* ---------- Location ---------- */
-.loc{display:grid;gap:clamp(22px,2.6vw,38px);grid-template-columns:1fr;align-items:start}
-@media (min-width:960px){.loc{grid-template-columns:.95fr 1.05fr}}
-.loc-facts{display:grid;gap:12px}
-.fact{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:17px 18px}
-.fact-ico{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center;flex:none}
-.fact-ico svg{width:19px;height:19px}
-.fact b{display:block;font-size:12.4px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.fact .val,.fact a{display:block;font-size:15.6px;color:var(--ink);font-weight:600;line-height:1.45;overflow-wrap:anywhere}
-.fact a:hover{color:var(--accent-deep)}
-.hours{display:grid;gap:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;margin-top:2px}
-.hours div{display:flex;justify-content:space-between;gap:16px;padding:12px 18px;font-size:14.8px;border-bottom:1px solid var(--line-soft)}
-.hours div:last-child{border-bottom:0}
-.hours dt{color:var(--muted);font-weight:500}
-.hours dd{margin:0;color:var(--ink);font-weight:600}
-.hours .open{background:var(--accent-soft)}
-.hours .closed dd{color:var(--muted);font-weight:500}
-.map{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--soft-2);min-height:340px;height:100%}
-.map iframe{width:100%;max-width:100%;height:100%;min-height:340px;border:0;display:block}
+/* One bordered surface: map flush on the left, details on the right. */
+.locbox{
+  display:grid;grid-template-columns:1fr;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);
+}
+@media (min-width:920px){.locbox{grid-template-columns:1.15fr .85fr}}
+.locbox>*{min-width:0}
+.locbox-map{background:var(--soft-2);min-height:320px}
+.locbox-map iframe{width:100%;max-width:100%;height:100%;min-height:320px;border:0;display:block}
+@media (min-width:920px){.locbox-map{min-height:540px}}
+.locbox-info{padding:clamp(24px,2.6vw,38px);display:flex;flex-direction:column}
+.locbox-brand{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.locbox-brand svg{width:34px;height:38px;flex:none}
+.locbox-brand>span{font-weight:700;color:var(--navy);font-size:19px;line-height:1.1;letter-spacing:-.01em}
+.locbox-brand>span span{display:block;font-weight:500;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.locbox-rows{display:grid;gap:18px}
+.locbox-rows li{display:flex;gap:13px;align-items:flex-start;font-size:15.4px;line-height:1.5;color:var(--ink)}
+.locbox-ico{width:34px;height:34px;flex:none;border-radius:10px;background:var(--accent-soft);color:var(--accent-deep);display:grid;place-items:center}
+.locbox-ico svg{width:17px;height:17px}
+.locbox-rows a{font-weight:600;overflow-wrap:anywhere}
+.locbox-rows a:hover{color:var(--accent-deep)}
+.locbox-hours{display:grid;gap:7px;font-size:14.8px}
+.locbox-hours span{display:flex;justify-content:space-between;gap:14px;color:var(--ink)}
+.locbox-hours b{font-weight:600}
+.locbox-hours .closed{color:var(--muted)}
+.locbox-hours .closed b{font-weight:500}
+.locbox .btn-row{margin-top:auto;padding-top:26px}
 
 /* ---------- FAQ ---------- */
 .faq{max-width:880px;display:grid;gap:10px}
@@ -762,40 +771,42 @@ button{font:inherit}
       <h2 class="h2" id="loc-h">In Mansfield, with <span class="mark">parking right outside</span>.</h2>
       <p class="sub">Ground floor, step-free access and free surface parking. Call or email and we will send exact directions with your appointment confirmation.</p>
     </div>
-    <div class="loc">
-      <div class="loc-facts rv">
-        <div class="fact">
-          <span class="fact-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <span><b>Address</b><span class="val">725 U.S. 287 Frontage Rd, Suite 507<br>Mansfield, TX 76063</span></span>
+    <div class="locbox rv">
+      <div class="locbox-map">
+        <iframe src="https://maps.google.com/maps?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Khan Dental Studio at 725 U.S. 287 Frontage Road, Suite 507, Mansfield, Texas"></iframe>
+      </div>
+      <div class="locbox-info">
+        <div class="locbox-brand">
+          <svg viewBox="0 0 100 113.32" aria-hidden="true"><path d="M28.91 113.08C24.12 111.87 19.66 105.33 14.99 92.64C12.69 86.37 10.26 77.3 9.33 71.5C8.78 68.05 8.61 66.76 8.39 64.6C8.27 63.32 8.06 61.27 7.94 60.05C7.73 57.93 7.59 56.91 7.01 53.15C6.87 52.25 6.66 50.78 6.53 49.88C6.41 48.98 6.21 47.62 6.09 46.85C5.79 44.92 4.92 39 4.66 37.15C4.54 36.31 4.34 34.95 4.21 34.11C4.08 33.28 3.86 31.86 3.74 30.96C3.61 30.06 3.4 28.64 3.27 27.8C3.14 26.97 2.92 25.5 2.79 24.53C2.36 21.49 2.08 19.55 1.85 18.05C1.28 14.24 1.18 13.55 0.95 11.92C0.82 10.95 0.6 9.48 0.47 8.64C0.07 6.01 0.14 5.47 1.02 4.51C2.25 3.16 3.47 3.27 5.42 4.89C20.7 17.63 34.46 19.47 42.61 9.86C44.17 8.02 45.15 6.47 46.62 3.52C48.02 0.69 48.69 -0 50.01 -0C51.34 0 52.15 0.84 53.49 3.58C58.88 14.66 67.2 18.3 78.46 14.52C82.94 13.01 89.31 9.3 93.57 5.72C95.72 3.91 96.63 3.45 97.65 3.65C99.18 3.96 100.05 5.55 99.74 7.47C99.41 9.47 99.05 11.84 98.13 18.11C97.76 20.63 97.4 23.22 97.19 24.77C97.08 25.6 96.88 26.97 96.74 27.8C96.6 28.64 96.39 30.06 96.27 30.96C96.15 31.86 95.93 33.38 95.79 34.35C95.64 35.31 95.43 36.76 95.31 37.56C95.19 38.36 95 39.68 94.88 40.48C94.76 41.28 94.54 42.78 94.39 43.81C94.25 44.84 94.04 46.31 93.92 47.08C93.81 47.85 93.56 49.59 93.36 50.93C93.16 52.28 92.9 54.02 92.78 54.79C92.37 57.32 92.08 59.65 91.82 62.5C89.78 84.59 80.43 108.85 72.53 112.53C66.69 115.25 60.45 110.25 56.66 99.83C55.2 95.82 53.37 94.3 50 94.31C46.57 94.32 44.82 95.76 43.36 99.77C39.85 109.35 34.33 114.44 28.91 113.08ZM32.34 107.15C34.23 106.03 36.58 102.42 37.99 98.47C40.36 91.8 44.2 88.72 50.12 88.73C55.94 88.73 59.56 91.63 62.03 98.24C64.1 103.81 67.08 107.71 69.28 107.71C71.97 107.71 76.08 101.23 79.72 91.24C80.74 88.42 80.71 88.52 81.77 85.16C83.32 80.23 84.98 72.99 85.72 67.87C86.65 61.54 86.66 61.35 85.92 60.9C84.6 60.08 50.4 42.99 50.08 42.99C49.76 42.99 24.79 55.4 17.52 59.17C13.52 61.25 13.47 61.3 13.66 62.5C13.75 63.01 13.91 64.28 14.03 65.3C14.25 67.25 15.03 72.1 15.39 73.71C15.5 74.23 15.78 75.49 15.99 76.52C17.84 85.27 22.03 96.73 25.56 102.67C28.3 107.28 30.1 108.47 32.34 107.15Z" fill="#f6b756"/></svg>
+          <span>Khan Dental<span>Studio</span></span>
         </div>
-        <div class="fact">
-          <span class="fact-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <span><b>Phone</b><a href="tel:+18178397412" data-track="call" data-loc="location">(817) 839-7412</a></span>
-        </div>
-        <div class="fact">
-          <span class="fact-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></span>
-          <span><b>Email</b><a href="mailto:reception@khandentalstudio.com" data-track="email" data-loc="location">reception@khandentalstudio.com</a></span>
-        </div>
-        <div class="fact" style="display:block">
-          <b style="display:block;font-size:12.4px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Opening hours</b>
-          <dl class="hours">
-            <div class="open"><dt>Friday</dt><dd>12:00 pm &ndash; 7:00 pm</dd></div>
-            <div class="open"><dt>Saturday</dt><dd>10:00 am &ndash; 3:00 pm</dd></div>
-            <div class="open"><dt>Sunday</dt><dd>10:00 am &ndash; 3:00 pm</dd></div>
-            <div class="closed"><dt>Monday &ndash; Thursday</dt><dd>Closed</dd></div>
-          </dl>
-        </div>
-        <div class="btn-row" style="margin-top:16px">
-          <a class="btn btn-primary" href="https://maps.google.com/?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063" target="_blank" rel="noopener" data-track="directions" data-loc="location">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-            Get directions
-          </a>
-          <a class="btn btn-ghost" href="tel:+18178397412" data-track="call" data-loc="location">Call (817) 839-7412</a>
+        <ul class="locbox-rows">
+          <li>
+            <span class="locbox-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span>725 U.S. 287 Frontage Rd, Suite 507<br>Mansfield, TX 76063</span>
+          </li>
+          <li>
+            <span class="locbox-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <span><a href="tel:+18178397412" data-track="call" data-loc="location">(817) 839-7412</a></span>
+          </li>
+          <li>
+            <span class="locbox-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <span><a href="mailto:reception@khandentalstudio.com" data-track="email" data-loc="location">reception@khandentalstudio.com</a></span>
+          </li>
+          <li>
+            <span class="locbox-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <span class="locbox-hours">
+              <span><b>Friday</b> 12:00 pm &ndash; 7:00 pm</span>
+              <span><b>Saturday</b> 10:00 am &ndash; 3:00 pm</span>
+              <span><b>Sunday</b> 10:00 am &ndash; 3:00 pm</span>
+              <span class="closed"><b>Monday &ndash; Thursday</b> Closed</span>
+            </span>
+          </li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-accent" href="tel:+18178397412" data-track="call" data-loc="location">Call (817) 839-7412</a>
           <a class="btn btn-ghost" href="https://www.khandentalstudio.com/contact-us" target="_blank" rel="noopener" data-track="book" data-loc="location">Book Online</a>
         </div>
-      </div>
-      <div class="map rv d1">
-        <iframe src="https://maps.google.com/maps?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Khan Dental Studio at 725 U.S. 287 Frontage Road, Suite 507, Mansfield, Texas"></iframe>
       </div>
     </div>
   </div>
