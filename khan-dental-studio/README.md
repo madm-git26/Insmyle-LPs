@@ -73,7 +73,7 @@ addresses both deliberately:
   are three ways to start" — so a searcher confirms intent within one scroll.
 - **Offer echo.** `$55` appears in the hero badge, the final CTA, the FAQ, the
   form's reason list and the sticky bar, matching the ad's promotion.
-- **Substance, not a splash page.** ~2,040 words covering the 11 general-dentistry services,
+- **Substance, not a splash page.** ~1,900 words covering the 11 general-dentistry services,
   technology, the dentist's credentials, insurance and payment, nine
   testimonials and 9 FAQs. Thin landing pages are the single most common cause
   of a poor landing page experience score — this has room to lose a little more
@@ -91,6 +91,11 @@ order they occur: *Are you open when I'm free?* → *What does the first visit
 cost?* → *Why you and not the chain down the road?* → *Do you do what I need?* →
 *Will it take three appointments?* → *Who is the dentist?* → *Do other people
 trust you?* → *Do you take my plan?* → *Where are you?* → *Everything else.*
+
+The "Why Khan Dental Studio" block that used to answer *why you and not the
+chain down the road?* was removed on instruction. Its four differentiators —
+evening and weekend hours, one-visit technology, gentle care, clear pricing —
+now survive only as hero bullets and marquee items.
 
 ### Built for mobile first
 
