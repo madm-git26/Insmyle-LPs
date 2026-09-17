@@ -72,4 +72,6 @@ assets/README.md                        which image goes where
 docs/SETUP.md                           what to fill in before publishing
 docs/INTENT-MAP.md                      keyword intent → page decisions (emergency)
 docs/INTENT-MAP-prosthodontist.md       keyword intent → page decisions (prosthodontist)
+design-system/MASTER.md                 design system in the ui-ux-pro-max Master + Overrides format
+design-system/pages/*.md                per-page overrides (emergency, prosthodontist)
 ```

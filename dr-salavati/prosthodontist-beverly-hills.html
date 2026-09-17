@@ -43,6 +43,15 @@ a,button,[role="tab"]{touch-action:manipulation}
   --sh-lg:0 40px 90px rgba(11,20,48,.22);
   --maxw:1180px;
   --bar-h:0px;
+  /* semantic aliases (design-system/MASTER.md) */
+  --surface:var(--ivory); --surface-2:var(--paper); --surface-3:var(--sand);
+  --surface-dark:var(--navy-900); --surface-dark-2:var(--navy-800);
+  --primary:var(--navy-700); --primary-hover:var(--navy-600); --on-primary:#fff;
+  --accent:var(--gold-400); --accent-strong:var(--gold-700); --accent-line:var(--gold-500);
+  --urgent:var(--maroon); --on-surface:var(--ink); --on-surface-muted:var(--muted);
+  --on-dark:#E6E9F2; --on-dark-muted:#AFB7CE;
+  /* spacing scale — density 3, spacious */
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px; --space-5:48px; --space-6:64px; --space-7:96px;
 }
 
 html{scroll-behavior:smooth;scroll-padding-top:88px}
@@ -152,8 +161,8 @@ body{
 
 /* ---------- SECTION SHELL ---------- */
 section{position:relative}
-.sec{padding-block:58px}
-@media(min-width:768px){.sec{padding-block:82px}}
+.sec{padding-block:var(--space-6)}
+@media(min-width:768px){.sec{padding-block:var(--space-7)}}
 .sec-lt{background:var(--ivory)}
 .sec-pp{background:var(--paper)}
 .sec-sd{background:var(--sand)}
@@ -173,7 +182,13 @@ h3{font-size:19px;font-weight:650;letter-spacing:-.015em;color:var(--navy-800);l
 .sec-dk h3{color:#fff}
 .lede{font-size:17.5px;color:var(--muted);max-width:60ch;line-height:1.66}
 .sec-dk .lede{color:#AFB7CE}
-.sec-hd{max-width:720px;margin-bottom:38px}
+.sec-hd{max-width:720px;margin-bottom:var(--space-5)}
+@media(min-width:900px){
+  .sec-hd:not(.center){max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;align-items:end}
+  .sec-hd:not(.center) .lbl{grid-column:1;grid-row:1;align-self:start}
+  .sec-hd:not(.center) h2{grid-column:1;grid-row:2;margin-bottom:0}
+  .sec-hd:not(.center) .lede{grid-column:2;grid-row:1/3;align-self:end;padding-bottom:6px;max-width:52ch}
+}
 
 /* ---------- STEPS TIMELINE ---------- */
 .steps{display:grid;gap:14px;counter-reset:s}
@@ -376,6 +391,14 @@ h1 em{font-style:italic;color:var(--gold-600)}
 .creds-l .row{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap}
 .creds-l img{height:28px;width:auto;opacity:.85}
 .cred-fb{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--navy-700);border:1px solid var(--line);border-radius:6px;padding:6px 11px;background:var(--paper)}
+/* proof ribbon — verified facts under the CTAs */
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-bottom:var(--space-3)}
+@media(min-width:640px){.proof{grid-template-columns:repeat(4,1fr)}}
+.proof div{background:var(--surface-2);padding:14px 16px 13px}
+.proof b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(22px,2.4vw,27px);line-height:1.1;color:var(--primary);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.proof b em{font-style:italic;color:var(--gold-600)}
+.proof span{display:block;font-size:12.5px;line-height:1.4;color:var(--on-surface-muted);margin-top:4px}
+
 /* photo stack (light) */
 .stack{position:relative;margin-top:34px;perspective:1300px}
 @media(min-width:1000px){.stack{margin-top:0}}
@@ -551,6 +574,12 @@ h1 em{font-style:italic;color:var(--gold-600)}
           <span class="btn-stack"><span>Call <span data-phone>(424) 292-8732</span></span><span class="btn-sub">Mon–Fri 8 AM – 5 PM</span></span>
         </a>
       </div>
+      <div class="proof rv" aria-label="About the practice">
+        <div><b>Board<em>-</em>certified</b><span>prosthodontist, ACP member</span></div>
+        <div><b>3<em>-</em>yr</b><span>specialty residency, University of Illinois Chicago</span></div>
+        <div><b>1<em>–</em>2</b><span>patients a day, by design</span></div>
+        <div><b>~10 yrs</b><span>in practice</span></div>
+      </div>
       <div class="creds-l">
         <p class="lb">Professional affiliations</p>
         <div class="row">
@@ -569,8 +598,8 @@ h1 em{font-style:italic;color:var(--gold-600)}
           <div class="ph-fb" style="display:none">Add <code>assets/dr-salavati-lab.jpg</code></div>
           <span class="sheen" aria-hidden="true"></span>
         </figure>
-        <div class="fcard fc-1"><p class="k">Board-certified</p><p class="v">Three years of specialty training beyond dental school.</p></div>
-        <div class="fcard fc-2"><p class="k">One patient at a time</p><p class="v">A small number of appointments each day, by design.</p></div>
+        <div class="fcard fc-1"><p class="k">Metal-free where possible</p><p class="v">Ceramic and zirconia restorations; SDS ceramic implants.</p></div>
+        <div class="fcard fc-2"><p class="k">Digital preview</p><p class="v">See the proposed smile before treatment begins.</p></div>
       </div>
     </div>
   </div>
@@ -736,7 +765,7 @@ h1 em{font-style:italic;color:var(--gold-600)}
 <!-- ========================= FAQ ========================= -->
 <section class="sec sec-sd" aria-labelledby="faq-h">
   <div class="wrap">
-    <div class="sec-hd rv" style="text-align:center;margin-inline:auto">
+    <div class="sec-hd center rv" style="text-align:center;margin-inline:auto">
       <p class="lbl" style="justify-content:center">Straight answers</p>
       <h2 id="faq-h">Questions people ask <em>before they book</em></h2>
     </div>
