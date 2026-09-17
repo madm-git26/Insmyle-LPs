@@ -45,20 +45,23 @@ because none could be verified — see [Social proof](#social-proof-is-real) bel
 
 | Mechanism | Count |
 |---|---|
-| Click-to-call links (`tel:+18178397412`) | 13 |
-| Scroll-to-form CTAs | 17 |
-| "Get directions" links | 4 |
-| Sticky mobile bar (Call / Book $99 visit) | always visible under 900px |
+| "Book Online" buttons | 9 (a 10th `contact-us` link is the footer's "Contact") |
+| Click-to-call links (`tel:+18178397412`) | 12 |
+| "Get directions" links | 2 |
+| `mailto:` links | 2 |
+| Paired Call + Book Online rows | 7 (hero, services, crowns, doctor, reviews, location, final) |
+| Sticky mobile bar (Call now / Book Online) | always visible under 900px |
 
-**This page has no form.** Every conversion is a phone call, so the number is never
-more than a thumb away: 17 `tel:` links, and a sticky call bar pinned to the bottom
-of every phone viewport.
+**This page has no form of its own.** Every CTA row offers both actions — the
+phone number first, "Book Online" second — and a sticky bar pins both to the
+bottom of every phone viewport. ⚠️ Book Online is not yet a working path: see
+the launch blocker above.
 
-⚠️ **The cost of that, stated plainly.** The practice is closed Monday to Thursday.
-A call-only page cannot capture anything on the four weekdays when most people
-search — they ring, nobody answers, and the click is spent. The only midweek path
-left is the `mailto:` in the "Email the front desk" card and in the location block.
-If weekday spend is ever wasted, that is the reason, and a form is the fix.
+⚠️ **Midweek traffic, stated plainly.** The practice is closed Monday to Thursday,
+so the phone goes unanswered on the four weekdays when most people search. Book
+Online and the two `mailto:` links are the only paths that can capture a lead
+midweek — which is exactly why the Book Online destination has to be made to
+work. Until it does, weekday spend converts on almost nothing.
 
 ### Structured for Quality Score
 
