@@ -31,12 +31,13 @@ Every CTA carries `data-track` and `data-loc`. A delegated listener pushes to
 
 | `dataLayer` event | Fires on | `cta_location` values |
 |---|---|---|
-| `kds_call` | any `tel:` link | `header`, `hero`, `form`, `intent`, `offer`, `services`, `crowns`, `reviews`, `location`, `final`, `sticky` |
+| `kds_call` | any `tel:` link | `intent`, `sticky` |
+| `kds_book` | any Book Online button | `header`, `hero`, `services`, `crowns`, `doctor`, `reviews`, `location`, `final`, `sticky` |
 | `kds_directions` | Google Maps links | `intent`, `location`, `final` |
 | `kds_email` | either `mailto:` link | `intent`, `location` |
 
-**Recommended primary conversion:** `kds_call`. Track `kds_email` and
-`kds_directions` as secondary so they inform Smart Bidding without inflating CPA.
+**Recommended primary conversion:** `kds_call` today; `kds_book` once the
+booking destination captures leads. Track `kds_email` and `kds_directions` as secondary so they inform Smart Bidding without inflating CPA.
 
 To report a value-bearing Google Ads conversion, fire it alongside the call event
 — add this inside `track()` in the page's script, guarded to the call action:
@@ -67,15 +68,42 @@ Two options, both compatible with the page as written:
   every visible instance is `(817) 839-7412` and every `href` is
   `tel:+18178397412`, so a single find/replace rule covers the page.
 
-## 3. There is no form
+## 3. ⚠️ "Book Online" currently leads to a dead end — fix before spending
 
-The page was reduced to a single conversion path: the phone. There is no form,
-no hidden fields and no `SUBMIT TARGET` to wire up. What that changes:
+Every CTA now reads **Book Online** and points at
+`https://www.khandentalstudio.com/contact-us`. That page returns 200, but its
+form says, in its own words:
+
+> "demo form does not transmit data — for real bookings please call (817) 839-7412."
+
+**So a visitor who taps Book Online fills in a form that goes nowhere, and the
+practice never hears about it.** Every click is paid for and every lead is lost.
+One of these has to happen before the campaign is enabled:
+
+1. **Make the contact-us form live** (wire it to the practice's inbox or CRM).
+   Best outcome: the label is true and the click-out works.
+2. **Point the buttons back at `tel:+18178397412`** and rename them — booking by
+   phone is still booking, but a `tel:` link labelled "Book Online" is a false
+   affordance: it opens the dialler when the visitor expected a form.
+3. **Put a form back on this landing page** and point Book Online at it. Best
+   for conversion rate — no click-out, and it captures Monday-to-Thursday
+   traffic when the practice is closed.
+
+Until one is done, the honest conversion path on this page is the phone number
+in the header, the intent block and the sticky mobile bar.
+
+## 4. Event names changed with the buttons
+
+There is still no form on this page — no hidden fields, no `SUBMIT TARGET`.
 
 - `kds_form_submit` and `kds_generate_lead` **never fire**. Do not configure a
   Google Ads conversion against either.
-- **`kds_call` is the conversion.** Import it as the primary action, and treat
-  `kds_email` as secondary.
+- **`kds_book` is new** — it fires on the nine Book Online buttons. It is an
+  outbound click, not a booking, so it only becomes a real conversion once the
+  destination actually captures the lead (see the warning above).
+- **`kds_call` still fires** from the header, the intent block's phone card and
+  the sticky bar's Call button. While Book Online is a dead end, this is the
+  only event that corresponds to a lead the practice actually receives.
 - `gclid`, `gbraid`, `wbraid` and the UTMs are still read from the query string
   and kept in `sessionStorage` under `kds_*`. A DNI script can read them at call
   time, which is what makes **offline conversion import** possible — the only way
@@ -85,7 +113,7 @@ Because the practice is closed Monday to Thursday, a call-only page has no way t
 capture a midweek lead. Either restrict ad scheduling to hours somebody answers,
 or accept that weekday clicks convert only through the `mailto:` links.
 
-## 4. Suggested campaign mapping
+## 5. Suggested campaign mapping
 
 The page is written for one tight ad group so the ad → keyword → page chain
 stays literal, which is what Quality Score's *landing page experience* and

@@ -22,10 +22,13 @@ Three things must be connected. Full instructions in [`docs/TRACKING.md`](docs/T
 
 1. **Add the Google tag** — the page fires all conversion events but ships no
    container, so you choose gtag or GTM.
-2. **Set up call tracking** — calls are the *only* conversion on this page, so
-   they have to be measured. Google forwarding numbers or a DNI provider both
-   work; see `docs/TRACKING.md`.
-3. **Publish a privacy policy and link it.** ⚠️ **Launch blocker.** Google Ads
+2. **⚠️ Make "Book Online" go somewhere real.** All nine Book Online buttons
+   point at `khandentalstudio.com/contact-us`, whose form states it is a demo
+   that "does not transmit data". Paid clicks would be lost. Fix the form, or
+   repoint the buttons — see `docs/TRACKING.md` §3.
+3. **Set up call tracking** — Google forwarding numbers or a DNI provider; see
+   `docs/TRACKING.md`.
+4. **Publish a privacy policy and link it.** ⚠️ **Launch blocker.** Google Ads
    requires a reachable privacy policy on any page collecting personal data. The
    main site has none: its footer privacy and accessibility links are `href="#"`
    and both paths return 404. The footer here carries a commented-out placeholder
