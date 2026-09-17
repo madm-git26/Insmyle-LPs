@@ -107,12 +107,11 @@ button{font:inherit}
 /* Compact header action. 44px, not the brand sheet's 42px, to clear the
    minimum touch-target size. */
 .btn-sm{min-height:44px;padding:11px 18px;font-size:14.2px}
-.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;min-width:0}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px;min-width:0}
 /* Grid and flex items default to min-width:auto, so any non-shrinkable child
    (a button, a long email) widens the whole track. Opt every track out. */
 .grid>*,.qa>*,.loc>*,.steps>*,.svc-grid>*,.rev-grid>*,.pay>*,
 .ins>*,.hero .inner>*,.doc>*,.loc-facts>*,.rev-stats>*{min-width:0}
-.center .btn-row{justify-content:center}
 
 /* ---------- Header ---------- */
 .hdr{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
@@ -361,7 +360,6 @@ button{font:inherit}
 /* ---------- Final CTA ---------- */
 .final{text-align:center}
 .final .h2,.final .sub{margin-inline:auto}
-.final .btn-row{justify-content:center}
 
 /* ---------- Footer ---------- */
 .ftr{background:var(--navy);color:rgba(255,255,255,.62);padding-block:26px;border-top:1px solid rgba(255,255,255,.12);font-size:13.4px}
