@@ -272,10 +272,12 @@ button{font:inherit}
 /* ---------- Doctor ---------- */
 .doc{display:grid;gap:clamp(24px,3vw,48px);align-items:center;grid-template-columns:1fr}
 @media (min-width:900px){.doc{grid-template-columns:.85fr 1.15fr}}
-.doc-media{border-radius:var(--radius);overflow:hidden;background:var(--soft-2);box-shadow:var(--shadow-lg);max-width:430px}
-.doc-media img{width:100%;aspect-ratio:900/1100;object-fit:cover}
-.doc-creds{display:grid;gap:12px;margin-top:24px}
-.doc-creds li{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm)}
+.doc-media{border-radius:var(--radius);overflow:hidden;background:var(--soft-2);box-shadow:var(--shadow-lg);max-width:440px;position:sticky;top:96px}
+.doc-media img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%}
+.doc-creds{display:grid;gap:12px;margin-top:26px}
+@media (min-width:640px){.doc-creds{grid-template-columns:1fr 1fr}}
+.doc-creds li{display:flex;gap:12px;align-items:flex-start;padding:15px 17px;background:var(--soft);border:1px solid var(--line);border-radius:var(--radius-sm);transition:background .3s,border-color .3s}
+.doc-creds li:hover{background:#fff;border-color:var(--accent)}
 .doc-creds svg{width:19px;height:19px;color:var(--accent-deep);flex:none;margin-top:2px}
 .doc-creds b{display:block;font-size:14.8px;color:var(--ink);font-weight:600}
 .doc-creds span{display:block;font-size:13.6px;color:var(--muted);margin-top:3px;line-height:1.45}
@@ -293,14 +295,23 @@ button{font:inherit}
   .rev-stat b{font-size:32px;flex:none;min-width:76px}
   .rev-stat span{margin-top:0;font-size:14.6px}
 }
-.rev-grid{display:grid;gap:14px;grid-template-columns:1fr}
-@media (min-width:700px){.rev-grid{grid-template-columns:1fr 1fr}}
-/* Eight cards, four across, two rows. The 4-up track only starts at 1180px —
-   below that four columns squeeze the quotes under ~200px of text width. */
-@media (min-width:1180px){
-  .rev-grid{grid-template-columns:repeat(4,1fr);gap:13px}
-  .rev{padding:clamp(18px,1.6vw,22px)}
+/* One horizontal track the reader swipes or drags through, rather than two
+   stacked rows. The cards keep a fixed width so the quotes never squeeze. */
+.rev-grid{
+  display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
+  padding-bottom:14px;scroll-padding-left:0;
 }
+.rev-grid:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:12px}
+.rev{flex:0 0 clamp(258px,25vw,318px);scroll-snap-align:start;padding:clamp(18px,1.8vw,24px)}
+/* A slim track so it is obvious there is more to the right. */
+.rev-grid::-webkit-scrollbar{height:8px}
+.rev-grid::-webkit-scrollbar-track{background:var(--soft-2);border-radius:99px}
+.rev-grid::-webkit-scrollbar-thumb{background:#c9c9cf;border-radius:99px}
+.rev-grid::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+.rev-grid{scrollbar-width:thin;scrollbar-color:#c9c9cf var(--soft-2)}
+.rev-hint{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13.2px;color:var(--muted)}
+.rev-hint svg{width:16px;height:16px;color:var(--accent-deep)}
 .rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .4s}
 .rev:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .stars{display:flex;gap:3px;margin-bottom:13px}
@@ -319,6 +330,23 @@ button{font:inherit}
 .pay{display:grid;gap:14px;grid-template-columns:1fr;margin-top:clamp(28px,3vw,44px)}
 @media (min-width:640px){.pay{grid-template-columns:1fr 1fr}}
 @media (min-width:1040px){.pay{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- Accepted-plans dialog ---------- */
+.modal{
+  width:min(680px,calc(100vw - 32px));border:1px solid var(--line);border-radius:var(--radius);
+  padding:0;background:#fff;color:var(--ink-2);box-shadow:0 40px 90px -40px rgba(0,3,66,.55);
+}
+.modal::backdrop{background:rgba(0,3,66,.55);backdrop-filter:blur(3px)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:clamp(20px,2.4vw,26px);border-bottom:1px solid var(--line)}
+.modal-x{width:40px;height:40px;flex:none;display:grid;place-items:center;cursor:pointer;
+  background:var(--soft);border:1px solid var(--line);border-radius:50%;color:var(--ink);transition:background .25s,border-color .25s}
+.modal-x:hover{background:#fff;border-color:var(--ink)}
+.modal-x svg{width:19px;height:19px}
+.modal-body{padding:clamp(20px,2.4vw,26px);max-height:min(70vh,640px);overflow-y:auto}
+.modal-lead{color:var(--muted);font-size:15.2px;line-height:1.55;margin-bottom:18px}
+.modal-note{color:var(--muted);font-size:14.2px;line-height:1.55;margin-top:18px}
+.modal .btn-row{margin-top:22px}
 
 /* ---------- Location ---------- */
 .loc{display:grid;gap:clamp(22px,2.6vw,38px);grid-template-columns:1fr;align-items:start}
@@ -500,20 +528,20 @@ button{font:inherit}
     <div class="qa">
       <div class="qa-card rv">
         <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-        <h3 class="h4">Call and speak to our front desk</h3>
-        <p>Reach a real person during clinic hours &mdash; Friday 12&ndash;7pm, Saturday and Sunday 10am&ndash;3pm. We&rsquo;ll check your benefits while you&rsquo;re on the phone.</p>
-        <a class="btn btn-primary btn-block" href="tel:+18178397412" data-track="call" data-loc="intent">(817) 839-7412</a>
+        <h3 class="h4">Call the front desk</h3>
+        <p>A real person on the line during clinic hours &mdash; Friday 12&ndash;7pm, Saturday and Sunday 10am&ndash;3pm.</p>
+        <a class="btn btn-accent btn-block" href="tel:+18178397412" data-track="call" data-loc="intent">(817) 839-7412</a>
       </div>
       <div class="qa-card rv d1">
-        <span class="card-ico alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-        <h3 class="h4">Email the front desk</h3>
-        <p>Closed Monday to Thursday, so email is the quickest way to reach us midweek. We reply on the next clinic day with a time that fits.</p>
-        <a class="btn btn-accent btn-block" href="mailto:reception@khandentalstudio.com?subject=Appointment%20request" data-track="email" data-loc="intent">reception@khandentalstudio.com</a>
+        <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></span>
+        <h3 class="h4">Email us midweek</h3>
+        <p>Closed Monday to Thursday, so email is the quickest way to reach us. We reply on the next clinic day.</p>
+        <a class="btn btn-ghost btn-block" href="mailto:reception@khandentalstudio.com?subject=Appointment%20request" data-track="email" data-loc="intent">Send an email</a>
       </div>
       <div class="qa-card rv d2">
         <span class="card-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-        <h3 class="h4">Drive over &mdash; parking is outside</h3>
-        <p>725 U.S. 287 Frontage Rd, Suite 507, Mansfield, TX 76063. Ground floor, step-free access and free surface parking at the door.</p>
+        <h3 class="h4">Drive over &mdash; parking outside</h3>
+        <p>725 U.S. 287 Frontage Rd, Suite 507. Ground floor, step-free access and free parking at the door.</p>
         <a class="btn btn-ghost btn-block" href="https://maps.google.com/?q=725+US-287+Frontage+Rd+Suite+507+Mansfield+TX+76063" target="_blank" rel="noopener" data-track="directions" data-loc="intent">Get directions</a>
       </div>
     </div>
@@ -638,23 +666,23 @@ button{font:inherit}
       <div class="rev-stat"><b>12</b><span>Years of word of mouth</span></div>
     </div>
 
-    <div class="rev-grid">
+    <div class="rev-grid" tabindex="0" role="region" aria-label="Patient reviews, scroll for more">
       <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Dr. Khan walked me through every option on the screen before touching a thing. First dentist my husband has actually looked forward to seeing.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">M</span><span><b>Marissa H.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d1">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Cracked a molar on a Thursday night. They booked me Friday evening and I walked out with a permanent crown the same visit. Unreal.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">D</span><span><b>Daniel W.</b><span>Arlington, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d2">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;I avoided dentists for eleven years out of pure anxiety. Nobody made me feel bad about it. We built a plan and finished it in four visits.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">E</span><span><b>Erin K.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d3">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Weekend hours changed everything for us. Three kids, one Saturday morning, zero meltdowns &mdash; and nobody rushed them.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">P</span><span><b>Priya N.</b><span>Keller, TX</span></span></footer>
@@ -664,23 +692,24 @@ button{font:inherit}
         <blockquote><p>&ldquo;Got a second opinion here after being quoted for six crowns elsewhere. I needed two. That honesty earned my whole family.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">C</span><span><b>Chris L.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d1">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;My six-year-old asked when she can go back. I have never written a review in my life but that deserved one.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">T</span><span><b>Tanya B.</b><span>Mansfield, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d2">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Implant placed in March, crown in July, and I genuinely cannot tell which tooth it is any more.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">R</span><span><b>Robert F.</b><span>Benbrook, TX</span></span></footer>
       </figure>
-      <figure class="rev rv d3">
+      <figure class="rev rv">
         <div class="stars" role="img" aria-label="Five star review"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
         <blockquote><p>&ldquo;Kelsey found $1,400 of benefits my previous office told me I did not have. That alone was worth switching.&rdquo;</p></blockquote>
         <footer><span class="avatar" aria-hidden="true">A</span><span><b>Amanda J.</b><span>Mansfield, TX</span></span></footer>
       </figure>
     </div>
 
+    <p class="rev-hint rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> Scroll for more of the last hundred reviews</p>
     <div class="btn-row" style="margin-top:38px">
       <a class="btn btn-primary btn-lg" href="tel:+18178397412" data-track="call" data-loc="reviews">Call (817) 839-7412</a>
       <a class="btn btn-ghost btn-lg" href="https://www.khandentalstudio.com/contact-us" target="_blank" rel="noopener" data-track="book" data-loc="reviews">Book Online</a>
@@ -696,11 +725,14 @@ button{font:inherit}
       <p class="sub">We file your claim for you either way &mdash; in-network or out. Bring your card to the first visit and we will verify your benefits before anything is scheduled.</p>
     </div>
     <ul class="ins rv">
-      <li>Delta Dental</li><li>Cigna</li><li>Aetna</li><li>MetLife</li><li>Guardian</li>
-      <li>United Concordia</li><li>United Healthcare</li><li>Humana</li><li>GEHA Connection</li>
-      <li>Ameritas</li><li>Principal</li><li>Anthem BCBS</li><li>Careington</li><li>Dental Select</li><li>Assurant</li>
+      <li>Delta Dental</li><li>Cigna</li><li>Aetna</li><li>MetLife</li><li>Guardian</li><li>United Healthcare</li>
     </ul>
-    <p class="sub center rv" style="margin-top:22px">Not listed? We are happy to file out-of-network on your behalf &mdash; most plans still cover a good share.</p>
+    <div class="btn-row rv" style="margin-top:20px">
+      <button class="btn btn-ghost" type="button" data-open-plans aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        See all 15 accepted plans
+      </button>
+    </div>
 
     <div class="pay">
       <article class="card rv">
@@ -861,6 +893,30 @@ button{font:inherit}
   <a class="btn btn-accent" href="https://www.khandentalstudio.com/contact-us" target="_blank" rel="noopener" data-track="book" data-loc="sticky">Book Online</a>
 </div>
 
+
+<!-- ====================== ACCEPTED PLANS DIALOG ====================== -->
+<dialog class="modal" id="plans" aria-labelledby="plans-h">
+  <div class="modal-head">
+    <h2 class="h3" id="plans-h">Plans we accept</h2>
+    <button class="modal-x" type="button" data-close-plans aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="modal-lead">In-network with the major PPO carriers, and we file the claim for every plan we accept &mdash; in network or out.</p>
+    <ul class="ins">
+      <li>Delta Dental</li><li>Cigna</li><li>Aetna</li><li>MetLife</li><li>Guardian</li>
+      <li>United Concordia</li><li>United Healthcare</li><li>Humana</li><li>GEHA Connection</li>
+      <li>Ameritas</li><li>Principal</li><li>Anthem BCBS</li><li>Careington</li><li>Dental Select</li><li>Assurant</li>
+    </ul>
+    <p class="modal-note">Not listed? We are happy to file out-of-network on your behalf &mdash; most plans still cover a good share. Bring your card to the first visit and we will verify your benefits before anything is scheduled.</p>
+    <div class="btn-row">
+      <a class="btn btn-accent" href="tel:+18178397412" data-track="call" data-loc="plans">Call (817) 839-7412</a>
+      <a class="btn btn-ghost" href="https://www.khandentalstudio.com/contact-us" target="_blank" rel="noopener" data-track="book" data-loc="plans">Book Online</a>
+    </div>
+  </div>
+</dialog>
+
 <script>
 (function(){
   "use strict";
@@ -891,6 +947,24 @@ button{font:inherit}
     if (v) { try { sessionStorage.setItem('kds_' + k, v); } catch(e){} }
     try { store[k] = v || sessionStorage.getItem('kds_' + k) || ''; } catch(e){ store[k] = v || ''; }
   });
+  /* ---- Accepted-plans dialog ----
+     Native <dialog> so focus trapping, Esc and inert-background all come from
+     the browser rather than hand-rolled JS. */
+  var plans = document.getElementById('plans');
+  if (plans) {
+    document.addEventListener('click', function(e){
+      if (e.target.closest('[data-open-plans]')) {
+        if (typeof plans.showModal === 'function') { plans.showModal(); }
+        else { plans.setAttribute('open',''); }   /* very old browsers */
+        track('plans_open', 'insurance');
+        return;
+      }
+      if (e.target.closest('[data-close-plans]')) { plans.close(); return; }
+      /* click the backdrop (the dialog element itself, outside its panel) */
+      if (e.target === plans) plans.close();
+    });
+  }
+
   /* ---- Conversion tracking hooks ----
      This page is call-only: kds_call is the conversion. gclid and the UTMs are
      still captured into sessionStorage so a call-tracking script (or offline

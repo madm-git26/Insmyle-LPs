@@ -35,6 +35,7 @@ Every CTA carries `data-track` and `data-loc`. A delegated listener pushes to
 | `kds_book` | any Book Online button | `header`, `hero`, `services`, `crowns`, `doctor`, `reviews`, `location`, `final`, `sticky` |
 | `kds_directions` | Google Maps links | `intent`, `location`, `final` |
 | `kds_email` | either `mailto:` link | `intent`, `location` |
+| `kds_plans_open` | the "See all 15 accepted plans" dialog opening | `insurance` |
 
 **Recommended primary conversion:** `kds_call` today; `kds_book` once the
 booking destination captures leads. Track `kds_email` and `kds_directions` as secondary so they inform Smart Bidding without inflating CPA.
