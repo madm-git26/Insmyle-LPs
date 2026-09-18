@@ -71,6 +71,7 @@ button{font:inherit}
 .sub{color:var(--muted);max-width:62ch;margin-top:15px;font-size:clamp(15px,1.3vw,17.5px);line-height:1.55}
 .center{text-align:center}
 .center .h2,.center .sub{margin-left:auto;margin-right:auto}
+.center .sub{max-width:60ch}
 .sec-head{margin-bottom:clamp(30px,3.6vw,52px)}
 .mark{font-weight:600;color:var(--ink);box-shadow:inset 0 -.14em 0 var(--accent)}
 .section-dark .mark,.hero .mark{color:#fff}
@@ -330,7 +331,7 @@ button{font:inherit}
 .rev footer span span{display:block;font-size:12.8px;color:var(--muted);margin-top:2px}
 
 /* ---------- Insurance ---------- */
-.ins{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start;margin-top:8px}
+.ins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
 .ins li{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius-chip);padding:12px 20px;font-size:14.6px;font-weight:600;color:var(--ink);transition:border-color .3s,transform .4s var(--ease)}
 .ins li:hover{border-color:var(--accent);transform:translateY(-2px)}
 .pay{display:grid;gap:14px;grid-template-columns:1fr;margin-top:clamp(28px,3vw,44px)}
@@ -734,7 +735,7 @@ button{font:inherit}
 <!-- ====================== INSURANCE ====================== -->
 <section class="section" aria-labelledby="ins-h">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="sec-head center rv">
       <span class="eyebrow">Insurance &amp; payment</span>
       <h2 class="h2" id="ins-h">In-network with the plans North Texas <span class="mark">actually has</span>.</h2>
       <p class="sub">We file your claim for you either way &mdash; in-network or out. Bring your card to the first visit and we will verify your benefits before anything is scheduled.</p>
