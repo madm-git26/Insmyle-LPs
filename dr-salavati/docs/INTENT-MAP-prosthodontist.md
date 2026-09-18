@@ -73,11 +73,13 @@ Worth doing on the website too: a searcher who clicks through to the main
 site from this page will not find bonding or whitening there, which is a
 small trust gap and a missed organic opportunity.
 
-## Section order and why
+## Section order and why (v2 relayout)
 
-Hero → what a prosthodontist is → goal selector → veneer offer → consultation
-process → doctor → materials & technology → reviews → location → FAQ → final
-CTA. Proof of specialty comes first because it is the keyword; the goal
+Hero (portrait bleeds right) → bento proof band → **prosthodontist vs general
+dentist comparison** → goal selector (chip tabs, two-column panel) → veneer
+offer band → consultation timeline → doctor (dark, portrait bleeds left) →
+materials bento → featured review + grid → location (map left) → FAQ
+(two-column) → final CTA. Proof of specialty comes first because it is the keyword; the goal
 selector converts the abstract specialty into "my situation"; the offer sits
 directly under it where smile-design searchers will have just self-selected;
 process before doctor because "will I be sold to" is the bigger objection

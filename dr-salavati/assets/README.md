@@ -10,7 +10,7 @@ so you can add them one at a time.
 | `logo-white.png` | Reversed logo — white text, gold mark | Footer, on navy | PNG with transparency, ~480×92 |
 | `smile-expert.png` | Gold "SMILE EXPERT" wordmark | Currently unused — see note below | PNG with transparency |
 | `dr-salavati-operatory.jpg` | Dr. Salavati in coral scrubs beside the dental chair | **Hero photo** | Portrait 4:5, ≥800×1000, WebP or JPG ≤120 KB |
-| `dr-salavati-lab.jpg` | Dr. Salavati in white coat in the dental laboratory | Prosthodontics section | Landscape 4:3, ≥960×720 |
+| `dr-salavati-lab.webp` | Dr. Salavati in white coat in the dental laboratory (supplied) | Prosthodontist hero, emergency prosthodontics section | 435×652 webp as supplied |
 | `dr-salavati-reception.jpg` | Reception desk with orchids | Doctor section | Landscape 4:3, ≥960×720 |
 | `acp.png` | American College of Prosthodontists | Hero credential rail + affiliation cards | Transparent PNG, ~180px tall source |
 | `iaomt.png` | IAOMT | same | same |
