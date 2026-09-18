@@ -77,7 +77,8 @@ small trust gap and a missed organic opportunity.
 
 Hero (portrait bleeds right) → bento proof band → **prosthodontist vs general
 dentist comparison** → goal selector (chip tabs, two-column panel) → veneer
-offer band → consultation timeline → doctor (dark, portrait bleeds left) →
+offer band → **before/after results** (three watermarked cases from the site) →
+consultation timeline → doctor (dark, portrait bleeds left) →
 materials bento → featured review + grid → location (map left) → FAQ
 (two-column) → final CTA. Proof of specialty comes first because it is the keyword; the goal
 selector converts the abstract specialty into "my situation"; the offer sits

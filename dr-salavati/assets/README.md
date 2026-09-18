@@ -1,37 +1,31 @@
 # Assets
 
-Drop the practice's real image files here using exactly these filenames.
-The page references them by name and falls back gracefully if one is missing,
-so you can add them one at a time.
+Every image on both landing pages is **embedded in the HTML as a data URI**, so
+each page is a single self-contained file that renders anywhere. The files in
+this folder are the sources, kept for reference and for a future hosted build
+(switching back to `src="assets/…"` lets the browser cache them across pages).
 
-| Filename | What it is | Used where | Recommended |
-|---|---|---|---|
-| `logo-dr-roxanne-salavati.png` | Navy-text logo (gold tooth mark + "Dr. Roxanne Salavati" + "Your Smile, My Specialty") | Sticky header, on the ivory background | PNG/SVG with transparency, ~480×92 |
-| `logo-white.png` | Reversed logo — white text, gold mark | Footer, on navy | PNG with transparency, ~480×92 |
-| `smile-expert.png` | Gold "SMILE EXPERT" wordmark | Currently unused — see note below | PNG with transparency |
-| `dr-salavati-operatory.jpg` | Dr. Salavati in coral scrubs beside the dental chair | **Hero photo** | Portrait 4:5, ≥800×1000, WebP or JPG ≤120 KB |
-| `dr-salavati-lab.webp` | Dr. Salavati in white coat in the dental laboratory (supplied) | Prosthodontist hero, emergency prosthodontics section | 435×652 webp as supplied |
-| `dr-salavati-reception.jpg` | Reception desk with orchids | Doctor section | Landscape 4:3, ≥960×720 |
-| `acp.png` | American College of Prosthodontists | Hero credential rail + affiliation cards | Transparent PNG, ~180px tall source |
-| `iaomt.png` | IAOMT | same | same |
-| `wlads.png` | Western Los Angeles Dental Society | same | same |
+## Sources
 
-## Two things worth doing before you upload
+| File | Source | Used |
+|---|---|---|
+| `logo-dr-roxanne-salavati.png` | supplied by client (= site `dr-roxanne-salavati.png`) | header, both pages |
+| `logo-white.png` | drroxannesalavati.com `img-roxanne-salavati-logo.png` | footer, both pages |
+| `dr-salavati-lab.webp` | supplied by client (= site `img-Meet-Dr-Roxanne-Salavati.webp`) | prosthodontist hero; emergency prosthodontics section |
+| `dr-salavati-operatory.webp` | site `img-One-Patient-One-Focus-One-Standard.webp`, re-encoded 480w | emergency hero; prosthodontist doctor section |
+| `dr-salavati-reception.webp` | site `img-Smile-Expert-home.webp` | prosthodontist materials tile; emergency doctor section |
+| `roxbury-medical-building.webp` | site `img-roxbury-medical-building.webp` | location wayfinding card, both pages |
+| `result-veneers.webp` · `result-whitening.webp` · `result-gap-closure.webp` | site `img-smile-transformation-*.webp` (watermarked before/after) | prosthodontist results section |
+| `acp.png` · `iaomt.png` · `wlads.png` · `ada.svg` · `cda.png` · `smart.png` | site affiliation logos | affiliation tile / rail / cards |
 
-**Compress the photos.** The hero image is the LCP element — it is the single
-biggest lever on this page's load speed. Export it at roughly 800×1000 and aim
-for under 120 KB. `squoosh.app` or `cwebp -q 78` both do the job.
+Photos were re-encoded through the browser canvas (WebP, q0.8, ≤480px wide)
+to keep the embedded weight down; logos are the originals. `smart.png` is
+downloaded but not yet placed on a page.
 
-**The credential logos need transparency.** In the hero they are rendered white
-via `filter: brightness(0) invert(1)`, which only looks right on a transparent
-or white background. A logo on a solid grey rectangle will show the rectangle.
+## Not used, but available on the site
 
-## About `smile-expert.png`
-
-The gold "SMILE EXPERT" wordmark is not currently placed on the page. The header
-leads with **Dr. Roxanne Salavati** instead, because for emergency traffic the
-named, credentialled individual is the stronger trust signal — people in pain are
-deciding whether to trust a *person*. "Smile Expert" appears as the practice name
-in the doctor section, the footer and the structured data.
-
-If you would rather lead with the practice wordmark, say so and it is a small change.
+`img-Patient-Reviews.webp` (1920×1012, doctor showing a patient a mirror),
+`img-dentist-and-patient*.webp`, `img-services-Cone-Beam/Laser/Ozone/
+Piezoelectric.webp` (equipment photos), `img-banner-poster.webp` (Beverly Hills
+sign), and the stock-style condition photos. All are in the site's
+`/wp-content/uploads/2026/0{6,7}/` folder if you want any of them added.
