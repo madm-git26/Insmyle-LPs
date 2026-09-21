@@ -85,13 +85,18 @@ ul{margin:0;padding:0;list-style:none}
 
 /* Urgent strip */
 .alert{background:var(--gold);color:var(--navy);font-weight:600;font-size:15px}
-.alert .wrap{display:flex;align-items:center;justify-content:center;gap:10px 22px;flex-wrap:wrap;min-height:46px;padding-block:8px;text-align:center}
-.alert a{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px;font-size:14px}
+.alert .wrap{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;min-height:50px;padding-block:7px}
+.alert-lead{display:inline-flex;align-items:center;gap:8px}
+.alert-lead svg{width:18px;height:18px;flex:none}
+.alert a{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;border-radius:999px;padding:8px 18px;font-size:14.5px;box-shadow:0 6px 16px -8px rgba(0,3,66,.5);transition:transform .2s var(--ease)}
+.alert a:hover{transform:translateY(-1px)}
 .alert a svg{width:15px;height:15px}
-#open-status{font-weight:500}
+.alert-status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.55);border-radius:999px;padding:5px 12px 5px 9px;font-size:13.5px;font-weight:500;color:var(--navy)}
+.alert-status i{width:8px;height:8px;border-radius:50%;background:var(--navy);flex:none;opacity:.55}
+.alert-status.is-open i{background:#1f8f4e;opacity:1;box-shadow:0 0 0 3px rgba(31,143,78,.25)}
+.alert-status b{font-weight:700}
 .alert-short{display:none}
-@media(max-width:600px){.alert{font-size:14px}.alert .wrap{gap:6px 10px;padding-block:7px}.alert-long{display:none}.alert-short{display:inline}#open-status{flex-basis:100%;font-size:12.5px;line-height:1.35}}
-#open-status b{font-weight:700}
+@media(max-width:600px){.alert{font-size:14px}.alert .wrap{gap:6px 10px;padding-block:8px}.alert-long{display:none}.alert-short{display:inline}.alert a{padding:8px 14px;font-size:14px}.alert-status{font-size:12.5px;padding:4px 10px 4px 8px}.alert-more{display:none}}
 
 /* Header */
 .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
@@ -322,12 +327,12 @@ textarea{min-height:84px;resize:vertical}
 <!-- ===== URGENT STRIP ===== -->
 <div class="alert" role="region" aria-label="Emergency phone line">
   <div class="wrap">
-    <span class="alert-long">In pain right now? Call first, do not use a form.</span><span class="alert-short">In pain? Call now:</span>
+    <span class="alert-lead"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><span class="alert-long">Dental emergency? Call, do not fill in a form.</span><span class="alert-short">Dental emergency?</span></span>
     <a href="tel:+18178397412" data-ev="alert-strip" aria-label="Call Khan Dental Studio at (817) 839-7412">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg>
-      (817) 839-7412
+      Call (817) 839-7412
     </a>
-    <span id="open-status" aria-live="polite"></span>
+    <span id="open-status" class="alert-status" aria-live="polite"><i aria-hidden="true"></i><span>Fri 12–7 · Sat &amp; Sun 10–3</span></span>
   </div>
 </div>
 
@@ -824,19 +829,23 @@ textarea{min-height:84px;resize:vertical}
   }
   var now = ctNow(), status = document.getElementById('open-status'), line = document.getElementById('status-line');
   var today = document.querySelector('#hours-list li[data-d="'+now.d+'"]'); if (today) today.classList.add('today');
-  var win = HOURS[now.d], msg, open = false;
+  var win = HOURS[now.d], open = false, pill, detail;
   if (win && now.h >= win[0] && now.h < win[1]) {
-    open = true; msg = 'Open now until ' + fmt(win[1]) + '. Call before 2 pm for a same-day slot.';
+    open = true;
+    pill = '<b>Open now</b> until ' + fmt(win[1]) + (now.h < 14 ? '<span class="alert-more"> · same-day slots, call before 2 pm</span>' : '');
+    detail = 'Open now until ' + fmt(win[1]) + '. Call before 2 pm for a same-day slot.';
+  } else if (win && now.h < win[0]) {
+    pill = '<b>Opens today</b> at ' + fmt(win[0]) + '<span class="alert-more"> · call for a same-day slot</span>';
+    detail = 'Opens today at ' + fmt(win[0]) + '. Call before 2 pm for a same-day slot.';
   } else {
     var nd = now.d, add = 0;
-    if (win && now.h < win[0]) { msg = 'Opens today at ' + fmt(win[0]) + '.'; }
-    else {
-      do { nd = (nd + 1) % 7; add++; } while (!HOURS[nd] && add < 7);
-      msg = 'Next open ' + (add === 1 ? 'tomorrow' : NAMES[nd]) + ' at ' + fmt(HOURS[nd][0]) + '. Leave a message for after-hours phone triage.';
-    }
+    do { nd = (nd + 1) % 7; add++; } while (!HOURS[nd] && add < 7);
+    var when = (add === 1 ? 'tomorrow' : NAMES[nd]) + ' ' + fmt(HOURS[nd][0]);
+    pill = '<b>Next open</b> ' + when + '<span class="alert-more"> · after-hours phone triage</span>';
+    detail = 'Closed right now. Next open ' + when + '. Leave a message for after-hours phone triage with Dr. Khan.';
   }
-  if (status) status.innerHTML = '<b>' + (open ? 'Open now' : 'Currently closed') + '</b> · ' + msg;
-  if (line) { line.classList.toggle('is-closed', !open); line.querySelector('span').textContent = (open ? 'Open now' : 'Closed right now') + ' (Central Time). ' + msg; }
+  if (status) { status.classList.toggle('is-open', open); status.querySelector('span').innerHTML = pill; }
+  if (line) { line.classList.toggle('is-closed', !open); line.querySelector('span').textContent = detail + ' (Central Time)'; }
 
   /* ---------- Scroll reveal ---------- */
   var els = document.querySelectorAll('.rv');
