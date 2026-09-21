@@ -1,5 +1,8 @@
 # In Smyle Dental — Google Ads Landing Page Enhancements
 
+> **Also in this repo:** [`khan-dental-studio/`](khan-dental-studio/README.md) — a new
+> Google Ads landing page for **Khan Dental Studio, Mansfield, TX** (emergency dentist).
+
 Enhanced, paste-ready versions of the two live Google Ads landing pages for
 **In Smyle Dental – Lakeview & Roscoe Village** (3514 N Lincoln Ave, Chicago, IL 60657).
 
