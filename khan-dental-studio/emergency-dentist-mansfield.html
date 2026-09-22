@@ -121,6 +121,14 @@ textarea{min-height:58px;resize:vertical}
 .stats li:last-child{border-right:0}
 .stats b{display:block;font-size:clamp(26px,2.6vw,34px);font-weight:700;color:var(--navy);line-height:1}
 .stats span{display:block;font-size:13.5px;color:var(--muted);margin-top:6px}
+.stats span span{display:inline;font-weight:700;color:var(--navy)}
+.stats li{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stats.in li{opacity:1;transform:none}
+.stats.in li:nth-child(2){transition-delay:.1s}.stats.in li:nth-child(3){transition-delay:.2s}.stats.in li:nth-child(4){transition-delay:.3s}
+.stats b[data-count]{font-variant-numeric:tabular-nums}
+.stats.in .pulse{animation:glow 2.4s ease-in-out .6s infinite}
+@keyframes glow{0%,100%{color:var(--navy)}50%{color:var(--gold-deep)}}
+@media(prefers-reduced-motion:reduce){.stats li{opacity:1;transform:none;transition:none}.stats.in .pulse{animation:none}}
 @media(max-width:700px){.stats ul{grid-template-columns:1fr 1fr}.stats li:nth-child(2){border-right:0}.stats li:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 
 /* grids & tiles */
@@ -335,10 +343,10 @@ textarea{min-height:58px;resize:vertical}
 <!-- ===== STATS ===== -->
 <div class="stats" aria-label="Practice at a glance">
   <div class="wrap"><ul>
-    <li><b>12+</b><span>Years in practice</span></li>
-    <li><b>6,000+</b><span>Patients cared for</span></li>
-    <li><b>186</b><span>Published reviews · 96% recommend</span></li>
-    <li><b>Same-day</b><span>Emergency slots, every clinic day</span></li>
+    <li><b data-count="12" data-suffix="+">0+</b><span>Years in practice</span></li>
+    <li><b data-count="6000" data-suffix="+">0+</b><span>Patients cared for</span></li>
+    <li><b data-count="186">0</b><span>Published reviews · <span data-count="96" data-suffix="%">0%</span> recommend</span></li>
+    <li><b class="pulse">Same-day</b><span>Emergency slots, every clinic day</span></li>
   </ul></div>
 </div>
 
@@ -597,6 +605,30 @@ textarea{min-height:58px;resize:vertical}
       done();
     }
   });
+  /* Stats strip: count up when it scrolls into view */
+  var strip = document.querySelector('.stats');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function fmt(n){ return n.toLocaleString('en-US'); }
+  function countUp(el){
+    var end = parseInt(el.getAttribute('data-count'), 10), suf = el.getAttribute('data-suffix') || '';
+    if (reduce) { el.textContent = fmt(end) + suf; return; }
+    var t0 = null, dur = 1500;
+    function tick(t){
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(end * e)) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function runStats(){ strip.classList.add('in'); strip.querySelectorAll('[data-count]').forEach(countUp); }
+  if (strip) {
+    if ('IntersectionObserver' in window) {
+      var so = new IntersectionObserver(function(en){ if (en[0].isIntersecting) { runStats(); so.disconnect(); } }, {threshold:.3});
+      so.observe(strip);
+    } else { runStats(); }
+  }
+
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
