@@ -13,7 +13,6 @@ site navigation, and every section ends in a call or request action.
 
 | # | Section | Conversion / Quality Score purpose |
 |---|---|---|
-| 1 | **Urgent strip** with tappable number and a live *Open now / Next open* status (Central Time) | Emergency intent converts on the phone; showing real-time hours avoids wasted calls and builds trust |
 | 2 | **Sticky header** — hours, address, call + request buttons | CTA never more than one tap away |
 | 3 | **Hero** — H1 "Emergency Dentist in Mansfield, TX", same-day promise, call-first CTA, 4 trust checks, Dr. Khan trust card, and the **request form in the right column** | Keyword-to-headline relevance, message match with ad copy; both conversion paths above the fold on desktop |
 | 4 | **Trust ticker** — the site's own trust points | Reinforces USPs without adding scroll depth |
@@ -50,7 +49,6 @@ tooth favicon as the logo mark. Photos are loaded from `khandentalstudio.com/ass
 | Tag balance (div / section / ul / li / a / form / details …) | all balanced |
 | Click-to-call links | 14 · request-form anchors: 8 |
 | Word count | ~2,800 |
-| Live open/closed status (top strip) | verified for closed day (shows "Next open Friday 12 pm") |
 
 ## Before you go live — 4 things to do
 
