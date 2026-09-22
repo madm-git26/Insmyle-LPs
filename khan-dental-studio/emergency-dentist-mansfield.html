@@ -181,6 +181,23 @@ textarea{min-height:58px;resize:vertical}
 .review footer{display:flex;align-items:center;gap:11px;font-size:14px}
 .av{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700;flex:none}
 .review footer b{display:block;color:var(--navy)}.review footer span{color:var(--muted)}
+.carousel{position:relative}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 4px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab}
+.track::-webkit-scrollbar{display:none}
+.track:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:var(--r-lg)}
+.track .review{flex:0 0 calc((100% - 32px) / 3);scroll-snap-align:start}
+@media(max-width:980px){.track .review{flex-basis:calc((100% - 16px) / 2)}}
+@media(max-width:600px){.track .review{flex-basis:88%}}
+.cbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-lg);transition:background .2s,color .2s}
+.cbtn svg{width:22px;height:22px}
+.cbtn:hover{background:var(--navy);color:#fff}
+.cbtn.prev{left:-23px}.cbtn.next{right:-23px}
+.cbtn[disabled]{opacity:.35;cursor:default}
+@media(max-width:1260px){.cbtn.prev{left:-8px}.cbtn.next{right:-8px}}
+@media(max-width:600px){.cbtn{display:none}}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:4px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .2s,transform .2s}
+.dots i.on{background:var(--gold-deep);transform:scale(1.25)}
 .rev-src{font-size:13.5px;color:var(--muted);text-align:center;margin-top:18px}
 .rev-src a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
@@ -452,11 +469,21 @@ textarea{min-height:58px;resize:vertical}
         <span class="pillg">12+ years of word of mouth</span>
       </div>
     </div>
-    <div class="g g3">
-      <div class="tile review rv"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Cracked a molar on a Thursday night. They booked me Friday evening and I walked out with a permanent crown the same visit. Unreal.”</blockquote><footer><span class="av" aria-hidden="true">D</span><div><b>Daniel W.</b><span>Arlington, TX</span></div></footer></div>
-      <div class="tile review rv"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“I avoided dentists for eleven years out of pure anxiety. Nobody made me feel bad about it. We built a plan and finished it in four visits.”</blockquote><footer><span class="av" aria-hidden="true">E</span><div><b>Erin K.</b><span>Mansfield, TX</span></div></footer></div>
-      <div class="tile review rv"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Got a second opinion here after being quoted for six crowns elsewhere. I needed two. That honesty earned my whole family.”</blockquote><footer><span class="av" aria-hidden="true">C</span><div><b>Chris L.</b><span>Mansfield, TX</span></div></footer></div>
+    <div class="carousel rv">
+      <button class="cbtn prev" type="button" aria-label="Previous reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="track" id="rev-track" tabindex="0" aria-label="Patient reviews, scroll sideways">
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Cracked a molar on a Thursday night. They booked me Friday evening and I walked out with a permanent crown the same visit. Unreal.”</blockquote><footer><span class="av" aria-hidden="true">D</span><div><b>Daniel W.</b><span>Arlington, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“I avoided dentists for eleven years out of pure anxiety. Nobody made me feel bad about it. We built a plan and finished it in four visits.”</blockquote><footer><span class="av" aria-hidden="true">E</span><div><b>Erin K.</b><span>Mansfield, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Got a second opinion here after being quoted for six crowns elsewhere. I needed two. That honesty earned my whole family.”</blockquote><footer><span class="av" aria-hidden="true">C</span><div><b>Chris L.</b><span>Mansfield, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Dr. Khan walked me through every option on the screen before touching a thing. First dentist my husband has actually looked forward to seeing.”</blockquote><footer><span class="av" aria-hidden="true">M</span><div><b>Marissa H.</b><span>Mansfield, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Kelsey found $1,400 of benefits my previous office told me I did not have. That alone was worth switching.”</blockquote><footer><span class="av" aria-hidden="true">A</span><div><b>Amanda J.</b><span>Mansfield, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Weekend hours changed everything for us. Three kids, one Saturday morning, zero meltdowns — and nobody rushed them.”</blockquote><footer><span class="av" aria-hidden="true">P</span><div><b>Priya N.</b><span>Keller, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“Implant placed in March, crown in July, and I genuinely cannot tell which tooth it is any more.”</blockquote><footer><span class="av" aria-hidden="true">R</span><div><b>Robert F.</b><span>Benbrook, TX</span></div></footer></article>
+      <article class="tile review"><div class="stars" aria-label="5 star review">★★★★★</div><blockquote>“My six-year-old asked when she can go back. I have never written a review in my life but that deserved one.”</blockquote><footer><span class="av" aria-hidden="true">T</span><div><b>Tanya B.</b><span>Mansfield, TX</span></div></footer></article>
+      </div>
+      <button class="cbtn next" type="button" aria-label="Next reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
     </div>
+    <div class="dots" id="rev-dots" aria-hidden="true"></div>
     <p class="rev-src">Reviews as published on khandentalstudio.com. <a href="https://share.google/S1Mx0VYddi8wyhAZ5" target="_blank" rel="noopener">Read the latest on Google</a></p>
   </div>
 </section>
@@ -627,6 +654,37 @@ textarea{min-height:58px;resize:vertical}
       var so = new IntersectionObserver(function(en){ if (en[0].isIntersecting) { runStats(); so.disconnect(); } }, {threshold:.3});
       so.observe(strip);
     } else { runStats(); }
+  }
+
+  /* Reviews carousel: snap scroll + arrows + dots + gentle autoplay */
+  var track = document.getElementById('rev-track'), dots = document.getElementById('rev-dots');
+  if (track) {
+    var cards = track.querySelectorAll('.review'), prev = document.querySelector('.cbtn.prev'), next = document.querySelector('.cbtn.next');
+    var timer = null, paused = false;
+    function stepW(){ return cards[0].getBoundingClientRect().width + 16; }
+    function perView(){ return Math.max(1, Math.round((track.clientWidth + 16) / stepW())); }
+    function pages(){ return Math.max(1, Math.ceil(cards.length / perView())); }
+    function page(){ return Math.round(track.scrollLeft / (stepW() * perView())); }
+    function goTo(p){ var n = pages(); p = ((p % n) + n) % n; track.scrollTo({left: p * stepW() * perView(), behavior: reduce ? 'auto' : 'smooth'}); }
+    function draw(){
+      var n = pages(), cur = page(); dots.innerHTML = '';
+      for (var i = 0; i < n; i++) { var d = document.createElement('i'); if (i === cur) d.className = 'on'; dots.appendChild(d); }
+      if (prev) prev.disabled = cur === 0; if (next) next.disabled = cur >= n - 1;
+    }
+    function play(){ if (reduce || timer) return; timer = setInterval(function(){ if (!paused) goTo(page() >= pages() - 1 ? 0 : page() + 1); }, 5000); }
+    function pause(){ paused = true; } function resume(){ paused = false; }
+    if (prev) prev.addEventListener('click', function(){ goTo(page() - 1); });
+    if (next) next.addEventListener('click', function(){ goTo(page() + 1); });
+    track.addEventListener('scroll', function(){ window.requestAnimationFrame(draw); }, {passive:true});
+    track.addEventListener('keydown', function(e){ if (e.key === 'ArrowRight') { e.preventDefault(); goTo(page() + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(page() - 1); } });
+    ['mouseenter','touchstart','focusin','pointerdown'].forEach(function(ev){ track.addEventListener(ev, pause, {passive:true}); });
+    ['mouseleave','touchend','focusout','pointerup'].forEach(function(ev){ track.addEventListener(ev, resume, {passive:true}); });
+    window.addEventListener('resize', draw);
+    draw();
+    if ('IntersectionObserver' in window) {
+      var co = new IntersectionObserver(function(en){ if (en[0].isIntersecting) play(); else if (timer) { clearInterval(timer); timer = null; } }, {threshold:.4});
+      co.observe(track);
+    } else { play(); }
   }
 
   document.getElementById('yr').textContent = new Date().getFullYear();
