@@ -114,9 +114,6 @@ ul{margin:0;padding:0;list-style:none}
 /* Hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,var(--soft) 100%)}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(28px,4.5vw,64px);align-items:center;padding-block:clamp(32px,4.5vw,64px)}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 9px;font-size:14px;font-weight:600;color:var(--navy);box-shadow:var(--shadow);margin-bottom:22px}
-.hero-pill i{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--gold-soft);animation:pulse 1.8s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(246,183,86,.55)}70%{box-shadow:0 0 0 8px rgba(246,183,86,0)}100%{box-shadow:0 0 0 0 rgba(246,183,86,0)}}
 .hero h1{font-size:clamp(32px,4.2vw,52px)}
 .hero h1 em{font-style:normal;color:var(--gold-deep)}
 .hero .sub{margin-top:18px}
@@ -130,7 +127,7 @@ ul{margin:0;padding:0;list-style:none}
 .hero-form{position:relative}
 .hero-form .form{box-shadow:var(--shadow-lg);border:1px solid var(--line)}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-checks{grid-template-columns:1fr}.hero-form{max-width:560px}}
-@media(max-width:560px){.hero .wrap{padding-block:22px 34px}.hero h1{font-size:clamp(29px,8.4vw,34px)}.hero .sub{font-size:16px;margin-top:14px}.hero-pill{margin-bottom:16px;font-size:13px}.hero .btn-row{margin-top:20px}.hero-doc{margin-top:20px}}
+@media(max-width:560px){.hero .wrap{padding-block:22px 34px}.hero h1{font-size:clamp(29px,8.4vw,34px)}.hero .sub{font-size:16px;margin-top:14px}.hero .btn-row{margin-top:20px}.hero-doc{margin-top:20px}}
 
 /* Ticker of trust */
 .ticker{border-block:1px solid var(--line);background:#fff;overflow:hidden}
@@ -138,7 +135,7 @@ ul{margin:0;padding:0;list-style:none}
 .ticker li{display:flex;align-items:center;gap:10px;padding:14px 28px;font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap}
 .ticker li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
 @keyframes scroll{to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.ticker ul{animation:none;flex-wrap:wrap;width:auto}.hero-pill i{animation:none}}
+@media(prefers-reduced-motion:reduce){.ticker ul{animation:none;flex-wrap:wrap;width:auto}}
 
 /* Grids & cards */
 .grid{display:grid;gap:18px}
@@ -351,7 +348,6 @@ textarea{min-height:64px;resize:vertical}
 <section class="hero" aria-labelledby="h1">
   <div class="wrap">
     <div>
-      <span class="hero-pill"><i aria-hidden="true"></i> Same-day emergency slots held open every clinic day</span>
       <h1 id="h1">Emergency Dentist in Mansfield, TX. <em>Same-day relief</em> for pain that will not wait.</h1>
       <p class="sub">Broken tooth, lost crown, swelling or a toothache keeping you up? Call before 2 pm on a clinic day and we will do everything we can to see you today. Dr. Omair Khan, DMD, examines you himself, shows you the problem on screen, and gives you a written price before anything is treated.</p>
       <div class="btn-row">
