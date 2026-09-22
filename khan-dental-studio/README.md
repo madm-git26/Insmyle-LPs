@@ -15,7 +15,7 @@ site navigation, and every section ends in a call or request action.
 |---|---|---|
 | 1 | **Urgent strip** with tappable number and a live *Open now / Next open* status (Central Time) | Emergency intent converts on the phone; showing real-time hours avoids wasted calls and builds trust |
 | 2 | **Sticky header** — hours, address, call + request buttons | CTA never more than one tap away |
-| 3 | **Hero** — H1 "Emergency Dentist in Mansfield, TX", same-day promise, call-first CTA, 4 trust checks, Dr. Khan photo, after-hours triage card | Keyword-to-headline relevance, message match with ad copy |
+| 3 | **Hero** — H1 "Emergency Dentist in Mansfield, TX", same-day promise, call-first CTA, 4 trust checks, Dr. Khan trust card, and the **request form in the right column** | Keyword-to-headline relevance, message match with ad copy; both conversion paths above the fold on desktop |
 | 4 | **Trust ticker** — the site's own trust points | Reinforces USPs without adding scroll depth |
 | 5 | **Open when other offices are closed** — full weekly hours, "call before 2 pm" rule | Honest hours (Fri/Sat/Sun only) stated plainly; sets expectations |
 | 6 | **8 emergencies we see the same day** | Visitor confirms their problem is treatable here |
@@ -28,7 +28,7 @@ site navigation, and every section ends in a call or request action.
 | 13 | **Cost & insurance** — 9 in-network plans, 6 more accepted, 4 ways to pay, membership plan, free second opinion | Removes the #1 objection for emergency visitors |
 | 14 | **Location** — address, hours, parking, areas served, embedded map, directions | "Near me" intent and local relevance |
 | 15 | **FAQ** (10) — includes the honest "what if it happens Monday–Thursday" answer | Answers the searcher's next question on-page |
-| 16 | **Final CTA + request form** (call-first messaging) | Second conversion path for people who cannot call |
+| 16 | **Final CTA** — big phone number, four trust points, call and request buttons (the request button jumps back to the hero form) | Last-chance conversion without a second form to maintain |
 | 17 | **Mobile sticky bar** — Call now / Request slot | Thumb-reach CTA on every phone screen |
 | — | JSON-LD `Dentist` + `FAQPage`, Open Graph tags | Structured data for the Ads landing page crawler |
 
@@ -39,7 +39,7 @@ Every factual claim is traced in [`VERIFIED-FACTS.md`](VERIFIED-FACTS.md).
 Matches the main site exactly: navy `#000342`, gold `#f6b756` / `#d9973a`, soft grey
 `#f4f4f5`, DM Sans (400–700), 36px / 20px / 14px radii, pill buttons, the site's own
 tooth favicon as the logo mark. Photos are loaded from `khandentalstudio.com/assets/img/`
-(Dr. Khan hero, Dr. Khan portrait, 3D scan on tablet).
+(Dr. Khan portrait, 3D scan on tablet).
 
 ## Verified before delivery
 
