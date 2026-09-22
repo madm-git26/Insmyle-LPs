@@ -19,7 +19,7 @@ site navigation, and every section ends in a call or request action.
 | 4 | **What we fix the same day** — 8 icon tiles | Visitor confirms their problem is treatable today |
 | 5 | **How it works** — 4 numbered steps | Transparency: written price before treatment |
 | 6 | **Dr. Omair Khan** — treatment photo, his own quote, credential chips, 3 named team members | Accountability and trust |
-| 7 | **Same-day technology** — 4 tiles | Proof a broken tooth can be fixed in one visit |
+| 7 | **Same-day technology** — navy band, 3D-scan photo with "~2 hrs" badge, 4 feature cards | Proof a broken tooth can be fixed in one visit |
 | 8 | **Reviews** — star pills + 3 verbatim reviews + link to Google profile | Social proof, emergency-relevant review first |
 | 9 | **Cost & insurance** — 9 in-network pills, 6 accepted, financing / pay-in-full / free second opinion | Removes the #1 objection |
 | 10 | **Location** — address, hours, parking, areas served, map, directions | "Near me" intent and local relevance |
