@@ -17,7 +17,7 @@ site navigation, and every section ends in a call or request action.
 | 2 | **Sticky header** — hours, address, call + request buttons | CTA never more than one tap away |
 | 3 | **Hero** — H1 "Emergency Dentist in Mansfield, TX", same-day promise, call-first CTA, 4 trust checks, Dr. Khan trust card, and the **request form in the right column** | Keyword-to-headline relevance, message match with ad copy; both conversion paths above the fold on desktop |
 | 4 | **Trust ticker** — the site's own trust points | Reinforces USPs without adding scroll depth |
-| 5 | **Open when other offices are closed** — full weekly hours, "call before 2 pm" rule | Honest hours (Fri/Sat/Sun only) stated plainly; sets expectations |
+| 5 | **Open when other offices are closed** — "call before 2 pm" rule with the clinic days in one line | Honest hours (Fri/Sat/Sun only) stated plainly; sets expectations |
 | 6 | **8 emergencies we see the same day** | Visitor confirms their problem is treatable here |
 | 7 | **What to do in the next five minutes** + ER safety note | Genuinely useful original content = Landing Page Experience; the ER note is a trust signal |
 | 8 | **How your visit runs** (4 steps, verbatim from the site) | Transparency: written price before treatment |
@@ -51,7 +51,7 @@ tooth favicon as the logo mark. Photos are loaded from `khandentalstudio.com/ass
 | Tag balance (div / section / ul / li / a / form / details …) | all balanced |
 | Click-to-call links | 14 · request-form anchors: 8 |
 | Word count | ~2,800 |
-| Live open/closed status | verified for closed day (shows "Next open Friday at 12 pm") |
+| Live open/closed status (top strip) | verified for closed day (shows "Next open Friday 12 pm") |
 
 ## Before you go live — 4 things to do
 

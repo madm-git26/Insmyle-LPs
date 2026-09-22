@@ -155,21 +155,10 @@ ul{margin:0;padding:0;list-style:none}
 .section-head{margin-bottom:clamp(28px,4vw,48px)}
 
 /* Hours block */
-.hours-box{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,56px);align-items:center}
-.hours-list{display:grid;gap:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius-md);overflow:hidden}
-.hours-list li{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line-soft);font-size:16px}
-.hours-list li:last-child{border-bottom:0}
-.hours-list b{font-weight:600;color:var(--navy)}
-.hours-list .open{color:var(--navy);font-weight:600}
-.hours-list .closed{color:var(--muted)}
-.hours-list li.today{background:var(--gold-soft)}
-.hours-list li.today b::after{content:"Today";font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:var(--navy);border-radius:999px;padding:3px 8px;margin-left:10px;vertical-align:middle}
-.status-line{margin-top:14px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px;font-size:15px}
-.status-line i{width:10px;height:10px;border-radius:50%;background:#2e9e5b;flex:none}
-.status-line.is-closed i{background:#c0392b}
+.hours-box{max-width:760px;margin-inline:auto}
+.hours-box .callout{text-align:left}
 .callout{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:16px 18px;font-size:15px;color:var(--ink-2);margin-top:22px}
 .callout b{color:var(--navy)}
-@media(max-width:900px){.hours-box{grid-template-columns:1fr}}
 
 /* Steps */
 .steps{counter-reset:s}
@@ -437,28 +426,16 @@ textarea{min-height:64px;resize:vertical}
 
 <!-- ===== HOURS / SAME-DAY PROMISE ===== -->
 <section class="section" aria-labelledby="h-hours">
-  <div class="wrap hours-box">
+  <div class="wrap hours-box center">
     <div class="rv">
       <span class="eyebrow">Same-day dental emergencies</span>
       <h2 id="h-hours">Open when most dental offices are closed.</h2>
       <p class="sub">Friday evening, Saturday and Sunday are exactly when a broken tooth tends to happen, and exactly when other offices send you to voicemail. We keep protected slots open every clinic morning specifically for emergencies, so a Saturday toothache does not have to wait until Monday.</p>
-      <div class="callout"><b>Call before 2 pm on a clinic day</b> and we will do everything we can to see you the same day. Emergencies: call first, do not use a form. Outside clinic hours, leave a message and Dr. Khan provides after-hours phone triage.</div>
-      <div class="btn-row">
+      <div class="callout"><b>Call before 2 pm on a clinic day</b> (Friday 12–7 pm, Saturday and Sunday 10 am–3 pm) and we will do everything we can to see you the same day. Emergencies: call first, do not use a form. Outside clinic hours, leave a message and Dr. Khan provides after-hours phone triage.</div>
+      <div class="btn-row" style="justify-content:center">
         <a class="btn btn-primary" href="tel:+18178397412" data-ev="hours">Call (817) 839-7412</a>
         <a class="btn btn-ghost" href="#request">Request a slot online</a>
       </div>
-    </div>
-    <div class="rv">
-      <ul class="hours-list" id="hours-list" aria-label="Opening hours">
-        <li data-d="1"><b>Monday</b><span class="closed">Closed</span></li>
-        <li data-d="2"><b>Tuesday</b><span class="closed">Closed</span></li>
-        <li data-d="3"><b>Wednesday</b><span class="closed">Closed</span></li>
-        <li data-d="4"><b>Thursday</b><span class="closed">Closed</span></li>
-        <li data-d="5"><b>Friday</b><span class="open">12:00 pm – 7:00 pm</span></li>
-        <li data-d="6"><b>Saturday</b><span class="open">10:00 am – 3:00 pm</span></li>
-        <li data-d="0"><b>Sunday</b><span class="open">10:00 am – 3:00 pm</span></li>
-      </ul>
-      <p class="status-line" id="status-line"><i aria-hidden="true"></i><span>Hours shown in Central Time</span></p>
     </div>
   </div>
 </section>
@@ -469,7 +446,7 @@ textarea{min-height:64px;resize:vertical}
     <div class="section-head center rv">
       <span class="eyebrow">Urgent dental care</span>
       <h2 id="h-treat">Dental emergencies we see the same day.</h2>
-      <p class="sub">Everything is done here in our Mansfield office by our own team, from the first scan to the final polish, so there is one point of accountability. If your problem is on this list, it is very likely fixable today.</p>
+      <p class="sub">If your problem is on this list, we will usually treat it the same day. Everything happens in our Mansfield office, by our own team, from the first scan to the final polish.</p>
     </div>
     <div class="grid g4">
       <div class="card rv">
@@ -832,25 +809,20 @@ textarea{min-height:64px;resize:vertical}
       return {d:d, h: (parseInt(o.hour,10) % 24) + parseInt(o.minute,10)/60};
     } catch(e){ var n = new Date(); return {d:n.getDay(), h:n.getHours()+n.getMinutes()/60}; }
   }
-  var now = ctNow(), status = document.getElementById('open-status'), line = document.getElementById('status-line');
-  var today = document.querySelector('#hours-list li[data-d="'+now.d+'"]'); if (today) today.classList.add('today');
-  var win = HOURS[now.d], open = false, pill, detail;
+  var now = ctNow(), status = document.getElementById('open-status');
+  var win = HOURS[now.d], open = false, pill;
   if (win && now.h >= win[0] && now.h < win[1]) {
     open = true;
     pill = '<b>Open now</b> until ' + fmt(win[1]) + (now.h < 14 ? '<span class="alert-more"> · same-day slots, call before 2 pm</span>' : '');
-    detail = 'Open now until ' + fmt(win[1]) + '. Call before 2 pm for a same-day slot.';
   } else if (win && now.h < win[0]) {
     pill = '<b>Opens today</b> at ' + fmt(win[0]) + '<span class="alert-more"> · call for a same-day slot</span>';
-    detail = 'Opens today at ' + fmt(win[0]) + '. Call before 2 pm for a same-day slot.';
   } else {
     var nd = now.d, add = 0;
     do { nd = (nd + 1) % 7; add++; } while (!HOURS[nd] && add < 7);
     var when = (add === 1 ? 'tomorrow' : NAMES[nd]) + ' ' + fmt(HOURS[nd][0]);
     pill = '<b>Next open</b> ' + when + '<span class="alert-more"> · after-hours phone triage</span>';
-    detail = 'Closed right now. Next open ' + when + '. Leave a message for after-hours phone triage with Dr. Khan.';
   }
   if (status) { status.classList.toggle('is-open', open); status.querySelector('span').innerHTML = pill; }
-  if (line) { line.classList.toggle('is-closed', !open); line.querySelector('span').textContent = detail + ' (Central Time)'; }
 
   /* ---------- Scroll reveal ---------- */
   var els = document.querySelectorAll('.rv');
