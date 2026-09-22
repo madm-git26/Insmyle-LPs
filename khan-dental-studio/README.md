@@ -13,21 +13,19 @@ site navigation, and every section ends in a call or request action.
 
 | # | Section | Conversion / Quality Score purpose |
 |---|---|---|
-| 2 | **Sticky header** — hours, address, call + request buttons | CTA never more than one tap away |
-| 3 | **Hero** — H1 "Emergency Dentist in Mansfield, TX", same-day promise, call-first CTA, 4 trust checks, Dr. Khan trust card, and the **request form in the right column** | Keyword-to-headline relevance, message match with ad copy; both conversion paths above the fold on desktop |
-| 4 | **Trust ticker** — the site's own trust points | Reinforces USPs without adding scroll depth |
-| 5 | **Open when other offices are closed** — "call before 2 pm" rule with the clinic days in one line | Honest hours (Fri/Sat/Sun only) stated plainly; sets expectations |
-| 6 | **8 emergencies we see the same day** | Visitor confirms their problem is treatable here |
-| 7 | **What to do in the next five minutes** — six first-aid steps | Genuinely useful original content = Landing Page Experience |
-| 8 | **How your visit runs** (4 steps, verbatim from the site) | Transparency: written price before treatment |
-| 10 | **Same-day technology** | Proof that a broken tooth can be fixed in one visit |
-| 11 | **Dr. Omair Khan, DMD** + 3 named team members | Credentials, languages, accountability |
-| 12 | **Reviews** — 186 reviews / 96% recommend / 12+ years / 6,000+ patients, 6 verbatim reviews, link to Google profile | Social proof; emergency-relevant review first (Daniel W., Friday-evening crown) |
-| 13 | **Cost & insurance** — 9 in-network plans, 6 more accepted, 4 ways to pay, membership plan, free second opinion | Removes the #1 objection for emergency visitors |
-| 14 | **Location** — address, hours, parking, areas served, embedded map, directions | "Near me" intent and local relevance |
-| 15 | **FAQ** (5) — seen today, Monday–Thursday, insurance, one-visit fix, will it hurt | Answers the searcher's next question on-page without a long scroll |
-| 16 | **Final CTA** — big phone number, four trust points, call and request buttons (the request button jumps back to the hero form) | Last-chance conversion without a second form to maintain |
-| 17 | **Mobile sticky bar** — Call now / Request slot | Thumb-reach CTA on every phone screen |
+| 1 | **Sticky header** — hours, address, request + call buttons | CTA never more than one tap away |
+| 2 | **Dark hero** — H1 "Emergency Dentist in Mansfield, TX", one gold call button, four trust points, Dr. Khan chip, and the **request form** (3 required fields) | Keyword-to-headline relevance; both conversion paths above the fold on desktop |
+| 3 | **Stats strip** — 12+ years, 6,000+ patients, 186 reviews / 96% recommend, same-day slots | Instant credibility |
+| 4 | **What we fix the same day** — 8 icon tiles + "call before 2 pm" banner | Visitor confirms their problem is treatable today; honest Fri/Sat/Sun hours |
+| 5 | **How it works** — 4 numbered steps | Transparency: written price before treatment |
+| 6 | **Dr. Omair Khan** — treatment photo, his own quote, credential chips, 3 named team members | Accountability and trust |
+| 7 | **Same-day technology** — 4 tiles | Proof a broken tooth can be fixed in one visit |
+| 8 | **Reviews** — star pills + 3 verbatim reviews + link to Google profile | Social proof, emergency-relevant review first |
+| 9 | **Cost & insurance** — 9 in-network pills, 6 accepted, membership / financing / pay-in-full / free second opinion | Removes the #1 objection |
+| 10 | **Location** — address, hours, parking, areas served, map, directions | "Near me" intent and local relevance |
+| 11 | **FAQ** (5) | Answers the next question without a long scroll |
+| 12 | **Final CTA** — big phone number, call + request buttons | Last-chance conversion |
+| 13 | **Mobile sticky bar** — Call now / Request slot | Thumb-reach CTA on every phone screen |
 | — | JSON-LD `Dentist` + `FAQPage`, Open Graph tags | Structured data for the Ads landing page crawler |
 
 Every factual claim is traced in [`VERIFIED-FACTS.md`](VERIFIED-FACTS.md).
@@ -47,8 +45,8 @@ tooth favicon as the logo mark. Photos are loaded from `khandentalstudio.com/ass
 | JavaScript console errors | none |
 | JSON-LD | parses; `Dentist` + `FAQPage` |
 | Tag balance (div / section / ul / li / a / form / details …) | all balanced |
-| Click-to-call links | 14 · request-form anchors: 8 |
-| Word count | ~2,800 |
+| Click-to-call links | 11 · request-form anchors: 6 |
+| Word count | ~1,450 |
 
 ## Before you go live — 4 things to do
 
