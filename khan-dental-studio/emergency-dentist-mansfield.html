@@ -217,15 +217,19 @@ textarea{min-height:58px;resize:vertical}
 .rev-src a{color:var(--navy);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
 /* insurance */
-.ins{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);align-items:start}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500;color:var(--navy)}
-.pill.in{border-color:var(--gold);background:var(--gold-soft);font-weight:600}
+.rule{display:block;width:56px;height:3px;border-radius:3px;background:var(--gold);margin:22px auto 0}
+.carriers{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.carrier{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);min-height:96px;display:grid;place-items:center;text-align:center;padding:16px;font-size:15px;font-weight:600;color:var(--navy);box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.carrier:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--gold)}
+@media(max-width:980px){.carriers{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.carriers{grid-template-columns:repeat(2,1fr);gap:10px}.carrier{min-height:72px;font-size:14px;padding:12px}}
 .pay{display:grid;gap:12px}
-.pay li{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;font-size:15px}
+.pay-row{grid-template-columns:repeat(4,1fr);margin-top:28px}
+.pay li{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;font-size:14.5px}
 .pay .ic{width:44px;height:44px;margin:0;flex:none;border-radius:12px}.pay .ic svg{width:22px;height:22px}
 .pay b{display:block;color:var(--navy)}.pay span{color:var(--muted)}
-@media(max-width:900px){.ins{grid-template-columns:1fr}}
+@media(max-width:980px){.pay-row{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pay-row{grid-template-columns:1fr}}
 
 /* location */
 .loc{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(20px,3vw,40px);align-items:stretch}
@@ -509,24 +513,35 @@ textarea{min-height:58px;resize:vertical}
 
 <!-- ===== INSURANCE ===== -->
 <section class="sec soft" aria-labelledby="h-cost">
-  <div class="wrap ins">
-    <div class="rv">
-      <span class="kicker">Cost &amp; insurance</span>
-      <h2 id="h-cost">Clear pricing. Most insurance accepted.</h2>
-      <p class="lead">We verify your benefits before treatment, give you a written estimate, and file the claim for you whether we are in-network or not.</p>
-      <p style="font-weight:700;color:var(--navy);margin-top:22px">In-network with</p>
-      <ul class="pills" aria-label="In-network insurance plans">
-        <li class="pill in">Delta Dental</li><li class="pill in">Cigna</li><li class="pill in">Aetna</li><li class="pill in">MetLife</li><li class="pill in">Guardian</li><li class="pill in">United Concordia</li><li class="pill in">United Healthcare</li><li class="pill in">Humana</li><li class="pill in">GEHA Connection</li>
-      </ul>
-      <p style="font-weight:700;color:var(--navy);margin-top:18px">Also accepted and filed for you</p>
-      <ul class="pills" aria-label="Other accepted plans">
-        <li class="pill">Ameritas</li><li class="pill">Principal</li><li class="pill">Anthem BCBS</li><li class="pill">Careington</li><li class="pill">Dental Select</li><li class="pill">Assurant</li><li class="pill">Most PPO plans</li>
-      </ul>
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="kicker">Insurance</span>
+      <h2 id="h-cost">In-network with most major carriers.</h2>
+      <p class="lead">Do not see yours? Call us — we accept and file for almost every PPO plan, and out-of-network benefits are often better than people expect.</p>
+      <span class="rule" aria-hidden="true"></span>
     </div>
-    <ul class="pay rv">
-      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h12"/></svg></div><div><b>Monthly financing</b><span>CareCredit and Sunbit: 6, 12 and 24-month plans, several interest-free. Approval in minutes, in the office.</span></div></li>
-      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div><div><b>Pay in full</b><span>Cash, card, check, HSA and FSA, with a 5% courtesy discount for paying in full on the day.</span></div></li>
-      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><div><b>Free second opinion</b><span>Already have a plan from another office? Bring it. It has saved patients from crowns they did not need.</span></div></li>
+    <ul class="carriers rv" aria-label="Accepted insurance carriers">
+      <li class="carrier">Delta Dental</li>
+      <li class="carrier">Cigna</li>
+      <li class="carrier">Aetna</li>
+      <li class="carrier">MetLife</li>
+      <li class="carrier">Guardian</li>
+      <li class="carrier">United Concordia</li>
+      <li class="carrier">United Healthcare</li>
+      <li class="carrier">Humana</li>
+      <li class="carrier">GEHA Connection</li>
+      <li class="carrier">Ameritas</li>
+      <li class="carrier">Principal</li>
+      <li class="carrier">Anthem BCBS</li>
+      <li class="carrier">Careington</li>
+      <li class="carrier">Dental Select</li>
+      <li class="carrier">Assurant</li>
+    </ul>
+    <ul class="pay pay-row rv">
+      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div><div><b>Written estimate first</b><span>Benefits verified before treatment, claim filed for you, in or out of network.</span></div></li>
+      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h12"/></svg></div><div><b>Monthly financing</b><span>CareCredit and Sunbit: 6, 12 and 24-month plans, several interest-free. Approval in minutes.</span></div></li>
+      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg></div><div><b>Pay in full</b><span>Cash, card, check, HSA and FSA, with a 5% courtesy discount on the day.</span></div></li>
+      <li><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div><div><b>Free second opinion</b><span>Already have a plan from another office? Bring it.</span></div></li>
     </ul>
   </div>
 </section>

@@ -21,7 +21,7 @@ site navigation, and every section ends in a call or request action.
 | 6 | **Dr. Omair Khan** — treatment photo, his own quote, credential chips, 3 named team members | Accountability and trust |
 | 7 | **Same-day technology** — navy band, 3D-scan photo with "~2 hrs" badge, 4 feature cards | Proof a broken tooth can be fixed in one visit |
 | 8 | **Reviews** — star pills + 3 verbatim reviews + link to Google profile | Social proof, emergency-relevant review first |
-| 9 | **Cost & insurance** — 9 in-network pills, 6 accepted, financing / pay-in-full / free second opinion | Removes the #1 objection |
+| 9 | **Insurance** — "In-network with most major carriers" grid of 15 carrier cards (mirrors the main site), plus estimate / financing / pay-in-full / second opinion row | Removes the #1 objection |
 | 10 | **Location** — address, hours, parking, areas served, map, directions | "Near me" intent and local relevance |
 | 11 | **FAQ** (5) | Answers the next question without a long scroll |
 | 12 | **Final CTA** — big phone number, call + request buttons | Last-chance conversion |
