@@ -26,7 +26,7 @@ site navigation, and every section ends in a call or request action.
 | 12 | **Reviews** — 186 reviews / 96% recommend / 12+ years / 6,000+ patients, 6 verbatim reviews, link to Google profile | Social proof; emergency-relevant review first (Daniel W., Friday-evening crown) |
 | 13 | **Cost & insurance** — 9 in-network plans, 6 more accepted, 4 ways to pay, membership plan, free second opinion | Removes the #1 objection for emergency visitors |
 | 14 | **Location** — address, hours, parking, areas served, embedded map, directions | "Near me" intent and local relevance |
-| 15 | **FAQ** (10) — includes the honest "what if it happens Monday–Thursday" answer | Answers the searcher's next question on-page |
+| 15 | **FAQ** (5) — seen today, Monday–Thursday, insurance, one-visit fix, will it hurt | Answers the searcher's next question on-page without a long scroll |
 | 16 | **Final CTA** — big phone number, four trust points, call and request buttons (the request button jumps back to the hero form) | Last-chance conversion without a second form to maintain |
 | 17 | **Mobile sticky bar** — Call now / Request slot | Thumb-reach CTA on every phone screen |
 | — | JSON-LD `Dentist` + `FAQPage`, Open Graph tags | Structured data for the Ads landing page crawler |
