@@ -16,7 +16,7 @@ site navigation, and every section ends in a call or request action.
 | 1 | **Sticky header** — hours, address, request + call buttons | CTA never more than one tap away |
 | 2 | **Dark hero** — H1 "Emergency Dentist in Mansfield, TX", one gold call button, four trust points, Dr. Khan chip, and the **request form** (3 required fields) | Keyword-to-headline relevance; both conversion paths above the fold on desktop |
 | 3 | **Stats strip** — 12+ years, 6,000+ patients, 186 reviews / 96% recommend, same-day slots | Instant credibility |
-| 4 | **What we fix the same day** — 8 icon tiles + "call before 2 pm" banner | Visitor confirms their problem is treatable today; honest Fri/Sat/Sun hours |
+| 4 | **What we fix the same day** — 8 icon tiles | Visitor confirms their problem is treatable today |
 | 5 | **How it works** — 4 numbered steps | Transparency: written price before treatment |
 | 6 | **Dr. Omair Khan** — treatment photo, his own quote, credential chips, 3 named team members | Accountability and trust |
 | 7 | **Same-day technology** — 4 tiles | Proof a broken tooth can be fixed in one visit |
