@@ -19,7 +19,7 @@ site navigation, and every section ends in a call or request action.
 | 4 | **Trust ticker** — the site's own trust points | Reinforces USPs without adding scroll depth |
 | 5 | **Open when other offices are closed** — "call before 2 pm" rule with the clinic days in one line | Honest hours (Fri/Sat/Sun only) stated plainly; sets expectations |
 | 6 | **8 emergencies we see the same day** | Visitor confirms their problem is treatable here |
-| 7 | **What to do in the next five minutes** + ER safety note | Genuinely useful original content = Landing Page Experience; the ER note is a trust signal |
+| 7 | **What to do in the next five minutes** — six first-aid steps | Genuinely useful original content = Landing Page Experience |
 | 8 | **How your visit runs** (4 steps, verbatim from the site) | Transparency: written price before treatment |
 | 9 | **Why Khan Dental Studio** (6 USPs) | Differentiation: same-day slots, weekend hours, one-visit tech, gentle, clear numbers |
 | 10 | **Same-day technology** | Proof that a broken tooth can be fixed in one visit |
