@@ -21,7 +21,6 @@ site navigation, and every section ends in a call or request action.
 | 6 | **8 emergencies we see the same day** | Visitor confirms their problem is treatable here |
 | 7 | **What to do in the next five minutes** — six first-aid steps | Genuinely useful original content = Landing Page Experience |
 | 8 | **How your visit runs** (4 steps, verbatim from the site) | Transparency: written price before treatment |
-| 9 | **Why Khan Dental Studio** (6 USPs) | Differentiation: same-day slots, weekend hours, one-visit tech, gentle, clear numbers |
 | 10 | **Same-day technology** | Proof that a broken tooth can be fixed in one visit |
 | 11 | **Dr. Omair Khan, DMD** + 3 named team members | Credentials, languages, accountability |
 | 12 | **Reviews** — 186 reviews / 96% recommend / 12+ years / 6,000+ patients, 6 verbatim reviews, link to Google profile | Social proof; emergency-relevant review first (Daniel W., Friday-evening crown) |
