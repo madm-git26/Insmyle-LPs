@@ -1,5 +1,8 @@
 # In Smyle Dental — Google Ads Landing Page Enhancements
 
+> **Also in this repo:** a new Google Ads new-patient landing page for **Gentle Touch Dentistry Richardson**
+> (Richardson, TX). See [`gentle-touch-richardson/`](gentle-touch-richardson/README.md).
+
 Enhanced, paste-ready versions of the two live Google Ads landing pages for
 **In Smyle Dental – Lakeview & Roscoe Village** (3514 N Lincoln Ave, Chicago, IL 60657).
 
