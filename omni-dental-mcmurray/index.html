@@ -11,12 +11,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Best Dentist in McMurray, PA | Omni Dental">
 <meta property="og:description" content="New patients welcome. 4.9★ on Google from 1,500+ reviews. Same-day appointments available. 3035 Washington Rd Suite 3, McMurray, PA 15317.">
-<meta property="og:image" content="images/team-office-1313.webp">
+<meta property="og:image" content="images/team-banner-1400.webp">
 <link rel="icon" type="image/png" href="images/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="images/team-office-960.webp" imagesrcset="images/team-office-640.webp 640w, images/team-office-960.webp 960w, images/team-office-1313.webp 1313w" imagesizes="(min-width: 1024px) 560px, 100vw" fetchpriority="high">
+<link rel="preload" as="image" href="images/office-tour-poster-960.webp" imagesrcset="images/office-tour-poster-640.webp 640w, images/office-tour-poster-960.webp 960w" imagesizes="(min-width: 1024px) 560px, 100vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 <!-- Google Tag Manager (same container as omnidentalpgh.com and the current McMurray LP) -->
@@ -131,6 +131,16 @@ p{margin:0 0 1em}
 .hero-media{position:relative}
 .hero-photo{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3;background:#dfe9f0}
 .hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-video img,.hero-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hv-video{opacity:0;transition:opacity .9s ease}
+.hv-video.is-playing{opacity:1}
+.hero-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,30,58,0) 50%,rgba(1,30,58,.45) 100%);pointer-events:none}
+.hv-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.95);color:var(--navy);border:0;border-radius:999px;padding:7px 20px 7px 7px;font-family:var(--fb);font-weight:700;font-size:1rem;cursor:pointer;box-shadow:0 14px 34px -12px rgba(1,30,58,.65);transition:transform .2s,background-color .2s;white-space:nowrap}
+.hv-play:hover{transform:translate(-50%,-50%) scale(1.05);background:#fff}
+.hv-play-ic{width:46px;height:46px;border-radius:50%;background:var(--blue);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(3,169,244,.22)}
+.hv-play-ic svg{width:18px;height:18px;color:#fff;margin-left:3px}
+.hv-play-tx{padding-top:3px}
+@media(max-width:600px){.hv-play{font-size:.92rem;padding:6px 16px 6px 6px}.hv-play-ic{width:40px;height:40px}}
 .hero-media::before{content:"";position:absolute;inset:-18px -18px 18px 18px;border-radius:calc(var(--r-lg) + 8px);background:linear-gradient(135deg,var(--pale),rgba(174,227,251,0));z-index:-1}
 .float-card{position:absolute;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:14px 16px 12px}
 .float-review{left:-10px;bottom:-26px;max-width:300px;font-size:.92rem;line-height:1.45}
@@ -427,6 +437,13 @@ dialog.ins-dialog::backdrop{background:rgba(1,30,58,.6)}
 .dlg-head h3{margin:0;font-size:1.25rem}
 .dlg-close{border:0;background:var(--ice);width:40px;height:40px;border-radius:50%;cursor:pointer;color:var(--navy);display:grid;place-items:center}
 .dlg-body iframe{width:100%;height:min(640px,calc(100vh - 140px));border:0;display:block}
+dialog.vid-dialog{width:min(980px,calc(100vw - 24px));background:#000}
+dialog.vid-dialog .dlg-head{background:#fff}
+.vid-body{aspect-ratio:16/9;background:#000}
+.vid-body iframe{width:100%;height:100%;border:0;display:block}
+.team-banner{margin:28px 0 0;border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--shadow)}
+.team-banner img{width:100%;aspect-ratio:2.1/1;object-fit:cover}
+.team-banner figcaption{position:absolute;left:16px;bottom:14px;background:rgba(255,255,255,.95);color:var(--navy);border-radius:12px;padding:9px 14px 7px;font-weight:700;font-size:.95rem}
 
 /* Reveal */
 .js .rv{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
@@ -532,8 +549,11 @@ dialog.ins-dialog::backdrop{background:rgba(1,30,58,.6)}
       </ul>
     </div>
     <div class="hero-media">
-      <div class="hero-photo">
-        <img src="images/team-office-960.webp" srcset="images/team-office-640.webp 640w, images/team-office-960.webp 960w, images/team-office-1313.webp 1313w" sizes="(min-width: 1024px) 560px, 100vw" width="960" height="720" alt="The Omni Dental McMurray team in the office reception area" fetchpriority="high">
+      <div class="hero-photo hero-video">
+        <img class="hv-poster" src="images/office-tour-poster-960.webp" srcset="images/office-tour-poster-640.webp 640w, images/office-tour-poster-960.webp 960w" sizes="(min-width: 1024px) 560px, 100vw" width="960" height="540" alt="The Omni Dental sign at the entrance to our McMurray office" fetchpriority="high">
+        <!-- Silent office-tour loop (from the omnidentalpgh.com hero video, compressed 55 MB -> 1.7 MB / 0.95 MB). Started by JS after page load. -->
+        <video class="hv-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src-lg="video/omni-office-960.mp4" data-src-sm="video/omni-office-640.mp4"></video>
+        <button class="hv-play" type="button" data-video-open="5wBm_JHx_30" data-cta="video" data-loc="hero" aria-label="Play video with sound: tour the Omni Dental McMurray office"><span class="hv-play-ic"><svg aria-hidden="true"><use href="#i-play"/></svg></span><span class="hv-play-tx">Watch our office tour</span></button>
       </div>
       <div class="float-card float-chip"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg>Same-day appointments available</div>
       <figure class="float-card float-review" style="margin:0">
@@ -849,6 +869,7 @@ dialog.ins-dialog::backdrop{background:rgba(1,30,58,.6)}
         </div>
       </article>
     </div>
+    <figure class="team-banner rv"><img src="images/team-banner-1000.webp" srcset="images/team-banner-640.webp 640w, images/team-banner-1000.webp 1000w, images/team-banner-1400.webp 1400w" sizes="(min-width:1240px) 1160px, 100vw" width="1000" height="476" alt="The Omni Dental McMurray team in the office reception area" loading="lazy" decoding="async"><figcaption>Our McMurray team</figcaption></figure>
     <div class="meet-video rv">
       <button class="yt" type="button" data-yt="pP6w1nJtB5c" aria-label="Play video: Dr. Justin Hanlon at Omni Dental McMurray">
         <img src="images/video-dr-hanlon-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async">
@@ -1155,6 +1176,15 @@ dialog.ins-dialog::backdrop{background:rgba(1,30,58,.6)}
   <a class="btn btn-primary" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="sticky"><svg class="ico" aria-hidden="true"><use href="#i-cal"/></svg>Book Online</a>
 </div>
 
+<!-- ===== VIDEO DIALOG (full office tour with sound, from the practice's YouTube channel) ===== -->
+<dialog class="ins-dialog vid-dialog" id="vidDialog" aria-labelledby="vid-dlg-h">
+  <div class="dlg-head">
+    <h3 id="vid-dlg-h">Tour our McMurray office</h3>
+    <button class="dlg-close" type="button" data-vid-close aria-label="Close video"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+  <div class="vid-body"></div>
+</dialog>
+
 <!-- ===== INSURANCE CHECK DIALOG (the practice's own Jotform) ===== -->
 <dialog class="ins-dialog" id="insDialog" aria-labelledby="ins-dlg-h">
   <div class="dlg-head">
@@ -1208,6 +1238,47 @@ dialog.ins-dialog::backdrop{background:rgba(1,30,58,.6)}
       w.dataLayer.push({event:'lp_video_play',video_id:b.getAttribute('data-yt')});
     },{once:true});
   });
+
+  /* 5b. Hero office-tour loop: starts after page load; skipped for reduced motion, Data Saver or 2G; pauses off-screen */
+  var hv=d.getElementById('heroVideo');
+  if(hv){
+    var mm=function(q){return w.matchMedia?w.matchMedia(q).matches:false}, cn=navigator.connection||{};
+    if(!mm('(prefers-reduced-motion: reduce)') && !cn.saveData && !/2g$/.test(cn.effectiveType||'')){
+      var loadHv=function(){
+        if(hv.src) return;
+        hv.muted=true; hv.src=mm('(min-width: 700px)')?hv.getAttribute('data-src-lg'):hv.getAttribute('data-src-sm');
+        hv.addEventListener('playing',function(){hv.classList.add('is-playing')},{once:true});
+      };
+      var playHv=function(){var dl=d.getElementById('vidDialog'); if(dl&&dl.open) return; loadHv(); var x=hv.play(); if(x&&x.catch) x.catch(function(){});};
+      var startHv=function(){
+        /* only download the loop once it is (nearly) on screen; pause it when scrolled away */
+        if('IntersectionObserver' in w){new IntersectionObserver(function(en){ if(en[0].isIntersecting) playHv(); else if(hv.src) hv.pause(); },{rootMargin:'150px 0px'}).observe(hv);}
+        else playHv();
+      };
+      if(d.readyState==='complete') setTimeout(startHv,250); else w.addEventListener('load',function(){setTimeout(startHv,250)});
+    }
+  }
+
+  /* 5c. Full office-tour video (with sound) in a dialog */
+  var vd=d.getElementById('vidDialog');
+  d.querySelectorAll('[data-video-open]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var id=btn.getAttribute('data-video-open');
+      w.dataLayer.push({event:'lp_video_play',video_id:id});
+      if(!vd || typeof vd.showModal!=='function'){ w.open('https://www.youtube.com/watch?v='+id,'_blank','noopener'); return; }
+      var f=d.createElement('iframe');
+      f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+      f.title='Tour the Omni Dental McMurray office';
+      f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'; f.allowFullscreen=true;
+      var body=vd.querySelector('.vid-body'); body.innerHTML=''; body.appendChild(f);
+      if(hv) hv.pause(); vd.showModal();
+    });
+  });
+  if(vd){
+    vd.querySelector('[data-vid-close]').addEventListener('click',function(){vd.close()});
+    vd.addEventListener('click',function(e){if(e.target===vd) vd.close()});
+    vd.addEventListener('close',function(){vd.querySelector('.vid-body').innerHTML=''; if(hv&&hv.src){var r=hv.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){var x=hv.play(); if(x&&x.catch) x.catch(function(){});}}});
+  }
 
   /* 6. Insurance check dialog (loads the form only when opened) */
   var dlg=d.getElementById('insDialog');

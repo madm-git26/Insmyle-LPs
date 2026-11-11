@@ -7,7 +7,8 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
 | File | What it is |
 |---|---|
 | [`index.html`](index.html) | The landing page. One self-contained file: inline CSS and JS, no frameworks. |
-| [`images/`](images/) | 21 optimised WebP images plus the logo SVG and favicon (~670 KB on disk, but a visit only loads the sizes it needs), all the practice's own photos |
+| [`images/`](images/) | Optimised WebP images plus the logo SVG and favicon, all the practice's own photos. A visit only loads the sizes it needs. |
+| [`video/`](video/) | The hero office-tour loop: `omni-office-960.mp4` (1.7 MB, desktop) and `omni-office-640.mp4` (0.95 MB, mobile) |
 | [`VERIFIED-FACTS.md`](VERIFIED-FACTS.md) | The source for every claim on the page, plus what was deliberately left out and why |
 
 > **Note on the brief.** It said *"Omni Dental Shadyside … 53035 Washington Rd"*. The Google
@@ -23,14 +24,19 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
 2. **Sticky header**: logo, section links (desktop), click-to-call, **Book Online**
 3. **Hero**: H1 *"Best Dentist in McMurray, PA. Changing the Way You Feel About Visiting the Dentist"*
    (the practice's own line plus the keyword), Book and Call buttons, a Google rating badge, a
-   live **"Open now · until 7 PM"** status, the team photo and a Google review quote
+   live **"Open now · until 7 PM"** status, a Google review quote and the **office-tour video**:
+   - A silent 30-second loop from the omnidentalpgh.com homepage hero video, trimmed to the sign,
+     reception, fireplace lounge, coffee bar, treatment rooms and building exterior.
+   - Compressed from **55 MB to 1.7 MB (desktop) / 0.95 MB (mobile)**.
+   - A **"Watch our office tour"** button opens the full video with sound (YouTube `5wBm_JHx_30`,
+     the same video the homepage's play button opens).
 4. **Proof bar**: 4.9★ · 1,500+ reviews · same-day · Mon–Fri early & evening · most PPO plans
 5. **Services**: 9 general-dentistry services, each with a CTA, plus "also available" (Invisalign, implants…)
 6. **Why Omni**: 6 USPs taken from the site and the current LP
 7. **Reviews**: rating panel, Google review topics with counts, 6 verbatim reviews, 3 video testimonials
 8. **CTA band**: "New Patients & Emergency Appointments Welcome!"
 9. **Comfort**: amenities, an anxious-patient callout, office photo mosaic
-10. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, a Hanlon video and a patient quote
+10. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, the team photo, a Hanlon video and a patient quote
 11. **Technology**: cone beam CT, iTero®, digital X-rays, guided implants
 12. **First visit**: 4 steps (with the New Patient Forms link) and "Are we a good fit?"
 13. **Smile gallery**: 4 real before/afters
@@ -59,20 +65,24 @@ Booking CTAs: 20 · Click-to-call links: 14 · Directions links: 4 (plus 2 "read
 |---|---|
 | Horizontal overflow at 320 / 390 / 768 / 1440 px | **0 px** at every width |
 | Broken images | 0 (every image loads in a real scroll-through) |
-| Throttled mobile (slow 4G, 4× CPU, 390 px @3x) | **LCP 0.71 s · CLS 0 · ~104 KB on first load** (local server, GTM blocked) |
+| Throttled mobile (slow 4G, 4× CPU, 390 px @3x) | **LCP 0.57 s · CLS 0 · ~48 KB before scrolling** (local server, GTM blocked) |
+| Hero video | Desktop: plays after page load. Mobile: downloads only when scrolled into view. Pauses off-screen and while the full tour is open. |
 | Reveal animations | All 66 animated blocks end visible; the hero is never animated, so LCP isn't delayed |
 | `gclid` / UTM pass-through to the booking link | Works |
 | "Open now" status | Uses McMurray time (America/New_York) |
 
-Speed choices: images are WebP with `srcset` and lazy-loaded below the fold. The hero image is
-preloaded with `fetchpriority="high"`. YouTube players and the insurance form load only on click.
+Speed choices: images are WebP with `srcset` and lazy-loaded below the fold. The hero video's
+poster frame (18 KB) is the LCP image, preloaded with `fetchpriority="high"`, so the video never
+slows the first paint. The loop starts only after the page has loaded. It's skipped for visitors
+with reduced motion turned on, Data Saver or a 2G connection; they see the poster, and the play
+button still works. YouTube players and the insurance form load only on click.
 There are no jQuery, slider or icon-font libraries; icons are an inline SVG sprite.
 
 ---
 
 ## How to deploy
 
-Upload `index.html` and the `images/` folder together, keeping the relative paths, to any host:
+Upload `index.html` with the `images/` and `video/` folders, keeping the relative paths, to any host:
 WordPress (as a blank-template page or static folder), Unbounce (paste into a custom HTML page and
 upload the images), or a subfolder such as `omnidentalpgh.com/lp/mcmurray-dentist/`. Then point the
 general-dentist ad groups at it.
@@ -89,7 +99,7 @@ general-dentist ad groups at it.
    installed. The page also pushes these `dataLayer` events, ready for GTM triggers or Ads conversions:
    - `lp_cta_click` with `cta_type` = `book` | `call` | `directions` | `insurance_check` |
      `membership` | `financing` | `forms` | `reviews`, and `cta_location` = the section name
-   - `lp_video_play` with `video_id`
+   - `lp_video_play` with `video_id` (the hero tour is `5wBm_JHx_30`)
 5. **Test traffic.** Before I blocked tags in my tests, a few local test loads ran the GTM
    container: page views from `127.0.0.1` with `gclid=TEST123` and `utm_source=google`. If any
    show up in GA4 or Ads, filter them out.
