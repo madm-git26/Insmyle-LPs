@@ -1,3 +1,6 @@
+> **Also in this repo:** [Omni Dental McMurray — Emergency Dentist LP](omni-dental-mcmurray/README.md)
+> (`omni-dental-mcmurray/`), a new standalone Google Ads landing page for 3035 Washington Rd, McMurray, PA.
+
 # In Smyle Dental — Google Ads Landing Page Enhancements
 
 Enhanced, paste-ready versions of the two live Google Ads landing pages for
