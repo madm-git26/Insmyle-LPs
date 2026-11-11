@@ -69,6 +69,7 @@ Derived copy: "From 7 AM on Tuesdays and Wednesdays, until 7 PM on Mondays and W
 | Same-day appointments and after-hours emergency care | [LOC] ("We also offer same-day appointments and after-hours emergency care!"); [GBP] topic; Sara J. review |
 | Dentist reachable for emergencies "at anytime" | [FAQ] #9 (paraphrased as "make every effort to see you as soon as possible") |
 | "Changing The Way You Feel About Visiting The Dentist" (H1) | [LP] H1 |
+| "Best Dentist in McMurray, PA" (H1 label, title, meta) | The practice's own claim: the current [LP] has a "BEST DENTIST IN McMurray, PA" banner, a "BEST OVERALL" badge and the "best dentist in McMurray PA" meta keyword. Backed on the page by 4.9★ / 1,500+ Google reviews [GBP] and reviews calling them "the best" (Alex H., Melissa L.). |
 | Friendly staff, education-based care, relaxing spa-like environment, one-stop shop | [LP] "What makes Omni Dental McMurray so great?" |
 | Technology & future focused, conservative approach, total health & prevention | [LP] |
 | "Are we a good fit for you?" three bullets | [LP] |
