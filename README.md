@@ -1,5 +1,8 @@
 # In Smyle Dental — Google Ads Landing Page Enhancements
 
+> **Also in this repo:** [`omni-dental-mcmurray/`](omni-dental-mcmurray/): a new general-dentist
+> Google Ads landing page for **Omni Dental McMurray**, PA. See its own README.
+
 Enhanced, paste-ready versions of the two live Google Ads landing pages for
 **In Smyle Dental – Lakeview & Roscoe Village** (3514 N Lincoln Ave, Chicago, IL 60657).
 
