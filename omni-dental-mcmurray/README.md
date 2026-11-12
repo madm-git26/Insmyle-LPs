@@ -7,6 +7,7 @@ page at `/same-day-emergency-dentist-mcmurray/`.
 | | |
 |---|---|
 | Page | [`emergency-dentist-mcmurray.html`](emergency-dentist-mcmurray.html) |
+| Single-file version | [`emergency-dentist-mcmurray.standalone.html`](emergency-dentist-mcmurray.standalone.html) — every image and font embedded (~610 KB), works on its own anywhere. Rebuild after edits with `python3 tools/build_standalone.py` |
 | Assets | [`assets/`](assets) — 11 optimised WebP photos, logo SVG, 2 self-hosted fonts (~420 KB total) |
 | Every claim, sourced | [`docs/VERIFIED-FACTS.md`](docs/VERIFIED-FACTS.md) |
 | Current live page (for diff/rollback) | [`original/`](original) |
