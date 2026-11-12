@@ -30,23 +30,33 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
    - A **"Watch our office tour"** button opens the full video with sound (YouTube `5wBm_JHx_30`,
      the same video the homepage's play button opens).
 4. **Proof bar**: 4.9★ · 1,500+ reviews · same-day · Mon–Fri early & evening · most PPO plans
-5. **Services**: 9 general-dentistry services, each with a CTA, plus "also available" (Invisalign, implants…)
+5. **Services**: 6 core general-dentistry cards, each with a CTA, plus "also available" chips (dentures, sedation, sealants, Invisalign, implants…)
 6. **Why Omni**: 6 USPs taken from the site and the current LP
-7. **Reviews**: rating panel, Google review topics with counts, 6 verbatim reviews, 3 video testimonials
+7. **Reviews**: rating panel, Google review topics with counts, and an **auto-scrolling slider** of 6
+   verbatim reviews, plus 3 video testimonials. The slider:
+   - advances every 4.5 s;
+   - shows 3 reviews per view on desktop, 2 on tablet and 1 on phones;
+   - can be swiped, or moved with the arrows and the keyboard arrow keys;
+   - pauses on hover, touch or keyboard focus, and has a pause button;
+   - doesn't auto-move for visitors with reduced motion turned on.
 8. **CTA band**: "New Patients & Emergency Appointments Welcome!"
 9. **Comfort**: amenities, an anxious-patient callout, office photo mosaic
-10. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, the team photo, a Hanlon video and a patient quote
+10. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, a Hanlon video and a patient quote
 11. **Technology**: cone beam CT, iTero®, digital X-rays, guided implants
 12. **First visit**: 4 steps (with the New Patient Forms link) and "Are we a good fit?"
 13. **Smile gallery**: 4 real before/afters
 14. **Insurance & financing**: accepted plans, an **insurance check** pop-up (the practice's own
     Jotform), membership plan, CareCredit, Cherry, and a year-end "use your benefits" note
 15. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
-16. **FAQ**: 10 questions in native `<details>`, so no JS is needed
-17. **Final CTA** and footer (privacy policy and terms links, for Ads policy)
+16. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance) in native `<details>`
+17. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
 18. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
 
-Booking CTAs: 20 · Click-to-call links: 14 · Directions links: 4 (plus 2 "read our Google reviews" links).
+Booking CTAs: 17 · Click-to-call links: 12 · Directions links: 3 (plus 2 "read our Google reviews" links).
+
+**Type & spacing:** the root size is 17px on phones and 17.6px from 700px up, about 6–10% larger
+than the original 16px, and every rem-based size scales with it. Body text is 1.125rem. Phones
+use tighter section padding (40px) and gaps.
 
 ## Brand match
 
@@ -64,9 +74,10 @@ Booking CTAs: 20 · Click-to-call links: 14 · Directions links: 4 (plus 2 "read
 |---|---|
 | Horizontal overflow at 320 / 390 / 768 / 1440 px | **0 px** at every width |
 | Broken images | 0 (every image loads in a real scroll-through) |
-| Throttled mobile (slow 4G, 4× CPU, 390 px @3x) | **LCP 0.57 s · CLS 0 · ~48 KB before scrolling** (local server, GTM blocked) |
+| Throttled mobile (slow 4G, 4× CPU, 390 px @3x) | **LCP under 0.9 s · CLS ≈ 0 · ~48 KB before scrolling** (local server, GTM blocked) |
 | Hero video | Desktop: plays after page load. Mobile: downloads only when scrolled into view. Pauses off-screen and while the full tour is open. |
-| Reveal animations | All 66 animated blocks end visible; the hero is never animated, so LCP isn't delayed |
+| Reveal animations | Every animated block ends visible; the hero is never animated, so LCP isn't delayed |
+| Reviews slider | Auto-advances and wraps; hover, pause button, arrows and reduced motion all tested at 1440 and 390 px |
 | `gclid` / UTM pass-through to the booking link | Works |
 | "Open now" status | Uses McMurray time (America/New_York) |
 

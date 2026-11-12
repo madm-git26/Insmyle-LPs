@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Best Dentist in McMurray, PA | Omni Dental">
 <meta property="og:description" content="New patients welcome. 4.9★ on Google from 1,500+ reviews. Same-day appointments available. 3035 Washington Rd Suite 3, McMurray, PA 15317.">
-<meta property="og:image" content="images/team-banner-1400.webp">
+<meta property="og:image" content="images/office-tour-poster-960.webp">
 <link rel="icon" type="image/png" href="images/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,9 +41,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   color-scheme:light;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 12px)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 12px);font-size:17px}
+@media(min-width:700px){html{font-size:17.6px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{margin:0;background:#fff;color:var(--ink);font-family:var(--fb);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--fb);font-size:1.125rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:var(--blue)}
 svg{flex-shrink:0}
@@ -233,9 +234,17 @@ p{margin:0 0 1em}
 .topic-list{display:flex;flex-wrap:wrap;gap:10px}
 .topic{display:inline-flex;align-items:baseline;gap:8px;background:var(--ice);border-radius:999px;padding:9px 15px 7px;font-weight:600;color:var(--navy);font-size:.97rem}
 .topic b{font-family:var(--fh);font-weight:400;color:var(--blue);font-size:1.05rem}
-.rev-grid{display:grid;gap:18px}
-@media(min-width:700px){.rev-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1040px){.rev-grid{grid-template-columns:repeat(3,1fr);gap:22px}}
+.rev-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;padding:4px 2px 14px;margin:0 -2px}
+.rev-track::-webkit-scrollbar{display:none}
+.rev-track>.rev{flex:0 0 86%;scroll-snap-align:start}
+@media(min-width:700px){.rev-track>.rev{flex-basis:calc((100% - 18px)/2)}}
+@media(min-width:1040px){.rev-track{gap:22px}.rev-track>.rev{flex-basis:calc((100% - 44px)/3)}}
+@media(prefers-reduced-motion:reduce){.rev-track{scroll-behavior:auto}}
+.rev-ctrl{display:flex;justify-content:center;gap:10px;margin-top:8px}
+.rc-btn{width:46px;height:46px;border-radius:50%;border:2px solid var(--navy);background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s}
+.rc-btn:hover{background:var(--navy);color:#fff}
+.rc-btn .ico{width:18px;height:18px}
+.rc-prev .ico{transform:rotate(180deg)}
 .rev{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 22px 20px;display:flex;flex-direction:column;position:relative}
 .rev .qmark{position:absolute;right:18px;top:12px;font-family:Georgia,serif;font-size:4rem;line-height:1;color:var(--pale)}
 .rev blockquote{margin:12px 0 18px;font-size:1.02rem;color:var(--ink);flex:1}
@@ -411,15 +420,11 @@ p{margin:0 0 1em}
 .final .meta .ico{color:var(--sky);width:18px;height:18px}
 
 /* Footer */
-.footer{background:#00172C;color:#A9C1D3;font-size:.95rem;padding:44px 0 30px}
+.footer{background:#00172C;color:#A9C1D3;font-size:.95rem;padding:20px 0}
 .footer .wrap{display:grid;gap:26px}
-@media(min-width:900px){.footer .wrap{grid-template-columns:1.2fr 1fr 1fr}}
-.footer img.flogo{height:42px;width:auto;filter:brightness(0) invert(1);opacity:.95;margin-bottom:12px}
-.footer h4{font-family:var(--fb);font-weight:700;color:#fff;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px}
 .footer a{color:#DCEBF6;text-decoration:none}
 .footer a:hover{text-decoration:underline}
-.footer p{margin:0 0 6px}
-.footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.84rem;color:#7F98AB;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
+.footer .legal{font-size:.84rem;color:#7F98AB;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between}
 
 /* Mobile sticky CTA */
 .mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 30px -16px rgba(2,48,90,.45);display:grid;grid-template-columns:1fr 1.25fr;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .25s ease}
@@ -439,9 +444,52 @@ dialog.vid-dialog{width:min(980px,calc(100vw - 24px));background:#000}
 dialog.vid-dialog .dlg-head{background:#fff}
 .vid-body{aspect-ratio:16/9;background:#000}
 .vid-body iframe{width:100%;height:100%;border:0;display:block}
-.team-banner{margin:28px 0 0;border-radius:var(--r-lg);overflow:hidden;position:relative;box-shadow:var(--shadow)}
-.team-banner img{width:100%;aspect-ratio:2.1/1;object-fit:cover}
-.team-banner figcaption{position:absolute;left:16px;bottom:14px;background:rgba(255,255,255,.95);color:var(--navy);border-radius:12px;padding:9px 14px 7px;font-weight:700;font-size:.95rem}
+
+
+/* Mobile: tighter vertical rhythm */
+@media(max-width:699px){
+  .section{padding:40px 0}
+  .hero{padding:18px 0 36px}
+  .hero-grid{gap:26px}
+  .hero h1{margin:14px 0 20px}
+  .hero-proof{margin-top:16px;padding-top:14px}
+  .checks{margin-top:14px;gap:6px}
+  .proof{padding:16px 8px 12px}
+  .sec-head{margin-bottom:24px}
+  .eyebrow{margin-bottom:8px}
+  .sub{font-size:1rem}
+  .sec-cta{margin-top:24px}
+  .svc-grid,.why-grid,.doc-grid,.steps,.tech-grid,.ins-grid,.loc-grid,.vid-grid{gap:12px}
+  .also{margin-top:18px;padding:18px 16px;gap:12px}
+  .why{padding:18px 18px 16px}
+  .rev-top{gap:12px;margin-bottom:18px}
+  .score{padding:20px 18px}
+  .topics{padding:18px 16px 14px}
+  .vids{margin-top:26px}
+  .vids h3{margin-bottom:12px}
+  .rev-cta{margin-top:20px}
+  .band .wrap{padding-top:32px;padding-bottom:32px;gap:16px}
+  .split{gap:24px}
+  .amen{margin:14px 0 16px;gap:8px}
+  .meet-video{margin-top:18px;padding:16px;gap:16px}
+  .doc .bd{padding:18px 18px 16px}
+  .step{padding:18px 18px 14px}
+  .step::before{margin-bottom:10px}
+  .fit{margin-top:16px;padding:18px 16px}
+  .ba-grid{gap:10px}
+  .fine{margin-top:10px}
+  .card,.loc-card{padding:20px 18px}
+  .ins-list{margin:12px 0 14px}
+  .season{margin-top:16px}
+  .map,.map iframe{min-height:260px}
+  .map-col{gap:10px}
+  .faq details{margin-bottom:8px}
+  .final .wrap{padding-top:44px;padding-bottom:44px}
+  .final .btn-row,.final .meta{margin-top:18px}
+  .doc .ph{aspect-ratio:1/1}
+  .chips{gap:8px}
+  .chip{font-size:.9rem;padding:7px 12px 5px}
+}
 
 /* Reveal */
 .js .rv{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
@@ -487,6 +535,7 @@ dialog.vid-dialog .dlg-head{background:#fff}
   <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
   <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
   <symbol id="i-g" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></symbol>
 </svg>
@@ -619,24 +668,6 @@ dialog.vid-dialog .dlg-head{background:#fff}
         <p>Very low-radiation digital X-rays and 3D cone beam CT scans for an accurate, detailed diagnosis.</p>
         <a class="link-arrow" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="svc-xrays">Book an exam <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </article>
-      <article class="svc rv">
-        <span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-drop"/></svg></span>
-        <h3>Dental Sealants</h3>
-        <p>A safe, painless protective barrier for the chewing surfaces of back teeth. Each tooth takes just a few minutes, with no drilling.</p>
-        <a class="link-arrow" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="svc-sealants">Book a visit <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </article>
-      <article class="svc rv">
-        <span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-smile"/></svg></span>
-        <h3>Dentures &amp; Partials</h3>
-        <p>Traditional metal-base or flexible, metal-free “Flexi” partials, crafted from a 3D impression for a comfortable fit.</p>
-        <a class="link-arrow" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="svc-dentures">Book a consult <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </article>
-      <article class="svc rv">
-        <span class="ic"><svg class="ico" aria-hidden="true"><use href="#i-moon"/></svg></span>
-        <h3>Sedation for Anxious Patients</h3>
-        <p>Oral sedation is available. For more severe anxiety, we work with Ambulatory Anesthesia, who will come to our office to sedate you.</p>
-        <a class="link-arrow" href="tel:+17242206862" data-cta="call" data-loc="svc-sedation">Ask about sedation <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      </article>
     </div>
     <div class="also rv">
       <div>
@@ -644,6 +675,9 @@ dialog.vid-dialog .dlg-head{background:#fff}
         <p>One practice for every stage of your smile.</p>
       </div>
       <div class="chips">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Dentures &amp; Partials</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sedation Dentistry</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Dental Sealants</span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Invisalign® (free consultation)</span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Teeth Whitening</span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Porcelain Veneers</span>
@@ -711,40 +745,47 @@ dialog.vid-dialog .dlg-head{background:#fff}
         </div>
       </div>
     </div>
-    <div class="rev-grid">
-      <figure class="rev rv" style="margin:0">
+    <div class="rev-slider rv" role="region" aria-roledescription="carousel" aria-label="Patient reviews">
+    <div class="rev-track" id="revTrack" tabindex="0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 1 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
         <blockquote>“This is the best dental office I have ever been to. I am blown away by the staff, the care, and the commitment to excellence. Dr Bono has been the best dentist I've ever had and I feel well cared for.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">A</span><span><strong>Alex H.</strong><small><svg width="14" height="14" aria-hidden="true"><use href="#i-g"/></svg>Google review</small></span></figcaption>
       </figure>
-      <figure class="rev rv" style="margin:0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 2 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
         <blockquote>“Hannah is an outstanding dental hygienist! She is professional, friendly, and incredibly thorough. She took the time to explain everything she was doing, made sure I was comfortable throughout the cleaning, and did an excellent job.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">C</span><span><strong>Che'</strong><small><svg width="14" height="14" aria-hidden="true"><use href="#i-g"/></svg>Google review</small></span></figcaption>
       </figure>
-      <figure class="rev rv" style="margin:0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 3 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
         <blockquote>“The dentist appointment was at 7am. My choice. On Wednesday, they are open 7 am to 7 pm. I like having that flexible schedule. My dentist was pleasant and very gentle. She asked me if I had any questions or concerns.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">E</span><span><strong>Ellen N.</strong><small><svg width="14" height="14" aria-hidden="true"><use href="#i-g"/></svg>Google review</small></span></figcaption>
       </figure>
-      <figure class="rev rv" style="margin:0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 4 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <blockquote>“Omni got me in the same day. I broke my tooth the previous day. No one else could see me. Omni got me in today and fixed my broken tooth. They were amazing! So polite and nice and professional.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">S</span><span><strong>Sara J.</strong><small>Patient review</small></span></figcaption>
       </figure>
-      <figure class="rev rv" style="margin:0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 5 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <blockquote>“The staff is friendly and knowledgeable. Honestly, before going to Omni, I hated dental visits. They are fixing my smile and helping me feel better about myself. I will return there for all of my dental needs. They are the best!”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">M</span><span><strong>Melissa L.</strong><small>Patient review</small></span></figcaption>
       </figure>
-      <figure class="rev rv" style="margin:0">
+      <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 6 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <blockquote>“As a person who puts off the dentist as long as they can I just want to say how happy I am I found this place. AMAZING staff. Everyone was so kind and this will now be my regular office I schedule with.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">J</span><span><strong>Jessica B.</strong><small>Patient review</small></span></figcaption>
       </figure>
+    </div>
+    <div class="rev-ctrl">
+      <button class="rc-btn rc-prev" type="button" data-rev="prev" aria-label="Previous review"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button class="rc-btn" type="button" data-rev="pause" aria-label="Pause auto-scrolling" aria-pressed="false"><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg></button>
+      <button class="rc-btn" type="button" data-rev="next" aria-label="Next review"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+    </div>
     </div>
 
     <div class="vids">
@@ -866,7 +907,6 @@ dialog.vid-dialog .dlg-head{background:#fff}
         </div>
       </article>
     </div>
-    <figure class="team-banner rv"><img src="images/team-banner-1000.webp" srcset="images/team-banner-640.webp 640w, images/team-banner-1000.webp 1000w, images/team-banner-1400.webp 1400w" sizes="(min-width:1240px) 1160px, 100vw" width="1000" height="476" alt="The Omni Dental McMurray team in the office reception area" loading="lazy" decoding="async"><figcaption>Our McMurray team</figcaption></figure>
     <div class="meet-video rv">
       <button class="yt" type="button" data-yt="pP6w1nJtB5c" aria-label="Play video: Dr. Justin Hanlon at Omni Dental McMurray">
         <img src="images/video-dr-hanlon-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async">
@@ -1092,30 +1132,6 @@ dialog.vid-dialog .dlg-head{background:#fff}
         <summary>What if I don't have dental insurance?</summary>
         <div class="ans"><p>No problem. Our in-office membership plan takes less than 15 minutes to join, and your coverage is active immediately. We also offer financing through CareCredit and Cherry, and accept cash, checks and credit cards.</p></div>
       </details>
-      <details>
-        <summary>I'm nervous about going to the dentist. Can you help?</summary>
-        <div class="ans"><p>Absolutely. Let us know you're apprehensive and we'll adapt your treatment around your fears. You're always in control, and treatment starts and stops when you say so. Our massaging heated chairs, weighted blankets, headphones and Netflix help you relax. We also offer oral sedation, and for severe anxiety we can arrange in-office sedation with Ambulatory Anesthesia.</p></div>
-      </details>
-      <details>
-        <summary>What happens during a dental cleaning?</summary>
-        <div class="ans"><p>Your hygienist first examines your gums for signs of recession or periodontal pocketing, then carefully removes plaque and tartar around the gum line and between your teeth. Next, they polish your teeth with a high-tech electric brush and finish by flossing. Each visit also includes an oral cancer screening.</p></div>
-      </details>
-      <details>
-        <summary>Does a dental cleaning hurt?</summary>
-        <div class="ans"><p>If it's been a while since your last cleaning, you may notice some gum bleeding. Our hygienists are very gentle and work at a pace that keeps you comfortable, and you can stop or pause at any time.</p></div>
-      </details>
-      <details>
-        <summary>How often should I have a cleaning and checkup?</summary>
-        <div class="ans"><p>We recommend visiting at least twice a year. Routine cleanings remove stubborn plaque and tartar that can lead to tooth decay and gum disease, and your checkup lets us spot cavities, gum disease and other problems early. Dental insurance usually covers twice-yearly cleanings.</p></div>
-      </details>
-      <details>
-        <summary>Are dental X-rays safe?</summary>
-        <div class="ans"><p>Yes. Our digital X-rays expose you to a very low amount of radiation, which poses a much smaller risk than an undetected dental problem. Our 3D cone beam CT also uses a much lower dose than a conventional medical CT scan.</p></div>
-      </details>
-      <details>
-        <summary>Do you see children?</summary>
-        <div class="ans"><p>Yes, we care for patients of all ages. We recommend children be seen by about age three, so their first visits are positive ones before any dental problem appears.</p></div>
-      </details>
     </div>
   </div>
 </section>
@@ -1144,22 +1160,6 @@ dialog.vid-dialog .dlg-head{background:#fff}
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="wrap">
-    <div>
-      <img class="flogo" src="images/omni-dental-logo.svg" width="172" height="42" alt="Omni Dental" loading="lazy">
-      <p>Family · Cosmetic · Implant dentistry in McMurray, PA.</p>
-    </div>
-    <div>
-      <h4>Visit</h4>
-      <p><a href="https://maps.app.goo.gl/9ST2bdeMw6t71UTc8" target="_blank" rel="noopener" data-cta="directions" data-loc="footer">3035 Washington Rd Suite 3<br>McMurray, PA 15317</a></p>
-      <p><a href="tel:+17242206862" data-cta="call" data-loc="footer">(724) 220-6862</a></p>
-      <p><a href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="footer">Book online</a></p>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <p>Mon 11–7 · Tue 7–3 · Wed 7–7</p>
-      <p>Thu 8–4 · Fri 8–3</p>
-      <p>Sat &amp; Sun closed</p>
-    </div>
     <div class="legal">
       <span>© 2026 Omni Dental. All rights reserved.</span>
       <span><a href="https://omnidentalpgh.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> · <a href="https://omnidentalpgh.com/terms-of-service/" target="_blank" rel="noopener">Terms of Service</a> · <a href="https://omnidentalpgh.com/" target="_blank" rel="noopener">omnidentalpgh.com</a></span>
@@ -1222,6 +1222,35 @@ dialog.vid-dialog .dlg-head{background:#fff}
     var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{rootMargin:'0px 0px -8% 0px'});
     rv.forEach(function(el){io.observe(el)});
   } else { rv.forEach(function(el){el.classList.add('in')}); }
+
+  /* 4b. Reviews slider: auto-advances every 4.5 s; swipe/arrow friendly; pauses on hover, keyboard focus,
+         touch, off-screen or hidden tab; never auto-moves for prefers-reduced-motion; pause button (WCAG 2.2.2) */
+  var tr=d.getElementById('revTrack');
+  if(tr){
+    var sl=tr.closest('.rev-slider'), pb=sl.querySelector('[data-rev="pause"]');
+    var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var paused=false, hov=false, foc=false, seen=false, hold=0;
+    var gap=function(){return parseFloat(getComputedStyle(tr).columnGap)||0};
+    var stepW=function(){var c=tr.querySelector('.rev');return c?c.getBoundingClientRect().width+gap():tr.clientWidth};
+    var go=function(dir){
+      if(dir>0 && tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-8) tr.scrollTo({left:0,behavior:'smooth'});
+      else if(dir<0 && tr.scrollLeft<=8) tr.scrollTo({left:tr.scrollWidth,behavior:'smooth'});
+      else tr.scrollBy({left:dir*stepW(),behavior:'smooth'});
+    };
+    var setPaused=function(p){paused=p;pb.setAttribute('aria-pressed',String(p));pb.setAttribute('aria-label',p?'Resume auto-scrolling':'Pause auto-scrolling');
+      pb.innerHTML=p?'<svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>':'<svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg>';};
+    setPaused(!!rm);
+    setInterval(function(){ if(!paused && !hov && !foc && seen && !d.hidden && Date.now()>hold) go(1); },4500);
+    var holdOn=function(){hold=Date.now()+8000};
+    sl.addEventListener('mouseenter',function(){hov=true}); sl.addEventListener('mouseleave',function(){hov=false});
+    sl.addEventListener('focusin',function(e){foc=!!(e.target.matches&&e.target.matches(':focus-visible'))}); sl.addEventListener('focusout',function(){foc=false});
+    tr.addEventListener('pointerdown',holdOn,{passive:true}); tr.addEventListener('touchstart',holdOn,{passive:true}); tr.addEventListener('wheel',holdOn,{passive:true});
+    sl.querySelector('[data-rev="prev"]').addEventListener('click',function(){holdOn();go(-1)});
+    sl.querySelector('[data-rev="next"]').addEventListener('click',function(){holdOn();go(1)});
+    pb.addEventListener('click',function(){setPaused(!paused)});
+    tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();holdOn();go(1)} else if(e.key==='ArrowLeft'){e.preventDefault();holdOn();go(-1)}});
+    if('IntersectionObserver' in w){new IntersectionObserver(function(en){seen=en[0].isIntersecting},{threshold:.35}).observe(tr);} else seen=true;
+  }
 
   /* 5. Lite YouTube embeds: load the player only when clicked */
   d.querySelectorAll('[data-yt]').forEach(function(b){

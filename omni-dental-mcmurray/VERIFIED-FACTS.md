@@ -130,7 +130,7 @@ Derived copy: "From 7 AM on Tuesdays and Wednesdays, until 7 PM on Mondays and W
 
 ## Images: all the practice's own
 
-Hero team photo, reception, lounge, operatory, exterior, CBCT: omnidentalpgh.com media library.
+Reception, lounge, operatory, exterior: omnidentalpgh.com media library.
 Doctor headshots: the 2025 bio photos on omnidentalpgh.com. Hanlon chair-side photo: the current LP.
 Before/after: `/smile-gallery/` (BA-1, BA-3, BA-5, BA-6). Video thumbnails: YouTube.
 Hero video: the omnidentalpgh.com homepage hero loop `video-newomni-banner.mp4`, cut to 0–17.3s,
