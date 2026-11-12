@@ -66,7 +66,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 |---|---|---|
 | 1 | Alert strip | Tappable emergency number above everything |
 | 2 | Sticky header | Logo + "Emergency line" number + Book Online, always visible |
-| 3 | **Hero** | H1 "Same-Day Emergency Dentist in McMurray, PA"; 4.9★ proof; Call + Book CTAs; **live open/closed status in Eastern time**; address; after-hours card |
+| 3 | **Hero** | H1 "Same-Day Emergency Dentist in McMurray, PA"; 4.9★ proof; Call + Book CTAs; **live open/closed status in Eastern time**; address; team photo |
 | 4 | Trust bar | 4.9★ · same-day · 7 AM starts · 7 PM late hours |
 | 5 | Emergencies we treat | 10 symptom cards so visitors see their problem is fixable + "Not sure?" CTA |
 | 6 | Reviews | Google rating panel + real reviews, incl. an emergency review |
@@ -79,7 +79,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 13 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
-**CTAs:** 13 tap-to-call links, 6 booking links, 1 directions link. The only other
+**CTAs:** 12 tap-to-call links, 6 booking links, 1 directions link. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
