@@ -76,11 +76,11 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
 | 11 | First aid | "What to do right now" accordions + an ER/911 safety note |
 | 12 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
-| 13 | FAQ | 12 questions (also emitted as FAQPage JSON-LD) |
+| 13 | FAQ | 6 conversion-focused questions (same-day, after hours, new patients, walk-ins, cost, insurance), also emitted as FAQPage JSON-LD. Questions already answered elsewhere on the page were cut to keep it short |
 | 14 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call · Book · Directions, fixed on phones and tablets |
 
-**CTAs:** 18 tap-to-call links, 6 booking links, 2 directions links. The only other
+**CTAs:** 17 tap-to-call links, 6 booking links, 2 directions links. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
@@ -112,7 +112,7 @@ outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 | First Tab stop | "Skip to content" |
 | Mobile LCP / CLS (simulated 4G, 4× CPU slowdown) | **0.56 s / 0.067** |
 | First-party transfer on load | ~208 KB (third-party tags not included) |
-| JSON-LD | `Dentist` + `FAQPage` (12 Q&As, generated from the visible FAQ) parse as valid JSON |
+| JSON-LD | `Dentist` + `FAQPage` (6 Q&As, generated from the visible FAQ) parse as valid JSON |
 | Open/closed status | Correct for before-open, open, after-close, Friday evening, Saturday and Sunday night, including visitors in other time zones |
 | `gclid` / UTM pass-through to booking | Verified |
 | `dataLayer` click events | Verified for call, book and directions |
