@@ -66,10 +66,10 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 |---|---|---|
 | 1 | Alert strip | Tappable emergency number above everything |
 | 2 | Sticky header | Logo + "Emergency line" number + Book Online, always visible |
-| 3 | **Hero** | H1 "Same-Day Emergency Dentist in McMurray, PA"; 4.9★ proof; Call + Book CTAs; **live open/closed status in Eastern time**; address; team photo |
+| 3 | **Hero** | Large H1 "Same-Day Emergency Dentist in McMurray, PA" (no sub-paragraph); 4.9★ proof; Call + Book CTAs; **live open/closed status in Eastern time**; address; team photo |
 | 4 | Trust bar | 4.9★ · same-day · 7 AM starts · 7 PM late hours |
 | 5 | Emergencies we treat | 10 symptom cards so visitors see their problem is fixable + "Not sure?" CTA |
-| 6 | Reviews | Google rating panel + **swipeable review carousel** (scroll-snap, prev/next arrows, position dots, keyboard-scrollable; no autoplay) |
+| 6 | Reviews | Google rating panel + swipeable review carousel that **auto-advances every 5 s** and loops (pauses on hover, touch, keyboard focus, when off-screen or the tab is hidden; Pause/Play button; off for reduced-motion users), plus arrows and position dots |
 | 7 | Step by step | Removes fear of the unknown: call → diagnose → numb → your choice |
 | 8 | Why Omni | "Why McMurray Trusts Our Emergency Dentists": keyword-rich intro + three short paragraphs (emergencies treated & in-house treatments; fast 3D diagnosis & relief; comfort/sedation), 8-point emergency checklist, Call/Book CTAs |
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |

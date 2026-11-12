@@ -51,7 +51,7 @@ a{color:var(--sky-ink);text-underline-offset:3px}
 a[href^="tel:"]{white-space:nowrap}
 a:focus-visible,summary:focus-visible,.btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
 h1,h2{font-family:var(--head);font-weight:400;color:var(--navy);line-height:1.12;margin:0 0 .45em;letter-spacing:-.01em}
-h3{font-family:var(--body);font-weight:700;color:var(--navy);font-size:1.05rem;line-height:1.3;margin:0 0 .35em}
+h3{font-family:var(--body);font-weight:700;color:var(--navy);font-size:1.15rem;line-height:1.3;margin:0 0 .35em}
 p{margin:0 0 1em}
 ul{padding:0;margin:0;list-style:none}
 .skip{position:absolute;left:-9999px;top:8px;z-index:100;background:#fff;color:var(--navy);padding:10px 14px;border-radius:8px;font-weight:700}
@@ -62,9 +62,9 @@ ul{padding:0;margin:0;list-style:none}
 @media (min-width:960px){.section{padding-block:88px}}
 .section--soft{background:var(--soft)}
 .eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sky-ink);margin-bottom:10px}
-.h2{font-size:clamp(1.85rem,1.15rem + 2.7vw,2.75rem)}
+.h2{font-size:clamp(2.25rem,1.35rem + 3.3vw,3.5rem);line-height:1.08}
 .lead{font-size:1.06em;color:var(--muted);max-width:64ch}
-.sec-head{max-width:780px;margin-bottom:34px}
+.sec-head{max-width:900px;margin-bottom:36px}
 .sec-head--c{text-align:center;margin-inline:auto}
 .sec-head--c .lead{margin-inline:auto}
 .i{width:1.2em;height:1.2em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -120,11 +120,10 @@ ul{padding:0;margin:0;list-style:none}
 /* Hero */
 .hero{position:relative;color:#fff;background:radial-gradient(900px 480px at 88% -8%,rgba(3,169,244,.32),transparent 62%),radial-gradient(700px 420px at -10% 110%,rgba(3,169,244,.16),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);overflow:hidden}
 .hero .wrap{display:grid;gap:34px;padding-block:30px 44px}
-@media (min-width:960px){.hero .wrap{grid-template-columns:1.06fr .94fr;align-items:center;gap:56px;padding-block:60px 84px}}
+@media (min-width:960px){.hero .wrap{grid-template-columns:1.2fr .8fr;align-items:center;gap:56px;padding-block:60px 84px}}
 .kicker{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
-.hero h1{color:#fff;font-size:clamp(2.1rem,1.25rem + 3.7vw,3.65rem);margin-bottom:14px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,1.5rem + 4.4vw,4.3rem);line-height:1.06;margin-bottom:24px}
 .hero h1 em{font-style:normal;color:var(--pale);white-space:nowrap}
-.hero-lead{color:#d6eaf7;font-size:1.06em;max-width:56ch;margin-bottom:20px}
 .rating{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px 9px;margin-bottom:22px;font-size:1.06rem;color:#e6f3fb}
 @media (min-width:768px){.rating{font-size:1.14rem}}
 .rating .g{width:27px;height:27px;background:#fff;border-radius:50%;padding:3px}
@@ -164,16 +163,17 @@ ul{padding:0;margin:0;list-style:none}
 @media (min-width:1100px){.trust ul{grid-template-columns:repeat(4,1fr)}.trust li{border-bottom:0!important;border-right:1px solid var(--line)}.trust li:last-child{border-right:0}.trust li>div>span{white-space:nowrap}}
 
 /* Emergency cards */
-.e-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (min-width:1000px){.e-grid{grid-template-columns:repeat(5,1fr);gap:16px}}
-.e-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 15px 14px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.e-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (min-width:1000px){.e-grid{grid-template-columns:repeat(5,1fr);gap:18px}}
+.e-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 16px 16px;transition:border-color .15s,box-shadow .15s,transform .15s}
 .e-card:hover{border-color:var(--pale);box-shadow:var(--shadow-sm);transform:translateY(-2px)}
-.e-card .ic{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--sky-50);color:var(--sky-ink);margin-bottom:12px}
-.e-card h3{font-size:.98rem}
-.e-card p{font-size:.86rem;color:var(--muted);line-height:1.45;margin:0}
-@media (min-width:768px){.e-card{padding:20px 18px 18px}.e-card p{font-size:.88rem}}
+.e-card .ic{display:grid;place-items:center;width:50px;height:50px;border-radius:14px;background:var(--sky-50);color:var(--sky-ink);margin-bottom:14px}
+.e-card .ic .i{width:25px;height:25px}
+.e-card h3{font-size:1.1rem;margin-bottom:.4em}
+.e-card p{font-size:.93rem;color:var(--muted);line-height:1.5;margin:0}
+@media (min-width:768px){.e-card{padding:26px 22px 24px}.e-card .ic{width:58px;height:58px;border-radius:16px;margin-bottom:18px}.e-card .ic .i{width:29px;height:29px}.e-card h3{font-size:1.25rem}.e-card p{font-size:1rem}}
 .cta-box{display:flex;flex-direction:column;gap:18px;align-items:flex-start;justify-content:space-between;margin-top:28px;padding:24px;border-radius:var(--r);background:var(--navy);color:#e6f3fb}
-.cta-box strong{display:block;font-family:var(--head);font-weight:400;font-size:1.55rem;color:#fff;line-height:1.2;margin-bottom:4px}
+.cta-box strong{display:block;font-family:var(--head);font-weight:400;font-size:clamp(1.7rem,1.3rem + 1.2vw,2.1rem);color:#fff;line-height:1.2;margin-bottom:4px}
 .cta-box p{margin:0}
 @media (min-width:860px){.cta-box{flex-direction:row;align-items:center;padding:28px 32px}}
 
@@ -194,6 +194,9 @@ ul{padding:0;margin:0;list-style:none}
 .rv-btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
 .rv-btn .i{width:20px;height:20px}
 .rv-btn[data-dir="-1"] .i{transform:scaleX(-1)}
+.rv-play{margin-left:6px;width:40px;height:40px}
+.rv-play .i-play,.rv-play.is-paused .i-pause{display:none}
+.rv-play.is-paused .i-play{display:block}
 .rv-dots{display:flex;gap:8px}
 .rv-dots span{width:8px;height:8px;border-radius:999px;background:#c5d6e4;transition:width .2s,background-color .2s}
 .rv-dots span.on{width:24px;background:var(--navy)}
@@ -251,7 +254,7 @@ ul{padding:0;margin:0;list-style:none}
 @media (min-width:760px){.doc-img{aspect-ratio:4/4.2}}
 .doc-img img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
 .doc-body{padding:20px 20px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
-.doc h3{font-family:var(--head);font-weight:400;font-size:1.45rem;margin:0}
+.doc h3{font-family:var(--head);font-weight:400;font-size:1.8rem;margin:0}
 .doc .role{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-ink)}
 .doc ul{display:grid;gap:7px;font-size:.9rem;color:var(--muted);line-height:1.45}
 .doc li{display:flex;gap:8px}
@@ -461,6 +464,8 @@ fbq('track', 'PageView');
   <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-4a2 2 0 0 0 0 4h4v3a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5"/></symbol>
@@ -497,8 +502,6 @@ fbq('track', 'PageView');
     <div class="hero-copy">
       <span class="kicker"><span class="pulse" aria-hidden="true"></span>Emergency Dentist · McMurray, PA</span>
       <h1 id="hero-h">Same-Day Emergency Dentist in <em>McMurray, PA</em></h1>
-      <p class="hero-lead">Toothache, broken tooth, swelling or a knocked-out tooth? Call Omni Dental McMurray now. We make every effort to see emergency patients the same day — and we numb you comfortably first, so relief starts fast.</p>
-
       <div class="rating">
         <svg class="g" aria-hidden="true"><use href="#i-g"/></svg>
         <span class="stars" aria-hidden="true"><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg></span>
@@ -621,6 +624,7 @@ fbq('track', 'PageView');
           <button class="rv-btn" type="button" data-dir="-1" aria-controls="rv-track" aria-label="Previous review"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           <div class="rv-dots" aria-hidden="true"></div>
           <button class="rv-btn" type="button" data-dir="1" aria-controls="rv-track" aria-label="Next review"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="rv-btn rv-play" type="button" aria-controls="rv-track" aria-label="Pause automatic scrolling"><svg class="i i-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="i i-play" aria-hidden="true"><use href="#i-play"/></svg></button>
         </div>
       </div>
     </div>
@@ -926,6 +930,38 @@ fbq('track', 'PageView');
     track.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
     window.addEventListener('resize',update);
     update();
+
+    /* Auto-advance every 5s. Pauses on hover, touch, keyboard focus, when off-screen or the tab is
+       hidden, and via the Pause button (WCAG 2.2.2). Off entirely for reduced-motion users. */
+    var wrapEl=track.parentNode,play=document.querySelector('.rv-play'),timer=null;
+    var st={user:false,hover:false,focus:false,view:false};
+    var tick=function(){
+      var max=track.scrollWidth-track.clientWidth;
+      if(track.scrollLeft>=max-2)track.scrollTo({left:0,behavior:'smooth'});
+      else track.scrollBy({left:step(),behavior:'smooth'});
+    };
+    var sync=function(restart){
+      var run=!calm&&!st.user&&!st.hover&&!st.focus&&st.view&&!document.hidden&&!wrapEl.classList.contains('no-scroll');
+      if(timer&&(!run||restart)){clearInterval(timer);timer=null;}
+      if(run&&!timer)timer=setInterval(tick,5000);
+    };
+    if(calm){play.hidden=true;}
+    else{
+      play.addEventListener('click',function(){
+        st.user=!st.user;play.classList.toggle('is-paused',st.user);
+        play.setAttribute('aria-label',st.user?'Play automatic scrolling':'Pause automatic scrolling');sync(true);
+      });
+      wrapEl.addEventListener('mouseenter',function(){st.hover=true;sync();});
+      wrapEl.addEventListener('mouseleave',function(){st.hover=false;sync(true);});
+      wrapEl.addEventListener('focusin',function(e){st.focus=!!(e.target.matches&&e.target.matches(':focus-visible'));sync();});
+      wrapEl.addEventListener('focusout',function(){st.focus=false;sync(true);});
+      track.addEventListener('pointerdown',function(){sync(true);},{passive:true});
+      track.addEventListener('wheel',function(){sync(true);},{passive:true});
+      for(var q=0;q<btns.length;q++)if(btns[q].hasAttribute('data-dir'))btns[q].addEventListener('click',function(){sync(true);});
+      document.addEventListener('visibilitychange',function(){sync(true);});
+      if('IntersectionObserver' in window)new IntersectionObserver(function(en){st.view=en[0].isIntersecting;sync(true);},{threshold:.4}).observe(track);
+      else{st.view=true;sync();}
+    }
   }
 
   /* ---- Conversion events for GTM (call / book / directions) ---- */
