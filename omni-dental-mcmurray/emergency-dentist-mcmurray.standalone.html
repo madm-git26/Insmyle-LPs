@@ -119,19 +119,22 @@ ul{padding:0;margin:0;list-style:none}
 .hero h1{color:#fff;font-size:clamp(2.1rem,1.25rem + 3.7vw,3.65rem);margin-bottom:14px}
 .hero h1 em{font-style:normal;color:var(--pale);white-space:nowrap}
 .hero-lead{color:#d6eaf7;font-size:1.06em;max-width:56ch;margin-bottom:20px}
-.rating{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin-bottom:22px;font-size:.95rem;color:#e6f3fb}
-.rating .g{width:22px;height:22px;background:#fff;border-radius:50%;padding:3px}
+.rating{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px 9px;margin-bottom:22px;font-size:1.06rem;color:#e6f3fb}
+@media (min-width:768px){.rating{font-size:1.14rem}}
+.rating .g{width:27px;height:27px;background:#fff;border-radius:50%;padding:3px}
+.rating .stars .i{width:21px;height:21px}
 .stars{display:inline-flex;gap:1px;color:var(--gold)}
 .stars .i{width:17px;height:17px}
-.rating b{color:#fff;font-size:1.05rem}
+.rating b{color:#fff;font-size:1.18em}
 .hero .btn-row .btn{flex:1 1 220px}
 @media (min-width:480px){.hero .btn-row .btn{flex:0 1 auto}}
-.status{display:flex;align-items:center;flex-wrap:wrap;gap:6px 14px;margin-top:18px;font-size:.92rem;color:#d6eaf7}
-.status .dot{width:10px;height:10px;border-radius:50%;background:var(--open);box-shadow:0 0 0 4px rgba(74,222,128,.18);flex:none}
+.status{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:20px;font-size:1.02rem;color:#d6eaf7}
+@media (min-width:768px){.status{font-size:1.1rem}}
+.status .dot{width:12px;height:12px;border-radius:50%;background:var(--open);box-shadow:0 0 0 4px rgba(74,222,128,.18);flex:none}
 .status.is-closed .dot{background:var(--closed);box-shadow:0 0 0 4px rgba(251,191,36,.18)}
 .status .s-main{display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#fff}
 .status .s-addr{display:inline-flex;align-items:center;gap:6px}
-.status .s-addr .i{width:16px;height:16px;color:var(--pale)}
+.status .s-addr .i{width:19px;height:19px;color:var(--pale)}
 .chips{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);font-size:.9rem;color:#e6f3fb}
 .chips li{display:flex;gap:8px;align-items:flex-start;line-height:1.35}
 .chips .i{color:var(--sky);width:18px;height:18px;margin-top:-1px}
@@ -503,7 +506,7 @@ fbq('track', 'PageView');
       <div class="rating">
         <svg class="g" aria-hidden="true"><use href="#i-g"/></svg>
         <span class="stars" aria-hidden="true"><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg></span>
-        <span><b>4.9</b> from 1,500+ Google reviews</span>
+        <b>4.9</b><span>from 1,500+ Google reviews</span>
       </div>
 
       <div class="btn-row">
