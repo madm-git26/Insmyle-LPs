@@ -69,7 +69,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 2 | Sticky header | Logo + "Emergency line" number + Book Online, always visible |
 | 3 | **Hero** | Large H1 "Same-Day Emergency Dentist in McMurray, PA" (no sub-paragraph); 4.9★ proof; Call + Book CTAs; **live open/closed status in Eastern time**; address; team photo |
 | 4 | Trust bar | 4.9★ · same-day · 7 AM starts · 7 PM late hours |
-| 5 | Emergencies we treat | 10 symptom cards so visitors see their problem is fixable + "Not sure?" CTA |
+| 5 | Emergencies we treat | 6 large symptom cards (toothache, broken/cracked, knocked-out, swelling/abscess, lost crown/filling, wisdom tooth) in a 3×2 grid + "Not sure?" CTA |
 | 6 | Reviews | Google rating panel + review carousel that **glides continuously** (~32 px/s desktop, ~22 px/s phone) in a seamless loop; pauses on hover, touch/drag, keyboard focus, when off-screen or the tab is hidden; Pause/Play button; arrows jump one card; static snap carousel for reduced-motion users |
 | 7 | Step by step | Removes fear of the unknown: call → diagnose → numb → your choice |
 | 8 | Why Omni | Keyword section — H2 "Your Emergency Dentist Near You in McMurray", intro naming the "emergency dentist near me" / "dentist office near me now" searches, four H3 sub-sections (dentist near you today · urgent dental care for every dental emergency · fast answers & relief · emergency dentist for Pittsburgh’s South Hills), 6-point checklist, Call/Book CTAs. See [`docs/KEYWORD-MAP.md`](docs/KEYWORD-MAP.md) |
