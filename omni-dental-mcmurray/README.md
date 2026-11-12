@@ -8,7 +8,7 @@ page at `/same-day-emergency-dentist-mcmurray/`.
 |---|---|
 | Page | [`emergency-dentist-mcmurray.html`](emergency-dentist-mcmurray.html) |
 | Single-file version | [`emergency-dentist-mcmurray.standalone.html`](emergency-dentist-mcmurray.standalone.html) — every image and font embedded (~610 KB), works on its own anywhere. Rebuild after edits with `python3 tools/build_standalone.py` |
-| Assets | [`assets/`](assets) — 11 optimised WebP photos, logo SVG, 2 self-hosted fonts (~420 KB total) |
+| Assets | [`assets/`](assets) — 10 optimised WebP photos, logo SVG, 2 self-hosted fonts (~410 KB total) |
 | Every claim, sourced | [`docs/VERIFIED-FACTS.md`](docs/VERIFIED-FACTS.md) |
 | Current live page (for diff/rollback) | [`original/`](original) |
 
@@ -74,12 +74,12 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 8 | Why Omni | Six differentiators: after-hours line, CBCT, comfort, sedation, all-in-one |
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
-| 11 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
+| 11 | Location & hours | Address, call + directions buttons, hours with today highlighted, map |
 | 12 | FAQ | 4 conversion-focused questions (same-day, after hours, new patients, walk-ins), also emitted as FAQPage JSON-LD. Cost and insurance are covered by the Insurance & payment section. Questions already answered elsewhere on the page were cut to keep it short |
 | 13 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
-**CTAs:** 14 tap-to-call links, 6 booking links, 1 directions link. The only other
+**CTAs:** 13 tap-to-call links, 6 booking links, 1 directions link. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
