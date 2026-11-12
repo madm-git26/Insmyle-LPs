@@ -87,6 +87,13 @@ page (Shadyside lists Drs. Rabinovich and Hanlon), so he was not presented as a 
 | Ambulatory Anesthesia comes to the office for deeper sedation | [SITE] FAQ #5 |
 | CBCT 3D imaging (low dose), iTero® Element digital impressions (no "goop") | [SITE] `/advanced-dental-technology/` |
 | Low-radiation digital X-rays | [SITE] FAQ #25 |
+| iTero® scans help crowns fit better, with fewer remakes | [SITE] `/advanced-dental-technology/` ("better fitting crowns with fewer remakes") |
+| Dr. Hanlon uses CBCT 3D imaging to "promptly and precisely assess" teeth and build a "customized emergency treatment plan" | [SITE] `/mcmurray-pa/emergency-dentist/` |
+| Root canal removes infected pulp, "halting the spread of infection"; abscessed tooth → root canal or extraction | [SITE] `/mcmurray-pa/root-canals/`, FAQ #13 |
+| Treat a cracked tooth promptly "to prevent further damage to the tooth or an infection" | [SITE] cracked-tooth article |
+| Missing-tooth options: dental implant, fixed bridge, partial denture | [SITE] FAQ #4 |
+| Knocked-out tooth "can be put back in the socket and saved" (chance, not a promise) | [SITE] FAQ #18 |
+| Patients of all ages | [SITE] `/about-us/` ("for patients of all ages, and all walks of life") |
 | Heated massaging chairs, Netflix on mounted TVs, weighted blankets, headphones, essential oils | [SITE] `/about-us/` |
 | "We listen"; "treatment starts, and stops, when you say so"; "Omni" = Latin for "all"; all treatment under one roof | [SITE] `/about-us/` + homepage |
 | Prompt treatment avoids more costly, invasive treatment later | [SITE] FAQ #6 + cracked-tooth article |

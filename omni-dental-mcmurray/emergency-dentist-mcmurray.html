@@ -53,7 +53,7 @@ a{color:var(--sky-ink);text-underline-offset:3px}
 a[href^="tel:"]{white-space:nowrap}
 a:focus-visible,summary:focus-visible,.btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px;border-radius:6px}
 h1,h2{font-family:var(--head);font-weight:400;color:var(--navy);line-height:1.12;margin:0 0 .45em;letter-spacing:-.01em}
-h3{font-family:var(--body);font-weight:700;color:var(--navy);font-size:1.05rem;line-height:1.3;margin:0 0 .35em}
+h3,h4{font-family:var(--body);font-weight:700;color:var(--navy);font-size:1.05rem;line-height:1.3;margin:0 0 .35em}
 p{margin:0 0 1em}
 ul{padding:0;margin:0;list-style:none}
 .skip{position:absolute;left:-9999px;top:8px;z-index:100;background:#fff;color:var(--navy);padding:10px 14px;border-radius:8px;font-weight:700}
@@ -205,18 +205,26 @@ ul{padding:0;margin:0;list-style:none}
 .step p{font-size:.93rem;color:var(--muted);margin:0}
 
 /* Why */
-.why{display:grid;gap:34px}
-@media (min-width:980px){.why{grid-template-columns:.9fr 1.1fr;align-items:start;gap:56px}}
-.why-photo{position:relative;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/2}
+.why{display:grid;gap:30px}
+@media (min-width:980px){.why{grid-template-columns:.85fr 1.15fr;align-items:center;gap:56px}}
+.why-photo{position:relative;margin:0;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:3/2}
 .why-photo img{width:100%;height:100%;object-fit:cover}
 .why-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(transparent,rgba(1,31,59,.88));color:#fff;font-size:.9rem;line-height:1.4}
 .why-photo figcaption b{display:block;font-family:var(--head);font-weight:400;font-size:1.3rem}
-@media (min-width:980px){.why-photo{position:sticky;top:100px;aspect-ratio:4/5}.why-photo img{object-position:64% 30%}}
+@media (min-width:980px){.why-photo{aspect-ratio:4/5}.why-photo img{object-position:64% 30%}}
+.why .sec-head{margin-bottom:22px}
+.why-facts{display:grid;gap:12px 24px}
+@media (min-width:520px){.why-facts{grid-template-columns:1fr 1fr}}
+.why-facts li{display:flex;gap:10px;align-items:flex-start;font-weight:600;color:var(--navy);font-size:1rem;line-height:1.35}
+.why-facts .i{flex:none;width:22px;height:22px;padding:4px;border-radius:50%;background:var(--sky-100);color:var(--sky-ink);stroke-width:3;margin-top:-3px}
+.why-sub{font-family:var(--head);font-weight:400;font-size:clamp(1.5rem,1.15rem + 1.3vw,2rem);line-height:1.2;text-align:center;margin:56px 0 24px}
 .feat{display:grid;gap:14px}
 @media (min-width:640px){.feat{grid-template-columns:1fr 1fr}}
-.feat li{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:var(--r);background:var(--soft);border:1px solid var(--line)}
-.feat .ic{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#fff;color:var(--sky-ink);box-shadow:var(--shadow-sm)}
-.feat p{font-size:.9rem;color:var(--muted);margin:0;line-height:1.5}
+@media (min-width:1000px){.feat{grid-template-columns:repeat(3,1fr);gap:16px}}
+.feat li{display:flex;gap:14px;align-items:flex-start;padding:20px 18px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.feat .ic{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:var(--sky-50);color:var(--sky-ink)}
+.feat p{font-size:.92rem;color:var(--muted);margin:0;line-height:1.55}
+.btn-row--c{justify-content:center;margin-top:30px}
 
 /* Doctors */
 .docs{display:grid;gap:18px}
@@ -441,6 +449,7 @@ fbq('track', 'PageView');
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-cross" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-4a2 2 0 0 0 0 4h4v3a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5"/></symbol>
@@ -632,24 +641,43 @@ fbq('track', 'PageView');
   <div class="wrap">
     <div class="why">
       <figure class="why-photo">
-        <img src="assets/img/dr-hanlon-with-patient.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Dr. Justin Hanlon smiling while talking with a patient in a treatment room">
+        <img src="assets/img/dr-hanlon-with-patient.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Dr. Justin Hanlon, emergency dentist at Omni Dental McMurray, smiling with a patient">
         <figcaption><b>“We listen.”</b>We meet your needs, hear your concerns and answer your questions — you’re always in control of your care.</figcaption>
       </figure>
       <div>
         <div class="sec-head">
-          <span class="eyebrow">Why Omni Dental</span>
-          <h2 class="h2" id="why-h">Why McMurray Trusts Us When It Hurts</h2>
-          <p class="lead">“Omni” comes from the Latin for “all” — and that’s how we approach emergencies: comfort, technology and treatment, all under one roof.</p>
+          <span class="eyebrow">Why choose Omni Dental</span>
+          <h2 class="h2" id="why-h">Why McMurray Trusts Our Emergency Dentists</h2>
+          <p class="lead">When a toothache, broken tooth or swelling can’t wait, you need an emergency dentist who can see you fast, stop the pain and fix the problem properly. “Omni” comes from the Latin for “all” — and at our office on Washington Rd in McMurray, emergency care, advanced technology and complete treatment are all under one roof.</p>
         </div>
-        <ul class="feat">
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-cal"/></svg></span><div><h3>Same-day emergency visits</h3><p>New patients and emergency appointments are welcome. We make every effort to see you as soon as possible.</p></div></li>
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-moon"/></svg></span><div><h3>Help after hours</h3><p>Emergencies don’t keep office hours. Call any time — the after-hours message explains how to reach Dr. Hanlon directly.</p></div></li>
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-tooth"/></svg></span><div><h3>Treatment under one roof</h3><p>Extractions, wisdom teeth removal, root canals, white fillings, porcelain crowns and implants — all at our McMurray office.</p></div></li>
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-scan"/></svg></span><div><h3>3D imaging &amp; digital scans</h3><p>Low-dose CBCT 3D imaging and iTero® digital impressions — fast, accurate and no messy impression goop.</p></div></li>
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-heart"/></svg></span><div><h3>Comfort built in</h3><p>Heated massaging chairs, weighted blankets, headphones, Netflix on mounted TVs and soothing essential oils.</p></div></li>
-          <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-pill"/></svg></span><div><h3>Help for nervous patients</h3><p>Oral sedation helps you relax. For deeper sedation, Ambulatory Anesthesia can come to our office.</p></div></li>
+        <ul class="why-facts">
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Same-day emergency visits</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>After-hours line to Dr. Hanlon</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>New patients welcome</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Book online 24/7</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Open from 7 AM Tue &amp; Wed</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Open until 7 PM Mon &amp; Wed</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Most dental insurance accepted</li>
+          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Patients of all ages</li>
         </ul>
       </div>
+    </div>
+
+    <h3 class="why-sub">Emergency Dental Services at Our McMurray Office</h3>
+    <ul class="feat">
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-bolt"/></svg></span><div><h4>Emergency Toothache Relief</h4><p>Severe toothache or sudden sensitivity? We find the cause and numb the tooth with a strong local anesthetic first — if you arrive in pain, relief starts as soon as it’s numb.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-tooth"/></svg></span><div><h4>Emergency Root Canal Therapy</h4><p>An abscessed or infected tooth needs prompt care. A root canal removes the infection, stops it spreading and saves the tooth — typically finished with an all-porcelain crown.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-cross"/></svg></span><div><h4>Emergency Tooth Extractions</h4><p>When a tooth can’t be saved, we remove it right here in McMurray. Our office also provides wisdom teeth removal and bone grafts.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-crack"/></svg></span><div><h4>Broken, Chipped or Cracked Teeth</h4><p>Repaired with a tooth-colored white filling or an all-porcelain crown. Treating a cracked tooth quickly helps prevent further damage and infection.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-layers"/></svg></span><div><h4>Lost Crowns &amp; Broken Fillings</h4><p>Bring the crown with you. iTero® digital scans replace messy impressions and help new crowns fit better, with fewer remakes.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-loose"/></svg></span><div><h4>Knocked-Out or Missing Teeth</h4><p>Come in fast — a knocked-out tooth may be saved. If it can’t be, we’ll explain your replacement options: a dental implant, a bridge or a partial denture.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-scan"/></svg></span><div><h4>Precise 3D Emergency Diagnosis</h4><p>Dr. Hanlon uses CBCT 3D imaging, alongside low-radiation digital X-rays, to promptly and precisely assess your teeth and build a customized emergency plan.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-moon"/></svg></span><div><h4>After-Hours &amp; Weekend Emergencies</h4><p>Emergencies don’t keep office hours. Call <a href="tel:+17249412200" data-cta="why-afterhours">(724) 941-2200</a> any time — the after-hours message gives Dr. Hanlon’s personal cell so you can reach him directly.</p></div></li>
+      <li><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-pill"/></svg></span><div><h4>Sedation for Nervous Patients</h4><p>Oral sedation helps you relax, and Ambulatory Anesthesia can come to our office for deeper sedation. Heated massaging chairs, weighted blankets and Netflix help too.</p></div></li>
+    </ul>
+    <div class="btn-row btn-row--c">
+      <a class="btn btn-call" href="tel:+17249412200" data-cta="why-call"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call Now for Same-Day Care</a>
+      <a class="btn btn-navy" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" data-cta="why-book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Book Online</a>
     </div>
   </div>
 </section>
