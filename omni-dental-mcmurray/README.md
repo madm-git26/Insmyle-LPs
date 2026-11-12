@@ -81,7 +81,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
 **CTAs:** 13 tap-to-call links, 7 booking links, 1 directions link. The only other
-outbound links are Google reviews, the Kleer plan and the Privacy Policy.
+outbound links are Google reviews and the Kleer plan.
 
 ### Quality Score alignment
 
@@ -89,7 +89,7 @@ outbound links are Google reviews, the Kleer plan and the Privacy Policy.
   "toothache", "broken tooth", "knocked-out tooth", "abscess", "wisdom tooth", "after hours",
   "walk in" and "open now" intents are each answered in a visible heading, card or FAQ.
 - **Landing page experience:** fast (below), mobile-first, no pop-ups, clear NAP, real
-  photos, transparent pricing and insurance info, privacy policy link.
+  photos, transparent pricing and insurance info.
 
 ### Brand fidelity
 
