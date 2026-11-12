@@ -71,7 +71,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 5 | Emergencies we treat | 10 symptom cards so visitors see their problem is fixable + "Not sure?" CTA |
 | 6 | Reviews | Google rating panel + real reviews, incl. an emergency review |
 | 7 | Step by step | Removes fear of the unknown: call → diagnose → numb → your choice |
-| 8 | Why Omni | "Why McMurray Trusts Our Emergency Dentists": keyword-rich intro, 8-point emergency checklist, then **9 emergency service cards** (toothache relief, emergency root canal, extractions & wisdom teeth, broken/cracked teeth, lost crowns & fillings, knocked-out/missing teeth, 3D diagnosis, after-hours & weekend, sedation) + Call/Book CTAs |
+| 8 | Why Omni | "Why McMurray Trusts Our Emergency Dentists": keyword-rich intro + three short paragraphs (emergencies treated & in-house treatments; fast 3D diagnosis & relief; comfort/sedation), 8-point emergency checklist, Call/Book CTAs |
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
 | 11 | Location & hours | Address, call + directions buttons, hours with today highlighted, map |
@@ -79,7 +79,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 13 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
-**CTAs:** 14 tap-to-call links, 7 booking links, 1 directions link. The only other
+**CTAs:** 13 tap-to-call links, 7 booking links, 1 directions link. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
