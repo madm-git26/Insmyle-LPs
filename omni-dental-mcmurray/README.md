@@ -10,6 +10,7 @@ page at `/same-day-emergency-dentist-mcmurray/`.
 | Single-file version | [`emergency-dentist-mcmurray.standalone.html`](emergency-dentist-mcmurray.standalone.html) — every image and font embedded (~610 KB), works on its own anywhere. Rebuild after edits with `python3 tools/build_standalone.py` |
 | Assets | [`assets/`](assets) — 10 optimised WebP photos, logo SVG, 2 self-hosted fonts (~410 KB total) |
 | Every claim, sourced | [`docs/VERIFIED-FACTS.md`](docs/VERIFIED-FACTS.md) |
+| Keyword coverage | [`docs/KEYWORD-MAP.md`](docs/KEYWORD-MAP.md) — where each Ads keyword appears (title, meta, headings, body) |
 | Current live page (for diff/rollback) | [`original/`](original) |
 
 ![Desktop hero](docs/preview-desktop-hero.jpg)
@@ -71,7 +72,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 5 | Emergencies we treat | 10 symptom cards so visitors see their problem is fixable + "Not sure?" CTA |
 | 6 | Reviews | Google rating panel + swipeable review carousel that **auto-advances every 5 s** and loops (pauses on hover, touch, keyboard focus, when off-screen or the tab is hidden; Pause/Play button; off for reduced-motion users), plus arrows and position dots |
 | 7 | Step by step | Removes fear of the unknown: call → diagnose → numb → your choice |
-| 8 | Why Omni | "Why McMurray Trusts Our Emergency Dentists": keyword-rich intro + three short paragraphs (emergencies treated & in-house treatments; fast 3D diagnosis & relief; comfort/sedation), 8-point emergency checklist, Call/Book CTAs |
+| 8 | Why Omni | Keyword section — H2 "Your Emergency Dentist Near You in McMurray", intro naming the "emergency dentist near me" / "dentist office near me now" searches, four H3 sub-sections (dentist near you today · urgent dental care for every dental emergency · fast answers & relief · emergency dentist for Pittsburgh’s South Hills), 8-point checklist, Call/Book CTAs. See [`docs/KEYWORD-MAP.md`](docs/KEYWORD-MAP.md) |
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
 | 11 | Location & hours | Address, call + directions buttons, hours with today highlighted, map |

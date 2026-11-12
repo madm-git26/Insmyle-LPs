@@ -115,6 +115,11 @@ page (Shadyside lists Drs. Rabinovich and Hanlon), so he was not presented as a 
 
 ## Location copy — [DERIVED]
 
+- "An emergency dentist for **Pittsburgh’s South Hills**" / "Looking for an emergency dentist in Pittsburgh?" —
+  [SITE] homepage: "Pittsburgh's premier dental experience in the South Hills and the East End"; [SCHEMA]
+  "serves the city of McMurray, PA Pittsburgh and surrounding areas". The page never says the office is *in*
+  Pittsburgh — it is in McMurray, in the South Hills.
+
 - "Washington Rd (Route 19)" — Washington Rd at this address is US-19 (visible on the GBP map).
 - "Convenient for patients from McMurray, Peters Township, Canonsburg, Upper St. Clair,
   Bethel Park, Venetia, Cecil, South Park and Mt. Lebanon" — neighbouring communities,
