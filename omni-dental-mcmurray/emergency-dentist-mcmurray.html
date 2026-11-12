@@ -304,21 +304,18 @@ ul{padding:0;margin:0;list-style:none}
 .final small{display:block;margin-top:18px;font-size:.88rem;color:#b9d6ea}
 
 /* Footer */
-.foot{background:var(--soft);border-top:1px solid var(--line);padding:36px 0 30px;font-size:.88rem;color:var(--muted)}
-.foot .wrap{display:grid;gap:18px}
+.foot{background:var(--soft);border-top:1px solid var(--line);padding:22px 0 20px;color:var(--muted)}
 @media (min-width:860px){.foot .wrap{grid-template-columns:auto 1fr auto;align-items:center;gap:32px}}
-.foot img{height:40px;width:auto}
 .foot p{margin:0}
 .foot a{color:var(--sky-ink)}
-.foot .fine{grid-column:1/-1;font-size:.78rem;border-top:1px solid var(--line);padding-top:16px}
+.foot .fine{font-size:.78rem;line-height:1.6;text-align:center}
 
 /* Mobile action bar */
-.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 26px -14px rgba(2,48,90,.45)}
-.mbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:54px;border-radius:12px;font-weight:700;font-size:.8rem;line-height:1.1;text-decoration:none;padding-top:3px}
-.mbar .i{width:20px;height:20px}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1.2fr 1fr;gap:10px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 26px -14px rgba(2,48,90,.45)}
+.mbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;border-radius:12px;font-weight:700;font-size:1rem;line-height:1.1;text-decoration:none;padding-top:3px}
+.mbar .i{width:20px;height:20px;margin-top:-3px}
 .mbar .m-call{background:var(--sky);color:var(--navy)}
 .mbar .m-book{background:var(--navy);color:#fff}
-.mbar .m-dir{background:var(--sky-50);color:var(--navy);border:1px solid var(--line)}
 body{padding-bottom:78px}
 @media (min-width:1000px){.mbar{display:none}body{padding-bottom:0}}
 
@@ -874,17 +871,13 @@ fbq('track', 'PageView');
 
 <footer class="foot">
   <div class="wrap">
-    <img src="assets/img/omni-dental-logo.svg" width="718" height="175" loading="lazy" alt="Omni Dental">
-    <p><b style="color:var(--navy)">Omni Dental McMurray</b> · 3035 Washington Rd, Suite 3, McMurray, PA 15317 · <a href="tel:+17249412200" data-cta="footer-call">(724) 941-2200</a></p>
-    <p><a href="https://omnidentalpgh.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></p>
-    <p class="fine">© 2026 Omni Dental. All rights reserved. The information on this page is general and is not a substitute for an examination by a dentist. Same-day appointments are subject to availability.</p>
+    <p class="fine">© 2026 Omni Dental. All rights reserved. · <a href="https://omnidentalpgh.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a><br>The information on this page is general and is not a substitute for an examination by a dentist. Same-day appointments are subject to availability.</p>
   </div>
 </footer>
 
 <nav class="mbar" aria-label="Quick actions">
   <a class="m-call" href="tel:+17249412200" data-cta="mobile-bar-call"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call Now</a>
-  <a class="m-book" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" data-cta="mobile-bar-book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Book</a>
-  <a class="m-dir" href="https://maps.app.goo.gl/9ST2bdeMw6t71UTc8" target="_blank" rel="noopener" data-cta="mobile-bar-directions"><svg class="i" aria-hidden="true"><use href="#i-nav"/></svg>Directions</a>
+  <a class="m-book" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" data-cta="mobile-bar-book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Book Online</a>
 </nav>
 
 <script>

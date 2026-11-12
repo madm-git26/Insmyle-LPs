@@ -77,9 +77,9 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 11 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
 | 12 | FAQ | 6 conversion-focused questions (same-day, after hours, new patients, walk-ins, cost, insurance), also emitted as FAQPage JSON-LD. Questions already answered elsewhere on the page were cut to keep it short |
 | 13 | Final CTA | "Don't Wait Out the Pain" |
-| — | Mobile action bar | Call · Book · Directions, fixed on phones and tablets |
+| — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
-**CTAs:** 15 tap-to-call links, 6 booking links, 2 directions links. The only other
+**CTAs:** 14 tap-to-call links, 6 booking links, 1 directions link. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
