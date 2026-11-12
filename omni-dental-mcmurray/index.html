@@ -195,7 +195,6 @@ p{margin:0 0 1em}
   .svc p{font-size:.95rem;margin-bottom:8px}
   .svc-grid .svc .tag{position:static;justify-self:start;margin-bottom:8px}
   .why{padding:22px 20px 18px}
-  .topic{font-size:.88rem;padding:7px 12px 5px}
 }
 .svc.feature{background:linear-gradient(160deg,var(--navy) 0%,#04457F 100%);border-color:transparent;color:#DCEEFA}
 .svc.feature h3{color:#fff}
@@ -221,25 +220,27 @@ p{margin:0 0 1em}
 .why p{color:var(--muted);font-size:1rem;margin:0}
 
 /* Reviews */
-.rev-top{display:grid;gap:26px;margin-bottom:34px}
-@media(min-width:960px){.rev-top{grid-template-columns:330px 1fr;align-items:stretch}}
+.rev-top{display:flex;justify-content:center;margin-bottom:30px}
 .score{background:var(--navy);color:#fff;border-radius:var(--r-lg);padding:28px 26px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;box-shadow:var(--shadow-lg)}
 .score .big{font-family:var(--fh);font-size:4.4rem;line-height:1;color:#fff}
 .score .stars-row .ico{width:24px;height:24px}
 .score p{margin:6px 0 14px;color:#CFE3F1;font-size:1rem}
+.score{flex-direction:row;gap:28px;padding:22px 34px;text-align:left}
+.score-info{display:flex;flex-direction:column;align-items:flex-start}
+.score p{margin:4px 0 10px}
 .score .g-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);border-radius:999px;padding:7px 14px 5px;font-weight:700;font-size:.9rem}
-.topics{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 24px 18px}
-.topics h3{font-size:1.2rem;margin-bottom:4px}
-.topics .note{font-size:.9rem;color:var(--muted);margin-bottom:16px}
-.topic-list{display:flex;flex-wrap:wrap;gap:10px}
-.topic{display:inline-flex;align-items:baseline;gap:8px;background:var(--ice);border-radius:999px;padding:9px 15px 7px;font-weight:600;color:var(--navy);font-size:.97rem}
-.topic b{font-family:var(--fh);font-weight:400;color:var(--blue);font-size:1.05rem}
-.rev-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;scrollbar-width:none;padding:4px 2px 14px;margin:0 -2px}
-.rev-track::-webkit-scrollbar{display:none}
-.rev-track>.rev{flex:0 0 86%;scroll-snap-align:start}
+.rev-viewport{overflow-x:auto;scrollbar-width:none;padding:4px 0 14px}
+.rev-viewport::-webkit-scrollbar{display:none}
+.rev-track{display:flex;gap:18px}
+.rev-track>.rev{flex:0 0 86%}
 @media(min-width:700px){.rev-track>.rev{flex-basis:calc((100% - 18px)/2)}}
 @media(min-width:1040px){.rev-track{gap:22px}.rev-track>.rev{flex-basis:calc((100% - 44px)/3)}}
-@media(prefers-reduced-motion:reduce){.rev-track{scroll-behavior:auto}}
+/* continuous marquee (enabled by JS) */
+.rev-viewport.marquee{overflow:hidden;touch-action:pan-y;cursor:grab}
+.rev-viewport.marquee .rev-track{will-change:transform}
+.rev-viewport.dragging{cursor:grabbing}
+.rev-viewport.dragging .rev-track{user-select:none;-webkit-user-select:none}
+@media(min-width:700px){.rev-viewport.marquee{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%)}}
 .rev-ctrl{display:flex;justify-content:center;gap:10px;margin-top:8px}
 .rc-btn{width:46px;height:46px;border-radius:50%;border:2px solid var(--navy);background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s}
 .rc-btn:hover{background:var(--navy);color:#fff}
@@ -462,9 +463,12 @@ dialog.vid-dialog .dlg-head{background:#fff}
   .svc-grid,.why-grid,.doc-grid,.steps,.tech-grid,.ins-grid,.loc-grid,.vid-grid{gap:12px}
   .also{margin-top:18px;padding:18px 16px;gap:12px}
   .why{padding:18px 18px 16px}
-  .rev-top{gap:12px;margin-bottom:18px}
-  .score{padding:20px 18px}
-  .topics{padding:18px 16px 14px}
+  .rev-top{margin-bottom:18px}
+  .score{padding:16px 18px;gap:16px;width:100%}
+  .score .big{font-size:3.3rem}
+  .score .stars-row .ico{width:19px;height:19px}
+  .score p{font-size:.9rem;line-height:1.35;margin:4px 0 8px}
+  .score .g-badge{font-size:.82rem;padding:5px 11px 3px}
   .vids{margin-top:26px}
   .vids h3{margin-bottom:12px}
   .rev-cta{margin-top:20px}
@@ -725,28 +729,16 @@ dialog.vid-dialog .dlg-head{background:#fff}
     <div class="rev-top">
       <div class="score rv">
         <span class="big">4.9</span>
-        <span class="stars-row" role="img" aria-label="4.9 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
-        <p>Based on 1,500+ reviews of Omni Dental McMurray</p>
-        <span class="g-badge"><svg width="18" height="18" aria-hidden="true"><use href="#i-g"/></svg>Google Reviews</span>
-      </div>
-      <div class="topics rv">
-        <h3>What patients mention most</h3>
-        <p class="note">Topics from our Google reviews, with how many reviews mention each.</p>
-        <div class="topic-list">
-          <span class="topic">Friendly staff <b>452+</b></span>
-          <span class="topic">Kind staff <b>187+</b></span>
-          <span class="topic">Hygienists <b>84+</b></span>
-          <span class="topic">Comfortable atmosphere <b>81+</b></span>
-          <span class="topic">Crowns <b>45+</b></span>
-          <span class="topic">Quick appointments <b>20+</b></span>
-          <span class="topic">Root canals <b>20+</b></span>
-          <span class="topic">Anxiety-friendly <b>16+</b></span>
-          <span class="topic">Same-day appointments <b>12+</b></span>
+        <div class="score-info">
+          <span class="stars-row" role="img" aria-label="4.9 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
+          <p>Based on 1,500+ reviews of Omni Dental McMurray</p>
+          <span class="g-badge"><svg width="18" height="18" aria-hidden="true"><use href="#i-g"/></svg>Google Reviews</span>
         </div>
       </div>
     </div>
     <div class="rev-slider rv" role="region" aria-roledescription="carousel" aria-label="Patient reviews">
-    <div class="rev-track" id="revTrack" tabindex="0">
+    <div class="rev-viewport" tabindex="0">
+    <div class="rev-track" id="revTrack">
       <figure class="rev" role="group" aria-roledescription="slide" aria-label="Review 1 of 6" style="margin:0">
         <span class="qmark" aria-hidden="true">”</span>
         <span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg><svg class="ico ico-fill"><use href="#i-star"/></svg></span>
@@ -780,6 +772,7 @@ dialog.vid-dialog .dlg-head{background:#fff}
         <blockquote>“As a person who puts off the dentist as long as they can I just want to say how happy I am I found this place. AMAZING staff. Everyone was so kind and this will now be my regular office I schedule with.”</blockquote>
         <figcaption class="who"><span class="avatar" aria-hidden="true">J</span><span><strong>Jessica B.</strong><small>Patient review</small></span></figcaption>
       </figure>
+    </div>
     </div>
     <div class="rev-ctrl">
       <button class="rc-btn rc-prev" type="button" data-rev="prev" aria-label="Previous review"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -1223,33 +1216,39 @@ dialog.vid-dialog .dlg-head{background:#fff}
     rv.forEach(function(el){io.observe(el)});
   } else { rv.forEach(function(el){el.classList.add('in')}); }
 
-  /* 4b. Reviews slider: auto-advances every 4.5 s; swipe/arrow friendly; pauses on hover, keyboard focus,
-         touch, off-screen or hidden tab; never auto-moves for prefers-reduced-motion; pause button (WCAG 2.2.2) */
-  var tr=d.getElementById('revTrack');
-  if(tr){
-    var sl=tr.closest('.rev-slider'), pb=sl.querySelector('[data-rev="pause"]');
-    var rm=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var paused=false, hov=false, foc=false, seen=false, hold=0;
-    var gap=function(){return parseFloat(getComputedStyle(tr).columnGap)||0};
-    var stepW=function(){var c=tr.querySelector('.rev');return c?c.getBoundingClientRect().width+gap():tr.clientWidth};
-    var go=function(dir){
-      if(dir>0 && tr.scrollLeft+tr.clientWidth>=tr.scrollWidth-8) tr.scrollTo({left:0,behavior:'smooth'});
-      else if(dir<0 && tr.scrollLeft<=8) tr.scrollTo({left:tr.scrollWidth,behavior:'smooth'});
-      else tr.scrollBy({left:dir*stepW(),behavior:'smooth'});
+  /* 4b. Reviews: continuous auto-scroll (marquee). Always moving; slows on hover; drag/swipe, arrows and
+         arrow keys move it; keyboard focus pauses it; pause button stops it (WCAG 2.2.2). */
+  var vp=d.querySelector('.rev-viewport'), tr=d.getElementById('revTrack');
+  if(vp && tr){
+    var sl=vp.closest('.rev-slider'), pb=sl.querySelector('[data-rev="pause"]'), orig=[].slice.call(tr.children), n=orig.length;
+    orig.forEach(function(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');['role','aria-roledescription','aria-label'].forEach(function(a){k.removeAttribute(a)});tr.appendChild(k);});
+    vp.classList.add('marquee');
+    var x=0, setW=1, paused=false, hov=false, foc=false, seen=true, drag=null, hold=0, anim=null, last=0;
+    var measure=function(){setW=(tr.children[n].offsetLeft-tr.children[0].offsetLeft)||1};
+    var apply=function(){x=((x%setW)+setW)%setW; tr.style.transform='translate3d('+(-x).toFixed(2)+'px,0,0)'};
+    measure(); w.addEventListener('resize',function(){measure();apply()});
+    var speed=function(){return (w.innerWidth<700?30:40)*(hov?0.35:1)}; /* px per second */
+    var frame=function(t){
+      var dt=last?Math.min(t-last,64)/1000:0; last=t;
+      if(anim){var p=Math.min(1,(t-anim.t0)/anim.dur),e=1-Math.pow(1-p,3); x=anim.from+(anim.to-anim.from)*e; apply(); if(p>=1) anim=null;}
+      else if(!paused && !foc && !drag && seen && Date.now()>hold){x+=speed()*dt; apply();}
+      w.requestAnimationFrame(frame);
     };
+    w.requestAnimationFrame(frame);
+    var jump=function(dir){var st=setW/n, tgt=(Math.round(x/st)+dir)*st; anim={from:x,to:tgt,t0:performance.now(),dur:450}; hold=Date.now()+2500;};
+    sl.querySelector('[data-rev="prev"]').addEventListener('click',function(){jump(-1)});
+    sl.querySelector('[data-rev="next"]').addEventListener('click',function(){jump(1)});
     var setPaused=function(p){paused=p;pb.setAttribute('aria-pressed',String(p));pb.setAttribute('aria-label',p?'Resume auto-scrolling':'Pause auto-scrolling');
       pb.innerHTML=p?'<svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>':'<svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg>';};
-    setPaused(!!rm);
-    setInterval(function(){ if(!paused && !hov && !foc && seen && !d.hidden && Date.now()>hold) go(1); },4500);
-    var holdOn=function(){hold=Date.now()+8000};
-    sl.addEventListener('mouseenter',function(){hov=true}); sl.addEventListener('mouseleave',function(){hov=false});
-    sl.addEventListener('focusin',function(e){foc=!!(e.target.matches&&e.target.matches(':focus-visible'))}); sl.addEventListener('focusout',function(){foc=false});
-    tr.addEventListener('pointerdown',holdOn,{passive:true}); tr.addEventListener('touchstart',holdOn,{passive:true}); tr.addEventListener('wheel',holdOn,{passive:true});
-    sl.querySelector('[data-rev="prev"]').addEventListener('click',function(){holdOn();go(-1)});
-    sl.querySelector('[data-rev="next"]').addEventListener('click',function(){holdOn();go(1)});
     pb.addEventListener('click',function(){setPaused(!paused)});
-    tr.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();holdOn();go(1)} else if(e.key==='ArrowLeft'){e.preventDefault();holdOn();go(-1)}});
-    if('IntersectionObserver' in w){new IntersectionObserver(function(en){seen=en[0].isIntersecting},{threshold:.35}).observe(tr);} else seen=true;
+    vp.addEventListener('mouseenter',function(){hov=true}); vp.addEventListener('mouseleave',function(){hov=false});
+    vp.addEventListener('focus',function(){foc=vp.matches(':focus-visible')}); vp.addEventListener('blur',function(){foc=false});
+    vp.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();jump(1)}else if(e.key==='ArrowLeft'){e.preventDefault();jump(-1)}});
+    vp.addEventListener('pointerdown',function(e){anim=null;drag={sx:e.clientX,x0:x,moved:false};vp.classList.add('dragging');try{vp.setPointerCapture(e.pointerId)}catch(err){}});
+    vp.addEventListener('pointermove',function(e){if(!drag)return;var dx=e.clientX-drag.sx;if(Math.abs(dx)>3)drag.moved=true;x=drag.x0-dx;apply();});
+    var endDrag=function(){if(!drag)return;drag=null;vp.classList.remove('dragging');hold=Date.now()+2500;};
+    vp.addEventListener('pointerup',endDrag); vp.addEventListener('pointercancel',endDrag);
+    if('IntersectionObserver' in w){new IntersectionObserver(function(en){seen=en[0].isIntersecting}).observe(vp);}
   }
 
   /* 5. Lite YouTube embeds: load the player only when clicked */

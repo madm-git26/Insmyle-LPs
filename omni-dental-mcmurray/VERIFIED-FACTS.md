@@ -54,7 +54,6 @@ Derived copy: "From 7 AM on Tuesdays and Wednesdays, until 7 PM on Mondays and W
 | Claim | Source |
 |---|---|
 | **4.9★, 1,502 Google reviews**, shown on the LP as "1,500+" | [GBP] on 11 Nov 2026. The current LP's "1280+" is out of date. |
-| Review topics with counts: friendly staff 452, kind staff 187, hygienist 84, comfortable atmosphere 81, crown 45, root canal 20, quick appointments 20, anxiety-friendly 16, same-day appointment 12. Shown on the LP with "+" because counts only grow. | [GBP] review topic chips |
 | Hero quote "Very nice facility, super friendly and knowledgeable staff, great service." | [GBP] review summary |
 | Alex H., Che', Ellen N.: 5★ Google reviews. Names shortened to first name and initial; text verbatim, cut at a sentence boundary. | [GBP] |
 | Sara J., Melissa L., Jessica B.: verbatim from the current LP. Two typography fixes only: "i schedule" → "I schedule", "place ." → "place." | [LP] |
