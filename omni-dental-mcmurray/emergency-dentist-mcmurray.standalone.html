@@ -184,6 +184,7 @@ ul{padding:0;margin:0;list-style:none}
 .rv-carousel{min-width:0;display:flex;flex-direction:column;gap:16px}
 .rv-track{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 4px;scrollbar-width:none}
 .rv-track::-webkit-scrollbar{display:none}
+.rv-track.is-auto{scroll-snap-type:none;scroll-behavior:auto}
 .rv-track:focus-visible{outline:3px solid var(--sky);outline-offset:4px;border-radius:var(--r)}
 .rv-track>.rv{flex:0 0 86%;scroll-snap-align:start}
 @media (min-width:640px){.rv-track>.rv{flex-basis:calc((100% - 16px) / 2.15)}}
@@ -695,13 +696,11 @@ fbq('track', 'PageView');
         </div>
         <ul class="why-facts">
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Same-day emergency visits</li>
-          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>After-hours line to Dr. Hanlon</li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>New patients welcome</li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Book online 24/7</li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Open from 7 AM Tue &amp; Wed</li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Open until 7 PM Mon &amp; Wed</li>
           <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Most dental insurance accepted</li>
-          <li><svg class="i" aria-hidden="true"><use href="#i-check"/></svg>Patients of all ages</li>
         </ul>
         <div class="btn-row why-cta">
         <a class="btn btn-call" href="tel:+17249412200" data-cta="why-call"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call Now for Same-Day Care</a>
@@ -925,56 +924,72 @@ fbq('track', 'PageView');
     for(var j=0;j<links.length;j++){var u=new URL(links[j].href);keys.forEach(function(key){var v=q.get(key);if(v&&!u.searchParams.has(key))u.searchParams.set(key,v);});links[j].href=u.toString();}
   }catch(e){}
 
-  /* ---- Reviews carousel: arrows, dots, swipe/scroll ---- */
+  /* ---- Reviews carousel: continuous auto-scroll ticker + arrows, dots, swipe ---- */
   var track=document.getElementById('rv-track');
   if(track){
-    var cards=track.querySelectorAll('.rv'),dots=document.querySelector('.rv-dots'),btns=document.querySelectorAll('.rv-btn');
+    var wrapEl=track.parentNode,dots=document.querySelector('.rv-dots'),play=document.querySelector('.rv-play');
+    var prevB=document.querySelector('.rv-btn[data-dir="-1"]'),nextB=document.querySelector('.rv-btn[data-dir="1"]');
+    var originals=[].slice.call(track.querySelectorAll('.rv')),n=originals.length;
     var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var step=function(){return cards.length>1?cards[1].offsetLeft-cards[0].offsetLeft:track.clientWidth;};
+    var auto=!calm&&n>1,hold=0;
+    if(auto){
+      /* one hidden copy of the set makes the loop seamless */
+      originals.forEach(function(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');k.classList.add('rv-clone');track.appendChild(k);});
+      track.classList.add('is-auto');
+    }
+    var step=function(){return n>1?originals[1].offsetLeft-originals[0].offsetLeft:track.clientWidth;};
+    var loopW=function(){var c=track.querySelector('.rv-clone');return c?c.offsetLeft-originals[0].offsetLeft:0;};
+    var setDots=function(count){while(dots.children.length<count)dots.appendChild(document.createElement('span'));while(dots.children.length>count)dots.removeChild(dots.lastChild);};
     var update=function(){
-      var max=track.scrollWidth-track.clientWidth,x=track.scrollLeft,n=max>2?Math.round(max/step())+1:1;
-      while(dots.children.length<n)dots.appendChild(document.createElement('span'));
-      while(dots.children.length>n)dots.removeChild(dots.lastChild);
-      var idx=x>=max-2?n-1:Math.min(n-1,Math.round(x/step()));
-      for(var k=0;k<n;k++)dots.children[k].className=k===idx?'on':'';
-      btns[0].disabled=x<=2;btns[1].disabled=x>=max-2;
-      track.parentNode.classList.toggle('no-scroll',max<=2);
+      var x=track.scrollLeft,max=track.scrollWidth-track.clientWidth,idx,count;
+      if(auto){var L=loopW()||1;count=n;idx=Math.round((x%L)/step())%n;}
+      else{count=max>2?Math.round(max/step())+1:1;idx=x>=max-2?count-1:Math.min(count-1,Math.round(x/step()));
+        prevB.disabled=x<=2;nextB.disabled=x>=max-2;wrapEl.classList.toggle('no-scroll',max<=2);}
+      setDots(count);for(var k=0;k<count;k++)dots.children[k].className=k===idx?'on':'';
     };
-    for(var b=0;b<btns.length;b++)btns[b].addEventListener('click',function(){track.scrollBy({left:+this.getAttribute('data-dir')*step(),behavior:calm?'auto':'smooth'});});
+    var go=function(dir){
+      if(auto){
+        var L=loopW();
+        if(dir<0&&track.scrollLeft<step())track.scrollLeft+=L;
+        if(dir>0&&track.scrollLeft>=L)track.scrollLeft-=L;
+        hold=performance.now()+3500;
+      }
+      track.scrollBy({left:dir*step(),behavior:calm?'auto':'smooth'});
+    };
+    prevB.addEventListener('click',function(){go(-1);});
+    nextB.addEventListener('click',function(){go(1);});
     track.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
     window.addEventListener('resize',update);
     update();
 
-    /* Auto-advance every 5s. Pauses on hover, touch, keyboard focus, when off-screen or the tab is
-       hidden, and via the Pause button (WCAG 2.2.2). Off entirely for reduced-motion users. */
-    var wrapEl=track.parentNode,play=document.querySelector('.rv-play'),timer=null;
-    var st={user:false,hover:false,focus:false,view:false};
-    var tick=function(){
-      var max=track.scrollWidth-track.clientWidth;
-      if(track.scrollLeft>=max-2)track.scrollTo({left:0,behavior:'smooth'});
-      else track.scrollBy({left:step(),behavior:'smooth'});
-    };
-    var sync=function(restart){
-      var run=!calm&&!st.user&&!st.hover&&!st.focus&&st.view&&!document.hidden&&!wrapEl.classList.contains('no-scroll');
-      if(timer&&(!run||restart)){clearInterval(timer);timer=null;}
-      if(run&&!timer)timer=setInterval(tick,5000);
-    };
-    if(calm){play.hidden=true;}
+    if(!auto){play.hidden=true;}
     else{
+      /* Glides continuously; pauses on hover, touch/drag, keyboard focus, when off-screen or the tab
+         is hidden, and via the Pause button (WCAG 2.2.2). Off for reduced-motion users. */
+      var st={user:false,hover:false,focus:false,touch:false,view:true},last=0,acc=0;
+      var speed=function(){return window.innerWidth<640?22:32;};
+      var frame=function(t){
+        var run=!st.user&&!st.hover&&!st.focus&&!st.touch&&st.view&&!document.hidden&&t>=hold;
+        if(run&&last){
+          acc+=(t-last)*speed()/1000;var whole=Math.floor(acc);
+          if(whole>0){acc-=whole;var L=loopW();if(L>0){var nx=track.scrollLeft+whole;if(nx>=L)nx-=L;track.scrollLeft=nx;}}
+        }
+        last=t;window.requestAnimationFrame(frame);
+      };
+      window.requestAnimationFrame(frame);
       play.addEventListener('click',function(){
         st.user=!st.user;play.classList.toggle('is-paused',st.user);
-        play.setAttribute('aria-label',st.user?'Play automatic scrolling':'Pause automatic scrolling');sync(true);
+        play.setAttribute('aria-label',st.user?'Play automatic scrolling':'Pause automatic scrolling');
       });
-      wrapEl.addEventListener('mouseenter',function(){st.hover=true;sync();});
-      wrapEl.addEventListener('mouseleave',function(){st.hover=false;sync(true);});
-      wrapEl.addEventListener('focusin',function(e){st.focus=!!(e.target.matches&&e.target.matches(':focus-visible'));sync();});
-      wrapEl.addEventListener('focusout',function(){st.focus=false;sync(true);});
-      track.addEventListener('pointerdown',function(){sync(true);},{passive:true});
-      track.addEventListener('wheel',function(){sync(true);},{passive:true});
-      for(var q=0;q<btns.length;q++)if(btns[q].hasAttribute('data-dir'))btns[q].addEventListener('click',function(){sync(true);});
-      document.addEventListener('visibilitychange',function(){sync(true);});
-      if('IntersectionObserver' in window)new IntersectionObserver(function(en){st.view=en[0].isIntersecting;sync(true);},{threshold:.4}).observe(track);
-      else{st.view=true;sync();}
+      wrapEl.addEventListener('mouseenter',function(){st.hover=true;});
+      wrapEl.addEventListener('mouseleave',function(){st.hover=false;});
+      wrapEl.addEventListener('focusin',function(e){st.focus=!!(e.target.matches&&e.target.matches(':focus-visible'));});
+      wrapEl.addEventListener('focusout',function(){st.focus=false;});
+      track.addEventListener('pointerdown',function(){st.touch=true;},{passive:true});
+      window.addEventListener('pointerup',function(){if(st.touch){st.touch=false;hold=performance.now()+3000;}});
+      window.addEventListener('pointercancel',function(){st.touch=false;hold=performance.now()+3000;});
+      track.addEventListener('wheel',function(){hold=performance.now()+3000;},{passive:true});
+      if('IntersectionObserver' in window)new IntersectionObserver(function(en){st.view=en[0].isIntersecting;},{threshold:.25}).observe(track);
     }
   }
 
