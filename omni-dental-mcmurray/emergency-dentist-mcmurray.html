@@ -36,7 +36,7 @@
   --navy:#02305a;--navy-2:#011f3b;--navy-3:#0b4176;
   --sky:#03a9f4;--sky-hover:#29b6f6;--sky-ink:#0277bd;--sky-50:#eef8fe;--sky-100:#d9f0fd;--pale:#aee3fb;
   --ink:#1d2733;--muted:#526173;--line:#dbe6ef;--soft:#f4f9fd;
-  --gold:#f5b301;--open:#4ade80;--closed:#fbbf24;--danger:#b42318;
+  --gold:#f5b301;--open:#4ade80;--closed:#fbbf24;
   --r:16px;--r-sm:12px;
   --shadow:0 18px 40px -22px rgba(2,48,90,.45);
   --shadow-sm:0 6px 18px -10px rgba(2,48,90,.35);
@@ -255,23 +255,13 @@ ul{padding:0;margin:0;list-style:none}
 .ticks .i{width:17px;height:17px;color:var(--sky-ink);margin-top:1px}
 .pay-note{margin-top:18px;font-size:.9rem;color:var(--muted);text-align:center}
 
-/* First aid */
-.aid{display:grid;gap:12px}
-@media (min-width:900px){.aid{grid-template-columns:1fr 1fr;gap:14px;align-items:start}}
+/* Accordion (FAQ) */
 .acc{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px 14px;font-weight:700;color:var(--navy);font-size:1rem;line-height:1.3}
 .acc summary::-webkit-details-marker{display:none}
-.acc summary .ic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:var(--sky-50);color:var(--sky-ink)}
 .acc summary .chev{margin-left:auto;width:20px;height:20px;color:var(--muted);transition:transform .2s}
 .acc[open] summary .chev{transform:rotate(180deg)}
-.acc-body{padding:0 20px 18px 70px;font-size:.93rem;color:var(--ink)}
-.acc-body ol{margin:0;padding-left:1.1em;display:grid;gap:6px}
-.acc-body li{padding-left:2px}
-@media (max-width:480px){.acc-body{padding-left:20px}}
-.er{display:flex;gap:14px;align-items:flex-start;margin-top:20px;padding:18px 20px 16px;border-radius:var(--r);background:#fff5f4;border:1px solid #f7c9c4;color:#4a1410;font-size:.93rem;line-height:1.5}
-.er .i{color:var(--danger);width:24px;height:24px;margin-top:1px}
-.er b{color:var(--danger)}
-.er a{color:#8a1c12;font-weight:700}
+.acc-body{padding:0 20px 18px;font-size:.93rem;color:var(--ink)}
 
 /* Location */
 .loc{display:grid;gap:20px}
@@ -304,7 +294,6 @@ ul{padding:0;margin:0;list-style:none}
 /* FAQ */
 .faq{max-width:860px;margin-inline:auto;display:grid;gap:10px}
 .faq .acc summary{padding:18px 20px 16px}
-.faq .acc-body{padding:0 20px 18px}
 .faq .acc-body p:last-child{margin-bottom:0}
 
 /* Final CTA */
@@ -478,7 +467,6 @@ fbq('track', 'PageView');
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
-  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
   <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M20 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-4a2 2 0 0 0 0 4h4v3a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5"/></symbol>
@@ -790,76 +778,8 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- ============ FIRST AID ============ -->
-<section class="section" id="first-aid" aria-labelledby="aid-h">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">While you wait</span>
-      <h2 class="h2" id="aid-h">What to Do Right Now, Before Your Visit</h2>
-      <p class="lead">Quick steps that protect your tooth and ease the pain until you can see us. Then call <a href="tel:+17249412200" data-cta="first-aid-intro">(724) 941-2200</a>.</p>
-    </div>
-    <div class="aid">
-      <details class="acc" open>
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-tooth"/></svg></span>Knocked-out tooth<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Hold the tooth only by the crown (the top part) — never the root.</li>
-          <li>If it’s dirty, rinse it gently under running water. Don’t scrub it or remove any attached tissue.</li>
-          <li>Put the tooth in a cup of milk so it’s completely covered.</li>
-          <li>Call us and come in as quickly and safely as you can — and bring the tooth.</li>
-        </ol></div>
-      </details>
-      <details class="acc">
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-crack"/></svg></span>Cracked or broken tooth<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Call us right away and let us know about your emergency.</li>
-          <li>Save any pieces in a clean container with cold milk, water or saliva and bring them — we may be able to use them.</li>
-          <li>Hold a cold pack against your jaw to ease pain and swelling.</li>
-          <li>If it’s bleeding, bite down on a gauze pad until the bleeding stops.</li>
-        </ol></div>
-      </details>
-      <details class="acc">
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-bolt"/></svg></span>Severe toothache<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Rinse your mouth with warm water and floss gently to remove any trapped food.</li>
-          <li>Hold a cold compress on the outside of your cheek.</li>
-          <li>Take an over-the-counter pain reliever as directed on the label. Never put aspirin directly on the gum.</li>
-          <li>Call us — a toothache is your body’s signal that something needs attention.</li>
-        </ol></div>
-      </details>
-      <details class="acc">
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-thermo"/></svg></span>Swelling or abscess<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Hold a cold compress against the outside of your face.</li>
-          <li>Call us promptly — an infected tooth needs prompt care, not just for your comfort but for your health and safety.</li>
-          <li>If swelling spreads toward your eye or neck, or affects your breathing or swallowing, go to the ER or call 911.</li>
-        </ol></div>
-      </details>
-      <details class="acc">
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-layers"/></svg></span>Lost crown or filling<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Keep the crown somewhere safe and bring it with you.</li>
-          <li>Chew on the other side and avoid very hot, cold or sticky foods.</li>
-          <li>Call us to get the tooth checked and protected.</li>
-        </ol></div>
-      </details>
-      <details class="acc">
-        <summary><span class="ic" aria-hidden="true"><svg class="i"><use href="#i-drop"/></svg></span>Bleeding after an injury<svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="acc-body"><ol>
-          <li>Bite down on a clean gauze pad with steady pressure until the bleeding stops.</li>
-          <li>Use a cold pack on the outside of your face to limit swelling.</li>
-          <li>Call us to have the area checked. If bleeding is heavy or won’t stop, go to the ER.</li>
-        </ol></div>
-      </details>
-    </div>
-    <div class="er" role="note">
-      <svg class="i" aria-hidden="true"><use href="#i-alert"/></svg>
-      <p style="margin:0"><b>Call 911 or go to the ER</b> for facial swelling that affects your breathing or swallowing, bleeding that won’t stop, a possible broken jaw, or a head injury. For tooth-related emergencies, call us first at <a href="tel:+17249412200" data-cta="er-note">(724) 941-2200</a>.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ============ LOCATION & HOURS ============ -->
-<section class="section section--soft" id="location" aria-labelledby="loc-h">
+<section class="section" id="location" aria-labelledby="loc-h">
   <div class="wrap">
     <div class="sec-head sec-head--c">
       <span class="eyebrow">Location &amp; hours</span>
@@ -902,7 +822,7 @@ fbq('track', 'PageView');
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section" id="faq" aria-labelledby="faq-h">
+<section class="section section--soft" id="faq" aria-labelledby="faq-h">
   <div class="wrap">
     <div class="sec-head sec-head--c">
       <span class="eyebrow">Questions</span>

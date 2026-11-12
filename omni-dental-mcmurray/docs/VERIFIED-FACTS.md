@@ -104,12 +104,11 @@ page (Shadyside lists Drs. Rabinovich and Hanlon), so he was not presented as a 
 
 ## First-aid guidance
 
-- Knocked-out tooth steps — [SITE] FAQ #18, nearly verbatim.
-- Cracked/broken tooth steps — [SITE] cracked-tooth article, nearly verbatim.
-- Toothache, swelling, lost crown, bleeding — standard conservative dental first aid
-  (warm rinse, floss, cold compress, OTC pain relief per label, no aspirin on the gum).
-  No practice-specific claims are made.
-- ER / 911 safety note — general safety guidance; it reduces liability rather than adding claims.
+- The "What to Do Right Now" first-aid section (and its ER/911 note) was **removed at client
+  request** on 12 Nov 2026.
+- What remains: the knocked-out tooth card ("keep it in milk and come straight in") — [SITE] FAQ #18;
+  and the after-hours FAQ, which still tells visitors to call 911 or go to the ER for swelling that
+  affects breathing or swallowing, uncontrolled bleeding, or a head or jaw injury (general safety guidance).
 
 ## Location copy — [DERIVED]
 

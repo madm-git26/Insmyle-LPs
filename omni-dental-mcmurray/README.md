@@ -74,13 +74,12 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 8 | Why Omni | Six differentiators: after-hours line, CBCT, comfort, sedation, all-in-one |
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
-| 11 | First aid | "What to do right now" accordions + an ER/911 safety note |
-| 12 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
-| 13 | FAQ | 6 conversion-focused questions (same-day, after hours, new patients, walk-ins, cost, insurance), also emitted as FAQPage JSON-LD. Questions already answered elsewhere on the page were cut to keep it short |
-| 14 | Final CTA | "Don't Wait Out the Pain" |
+| 11 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
+| 12 | FAQ | 6 conversion-focused questions (same-day, after hours, new patients, walk-ins, cost, insurance), also emitted as FAQPage JSON-LD. Questions already answered elsewhere on the page were cut to keep it short |
+| 13 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call · Book · Directions, fixed on phones and tablets |
 
-**CTAs:** 17 tap-to-call links, 6 booking links, 2 directions links. The only other
+**CTAs:** 15 tap-to-call links, 6 booking links, 2 directions links. The only other
 outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 
 ### Quality Score alignment
@@ -89,7 +88,7 @@ outbound links are Google reviews, the Kleer plan and the Privacy Policy.
   "toothache", "broken tooth", "knocked-out tooth", "abscess", "wisdom tooth", "after hours",
   "walk in" and "open now" intents are each answered in a visible heading, card or FAQ.
 - **Landing page experience:** fast (below), mobile-first, no pop-ups, clear NAP, real
-  photos, transparent pricing and insurance info, privacy policy link, useful first-aid content.
+  photos, transparent pricing and insurance info, privacy policy link.
 
 ### Brand fidelity
 
