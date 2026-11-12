@@ -76,6 +76,12 @@ ul{padding:0;margin:0;list-style:none}
 .btn:hover{transform:translateY(-1px)}
 .btn-call{background:var(--sky);color:var(--navy);box-shadow:0 12px 26px -12px rgba(3,169,244,.9)}
 .btn-call:hover{background:var(--sky-hover)}
+/* Call buttons: soft pulsing glow + light sweep to draw the eye. One cycle every 2.4s
+   (well under the WCAG 3-flashes-per-second limit); switched off for reduced-motion users. */
+.btn-call,.mbar .m-call{position:relative;overflow:hidden;isolation:isolate;animation:cta-glow 2.4s ease-out infinite}
+.btn-call::after,.mbar .m-call::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;z-index:-1;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.7) 50%,rgba(255,255,255,0) 100%);transform:skewX(-20deg);animation:cta-shine 2.4s ease-in-out infinite}
+@keyframes cta-glow{0%{box-shadow:0 12px 26px -12px rgba(3,169,244,.9),0 0 0 0 rgba(3,169,244,.6)}70%{box-shadow:0 12px 26px -12px rgba(3,169,244,.9),0 0 0 12px rgba(3,169,244,0)}100%{box-shadow:0 12px 26px -12px rgba(3,169,244,.9),0 0 0 0 rgba(3,169,244,0)}}
+@keyframes cta-shine{0%{left:-60%}55%,100%{left:130%}}
 .btn-navy{background:var(--navy);color:#fff}
 .btn-navy:hover{background:var(--navy-3)}
 .btn-white{background:#fff;color:var(--navy)}
@@ -172,15 +178,32 @@ ul{padding:0;margin:0;list-style:none}
 @media (min-width:860px){.cta-box{flex-direction:row;align-items:center;padding:28px 32px}}
 
 /* Reviews */
-.rv-grid{display:grid;gap:16px}
-@media (min-width:720px){.rv-grid{grid-template-columns:1fr 1fr}}
-@media (min-width:1080px){.rv-grid{grid-template-columns:.95fr 1fr 1fr 1fr}}
+.rv-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:1100px){.rv-wrap{grid-template-columns:280px minmax(0,1fr);gap:18px}}
+.rv-carousel{min-width:0;display:flex;flex-direction:column;gap:16px}
+.rv-track{display:flex;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 4px;scrollbar-width:none}
+.rv-track::-webkit-scrollbar{display:none}
+.rv-track:focus-visible{outline:3px solid var(--sky);outline-offset:4px;border-radius:var(--r)}
+.rv-track>.rv{flex:0 0 86%;scroll-snap-align:start}
+@media (min-width:640px){.rv-track>.rv{flex-basis:calc((100% - 16px) / 2.15)}}
+.rv-nav{display:flex;align-items:center;justify-content:center;gap:16px}
+.rv-carousel.no-scroll .rv-nav{display:none}
+.rv-btn{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;box-shadow:var(--shadow-sm);transition:background-color .15s,opacity .15s}
+.rv-btn:hover:not(:disabled){background:var(--sky-50)}
+.rv-btn:disabled{opacity:.4;cursor:default;box-shadow:none}
+.rv-btn:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.rv-btn .i{width:20px;height:20px}
+.rv-btn[data-dir="-1"] .i{transform:scaleX(-1)}
+.rv-dots{display:flex;gap:8px}
+.rv-dots span{width:8px;height:8px;border-radius:999px;background:#c5d6e4;transition:width .2s,background-color .2s}
+.rv-dots span.on{width:24px;background:var(--navy)}
 .rv-sum{background:var(--navy);color:#e6f3fb;border-radius:var(--r);padding:26px 24px;display:flex;flex-direction:column;gap:10px}
 .rv-sum .big{font-family:var(--head);font-size:4rem;line-height:1;color:#fff}
 .rv-sum .stars .i{width:22px;height:22px}
 .rv-sum p{margin:0;font-size:.95rem}
 .rv-sum a{color:#fff;font-weight:700;margin-top:auto;display:inline-flex;align-items:center;gap:6px}
 .rv-sum a .i{width:16px;height:16px}
+@media (max-width:1099px){.rv-sum{flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:22px}.rv-sum .big{font-size:3rem}.rv-sum p{flex:1 1 100%}.rv-sum a{margin-top:2px}}
 .rv{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 18px;display:flex;flex-direction:column;gap:12px}
 .rv-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .rv blockquote{margin:0;font-size:.98rem;line-height:1.55;color:var(--ink)}
@@ -314,7 +337,7 @@ ul{padding:0;margin:0;list-style:none}
 body{padding-bottom:78px}
 @media (min-width:1000px){.mbar{display:none}body{padding-bottom:0}}
 
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv-track{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 
 <!-- Meta Pixel Code (same pixel as the current emergency LP) -->
@@ -565,7 +588,7 @@ fbq('track', 'PageView');
       <p class="lead">More than 1,500 patients have reviewed Omni Dental McMurray on Google. Here’s what a few of them say.</p>
     </div>
 
-    <div class="rv-grid">
+    <div class="rv-wrap">
       <div class="rv-sum">
         <svg class="g" width="30" height="30" aria-hidden="true"><use href="#i-g"/></svg>
         <span class="big">4.9</span>
@@ -574,6 +597,8 @@ fbq('track', 'PageView');
         <a href="https://maps.app.goo.gl/9ST2bdeMw6t71UTc8" target="_blank" rel="noopener" data-cta="reviews-google">Read our Google reviews <svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
 
+      <div class="rv-carousel">
+        <section class="rv-track" id="rv-track" tabindex="0" aria-label="Patient reviews — scroll sideways for more">
       <article class="rv">
         <div class="rv-top"><span class="stars" role="img" aria-label="5 out of 5 stars"><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg><svg class="i i-fill"><use href="#i-star"/></svg></span><span class="src"><svg class="g" aria-hidden="true"><use href="#i-g"/></svg>Google</span></div>
         <blockquote>“Got me in on an emergency right away and helped me get my tooth fixed quickly. Everyone from front office staff to Doctor were exceptionally nice”</blockquote>
@@ -591,6 +616,13 @@ fbq('track', 'PageView');
         <blockquote>“After reviewing my case, Dr. Hanlon thoroughly explained my treatment options to me. … I was nervous to see how everything was going to turn out, but I could not have been happier with the final outcome. … I finally have my smile back!”</blockquote>
         <footer><span class="av" aria-hidden="true">J</span><div><b>Joseph J. Rattay</b><span>Ben Avon Heights, PA</span></div></footer>
       </article>
+        </section>
+        <div class="rv-nav">
+          <button class="rv-btn" type="button" data-dir="-1" aria-controls="rv-track" aria-label="Previous review"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <div class="rv-dots" aria-hidden="true"></div>
+          <button class="rv-btn" type="button" data-dir="1" aria-controls="rv-track" aria-label="Next review"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </div>
+      </div>
     </div>
 
     <ul class="themes">
@@ -874,6 +906,27 @@ fbq('track', 'PageView');
     var links=document.querySelectorAll('a[href*="book.allinone.dental"]');
     for(var j=0;j<links.length;j++){var u=new URL(links[j].href);keys.forEach(function(key){var v=q.get(key);if(v&&!u.searchParams.has(key))u.searchParams.set(key,v);});links[j].href=u.toString();}
   }catch(e){}
+
+  /* ---- Reviews carousel: arrows, dots, swipe/scroll ---- */
+  var track=document.getElementById('rv-track');
+  if(track){
+    var cards=track.querySelectorAll('.rv'),dots=document.querySelector('.rv-dots'),btns=document.querySelectorAll('.rv-btn');
+    var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var step=function(){return cards.length>1?cards[1].offsetLeft-cards[0].offsetLeft:track.clientWidth;};
+    var update=function(){
+      var max=track.scrollWidth-track.clientWidth,x=track.scrollLeft,n=max>2?Math.round(max/step())+1:1;
+      while(dots.children.length<n)dots.appendChild(document.createElement('span'));
+      while(dots.children.length>n)dots.removeChild(dots.lastChild);
+      var idx=x>=max-2?n-1:Math.min(n-1,Math.round(x/step()));
+      for(var k=0;k<n;k++)dots.children[k].className=k===idx?'on':'';
+      btns[0].disabled=x<=2;btns[1].disabled=x>=max-2;
+      track.parentNode.classList.toggle('no-scroll',max<=2);
+    };
+    for(var b=0;b<btns.length;b++)btns[b].addEventListener('click',function(){track.scrollBy({left:+this.getAttribute('data-dir')*step(),behavior:calm?'auto':'smooth'});});
+    track.addEventListener('scroll',function(){window.requestAnimationFrame(update);},{passive:true});
+    window.addEventListener('resize',update);
+    update();
+  }
 
   /* ---- Conversion events for GTM (call / book / directions) ---- */
   document.addEventListener('click',function(e){
