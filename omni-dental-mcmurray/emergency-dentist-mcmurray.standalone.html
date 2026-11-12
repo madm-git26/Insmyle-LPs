@@ -342,6 +342,57 @@ ul{padding:0;margin:0;list-style:none}
 body{padding-bottom:78px}
 @media (min-width:1000px){.mbar{display:none}body{padding-bottom:0}}
 
+/* ---- Phones: tighter vertical rhythm and compact layouts (desktop unchanged) ---- */
+.steps-cta{justify-content:center;margin-top:30px}
+@media (max-width:759px){
+  .section{padding-block:40px}
+  .sec-head{margin-bottom:22px}
+  .eyebrow{margin-bottom:6px}
+  .h2{margin-bottom:.35em}
+  .lead{font-size:1rem;line-height:1.55}
+  .hero .wrap{gap:24px;padding-block:24px 32px}
+  .kicker{margin-bottom:12px}
+  .rating{margin-bottom:18px}
+  .chips{margin-top:18px;padding-top:16px}
+  .e-grid{grid-template-columns:1fr;gap:10px}
+  .e-card{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:start;padding:16px}
+  .e-card .ic{grid-row:1/3;margin:0;width:46px;height:46px}
+  .e-card h3{margin:2px 0 4px}
+  .cta-box{margin-top:18px;padding:20px;gap:14px}
+  .rv-carousel{gap:12px}
+  .rv blockquote{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}
+  .rv{padding:18px 18px 16px;gap:10px}
+  .rv footer{margin-top:4px}
+  .themes{margin-top:14px;gap:6px}
+  .themes li{font-size:.8rem;padding:6px 11px 4px}
+  .steps{gap:10px}
+  .step{display:grid;grid-template-columns:auto 1fr;column-gap:14px;padding:16px}
+  .step::before{grid-row:1/3;margin:0;width:36px;height:36px;font-size:.95rem}
+  .step h3{margin:6px 0 4px}
+  .steps-cta{margin-top:20px}
+  .why{gap:22px}
+  .why-copy{gap:14px;margin-bottom:20px}
+  .why-cta{margin-top:20px}
+  .docs{gap:12px}
+  .doc{display:grid;grid-template-columns:92px 1fr;column-gap:14px;align-items:center;padding:16px}
+  .doc-img{grid-row:1/3;width:92px;aspect-ratio:1/1;border-radius:12px}
+  .doc-body{display:contents}
+  .doc .role{grid-column:2;align-self:end}
+  .doc h3{grid-column:2;align-self:start;font-size:1.5rem}
+  .doc ul{grid-column:1/-1;margin-top:12px}
+  .doc q{grid-column:1/-1;margin-top:10px}
+  .gal{margin-top:16px;gap:10px}
+  .pay{gap:12px}
+  .pay-card{padding:18px;gap:8px}
+  .pay-note{margin-top:12px}
+  .loc{gap:14px}
+  .loc-card{padding:18px;gap:14px}
+  .areas{margin-top:14px}
+  .faq{gap:8px}
+  .final .btn-row{margin-top:18px}
+  .final small{margin-top:12px}
+}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv-track{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 
@@ -647,7 +698,7 @@ fbq('track', 'PageView');
       <li class="step"><h3>Relief comes first</h3><p>A strong local anesthetic numbs the tooth before any treatment. If you arrive in pain, relief starts as soon as the tooth is numb.</p></li>
       <li class="step"><h3>Your options, your call</h3><p>We explain your treatment options and help you understand your insurance benefits. Treatment starts, and stops, when you say so.</p></li>
     </ol>
-    <div class="btn-row" style="justify-content:center;margin-top:30px">
+    <div class="btn-row steps-cta">
       <a class="btn btn-call" href="tel:+17249412200" data-cta="steps-call-btn"><svg class="i" aria-hidden="true"><use href="#i-phone"/></svg>Call Now for Same-Day Care</a>
       <a class="btn btn-navy" href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" data-cta="steps-book"><svg class="i" aria-hidden="true"><use href="#i-cal"/></svg>Book Online</a>
     </div>
