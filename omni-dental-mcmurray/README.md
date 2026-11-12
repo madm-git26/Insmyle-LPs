@@ -75,7 +75,7 @@ Quality Score are unaffected. Delete the line if you want it indexed.
 | 9 | Doctors + office photos | Real faces, credentials, real rooms and equipment |
 | 10 | Insurance & payment | Carriers, Kleer membership, Cherry/CareCredit, payment methods |
 | 11 | Location & hours | Address, directions, hours with today highlighted, map, building sign photo |
-| 12 | FAQ | 6 conversion-focused questions (same-day, after hours, new patients, walk-ins, cost, insurance), also emitted as FAQPage JSON-LD. Questions already answered elsewhere on the page were cut to keep it short |
+| 12 | FAQ | 4 conversion-focused questions (same-day, after hours, new patients, walk-ins), also emitted as FAQPage JSON-LD. Cost and insurance are covered by the Insurance & payment section. Questions already answered elsewhere on the page were cut to keep it short |
 | 13 | Final CTA | "Don't Wait Out the Pain" |
 | — | Mobile action bar | Call Now · Book Online, fixed on phones and tablets |
 
@@ -111,7 +111,7 @@ outbound links are Google reviews, the Kleer plan and the Privacy Policy.
 | First Tab stop | "Skip to content" |
 | Mobile LCP / CLS (simulated 4G, 4× CPU slowdown) | **0.56 s / 0.067** |
 | First-party transfer on load | ~208 KB (third-party tags not included) |
-| JSON-LD | `Dentist` + `FAQPage` (6 Q&As, generated from the visible FAQ) parse as valid JSON |
+| JSON-LD | `Dentist` + `FAQPage` (4 Q&As, generated from the visible FAQ) parse as valid JSON |
 | Open/closed status | Correct for before-open, open, after-close, Friday evening, Saturday and Sunday night, including visitors in other time zones |
 | `gclid` / UTM pass-through to booking | Verified |
 | `dataLayer` click events | Verified for call, book and directions |
