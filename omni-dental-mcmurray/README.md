@@ -22,8 +22,7 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
 
 1. **Top bar**: 4.9★ / 1,500+ Google reviews · new patients & emergencies welcome · address
 2. **Sticky header**: logo, section links (desktop), click-to-call, **Book Online**
-3. **Hero**: H1 *"Best Dentist in McMurray, PA. Changing the Way You Feel About Visiting the Dentist"*
-   (the practice's own line plus the keyword), Book and Call buttons, a Google rating badge, a
+3. **Hero**: a large keyword H1, *"Best Dentist in McMurray, PA"*, plus Book and Call buttons, a Google rating badge, a
    live **"Open now · until 7 PM"** status, a Google review quote and the **office-tour video**:
    - A silent 30-second loop from the omnidentalpgh.com homepage hero video, trimmed to the sign,
      reception, fireplace lounge, coffee bar, treatment rooms and building exterior.
