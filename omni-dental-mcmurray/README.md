@@ -52,16 +52,16 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
     - slows to about a third while hovered so a review can be read;
     - can be dragged or swiped, or moved with the arrows and keyboard arrow keys;
     - has a pause button, and pauses while it has keyboard focus.
-15. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
+15. **Footer**: slim bar with © plus Privacy Policy and Terms links, kept for Google Ads policy
 16. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
 
-Booking CTAs: 16 · Click-to-call links: 11 · Directions links: 3 (plus 2 "read our Google reviews" links).
+Booking CTAs: 15 · Click-to-call links: 10 · Directions links: 3 (plus 2 "read our Google reviews" links).
 
 **Type & spacing:** the root size is 17px on phones and 17.6px from 700px up, about 6–10% larger
 than the original 16px, and every rem-based size scales with it. Body text is 1.125rem. Phones use
 tight spacing (30px section padding, compact cards, step numbers beside their titles).
 
-**Call-to-action buttons:** all 18 buttons have an attention effect. A light sweep crosses each one
+**Call-to-action buttons:** all 16 buttons have an attention effect. A light sweep crosses each one
 every 3 s, and the filled Book/Call buttons give off a soft pulsing ring. It's deliberately not an
 on/off blink, which reads as broken and is a photosensitivity risk. The sweep moves via `transform`,
 so it causes no layout shift. It also runs when the OS asks for reduced motion, as the practice
