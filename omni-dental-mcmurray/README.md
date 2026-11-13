@@ -52,7 +52,7 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
     - slows to about a third while hovered so a review can be read;
     - can be dragged or swiped, or moved with the arrows and keyboard arrow keys;
     - has a pause button, and pauses while it has keyboard focus.
-15. **Footer**: slim bar with © plus Privacy Policy and Terms links, kept for Google Ads policy
+15. **Footer**: a slim © line only. The Privacy Policy and Terms links were removed at the practice's request.
 16. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
 
 Booking CTAs: 15 · Click-to-call links: 10 · Directions links: 3 (plus 2 "read our Google reviews" links).
