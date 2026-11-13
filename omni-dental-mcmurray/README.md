@@ -44,8 +44,8 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
     - The **Check My Insurance** pop-up (the practice's own Jotform) and Call to Verify.
     - The year-end benefits note.
     - Membership plan, CareCredit, Cherry, and cash / check / credit.
-12. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
-13. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance)
+12. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance)
+13. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
 14. **Reviews**: the heading *"Rated **4.9★** by **1,500+** Google Reviewers"* (numbers highlighted),
     then a **continuously auto-scrolling** strip of 6 verbatim reviews, plus 3 video testimonials. The strip:
     - always moves (40 px/s on desktop, 30 px/s on phones) and loops seamlessly;

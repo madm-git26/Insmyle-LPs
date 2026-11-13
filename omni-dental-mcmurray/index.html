@@ -505,6 +505,68 @@ dialog.vid-dialog .dlg-head{background:#fff}
   .faq .ans{padding:0 16px 14px}
   }
 
+/* Mobile: compact pass 3 (restructure the tallest blocks) */
+@media(max-width:699px){
+  h2{font-size:1.6rem}
+  .section{padding:24px 0}
+  .sec-head,.sec-head.left{margin-bottom:14px!important}
+  .sub{font-size:.95rem;line-height:1.45}
+  .eyebrow{font-size:.74rem;margin-bottom:4px}
+  .sec-cta{margin-top:14px}
+  .hero{padding:14px 0 22px}
+  .hero h1{margin:12px 0 16px}
+  .checks li{font-size:.95rem}
+  .svc{padding:12px 14px 10px}
+  .svc h3{font-size:1.12rem;margin-bottom:2px}
+  .svc p{font-size:.9rem;line-height:1.42;margin-bottom:4px}
+  .svc .link-arrow{font-size:.9rem}
+  .also h3{font-size:1.12rem}
+  .why{padding:12px 14px 10px}
+  .why h3{font-size:1.12rem;margin-bottom:2px}
+  .why p{font-size:.9rem;line-height:1.42}
+  .why .num{font-size:1.5rem}
+  .band h2{font-size:1.45rem}
+  .band p{font-size:.95rem}
+  /* dentists: small photo beside the name instead of a full-width portrait */
+  .doc{display:grid;grid-template-columns:92px 1fr;column-gap:14px;padding:14px;align-items:center}
+  .doc .ph{grid-row:1/span 2;width:92px;height:92px;aspect-ratio:auto;border-radius:14px}
+  .doc .bd{display:contents}
+  .doc h3{grid-column:2;align-self:end;font-size:1.2rem;margin:0}
+  .doc .role{grid-column:2;align-self:start;margin:2px 0 0;font-size:.78rem}
+  .doc ul,.doc .bio,.doc blockquote{grid-column:1/-1}
+  .doc ul{margin:12px 0 8px}
+  .doc li,.doc .bio,.doc blockquote{font-size:.9rem}
+  /* technology: no large photo; icon beside title */
+  .tech-photo{display:none}
+  .tech{display:grid;grid-template-columns:28px 1fr;column-gap:10px;padding:12px 14px 10px}
+  .tech .ico{grid-row:1/span 2;width:24px;height:24px;margin:1px 0 0}
+  .tech h3{font-size:1.08rem;margin-bottom:2px}
+  .tech p{font-size:.9rem;line-height:1.42}
+  /* insurance */
+  .card{padding:14px}
+  .card h3{font-size:1.15rem}
+  .ins-list li{font-size:.85rem;padding:5px 10px 3px}
+  .pay-opt{padding:8px 0}
+  /* location */
+  .map,.map iframe{min-height:200px}
+  .hours{font-size:.92rem}
+  .loc-card .btn{flex:1 1 130px;font-size:.92rem;padding-left:.7rem;padding-right:.7rem}
+  .exterior{grid-template-columns:110px 1fr}
+  .exterior p{font-size:.88rem}
+  /* faq */
+  .faq summary{font-size:.98rem;padding:12px 40px 10px 14px}
+  .faq .ans{font-size:.93rem;padding:0 14px 12px}
+  /* reviews: patient videos become a swipe row */
+  .rev blockquote{font-size:.95rem;line-height:1.45}
+  .vids h3{font-size:1.2rem}
+  .vid-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:4px;scrollbar-width:none}
+  .vid-grid::-webkit-scrollbar{display:none}
+  .vid-grid>.yt{flex:0 0 78%;scroll-snap-align:start}
+  .js .vid-grid .rv{opacity:1;transform:none}
+  .rc-btn{width:40px;height:40px}
+  .footer{padding:14px 0}
+}
+
 /* Reveal */
 .js .rv{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
 .js .rv.in{opacity:1;transform:none}
@@ -923,8 +985,36 @@ dialog.vid-dialog .dlg-head{background:#fff}
   </div>
 </section>
 
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-h">Questions From New Patients</h2>
+    </div>
+    <div class="faq rv">
+      <details open>
+        <summary>Are you accepting new patients?</summary>
+        <div class="ans"><p>Yes! New patients and emergency appointments are welcome at our McMurray office. You can <a href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="faq">book online</a> anytime, or call <a href="tel:+17242206862" data-cta="call" data-loc="faq">(724) 220-6862</a>.</p></div>
+      </details>
+      <details>
+        <summary>Can I get a same-day or emergency appointment?</summary>
+        <div class="ans"><p>Yes. We offer same-day appointments and after-hours emergency care. If you have a toothache, a broken or knocked-out tooth, a broken crown or filling, an abscess or swelling, call us right away. We understand there's no pain like tooth pain and make every effort to see you as soon as possible.</p></div>
+      </details>
+      <details>
+        <summary>Which dental insurance plans do you accept?</summary>
+        <div class="ans"><p>We accept most PPO plans, including Delta Dental, Aetna PPO, Cigna PPO, MetLife, United Concordia, Guardian, UPMC Dental Advantage PPO and UPMC for Life (Medicare Advantage). Call us to verify your plan. If you share your insurance details before your visit, we'll check your benefits so you know what to expect.</p></div>
+      </details>
+      <details>
+        <summary>What if I don't have dental insurance?</summary>
+        <div class="ans"><p>No problem. Our in-office membership plan takes less than 15 minutes to join, and your coverage is active immediately. We also offer financing through CareCredit and Cherry, and accept cash, checks and credit cards.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ===== LOCATION ===== -->
-<section class="section" id="location" aria-labelledby="loc-h">
+<section class="section tint" id="location" aria-labelledby="loc-h">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="eyebrow">Location &amp; Hours</span>
@@ -962,34 +1052,6 @@ dialog.vid-dialog .dlg-head{background:#fff}
           <p><strong>Easy to find on Washington Rd.</strong> Look for the Omni Dental sign out front. We're in Suite 3.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="section tint" id="faq" aria-labelledby="faq-h">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">FAQ</span>
-      <h2 id="faq-h">Questions From New Patients</h2>
-    </div>
-    <div class="faq rv">
-      <details open>
-        <summary>Are you accepting new patients?</summary>
-        <div class="ans"><p>Yes! New patients and emergency appointments are welcome at our McMurray office. You can <a href="https://book.allinone.dental/omni-dental?clinic_num=2&amp;referrer_id=3" target="_blank" rel="noopener" data-cta="book" data-loc="faq">book online</a> anytime, or call <a href="tel:+17242206862" data-cta="call" data-loc="faq">(724) 220-6862</a>.</p></div>
-      </details>
-      <details>
-        <summary>Can I get a same-day or emergency appointment?</summary>
-        <div class="ans"><p>Yes. We offer same-day appointments and after-hours emergency care. If you have a toothache, a broken or knocked-out tooth, a broken crown or filling, an abscess or swelling, call us right away. We understand there's no pain like tooth pain and make every effort to see you as soon as possible.</p></div>
-      </details>
-      <details>
-        <summary>Which dental insurance plans do you accept?</summary>
-        <div class="ans"><p>We accept most PPO plans, including Delta Dental, Aetna PPO, Cigna PPO, MetLife, United Concordia, Guardian, UPMC Dental Advantage PPO and UPMC for Life (Medicare Advantage). Call us to verify your plan. If you share your insurance details before your visit, we'll check your benefits so you know what to expect.</p></div>
-      </details>
-      <details>
-        <summary>What if I don't have dental insurance?</summary>
-        <div class="ans"><p>No problem. Our in-office membership plan takes less than 15 minutes to join, and your coverage is active immediately. We also offer financing through CareCredit and Cherry, and accept cash, checks and credit cards.</p></div>
-      </details>
     </div>
   </div>
 </section>
