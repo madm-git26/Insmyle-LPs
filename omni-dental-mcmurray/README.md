@@ -38,29 +38,34 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
 7. **CTA band**: "New Patients & Emergency Appointments Welcome!"
 8. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, a Hanlon video and a patient quote
 9. **Technology**: cone beam CT, iTero®, digital X-rays, guided implants
-10. **First visit**: 4 steps (with the New Patient Forms link) and "Are we a good fit?"
-11. **Smile gallery**: 4 real before/afters
-12. **Insurance & financing** (compact):
+10. **Smile gallery**: 4 real before/afters
+11. **Insurance & financing** (compact):
     - Accepted plans as pills, with "…and most other PPO plans".
     - The **Check My Insurance** pop-up (the practice's own Jotform) and Call to Verify.
     - The year-end benefits note.
     - Membership plan, CareCredit, Cherry, and cash / check / credit.
-13. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
-14. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance)
-15. **Reviews**: the heading *"Rated **4.9★** by **1,500+** Google Reviewers"* (numbers highlighted),
+12. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
+13. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance)
+14. **Reviews**: the heading *"Rated **4.9★** by **1,500+** Google Reviewers"* (numbers highlighted),
     then a **continuously auto-scrolling** strip of 6 verbatim reviews, plus 3 video testimonials. The strip:
     - always moves (40 px/s on desktop, 30 px/s on phones) and loops seamlessly;
     - slows to about a third while hovered so a review can be read;
     - can be dragged or swiped, or moved with the arrows and keyboard arrow keys;
     - has a pause button, and pauses while it has keyboard focus.
-16. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
-17. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
+15. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
+16. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
 
-Booking CTAs: 17 · Click-to-call links: 12 · Directions links: 3 (plus 2 "read our Google reviews" links).
+Booking CTAs: 16 · Click-to-call links: 11 · Directions links: 3 (plus 2 "read our Google reviews" links).
 
 **Type & spacing:** the root size is 17px on phones and 17.6px from 700px up, about 6–10% larger
 than the original 16px, and every rem-based size scales with it. Body text is 1.125rem. Phones use
 tight spacing (30px section padding, compact cards, step numbers beside their titles).
+
+**Call-to-action buttons:** all 18 buttons have an attention effect. A light sweep crosses each one
+every 3 s, and the filled Book/Call buttons give off a soft pulsing ring. It's deliberately not an
+on/off blink, which reads as broken and is a photosensitivity risk. The sweep moves via `transform`,
+so it causes no layout shift. It also runs when the OS asks for reduced motion, as the practice
+requested.
 
 **Fonts without layout shift:** until Belleza and Josefin Sans load, text is drawn in Arial scaled
 with `size-adjust` and metric overrides to the same width. Nothing re-wraps when the web fonts
