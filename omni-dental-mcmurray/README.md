@@ -22,40 +22,49 @@ A standalone, conversion-focused landing page for **Omni Dental McMurray**
 
 1. **Top bar**: 4.9★ / 1,500+ Google reviews · new patients & emergencies welcome · address
 2. **Sticky header**: logo, section links (desktop), click-to-call, **Book Online**
-3. **Hero**: a large keyword H1, *"Best Dentist in McMurray, PA"*, plus Book and Call buttons, a Google rating badge, a
-   live **"Open now · until 7 PM"** status, a Google review quote and the **office-tour video**:
+3. **Hero**: the large keyword H1 *"Best Dentist in McMurray, PA"*, Book and Call buttons, a Google
+   rating badge, a live **"Open now · until 7 PM"** status, a check-list, and the **office-tour video**:
    - A silent 30-second loop from the omnidentalpgh.com homepage hero video, trimmed to the sign,
      reception, fireplace lounge, coffee bar, treatment rooms and building exterior.
    - Compressed from **55 MB to 1.7 MB (desktop) / 0.95 MB (mobile)**.
    - A **"Watch our office tour"** button opens the full video with sound (YouTube `5wBm_JHx_30`,
      the same video the homepage's play button opens).
-4. **Proof bar**: 4.9★ · 1,500+ reviews · same-day · Mon–Fri early & evening · most PPO plans
-5. **Services**: 6 core general-dentistry cards, each with a CTA, plus "also available" chips (dentures, sedation, sealants, Invisalign, implants…)
+   - A Google review quote card and a "Same-day appointments" badge sit over the video.
+4. **Stats ticker**: 4.9★ · 1,500+ reviews · Same-Day · Mon–Fri · Most PPO, scrolling continuously
+   at full width. It slows on hover; click, tap or Enter/Space pauses it.
+5. **Services**: 6 core general-dentistry cards, each with a CTA, plus "also available" chips
+   (dentures, sedation, sealants, Invisalign, implants…)
 6. **Why Omni**: 6 USPs taken from the site and the current LP
-7. **Reviews**: a 4.9★ / 1,500+ Google rating bar, then a **continuously auto-scrolling** strip of 6
-   verbatim reviews, plus 3 video testimonials. The strip:
-   - always moves (40 px/s on desktop, 30 px/s on phones) and loops seamlessly;
-   - slows to about a third while hovered so a review can be read;
-   - can be dragged or swiped, or moved with the arrows and keyboard arrow keys;
-   - has a pause button, and pauses while it has keyboard focus.
-8. **CTA band**: "New Patients & Emergency Appointments Welcome!"
-9. **Comfort**: amenities, an anxious-patient callout, office photo mosaic
-10. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, a Hanlon video and a patient quote
-11. **Technology**: cone beam CT, iTero®, digital X-rays, guided implants
-12. **First visit**: 4 steps (with the New Patient Forms link) and "Are we a good fit?"
-13. **Smile gallery**: 4 real before/afters
-14. **Insurance & financing**: accepted plans, an **insurance check** pop-up (the practice's own
-    Jotform), membership plan, CareCredit, Cherry, and a year-end "use your benefits" note
-15. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
-16. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance) in native `<details>`
-17. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
-18. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
+7. **CTA band**: "New Patients & Emergency Appointments Welcome!"
+8. **Dentists**: Drs. Hanlon, Bono and Petrie with credentials, a Hanlon video and a patient quote
+9. **Technology**: cone beam CT, iTero®, digital X-rays, guided implants
+10. **First visit**: 4 steps (with the New Patient Forms link) and "Are we a good fit?"
+11. **Smile gallery**: 4 real before/afters
+12. **Insurance & financing** (compact):
+    - Accepted plans as pills, with "…and most other PPO plans".
+    - The **Check My Insurance** pop-up (the practice's own Jotform) and Call to Verify.
+    - The year-end benefits note.
+    - Membership plan, CareCredit, Cherry, and cash / check / credit.
+13. **Location & hours**: address, hours with today highlighted, Google map, exterior photo
+14. **FAQ**: 4 booking-focused questions (new patients, same-day/emergency, insurance accepted, no insurance)
+15. **Reviews**: the heading *"Rated **4.9★** by **1,500+** Google Reviewers"* (numbers highlighted),
+    then a **continuously auto-scrolling** strip of 6 verbatim reviews, plus 3 video testimonials. The strip:
+    - always moves (40 px/s on desktop, 30 px/s on phones) and loops seamlessly;
+    - slows to about a third while hovered so a review can be read;
+    - can be dragged or swiped, or moved with the arrows and keyboard arrow keys;
+    - has a pause button, and pauses while it has keyboard focus.
+16. **Final CTA** and a slim footer: © plus Privacy Policy and Terms links, kept for Google Ads policy
+17. **Mobile sticky bar**: Call + Book Online, shown once the hero buttons scroll away
 
 Booking CTAs: 17 · Click-to-call links: 12 · Directions links: 3 (plus 2 "read our Google reviews" links).
 
 **Type & spacing:** the root size is 17px on phones and 17.6px from 700px up, about 6–10% larger
-than the original 16px, and every rem-based size scales with it. Body text is 1.125rem. Phones
-use tighter section padding (40px) and gaps.
+than the original 16px, and every rem-based size scales with it. Body text is 1.125rem. Phones use
+tight spacing (30px section padding, compact cards, step numbers beside their titles).
+
+**Fonts without layout shift:** until Belleza and Josefin Sans load, text is drawn in Arial scaled
+with `size-adjust` and metric overrides to the same width. Nothing re-wraps when the web fonts
+arrive; in testing the fallback and final layouts matched to the pixel.
 
 ## Brand match
 
@@ -65,7 +74,7 @@ use tighter section padding (40px) and gaps.
   open-licence match for the site's URW Classico. See "Heading font" below for why the original
   file isn't used.
 - **Voice**: the practice's own phrases: *"Changing the way you feel about visiting the dentist"*,
-  *"we listen"*, *"treatment starts, and stops, when you say so"*, *"dentist and comfort are complementary"*.
+  *"we listen"*, *"treatment starts, and stops, when you say so"*.
 
 ## Performance & checks run (Playwright, Chromium)
 
@@ -73,16 +82,17 @@ use tighter section padding (40px) and gaps.
 |---|---|
 | Horizontal overflow at 320 / 390 / 768 / 1440 px | **0 px** at every width |
 | Broken images | 0 (every image loads in a real scroll-through) |
-| Throttled mobile (slow 4G, 4× CPU, 390 px @3x) | **LCP under 0.9 s · CLS ≈ 0 · ~48 KB before scrolling** (local server, GTM blocked) |
+| Throttled load (slow 4G, 4× CPU) | **LCP 0.68–0.88 s · CLS 0.000–0.006** at 390 px @2x/@3x, 768, 1440 and 1920 px (local server, GTM blocked) |
 | Hero video | Desktop: plays after page load. Mobile: downloads only when scrolled into view. Pauses off-screen and while the full tour is open. |
 | Reveal animations | Every animated block ends visible; the hero is never animated, so LCP isn't delayed |
-| Reviews auto-scroll | Moves continuously at 1440 and 390 px, including with reduced motion on and while hovered (slower). Pause button, arrows, drag and the seamless loop all tested. |
+| Reviews & stats auto-scroll | Both move continuously at 390–1920 px, including with reduced motion on and while hovered (slower). Pause controls, arrows, drag and the seamless loop all tested. |
 | `gclid` / UTM pass-through to the booking link | Works |
 | "Open now" status | Uses McMurray time (America/New_York) |
 
 Speed choices: images are WebP with `srcset` and lazy-loaded below the fold. The hero video's
-poster frame (18 KB) is the LCP image, preloaded with `fetchpriority="high"`, so the video never
-slows the first paint. The loop starts only after the page has loaded. It's skipped for visitors
+poster frame (11–26 KB, sized so it's never upscaled) is the LCP image, preloaded with
+`fetchpriority="high"`. The video sits 1px inside the poster, so its first frame never registers as
+a larger, later LCP element. The loop starts only after the page has loaded. It's skipped for visitors
 with reduced motion turned on, Data Saver or a 2G connection; they see the poster, and the play
 button still works. YouTube players and the insurance form load only on click.
 There are no jQuery, slider or icon-font libraries; icons are an inline SVG sprite.
